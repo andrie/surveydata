@@ -1,0 +1,17 @@
+Package: surveydata
+Maintainer: Andrie de Vries <apdevries@gmail.com>
+License: GPL (>=2)
+Title: Tools, classes and methods to manipulate survey data
+LazyData: true
+LazyLoad: true
+Author: Andrie de Vries <andrie.de.vries@pentalibra.com>
+Description: Tools, classes and methods to manipulate
+    survey data.
+Author@R: person("Andrie", "de Vries",
+    email="andrie.de.vries@pentalibra.com")
+Version: 0.0-03
+URL:
+Date: 2011-07-07
+Collate:
+    'surveydata-package.R'
+    'surveydata.R'
