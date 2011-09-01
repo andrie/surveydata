@@ -1,8 +1,8 @@
 \docType{package}
-\name{package-surveydata}
-\alias{"package-surveydata"}
-\alias{package-surveydata}
+\name{surveydata-package}
+\alias{"surveydata-package"}
 \alias{surveydata}
+\alias{surveydata-package}
 \title{Tools, classes and methods to manipulate survey data.}
 \description{
   Tools, classes and methods to manipulate survey data.
@@ -22,12 +22,10 @@
   \code{\link{as.data.frame.surveydata}} }
 
   To access and modify the variable.labels attribute:
-  \itemize{ \item \code{\link{varlabels}} \item
-  \code{\link{varlabels<-}} }
+  \code{\link{varlabels}}
 
   To subset or merge surveydata objects: \itemize{ \item
-  \code{\link{merge.surveydata}} \item
-  \code{\link{surveydata_replace}} }
+  \code{\link{merge}} \item \code{\link{extract}} }
 }
 \author{
   Andrie de Vries \email{andrie.de.vries@pentalibra.com}

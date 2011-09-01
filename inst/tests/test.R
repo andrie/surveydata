@@ -1,7 +1,7 @@
 # unit test for "surveydata" class
 # 
 # Author: Andrie
-###############################################################################
+#------------------------------------------------------------------------------
 
 
 sdat <- data.frame(
@@ -30,7 +30,7 @@ attributes(sdat)$variable.labels <- sdat_labels
 #varlabels(s)
 #identical(varlabels(s), sdat_labels)
 
-###############################################################################
+#------------------------------------------------------------------------------
 
 context("Surveydata class functions")
 test_that("as.surveydata and is.surveydata works as expected", {
@@ -40,7 +40,7 @@ test_that("as.surveydata and is.surveydata works as expected", {
       expect_that(is.surveydata(sdat), is_false())
     })
 
-###############################################################################
+#------------------------------------------------------------------------------
 
 context("Varlabel functions")
 test_that("Varlabel functions work as expected", {
@@ -52,7 +52,7 @@ test_that("Varlabel functions work as expected", {
       expect_that(varlabels(s), equals(c(1:2, 20, 4:8)))
     })
 
-###############################################################################
+#------------------------------------------------------------------------------
 
 context("Rename columns")
 
@@ -63,7 +63,7 @@ test_that("Name_replace works as expected", {
       expect_that(names(varlabels(s))[1], equals("RespID"))
     })
 
-###############################################################################
+#------------------------------------------------------------------------------
 
 context("Subsetting")
 
@@ -86,7 +86,7 @@ test_that("`$<-` newname inserts column and new varlabel", {
 
 
 
-###############################################################################
+#------------------------------------------------------------------------------
 
 context("Merge surveydata objects")
 

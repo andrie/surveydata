@@ -1,9 +1,9 @@
-\name{names_replace}
+\name{names}
 \alias{"names<-"}
-\alias{names_replace}
+\alias{names}
 \title{Updates names and variable.labels attribute of surveydata.}
 \usage{
-  names(x) <- value
+  "names(x) <- value"
 }
 \arguments{
   \item{x}{surveydata object}
@@ -15,7 +15,7 @@
   surveydata.
 }
 \seealso{
-  \code{\link{package-surveydata}},
+  \code{\link{surveydata-package}},
   \code{\link{is.surveydata}}
 }
 

@@ -15,21 +15,17 @@
 #' \item \code{\link{as.data.frame.surveydata}} 
 #' }
 #' 
-#' To access and modify the variable.labels attribute:
-#' \itemize{
-#' \item \code{\link{varlabels}} 
-#' \item \code{\link{varlabels<-}} 
-#' }
+#' To access and modify the variable.labels attribute: \code{\link{varlabels}}
 #' 
 #' To subset or merge surveydata objects:
 #' \itemize{
-#' \item \code{\link{merge.surveydata}} 
-#' \item \code{\link{surveydata_replace}} 
+#' \item \code{\link{merge}} 
+#' \item \code{\link{extract}} 
 #' }
 #' 
 #' 
-#' @name package-surveydata
-#' @aliases surveydata package-surveydata
+#' @name surveydata-package
+#' @aliases surveydata surveydata-package
 #' @docType package
 #' @title Tools, classes and methods to manipulate survey data.
 #' @author Andrie de Vries \email{andrie.de.vries@@pentalibra.com}

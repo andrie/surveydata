@@ -12,7 +12,7 @@
   class, and coercion from other objects.
 }
 \seealso{
-  \code{\link{package-surveydata}},
+  \code{\link{surveydata-package}},
   \code{\link{is.surveydata}}
 }
 

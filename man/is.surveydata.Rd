@@ -2,7 +2,7 @@
 \alias{is.surveydata}
 \title{Tests whether an object is of class surveydata.}
 \usage{
-  \method{is}{surveydata} (x)
+  is.surveydata(x)
 }
 \arguments{
   \item{x}{Object to check for being of class surveydata}
@@ -11,6 +11,6 @@
   Tests whether an object is of class surveydata.
 }
 \seealso{
-  \code{\link{package-surveydata}}
+  \code{\link{surveydata-package}}
 }
 

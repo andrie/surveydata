@@ -1,9 +1,10 @@
-\name{surveydata_replace}
-\alias{"$<-"}
-\alias{surveydata_replace}
+\name{extract}
+\alias{"$<-.surveydata"}
+\alias{extract}
+\alias{replace}
 \title{Extract or replace subsets of surveyordata.}
 \usage{
-  x$name <- value
+  "x$name <- value"
 }
 \arguments{
   \item{x}{surveydata object}
@@ -17,6 +18,6 @@
   the varlabels stay in synch.
 }
 \seealso{
-  \code{\link{package-surveydata}}
+  \code{\link{surveydata-package}}
 }
 

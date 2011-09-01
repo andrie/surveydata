@@ -9,9 +9,11 @@ Description: Tools, classes and methods to manipulate
     survey data.
 Author@R: person("Andrie", "de Vries",
     email="andrie.de.vries@pentalibra.com")
-Version: 0.0-03
+Version: 0.0-04
 URL:
-Date: 2011-07-07
+Date: 2011-09-01
 Collate:
     'surveydata-package.R'
     'surveydata.R'
+    'merge.R'
+    'varlabels.R'

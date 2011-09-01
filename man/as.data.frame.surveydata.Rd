@@ -11,6 +11,6 @@
   Coerces surveydata object to data.frame
 }
 \seealso{
-  \code{\link{package-surveydata}}
+  \code{\link{surveydata-package}}
 }
 

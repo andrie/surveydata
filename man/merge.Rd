@@ -1,4 +1,5 @@
-\name{merge.surveydata}
+\name{merge}
+\alias{merge}
 \alias{merge.surveydata}
 \title{Merge surveydata objects.}
 \usage{

@@ -1,16 +1,23 @@
 \name{varlabels}
+\alias{"varlabels<-"}
 \alias{varlabels}
-\title{Returns variable.labels attribute of data.}
+\alias{varlabels<-}
+\title{Returns and updates variable.labels attribute of data.}
 \usage{
   varlabels(x)
+
+  varlabels(x) <- value
 }
 \arguments{
   \item{x}{surveydata object}
+
+  \item{value}{New value}
 }
 \description{
-  Returns variable.labels attribute of data.
+  \code{varlabels} returns the variable.labels attribute of
+  data, and \code{varlabels<-} updates the attribute.
 }
 \seealso{
-  \code{\link{package-surveydata}}
+  \code{\link{surveydata-package}}
 }
 

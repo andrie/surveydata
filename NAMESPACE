@@ -1,5 +1,4 @@
-export("$<-")
-export("names<-")
 export("varlabels<-")
 export(as.surveydata)
+export(is.surveydata)
 export(varlabels)
