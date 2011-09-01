@@ -17,3 +17,4 @@ Collate:
     'surveydata.R'
     'merge.R'
     'varlabels.R'
+    'subset.R'

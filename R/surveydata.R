@@ -8,10 +8,12 @@
 #' Methods for creating "surveydata" objects, testing for class, and coercion from other objects.
 #' 
 #' @param x Object to coerce to surveydata
+#' @param pattern A regex pattern that defines the suffix of a question number
 #' @export
 #' @seealso \code{\link{surveydata-package}}, \code{\link{is.surveydata}}
-as.surveydata <- function(x){
+as.surveydata <- function(x, pattern="(_[[:digit:]])*(_other)?$"){
   class(x) <- "surveydata"
+  pattern(x) <- pattern
   x
 }
 
@@ -38,34 +40,7 @@ is.surveydata <- function(x){
   inherits(x, "surveydata")
 }
 
-
-#' Extract or replace subsets of surveyordata.
-#' 
-#' Extract or replace subsets of surveyordata, ensuring that the varlabels stay in synch.
-#' 
-#' @name extract
-#' @aliases  extract replace $<-.surveydata 
-#' @param x surveydata object
-#' @param name Names of columns
-#' @param value New value
-#' @usage "x$name <- value"
-#' @name surveydata_replace
-#' @method "$<-" surveydata
-#' @seealso \code{\link{surveydata-package}}
-`$<-.surveydata` <- function(x, name, value){
-  labels <- varlabels(x)
-  x <- as.data.frame(x)
-  x <- `$<-.data.frame`(x, name, value)
-  x <- as.surveydata(x)
-  if(is.null(value)){
-    labels <- labels[names(labels)!=name]
-  } else {
-    labels[name] <- name
-  }  
-  varlabels(x) <- labels
-  x
-}
-
+#------------------------------------------------------------------------------
 
 
 #' Updates names and variable.labels attribute of surveydata.
@@ -86,13 +61,5 @@ is.surveydata <- function(x){
   x
 }
 
+#------------------------------------------------------------------------------
 
-
-##' Create list of questions in survey
-##'
-##' @param surveyor Surveyor object
-##' @export 
-##' @keywords tools
-#question_list <- function(surveyor){
-#  unique(gsub("_[[:digit:]]*(_other)?$", "", names(surveyor$q_data)))
-#}

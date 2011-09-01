@@ -38,6 +38,13 @@ test_that("as.surveydata and is.surveydata works as expected", {
       expect_that(s, is_a("surveydata"))
       expect_that(is.surveydata(s), is_true())
       expect_that(is.surveydata(sdat), is_false())
+      expect_that(pattern(s), equals("(_[[:digit:]])*(_other)?$"))
+      
+      new_pattern <- "new_pattern$"
+      s <- as.surveydata(sdat, pattern=new_pattern)
+      expect_that(s, is_a("surveydata"))
+      expect_that(is.surveydata(s), is_true())
+      expect_that(pattern(s), equals(new_pattern))
     })
 
 #------------------------------------------------------------------------------
@@ -50,6 +57,20 @@ test_that("Varlabel functions work as expected", {
       expect_that(varlabels(s), equals(1:8))
       varlabels(s)[3] <- 20
       expect_that(varlabels(s), equals(c(1:2, 20, 4:8)))
+    })
+
+
+context("Pattern functions")
+test_that("Pattern functions work as expected", {
+      pattern <- "-pattern-"
+      s <- as.surveydata(sdat)
+      attr(s, "pattern") <- pattern
+      expect_that(pattern(s), equals(pattern))
+      
+      attr(s, "pattern") <- NULL
+      expect_that(is.null(pattern(s)), is_true())
+      pattern(s) <- pattern
+      expect_that(attr(s, "pattern"), equals(pattern))
     })
 
 #------------------------------------------------------------------------------
@@ -65,7 +86,7 @@ test_that("Name_replace works as expected", {
 
 #------------------------------------------------------------------------------
 
-context("Subsetting")
+context("$ Subsetting")
 
 test_that("`$<-` NULL removes column as well as varlabel", {
       s <- as.surveydata(sdat)
@@ -84,6 +105,16 @@ test_that("`$<-` newname inserts column and new varlabel", {
       expect_that(is.na(match("newid", names(varlabels(s)))), is_false())
     })
 
+context("[ Subsetting")
+
+test_that("[ subsetting works as expected", {
+      expect_that(s[2, ], equals(sdat[2, ]))
+      expect_that(s[, 2], equals(sdat[, 2]))
+      expect_that(s[, "Q1"], equals(sdat[, 2]))
+      expect_that(s[, "Q4"], equals(sdat[, 3:5]))
+      expect_that(s[2, "Q4"], equals(sdat[2, 3:5]))
+      expect_that(s[, "weight"], equals(sdat[, "weight"]))
+    })
 
 
 #------------------------------------------------------------------------------

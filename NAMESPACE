@@ -1,4 +1,7 @@
+export("pattern<-")
 export("varlabels<-")
 export(as.surveydata)
 export(is.surveydata)
+export(pattern)
+export(question_list)
 export(varlabels)
