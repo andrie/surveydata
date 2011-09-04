@@ -4,26 +4,30 @@
 #------------------------------------------------------------------------------
 
 
-sdat <- data.frame(
-    id   = 1:4,
-    Q1   = c("Yes", "No", "Yes", "Yes"),
-    Q4_1 = c(1, 2, 1, 2), 
-    Q4_2 = c(3, 4, 4, 3), 
-    Q4_3 = c(5, 5, 6, 6), 
-    crossbreak  = c("A", "A", "B", "B"), 
-    crossbreak2 = c("D", "E", "D", "E"),
-    weight      = c(0.9, 1.1, 0.8, 1.2)
-)
-
-sdat_labels <- c(
-    "RespID",
-    "Question 1", 
-    "Question 4: red", "Question 4: green", "Question 4: blue", 
-    "crossbreak",
-    "crossbreak2",
-    "weight")
-names(sdat_labels) <- names(sdat)
-attributes(sdat)$variable.labels <- sdat_labels 
+{
+  sdat <- data.frame(
+      id   = 1:4,
+      Q1   = c("Yes", "No", "Yes", "Yes"),
+      Q4_1 = c(1, 2, 1, 2), 
+      Q4_2 = c(3, 4, 4, 3), 
+      Q4_3 = c(5, 5, 6, 6), 
+      Q10 = factor(c("Male", "Female", "Female", "Male")),
+      crossbreak  = c("A", "A", "B", "B"), 
+      crossbreak2 = c("D", "E", "D", "E"),
+      weight      = c(0.9, 1.1, 0.8, 1.2)
+  )
+  
+  sdat_labels <- c(
+      "RespID",
+      "Question 1", 
+      "Question 4: red", "Question 4: green", "Question 4: blue", 
+      "Question 10",
+      "crossbreak",
+      "crossbreak2",
+      "weight")
+  names(sdat_labels) <- names(sdat)
+  attributes(sdat)$variable.labels <- sdat_labels
+}
 
 #s <- as.surveydata(sdat)
 #is.surveydata(s)
@@ -35,12 +39,14 @@ attributes(sdat)$variable.labels <- sdat_labels
 context("Surveydata class functions")
 test_that("as.surveydata and is.surveydata works as expected", {
       s <- as.surveydata(sdat)
+      expected_pattern <- c("^", "(_[[:digit:]])*(_.*)?$")
       expect_that(s, is_a("surveydata"))
+      expect_that(s, is_a("data.frame"))
       expect_that(is.surveydata(s), is_true())
       expect_that(is.surveydata(sdat), is_false())
-      expect_that(pattern(s), equals("(_[[:digit:]])*(_other)?$"))
+      expect_that(pattern(s), equals(expected_pattern))
       
-      new_pattern <- "new_pattern$"
+      new_pattern <- c("", "new_pattern$")
       s <- as.surveydata(sdat, pattern=new_pattern)
       expect_that(s, is_a("surveydata"))
       expect_that(is.surveydata(s), is_true())
@@ -71,6 +77,19 @@ test_that("Pattern functions work as expected", {
       expect_that(is.null(pattern(s)), is_true())
       pattern(s) <- pattern
       expect_that(attr(s, "pattern"), equals(pattern))
+    })
+
+context("Remove attributes")
+test_that("Removing attributes work as expected", {
+      s <- as.surveydata(sdat)
+      
+      t <- rm.attrs(s)      
+      expect_equal(varlabels(t), NULL)
+      expect_equal(pattern(t), NULL)
+      
+      t <- as.data.frame(s, rm.pattern=TRUE)
+      expect_equal(t, sdat)
+
     })
 
 #------------------------------------------------------------------------------
@@ -105,14 +124,24 @@ test_that("`$<-` newname inserts column and new varlabel", {
       expect_that(is.na(match("newid", names(varlabels(s)))), is_false())
     })
 
-context("[ Subsetting")
+context("`[` Subsetting")
 
-test_that("[ subsetting works as expected", {
-      expect_that(s[2, ], equals(sdat[2, ]))
+test_that("which.q returns correct question positions", {
+      s <- as.surveydata(sdat)
+      expect_that(which.q(s, "Q1"), equals(2))
+      expect_that(which.q(s, "Q10"), equals(6))
+      expect_that(which.q(s, "Q4"), equals(3:5))
+      expect_that(which.q(s, "Q2"), equals(integer(0)))
+    })
+
+test_that("`[` subsetting works as expected", {
+      s <- as.surveydata(sdat)
+      expect_equal(rm.pattern(s[2, ]), sdat[2, ])
       expect_that(s[, 2], equals(sdat[, 2]))
       expect_that(s[, "Q1"], equals(sdat[, 2]))
       expect_that(s[, "Q4"], equals(sdat[, 3:5]))
       expect_that(s[2, "Q4"], equals(sdat[2, 3:5]))
+      expect_that(s[1:2, "Q10"], equals(sdat[1:2, 6]))
       expect_that(s[, "weight"], equals(sdat[, "weight"]))
     })
 
@@ -135,7 +164,12 @@ test_that("Merge of surveyordata objects work as expected",{
       varlabels(sdat2) <- sdat_labels
       
       s1 <- as.surveydata(sdat)
-      s2 <- as.surveydata(sdat2)
-      sm <- merge(s1, s2)
+      s2 <- as.surveydata(sdat2, pattern=c("^", "$"))
+      expect_that(
+          sm <- merge(s1, s2, all=TRUE),
+          gives_warning("In merge of surveydata objects, patterns of objects differ")
+      )
       expect_that(sm, is_a("surveydata"))
+      expect_equal(nrow(sm), 6)
+      expect_equal(pattern(s1), pattern(sm))
     })

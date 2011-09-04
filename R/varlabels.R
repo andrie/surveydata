@@ -26,6 +26,8 @@ varlabels <- function(x){
   x
 }
 
+#------------------------------------------------------------------------------
+
 
 #' Returns and updates pattern attribute.
 #' 
@@ -46,6 +48,11 @@ pattern <- function(x){
 #' @export "pattern<-"
 "pattern<-" <- function(x, value){
   attr(x, "pattern") <- value
+  x
+}
+
+rm.pattern <- function(x){
+  pattern(x) <- NULL
   x
 }
 

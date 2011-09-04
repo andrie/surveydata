@@ -6,9 +6,9 @@
   \method{merge}{surveydata} (x, y, ...)
 }
 \arguments{
-  \item{x}{Data frame}
+  \item{x}{surveydata object}
 
-  \item{y}{Data frame}
+  \item{y}{surveydata object}
 
   \item{...}{Other parameters passed to
   \code{\link{merge}}}

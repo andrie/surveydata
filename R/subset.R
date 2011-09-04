@@ -9,7 +9,7 @@
 #' Extract or replace subsets of surveyordata, ensuring that the varlabels stay in synch.
 #' 
 #' @name extract
-#' @aliases  extract replace $<-.surveydata 
+#' @aliases  extract replace $<-.surveydata subset [.surveydata
 #' @param x surveydata object
 #' @param name Names of columns
 #' @param value New value
@@ -31,28 +31,39 @@
   x
 }
 
+#' @rdname extract
+#' @export [.surveydata
+#' @usage `x[i, j, ...]`
 `[.surveydata` <- function(x, i, j, ...){
   has.j <- !missing(j)
-  if(has.j && is.character(j)){
-    j <- grep(paste(j, pattern(x), sep=""), names(x)) 
-  }
+  if(has.j && is.character(j)) j <- which.q(x, j) 
   class(x) <- "data.frame"
   `[`(x, i, j, ...)
 }
 
-#whichq <- function(x, Q, pat=pattern(x)){
-#  grep(paste(Q, pat, sep=""), names(x))
-#}
+q_pattern <- function(Q, pat){
+  paste(pat[1], Q, pat[2], sep="")
+}
+
+
+#' Functions to identify columns corresponding to questions.
+#' 
+#' @inheritParams as.surveydata
+#' @aliases which.q questions
+#' @param Q Character string with question number, e.g. "Q2"
+which.q <- function(x, Q, pat=pattern(x)){
+  grep(q_pattern(Q, pat), names(x))
+}
+
 
 
 #------------------------------------------------------------------------------
 
-#' Create list of questions in survey
-#'
+#' @rdname which.q
 #' @inheritParams as.surveydata
 #' @export 
 #' @keywords tools
-question_list <- function(x, pattern=pattern(x)){
+questions <- function(x, pattern=pattern(x)){
   unique(gsub(pattern, "", names(x)))
 }
 

@@ -1,11 +1,16 @@
-\name{as.surveydata}
-\alias{as.surveydata}
-\title{Coercion from and to surveydata.}
+\name{which.q}
+\alias{questions}
+\alias{which.q}
+\title{Functions to identify columns corresponding to questions.}
 \usage{
-  as.surveydata(x, pattern = c("^",
-  "(_[[:digit:]])*(_.*)?$"))
+  which.q(x, Q, pat = pattern(x))
+
+  questions(x, pattern = pattern(x))
 }
 \arguments{
+  \item{Q}{Character string with question number, e.g.
+  "Q2"}
+
   \item{x}{Object to coerce to surveydata}
 
   \item{pattern}{A character vector of length two,
@@ -15,11 +20,7 @@
   extract valid question numbers.}
 }
 \description{
-  Methods for creating "surveydata" objects, testing for
-  class, and coercion from other objects.
+  Functions to identify columns corresponding to questions.
 }
-\seealso{
-  \code{\link{surveydata-package}},
-  \code{\link{is.surveydata}}
-}
+\keyword{tools}
 
