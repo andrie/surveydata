@@ -8,12 +8,12 @@
 #' Methods for creating "surveydata" objects, testing for class, and coercion from other objects.
 #' 
 #' @param x Object to coerce to surveydata
-#' @param pattern A character vector of length two, consisting of a prefix and suffix.  When subsetting based on question numbers, the prefix, question number and suffix forms a regex pattern that defines the pattern to extract valid question numbers.
+#' @param ptn A character vector of length two, consisting of a prefix and suffix.  When subsetting based on question numbers, the prefix, question number and suffix forms a regex pattern that defines the pattern to extract valid question numbers.
 #' @export
 #' @seealso \code{\link{surveydata-package}}, \code{\link{is.surveydata}}
-as.surveydata <- function(x, pattern=c("^", "(_[[:digit:]])*(_.*)?$")){
+as.surveydata <- function(x, ptn=c("^", "(_[[:digit:]])*(_.*)?$")){
   class(x) <- c("surveydata", class(x))
-  pattern(x) <- pattern
+  pattern(x) <- ptn
   x
 }
 

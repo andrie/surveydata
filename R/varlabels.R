@@ -56,3 +56,8 @@ rm.pattern <- function(x){
   x
 }
 
+rm.attrs <- function(x){
+  pattern(x) <- NULL
+  varlabels(x) <- NULL
+}
+

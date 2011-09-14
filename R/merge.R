@@ -41,7 +41,7 @@ merge.surveydata <- function(x, y, ...){
   newlabels <- merge_varlabels(x, y, new_names=names(tmp))
   varlabels(tmp) <- newlabels
   if(!identical(pattern(x), pattern(y))) warning("In merge of surveydata objects, patterns of objects differ")
-  as.surveydata(tmp, pattern=pattern(x))
+  as.surveydata(tmp, ptn=pattern(x))
 }
 
 

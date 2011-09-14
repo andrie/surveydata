@@ -1,4 +1,4 @@
-# TODO: Add comment
+# Subsetting code for surveydata objects
 # 
 # Author: Andrie
 #------------------------------------------------------------------------------
@@ -41,29 +41,4 @@
   `[`(x, i, j, ...)
 }
 
-q_pattern <- function(Q, pat){
-  paste(pat[1], Q, pat[2], sep="")
-}
-
-
-#' Functions to identify columns corresponding to questions.
-#' 
-#' @inheritParams as.surveydata
-#' @aliases which.q questions
-#' @param Q Character string with question number, e.g. "Q2"
-which.q <- function(x, Q, pat=pattern(x)){
-  grep(q_pattern(Q, pat), names(x))
-}
-
-
-
-#------------------------------------------------------------------------------
-
-#' @rdname which.q
-#' @inheritParams as.surveydata
-#' @export 
-#' @keywords tools
-questions <- function(x, pattern=pattern(x)){
-  unique(gsub(pattern, "", names(x)))
-}
 

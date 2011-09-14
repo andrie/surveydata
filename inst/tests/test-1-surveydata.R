@@ -1,4 +1,4 @@
-# unit test for "surveydata" class
+# Unit tests for "surveydata" class
 # 
 # Author: Andrie
 #------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ test_that("as.surveydata and is.surveydata works as expected", {
       expect_that(pattern(s), equals(expected_pattern))
       
       new_pattern <- c("", "new_pattern$")
-      s <- as.surveydata(sdat, pattern=new_pattern)
+      s <- as.surveydata(sdat, ptn=new_pattern)
       expect_that(s, is_a("surveydata"))
       expect_that(is.surveydata(s), is_true())
       expect_that(pattern(s), equals(new_pattern))
@@ -55,7 +55,7 @@ test_that("as.surveydata and is.surveydata works as expected", {
 
 #------------------------------------------------------------------------------
 
-context("Varlabel functions")
+#context("Varlabel functions")
 test_that("Varlabel functions work as expected", {
       s <- as.surveydata(sdat)
       expect_that(varlabels(s), equals(sdat_labels))
@@ -66,7 +66,7 @@ test_that("Varlabel functions work as expected", {
     })
 
 
-context("Pattern functions")
+#context("Pattern functions")
 test_that("Pattern functions work as expected", {
       pattern <- "-pattern-"
       s <- as.surveydata(sdat)
@@ -79,7 +79,7 @@ test_that("Pattern functions work as expected", {
       expect_that(attr(s, "pattern"), equals(pattern))
     })
 
-context("Remove attributes")
+#context("Remove attributes")
 test_that("Removing attributes work as expected", {
       s <- as.surveydata(sdat)
       
@@ -94,7 +94,7 @@ test_that("Removing attributes work as expected", {
 
 #------------------------------------------------------------------------------
 
-context("Rename columns")
+#context("Rename columns")
 
 test_that("Name_replace works as expected", {
       s <- as.surveydata(sdat)
@@ -164,11 +164,12 @@ test_that("Merge of surveyordata objects work as expected",{
       varlabels(sdat2) <- sdat_labels
       
       s1 <- as.surveydata(sdat)
-      s2 <- as.surveydata(sdat2, pattern=c("^", "$"))
+      s2 <- as.surveydata(sdat2, ptn=c("^", "$"))
       expect_that(
           sm <- merge(s1, s2, all=TRUE),
           gives_warning("In merge of surveydata objects, patterns of objects differ")
       )
+      #sm <- merge(s1, s2, all=TRUE)
       expect_that(sm, is_a("surveydata"))
       expect_equal(nrow(sm), 6)
       expect_equal(pattern(s1), pattern(sm))
