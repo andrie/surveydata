@@ -24,7 +24,25 @@ qPattern <- function(Q, ptn){
 #' @export
 #' @param Q Character string with question number, e.g. "Q2"
 which.q <- function(x, Q, ptn=pattern(x)){
-  grep(qPattern(Q, ptn), names(x))
+  num <- !is.na(suppressWarnings(as.numeric(Q)))
+  chr <- !num
+  whichQone <- function(qx) grep(qPattern(qx, ptn), names(x))
+  if(any(num)) 
+    x1 <- as.numeric(Q[which(num)])
+  else
+    x1 <- NULL
+  if(any(chr)) {
+    if(length(which(chr)) == 1L)
+      ret <- whichQone(Q[chr])
+    else 
+      ret <- unname(sapply(Q[chr], whichQone))
+    if(is.list(ret))
+      x2 <- do.call(c, ret)
+    else 
+      x2 <- ret
+  } else
+    x2 <- NULL
+  c(x1, x2)
 }
 
 

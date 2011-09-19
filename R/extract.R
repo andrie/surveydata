@@ -46,11 +46,11 @@
 `[.surveydata` <- function(x, i, j, ...){
   has.j <- !missing(j)
   if(has.j && is.character(j)) j <- which.q(x, j) 
-  ret <- x
-  class(ret) <- "data.frame"
-  ret <- `[`(ret, i, j, ...)
-  if(has.j)varlabels(ret) <- varlabels(x)[j] else varlabels(ret) <- varlabels(x)
-  as.surveydata(ret, ptn=pattern(x), renameVarlabels=FALSE)
+  xorig <- x
+  #class(ret) <- "data.frame"
+  ret <- NextMethod("[") ###`[`(ret, i, j, ...)
+  if(has.j)varlabels(ret) <- varlabels(xorig)[j] else varlabels(ret) <- varlabels(xorig)
+  as.surveydata(ret, ptn=pattern(xorig), renameVarlabels=FALSE)
 }
 
 

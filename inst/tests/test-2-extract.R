@@ -28,8 +28,36 @@
   attributes(sdat)$variable.labels <- sdat_labels
 }
 
+rm.ca <- function(x){
+  class(x) <- class(x)[!grepl("surveydata", class(x))]
+  rm.attrs(x)
+}
 
-context("Surveydata $ extract")
+#------------------------------------------------------------------------------
+
+context("which.q")
+
+test_that("which.q returns correct question positions", {
+      s <- as.surveydata(sdat)
+      expect_that(which.q(s, c(1)), equals(1))
+      expect_that(which.q(s, c(4)), equals(4))
+      expect_that(which.q(s, c(-1)), equals(-1))
+      expect_that(which.q(s, "Q1"), equals(2))
+      expect_that(which.q(s, "Q10"), equals(6))
+      expect_that(which.q(s, "Q4"), equals(3:5))
+      expect_that(which.q(s, "Q2"), equals(integer(0)))
+      
+      expect_that(which.q(s, c("Q1", "Q4")), equals(c(2, 3:5)))
+      expect_that(which.q(s, c("Q1", "crossbreak")), equals(c(2, 7)))
+      expect_that(which.q(s, c("Q4", "crossbreak2")), equals(c(3:5, 8)))
+      
+      expect_that(which.q(s, c(3, "crossbreak2")), equals(c(3, 8)))
+      
+    })
+
+#------------------------------------------------------------------------------
+
+context("Surveydata $ simple extract")
 
 test_that("`$<-` NULL removes column as well as varlabel", {
       s <- as.surveydata(sdat)
@@ -50,17 +78,11 @@ test_that("`$<-` newname inserts column and new varlabel", {
       expect_is(s, "surveydata")
     })
 
+#------------------------------------------------------------------------------
+
 context("Surveydata `[` extract")
 
-test_that("which.q returns correct question positions", {
-      s <- as.surveydata(sdat)
-      expect_that(which.q(s, "Q1"), equals(2))
-      expect_that(which.q(s, "Q10"), equals(6))
-      expect_that(which.q(s, "Q4"), equals(3:5))
-      expect_that(which.q(s, "Q2"), equals(integer(0)))
-    })
-
-test_that("`[` subsetting works as expected", {
+test_that("`[` simple extract works as expected", {
       s <- as.surveydata(sdat)
 
       expect_is(s[, 2], "surveydata")
@@ -69,10 +91,6 @@ test_that("`[` subsetting works as expected", {
       expect_is(s[, "Q1"], "surveydata")
       expect_is(s[, "Q4"], "surveydata")
       
-      rm.ca <- function(x){
-        class(x) <- class(x)[!grepl("surveydata", class(x))]
-        rm.attrs(x)
-      }
       
       expect_equal(rm.ca(s[2, ]), rm.ca(sdat[2, ]))
       expect_equal(rm.ca(s[, 2]), rm.ca(sdat[, 2]))
@@ -81,6 +99,7 @@ test_that("`[` subsetting works as expected", {
       expect_equal(rm.ca(s[2, "Q4"]), rm.ca(sdat[2, 3:5]))
       expect_equal(rm.ca(s[1:2, "Q10"]), rm.ca(sdat[1:2, 6]))
       expect_equal(rm.ca(s[, "weight"]), rm.ca(sdat[, "weight"]))
+
       
       expect_equal(varlabels(s[2, ]), sdat_labels)
       expect_equal(varlabels(s[, 2]), sdat_labels[2])
@@ -92,6 +111,24 @@ test_that("`[` subsetting works as expected", {
       
     })
 
+#------------------------------------------------------------------------------
+    
+context("Surveydata $ complex extract")
+test_that("`[` complex extract works as expected", {
+      s <- as.surveydata(sdat)
+      
+      expect_equal(rm.ca(s[, c(1, 3)]), rm.ca(sdat[, c(1, 3)]))
+      expect_equal(rm.ca(s[, -1]), rm.ca(sdat[, -1]))
+      expect_equal(rm.ca(s[, c(1, "Q4")]), rm.ca(sdat[, c(1, 3:5)]))
+      expect_equal(rm.ca(s[, c("Q1", "Q4")]), rm.ca(sdat[, c(2, 3:5)]))
+
+      expect_equal(varlabels(s[, c(1, 3)]), sdat_labels[c(1, 3)])
+      expect_equal(varlabels(s[, -1]), sdat_labels[-1])
+      expect_equal(varlabels(s[, c(1, "Q4")]), sdat_labels[c(1, 3:5)])
+      expect_equal(varlabels(s[, c("Q1", "Q4")]), sdat_labels[c(2, 3:5)])
+      
+    })
+          
 
 #------------------------------------------------------------------------------
 
