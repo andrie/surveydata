@@ -3,12 +3,12 @@
 \alias{names}
 \title{Updates names and variable.labels attribute of surveydata.}
 \usage{
-  "names(x) <- value"
+  names(x) <- value
 }
 \arguments{
-  \item{x}{surveydata object}
-
   \item{value}{New names}
+
+  \item{x}{surveydata object}
 }
 \description{
   Updates names and variable.labels attribute of

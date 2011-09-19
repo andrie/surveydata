@@ -15,6 +15,7 @@
 \seealso{
   Other Questions: \code{\link{qTextCommon}},
   \code{\link{qTextUnique}}, \code{\link{questions}},
-  \code{\link{which.q}}
+  \code{\link{splitCommonUnique}}, \code{\link{which.q}}
 }
+\keyword{Questions}
 

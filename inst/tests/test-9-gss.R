@@ -44,4 +44,3 @@ context("Integrated test of reading and analysing a survey file")
 
 })
 
-qTextCommon(gss, "where")

@@ -45,28 +45,3 @@ merge.surveydata <- function(x, y, ...){
 }
 
 
-##' Extract block of questions from surveyor object.
-##'
-##' @param surveyor Surveyor object
-##' @param  extract Character vector of question names to extract
-##' @export 
-##' @keywords tools
-#surveyor_extract <- function(surveyor, extract){
-#  require(surveyor)
-#  data <- surveyor$q_data
-#  Qs   <- surveyor$q_text
-#  qnames <- unlist(sapply(extract, 
-#          function(qid){
-#            tmp <- surveyor::get_q_text_unique(data, qid, Qs)
-#            ifelse(tmp=="", Qs[qid], tmp)
-#          }
-#      )
-#  )
-#  cluster_pattern <- paste(paste("^", extract, "(_\\d*)*$", sep=""), collapse="|")
-#  names(qnames) <- grep(cluster_pattern, names(data), value=TRUE) 
-#  cdata <- data[, grep(cluster_pattern, names(data))]
-#  attributes(cdata)$qtext <- qnames
-#  names(cdata) <- names(qnames)
-#  cdata
-#}
-

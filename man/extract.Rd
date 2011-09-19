@@ -1,15 +1,11 @@
 \name{extract}
+\alias{"$<-"}
 \alias{"$<-.surveydata"}
-\alias{"[.surveydata"}
-\alias{[.surveydata}
 \alias{extract}
 \alias{replace}
-\alias{subset}
-\title{Extract or replace subsets of surveyordata.}
+\title{Extract or replace subsets of surveydata.}
 \usage{
-  "x$name <- value"
-
-  `x[i, j, ...]`
+  x$name <- value
 }
 \arguments{
   \item{x}{surveydata object}
@@ -19,7 +15,7 @@
   \item{value}{New value}
 }
 \description{
-  Extract or replace subsets of surveyordata, ensuring that
+  Extract or replace subsets of surveydata, ensuring that
   the varlabels stay in synch.
 }
 \seealso{

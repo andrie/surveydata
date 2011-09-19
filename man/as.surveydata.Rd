@@ -2,7 +2,8 @@
 \alias{as.surveydata}
 \title{Coercion from and to surveydata.}
 \usage{
-  as.surveydata(x, ptn = c("^", "(_[[:digit:]])*(_.*)?$"))
+  as.surveydata(x, ptn = pattern(x), defaultPtn = c("^",
+  "(_[[:digit:]])*(_.*)?$"), renameVarlabels = FALSE)
 }
 \arguments{
   \item{x}{Object to coerce to surveydata}
@@ -12,6 +13,13 @@
   question numbers, the prefix, question number and suffix
   forms a regex pattern that defines the pattern to extract
   valid question numbers.}
+
+  \item{defaultPtn}{The default for ptn, if it does't exist
+  in the object that is being coerced.}
+
+  \item{renameVarlabels}{If TRUE, turns variable.labels
+  attribute into a named vector, using \code{names(x)} as
+  names.}
 }
 \description{
   Methods for creating "surveydata" objects, testing for

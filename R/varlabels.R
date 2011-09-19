@@ -6,21 +6,20 @@
 
 #' Returns and updates variable.labels attribute of data.
 #' 
-#' \code{varlabels} returns the variable.labels attribute of data, and \code{varlabels<-} updates the attribute.
+#' \code{varlabels} returns the variable.labels attribute of data, and \code{varlabels(x) <- value} updates the attribute.
 #' 
-#' @usage varlabels(x)
-#' @aliases varlabels varlabels<-
 #' @param x surveydata object
-#' @export varlabels 
+#' @export  
 #' @seealso \code{\link{surveydata-package}}
+#' @family varlabels
 varlabels <- function(x){
   attr(x, "variable.labels")
 }
 
 #' @rdname varlabels
-#' @usage varlabels(x) <- value
-#' @param value New value
-#' @export "varlabels<-"
+#' @aliases varlabels<-
+#' @export 
+#' @family varlabels
 "varlabels<-" <- function(x, value){
   attr(x, "variable.labels") <- value
   x
@@ -33,7 +32,6 @@ varlabels <- function(x){
 #' 
 #' \code{pattern} returns the pattern attribute of data, and \code{pattern<-} updates the attribute.
 #' 
-#' @usage pattern(x)
 #' @aliases pattern pattern<-
 #' @param x surveydata object
 #' @export pattern 
@@ -45,19 +43,29 @@ pattern <- function(x){
 #' @rdname pattern
 #' @usage pattern(x) <- value
 #' @param value New value
-#' @export "pattern<-"
+#' @export pattern<-
 "pattern<-" <- function(x, value){
   attr(x, "pattern") <- value
   x
 }
 
+
+#' Removes pattern from attributes list.
+#'
+#' @param x Surveydata object
+#' @keywords Internal
 rm.pattern <- function(x){
   pattern(x) <- NULL
   x
 }
 
+#' Removes pattern and variable.labels from attributes list.
+#'
+#' @param x Surveydata object
+#' @keywords Internal
 rm.attrs <- function(x){
-  pattern(x) <- NULL
-  varlabels(x) <- NULL
+  attr(x, "pattern") <- NULL
+  attr(x, "variable.labels") <- NULL
+  x
 }
 

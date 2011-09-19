@@ -21,11 +21,22 @@
   \item{x}{Object to coerce to surveydata}
 }
 \description{
-  Functions to identify columns corresponding to questions.
+  \code{which.q} returns the column indices that match a
+  pattern. \code{questions} returns a list of all the
+  unique questions in the surveydata object.
+}
+\details{
+  Both functions utilise the \code{\link{pattern}}
+  attribute of the surveydata object.
 }
 \seealso{
   Other Questions: \code{\link{qText}},
-  \code{\link{qTextCommon}}, \code{\link{qTextUnique}}
+  \code{\link{qTextCommon}}, \code{\link{qTextUnique}},
+  \code{\link{splitCommonUnique}}
+
+  Other Questions: \code{\link{qText}},
+  \code{\link{qTextCommon}}, \code{\link{qTextUnique}},
+  \code{\link{splitCommonUnique}}
 }
-\keyword{tools}
+\keyword{Questions}
 

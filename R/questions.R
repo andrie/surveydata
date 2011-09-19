@@ -11,9 +11,17 @@ qPattern <- function(Q, ptn){
 
 #' Functions to identify columns corresponding to questions.
 #' 
+#' \code{which.q} returns the column indices that match a pattern.
+#' \code{questions} returns a list of all the unique questions in the surveydata object.
+#' 
+#' Both functions utilise the \code{\link{pattern}} attribute of the surveydata object.
+#' 
 #' @inheritParams as.surveydata
 #' @param ptn A character vector of length two, consisting of a prefix and suffix.  When subsetting based on question numbers, the combination of prefix, question number and suffix forms a \code{\link{regex}} pattern that defines the pattern to extract valid question numbers.
 #' @aliases which.q questions
+#' @family Questions
+#' @keywords Questions
+#' @export
 #' @param Q Character string with question number, e.g. "Q2"
 which.q <- function(x, Q, ptn=pattern(x)){
   grep(qPattern(Q, ptn), names(x))
@@ -26,8 +34,8 @@ which.q <- function(x, Q, ptn=pattern(x)){
 #' @rdname which.q
 #' @inheritParams as.surveydata
 #' @export 
-#' @keywords tools
 #' @family Questions
+#' @keywords Questions
 questions <- function(x, ptn=pattern(x)){
   unique(gsub(qPattern("(.*?)", ptn), "\\1", names(x)))
 }
@@ -41,6 +49,7 @@ questions <- function(x, ptn=pattern(x)){
 #' @param x A surveydata object
 #' @param Q The question id, e.g. Q4
 #' @family Questions
+#' @keywords Questions
 #' @export 
 qText <- function(x, Q){
   w <- which.q(x, Q)
@@ -64,10 +73,11 @@ qTextUnique <- function(x, Q){
 #' Returns common element of question text.
 #' 
 #' Given a question id, e.g. Q4, finds all subquestions, e.g. Q4_1, Q4_2, etc, 
-#' and returns the question text that is unique to each 
+#' and returns the question text that is common to each 
 #'
 #' @inheritParams qText
 #' @family Questions
+#' @keywords Questions
 #' @export 
 qTextCommon <- function(x, Q){
   text <- qText(x, Q)
@@ -78,16 +88,17 @@ qTextCommon <- function(x, Q){
 #' Get common and unique text in question based on regex pattern identification
 #' 
 #' @param x A character vector
+#' @family Questions
+#' @keywords Questions
 #' @param ptn A \code{\link{regex}} pattern that defines how the string should be split into common and unique elements
 splitCommonUnique <- function(x, ptn=NULL){
   if(is.null(ptn)){
     ptn <- c(
-      "^(.*)\\((.*)\\)$",             # Find "Please tell us" in "Email (Please tell us)"
-      "^(.*): (.*)$",                 # Find "What is your choice?" in "What is your choice?: Email"
-      "^(.*):\\S(.*)$",               # Find "What is your choice?" in "What is your choice?:Email"
-      "^(.\\d*)\\(\\d{1,3}\\) (.*)$", # Find "What is your choice?" in "What is your choice?:Email"
-      "^\\[(.*)\\] (.*)$"             # Find "What is your choice?" in "What is your choice?:Email"
-    )
+        "^(.*)\\((.*)\\)$",                  # Find "Please tell us" in "Email (Please tell us)"
+        "^(.*):\\s?(.*)$",                   # Find "What is your choice?" in "What is your choice?: Email"
+        "^(.\\d*)[[(]\\d+[])]\\s?(.*)$",     # Find "Q3" in "Q3(001)Email" or "Q03[01] Email"
+        "^\\[(.*)\\]\\s*(.*)$"               # Find "What is your choice?" in "[Email]What is your choice?"
+            )
   }
   mostCommon <- function(x){
     r <- vapply(x, function(xt)sum(grepl(xt, x, fixed=TRUE)), 1)
@@ -109,7 +120,7 @@ splitCommonUnique <- function(x, ptn=NULL){
     nNa <- sum(is.na(t$unique))  
     if(nNa > 0) t$unique[is.na(t$unique)] <- paste("NA_", seq_len(nNa), sep="")
   } else {
-    t <- str_common_unique(x)
+    t <- strCommonUnique(x)
   }  
   t
 }

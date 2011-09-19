@@ -3,22 +3,23 @@
 ################################################################################
 
 
-#' Finds the common and unique elements in a character vector
+#' Finds the common and unique elements in a character vector.
 #' 
 #' Function takes a character string as input and find the common and
 #' unique elements.  Assumes that the common element is at start of string
 #' 
-#' @param x Character vector
+#' @param string Character vector
 #' @return list of common and unique strings 
 #' @keywords string
 #' @export 
+#' @family Strings
 #' @examples
-#' q_string <- c("Q_1", "Q_2", "Q_3") 
-#' str_common_unique(q_string)$common
-#' str_common_unique(q_string)$unique
-str_common_unique <- function(x){
-	x <- as.character(x)
-	y <- x
+#' test <- c("Q_1", "Q_2", "Q_3") 
+#' strCommonUnique(test)$common
+#' strCommonUnique(test)$unique
+strCommonUnique <- function(string){
+	x <- as.character(string)
+	y <- string
 	
 	## Handles case with a single string element
 	if (length(x) <= 1){
@@ -72,49 +73,5 @@ str_common_unique <- function(x){
 }
 
 
-#' Wraps a string into separate lengths by inserting line breaks at word boundaries.
-#'
-#' @param x Character vector
-#' @param len Length of new strings
-#' @export
-#' @keywords string
-#' @examples
-#' str_wrap("the quick brown fox jumps over the lazy dog", 10)  
-str_wrap <- function(x, len=30)
-{
-	if (is.factor(x)){
-		levels(x) <- vapply(
-				levels(x),
-				function(x) paste(strwrap(x ,width=len), collapse="\n"),
-				"x", 
-				USE.NAMES=FALSE
-		)
-		x
-	} else {
-		l <- vapply(
-				unique(x),
-				function(x) paste(strwrap(x ,width=len), collapse="\n"),
-				"x",
-				USE.NAMES=TRUE
-		)
-		unname(l[x])		
-	}
-}
-
-
-#' Returns a string in reverse order
-#'
-#' @param x Character vector
-#' @export
-#' @keywords string
-#' @examples
-#' str_reverse("the quick brown fox jumps over the lazy dog")  
-str_reverse <- function(x) {
-	as.character(
-			vapply(x, function(x){
-				paste(rev(substring(x, 1:nchar(x), 1:nchar(x))), collapse="")
-			}, "x")
-	)
-}
 
 
