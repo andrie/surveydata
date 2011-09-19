@@ -35,7 +35,7 @@
 #' 
 #' Extract or replace subsets of surveydata, ensuring that the varlabels stay in synch.
 #' 
-#' rdname extract
+#' @rdname extract
 #' @usage x[i, j, ...]
 #' @param i row index
 #' @param j column index
