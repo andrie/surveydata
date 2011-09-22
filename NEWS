@@ -1,0 +1,9 @@
+surveydata 0.1-00
+-----------------
+
+New features:
+* First alpha release
+* varlabels and varlabels<- to read and modify variable.labels attribute
+* pattern and pattern<- to set regex pattern that defines unique questions
+* qText returns question text using regex patterns
+* extracts subsets with regex patterns using, for example surveydata[, "Q1"] 
