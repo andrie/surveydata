@@ -15,7 +15,7 @@
 #' @seealso \code{\link{surveydata-package}}, \code{\link{is.surveydata}}
 as.surveydata <- function(x, ptn=pattern(x), defaultPtn=c("^", "(_[[:digit:]])*(_.*)?$"), renameVarlabels=FALSE){
   if(is.null(ptn)) ptn <- defaultPtn
-  class(x) <- c("surveydata", class(x))
+  if(!inherits(x, "surveydata")) class(x) <- c("surveydata", class(x))
   if(renameVarlabels) names(varlabels(x)) <- names(x)
   pattern(x) <- ptn
   x
