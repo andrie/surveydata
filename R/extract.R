@@ -16,30 +16,27 @@
 #' @param value New value
 #' @method $<- surveydata
 #' @export 
-#' @seealso \code{\link{surveydata-package}}
+#' @seealso \code{\link{surveydata-package}}, \code{\link{varlabels}}
 `$<-.surveydata` <- function(x, name, value){
   labels <- varlabels(x)
+  if(is.null(value)){
+    labels <- labels[names(labels)!=name]
+  }
+  if(length(grep(name, names(x)))==0){
+    labels[name] <- name
+  }  
   x <- as.data.frame(x)
   x <- `$<-.data.frame`(x, name, value)
   x <- as.surveydata(x, renameVarlabels=FALSE)
-  if(is.null(value)){
-    labels <- labels[names(labels)!=name]
-  } else {
-    labels[name] <- name
-  }  
   varlabels(x) <- labels
   x
 }
 
-#' Extract or replace subsets of surveydata.
-#' 
-#' Extract or replace subsets of surveydata, ensuring that the varlabels stay in synch.
-#' 
 #' @rdname extract
 #' @usage x[i, j, ...]
 #' @param i row index
 #' @param j column index
-#' @param ... Other arguments passed to code{[.data.frame}
+#' @param ... Other arguments passed to \code{[.data.frame}
 #' @export 
 #' @aliases [.surveydata
 #' @method [ surveydata
