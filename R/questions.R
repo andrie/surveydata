@@ -81,7 +81,7 @@ qText <- function(x, Q){
 #' and returns the question text that is unique to each 
 #'
 #' @inheritParams qText
-#' @family Questions
+#' @keywords Questions
 #' @export 
 qTextUnique <- function(x, Q){
   text <- qText(x, Q)

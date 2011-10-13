@@ -29,14 +29,5 @@
   Both functions utilise the \code{\link{pattern}}
   attribute of the surveydata object.
 }
-\seealso{
-  Other Questions: \code{\link{qText}},
-  \code{\link{qTextCommon}}, \code{\link{qTextUnique}},
-  \code{\link{splitCommonUnique}}
-
-  Other Questions: \code{\link{qText}},
-  \code{\link{qTextCommon}}, \code{\link{qTextUnique}},
-  \code{\link{splitCommonUnique}}
-}
 \keyword{Questions}
 

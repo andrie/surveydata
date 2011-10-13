@@ -14,10 +14,5 @@
   e.g. Q4_1, Q4_2, etc, and returns the question text that
   is common to each
 }
-\seealso{
-  Other Questions: \code{\link{qText}},
-  \code{\link{qTextUnique}}, \code{\link{questions}},
-  \code{\link{splitCommonUnique}}, \code{\link{which.q}}
-}
 \keyword{Questions}
 

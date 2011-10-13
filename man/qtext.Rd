@@ -12,10 +12,5 @@
 \description{
   Given a question id, e.g. "Q4", returns question text
 }
-\seealso{
-  Other Questions: \code{\link{qTextCommon}},
-  \code{\link{qTextUnique}}, \code{\link{questions}},
-  \code{\link{splitCommonUnique}}, \code{\link{which.q}}
-}
 \keyword{Questions}
 

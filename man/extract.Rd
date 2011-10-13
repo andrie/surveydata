@@ -22,16 +22,13 @@
 
   \item{j}{column index}
 
-  \item{...}{Other arguments passed to code{[.data.frame}}
+  \item{...}{Other arguments passed to \code{[.data.frame}}
 }
 \description{
   Extract or replace subsets of surveydata, ensuring that
   the varlabels stay in synch.
-
-  Extract or replace subsets of surveydata, ensuring that
-  the varlabels stay in synch.
 }
 \seealso{
-  \code{\link{surveydata-package}}
+  \code{\link{surveydata-package}}, \code{\link{varlabels}}
 }
 

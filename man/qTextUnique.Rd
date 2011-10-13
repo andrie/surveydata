@@ -14,9 +14,5 @@
   e.g. Q4_1, Q4_2, etc, and returns the question text that
   is unique to each
 }
-\seealso{
-  Other Questions: \code{\link{qText}},
-  \code{\link{qTextCommon}}, \code{\link{questions}},
-  \code{\link{splitCommonUnique}}, \code{\link{which.q}}
-}
+\keyword{Questions}
 

@@ -3,7 +3,7 @@
 \title{Coercion from and to surveydata.}
 \usage{
   as.surveydata(x, ptn = pattern(x), defaultPtn = c("^",
-  "(_[[:digit:]])*(_.*)?$"), renameVarlabels = FALSE)
+  "($|(_\\d+(_\\d+)*)$)"), renameVarlabels = FALSE)
 }
 \arguments{
   \item{x}{Object to coerce to surveydata}
@@ -12,7 +12,8 @@
   of a prefix and suffix.  When subsetting based on
   question numbers, the prefix, question number and suffix
   forms a regex pattern that defines the pattern to extract
-  valid question numbers.}
+  valid question numbers.  See \code{\link{pattern}} and
+  \code{\link{which.q}} for more detail.}
 
   \item{defaultPtn}{The default for ptn, if it does't exist
   in the object that is being coerced.}

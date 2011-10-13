@@ -10,9 +10,9 @@ Description: Tools, classes and methods to manipulate
     survey data.
 Author@R: person("Andrie", "de Vries",
     email="andrie.de.vries@pentalibra.com")
-Version: 0.1-00
+Version: 0.1-02
 URL:
-Date: 2011-09-21
+Date: 2011-10-12
 Depends:
     stringr (>= 0.5)
 Collate:

@@ -69,12 +69,19 @@ test_that("`$<-` NULL removes column as well as varlabel", {
       expect_is(s, "surveydata")
     })
 
+test_that("`$<-` existing_name maintains correct varlabels",{
+      s <- as.surveydata(sdat)
+      expect_equal(varlabels(sdat), varlabels(s))
+      s$Q4_1 <- 1:4
+      expect_equal(varlabels(sdat), varlabels(s))
+    })
+
 test_that("`$<-` newname inserts column and new varlabel", {
       s <- as.surveydata(sdat)
       s$newid <- 101:104
-      expect_that(s$newid, equals(101:104))
-      expect_that(all(s$newid==101:104), is_true())
-      expect_that(is.na(match("newid", names(varlabels(s)))), is_false())
+      expect_equal(s$newid, 101:104)
+      expect_true(all(s$newid==101:104))
+      expect_false(is.na(match("newid", names(varlabels(s)))))
       expect_is(s, "surveydata")
     })
 

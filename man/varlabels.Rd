@@ -14,6 +14,11 @@
   data, and \code{varlabels(x) <- value} updates the
   attribute.
 }
+\details{
+  The \code{variable.labels} attribute is used by to store
+  information about the original question text.  See
+  \code{\link[foreign]{read.spss}} for details.
+}
 \seealso{
   \code{\link{surveydata-package}}
 }

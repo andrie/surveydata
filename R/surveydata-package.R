@@ -1,7 +1,7 @@
 # package documentation
 # 
 # Author: Andrie
-###############################################################################
+#------------------------------------------------------------------------------
 
 
 #' Tools, classes and methods to manipulate survey data.
@@ -15,12 +15,23 @@
 #' \item \code{\link{as.data.frame.surveydata}} 
 #' }
 #' 
-#' To access and modify the variable.labels attribute: \code{\link{varlabels}}
+#' To access and modify attributes:
+#' \itemize{
+#' \item \code{\link{pattern}}
+#' \item \code{\link{varlabels}}
+#' }
 #' 
 #' To subset or merge surveydata objects:
 #' \itemize{
-#' \item \code{\link{merge}} 
-#' \item \code{\link{extract}} 
+#' \item \code{\link[surveydata]{merge}} 
+#' \item \code{\link[surveydata]{extract}} 
+#' }
+#' 
+#' To extract question text from varlabels:
+#' \itemize{
+#' \item \code{\link[surveydata]{qText}} 
+#' \item \code{\link[surveydata]{qTextCommon}} 
+#' \item \code{\link[surveydata]{qTextUnique}} 
 #' }
 #' 
 #' 
@@ -30,6 +41,9 @@
 #' @title Tools, classes and methods to manipulate survey data.
 #' @author Andrie de Vries \email{andrie.de.vries@@pentalibra.com}
 #' @keywords package
+#' 
+#' @example \inst\examples\example.R
+
 NULL
 
 .onLoad <- function(libname, pkgname){
