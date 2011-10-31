@@ -9,8 +9,8 @@
 #' Extract or replace subsets of surveydata, ensuring that the varlabels stay in synch.
 #' 
 #' @name extract
-#' @aliases  extract replace $<-.surveydata $<-
-##' @usage x$name <- value 
+#' @aliases  extract replace $<-.surveydata
+#' @usage x$name <- value 
 #' @param x surveydata object
 #' @param name Names of columns
 #' @param value New value

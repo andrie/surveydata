@@ -38,14 +38,18 @@
 #' @name surveydata-package
 #' @aliases surveydata surveydata-package
 #' @docType package
+#' @import stringr
 #' @title Tools, classes and methods to manipulate survey data.
 #' @author Andrie de Vries \email{andrie.de.vries@@pentalibra.com}
 #' @keywords package
 #' 
 #' @example \inst\examples\example.R
-
 NULL
 
+#' Prints message on loading package.
+#' 
+#' @rdname onLoad
+#' @keywords internal
 .onLoad <- function(libname, pkgname){
     packageStartupMessage("The surveydata package is experimental: function syntax may change in future versions.\n")
 }

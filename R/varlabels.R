@@ -20,7 +20,7 @@ varlabels <- function(x){
 
 #' @rdname varlabels
 #' @aliases varlabels<-
-#' @export 
+#' @export varlabels<-
 #' @family varlabels
 "varlabels<-" <- function(x, value){
   attr(x, "variable.labels") <- value

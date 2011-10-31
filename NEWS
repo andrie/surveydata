@@ -1,3 +1,10 @@
+surveydata 0.1-03 (31/10/2011)
+-----------------
+
+New features:
+* Now imports packages rather than declaring dependencies.
+
+
 surveydata 0.1-00
 -----------------
 

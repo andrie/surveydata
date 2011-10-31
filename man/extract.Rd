@@ -1,5 +1,4 @@
 \name{extract}
-\alias{"$<-"}
 \alias{"$<-.surveydata"}
 \alias{"[.surveydata"}
 \alias{[.surveydata}
