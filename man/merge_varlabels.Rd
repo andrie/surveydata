@@ -2,8 +2,8 @@
 \alias{merge_varlabels}
 \title{Merges variable.labels attribute from two surveydata objects}
 \usage{
-  merge_varlabels(dat1, dat2, new_names =
-  union(names(dat1), names(dat2)))
+  merge_varlabels(dat1, dat2,
+    new_names = union(names(dat1), names(dat2)))
 }
 \arguments{
   \item{dat1}{surveydata object}

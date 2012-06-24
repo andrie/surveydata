@@ -2,11 +2,18 @@
 \alias{as.surveydata}
 \title{Coercion from and to surveydata.}
 \usage{
-  as.surveydata(x, ptn = pattern(x), defaultPtn = c("^",
-  "($|(_\\d+(_\\d+)*)$)"), renameVarlabels = FALSE)
+  as.surveydata(x, sep = "_", exclude = "other",
+    ptn = pattern(x),
+    defaultPtn = list(sep = sep, exclude = exclude),
+    renameVarlabels = FALSE)
 }
 \arguments{
   \item{x}{Object to coerce to surveydata}
+
+  \item{sep}{Separator between question and subquestion
+  names}
+
+  \item{exclude}{Excludes from pattern search}
 
   \item{ptn}{A character vector of length two, consisting
   of a prefix and suffix.  When subsetting based on

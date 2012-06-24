@@ -11,6 +11,7 @@
 #' The \code{variable.labels} attribute is used by to store information about the original question text.  See \code{\link[foreign]{read.spss}} for details.
 #' 
 #' @param x surveydata object
+#' @param value New value
 #' @export  
 #' @seealso \code{\link{surveydata-package}}
 #' @family varlabels
@@ -19,6 +20,7 @@ varlabels <- function(x){
 }
 
 #' @rdname varlabels
+#' @usage "varlabels(x) <- value"
 #' @aliases varlabels<-
 #' @export varlabels<-
 #' @family varlabels

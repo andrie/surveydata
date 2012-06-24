@@ -39,14 +39,16 @@
 context("Surveydata class functions")
 test_that("as.surveydata and is.surveydata works as expected", {
       s <- as.surveydata(sdat)
-      expected_pattern <- c("^", "(_[[:digit:]])*(_.*)?$")
+      #expected_pattern <- c("^", "(_[[:digit:]])*(_.*)?$")
+      expected_pattern <- list(sep="_", exclude="other")
       expect_that(s, is_a("surveydata"))
       expect_that(s, is_a("data.frame"))
       expect_that(is.surveydata(s), is_true())
       expect_that(is.surveydata(sdat), is_false())
       expect_that(pattern(s), equals(expected_pattern))
       
-      new_pattern <- c("", "new_pattern$")
+      #new_pattern <- c("", "new_pattern$")
+      new_pattern <- list(sep=":", exclude="last") 
       s <- as.surveydata(sdat, ptn=new_pattern)
       expect_that(s, is_a("surveydata"))
       expect_that(is.surveydata(s), is_true())

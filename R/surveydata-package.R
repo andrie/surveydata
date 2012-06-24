@@ -34,16 +34,30 @@
 #' \item \code{\link[surveydata]{qTextUnique}} 
 #' }
 #' 
+#' Functions to fix common encoding problems:
+#' \itemize{
+#' \item \code{\link[surveydata]{entToInc}} 
+#' \item \code{\link[surveydata]{incToEnt}} 
+#' \item \code{\link[surveydata]{fixCommonEncodingProblems}}
+#' }
+#' 
+#' Functions to clean data:
+#' \itemize{
+#' \item \code{\link[surveydata]{removeDK}} to remove "Don't know" responses 
+#' \item \code{\link[surveydata]{removeAllDK}} to remove "Don't know" responses from all questions
+#' \item \code{\link[surveydata]{fixLevels01}} to fix level formatting of all question with Yes/No type answers
+#' }
+#' 
 #' 
 #' @name surveydata-package
 #' @aliases surveydata surveydata-package
 #' @docType package
 #' @import stringr
 #' @title Tools, classes and methods to manipulate survey data.
-#' @author Andrie de Vries \email{andrie.de.vries@@pentalibra.com}
+#' @author Andrie de Vries \email{andrie@@pentalibra.com}
 #' @keywords package
 #' 
-#' @example \inst\examples\example.R
+#' @example /inst/examples/example.R
 NULL
 
 #' Prints message on loading package.

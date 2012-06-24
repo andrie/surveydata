@@ -10,6 +10,7 @@
       Q4_1 = c(1, 2, 1, 2), 
       Q4_2 = c(3, 4, 4, 3), 
       Q4_3 = c(5, 5, 6, 6), 
+      Q4_other = LETTERS[1:4],
       Q10 = factor(c("Male", "Female", "Female", "Male")),
       crossbreak  = c("A", "A", "B", "B"), 
       crossbreak2 = c("D", "E", "D", "E"),
@@ -19,7 +20,7 @@
   sdat_labels <- c(
       "RespID",
       "Question 1", 
-      "Question 4: red", "Question 4: green", "Question 4: blue", 
+      "Question 4: red", "Question 4: green", "Question 4: blue", "Question 4: other",
       "Question 10",
       "crossbreak",
       "crossbreak2",
@@ -43,15 +44,15 @@ test_that("which.q returns correct question positions", {
       expect_that(which.q(s, c(4)), equals(4))
       expect_that(which.q(s, c(-1)), equals(-1))
       expect_that(which.q(s, "Q1"), equals(2))
-      expect_that(which.q(s, "Q10"), equals(6))
+      expect_that(which.q(s, "Q10"), equals(7))
       expect_that(which.q(s, "Q4"), equals(3:5))
       expect_that(which.q(s, "Q2"), equals(integer(0)))
       
       expect_that(which.q(s, c("Q1", "Q4")), equals(c(2, 3:5)))
-      expect_that(which.q(s, c("Q1", "crossbreak")), equals(c(2, 7)))
-      expect_that(which.q(s, c("Q4", "crossbreak2")), equals(c(3:5, 8)))
+      expect_that(which.q(s, c("Q1", "crossbreak")), equals(c(2, 8)))
+      expect_that(which.q(s, c("Q4", "crossbreak2")), equals(c(3:5, 9)))
       
-      expect_that(which.q(s, c(3, "crossbreak2")), equals(c(3, 8)))
+      expect_that(which.q(s, c(3, "crossbreak2")), equals(c(3, 9)))
       
     })
 
@@ -104,7 +105,7 @@ test_that("`[` simple extract works as expected", {
       expect_equal(rm.ca(s[, "Q1"]), rm.ca(sdat[, 2]))
       expect_equal(rm.ca(s[, "Q4"]), rm.ca(sdat[, 3:5]))
       expect_equal(rm.ca(s[2, "Q4"]), rm.ca(sdat[2, 3:5]))
-      expect_equal(rm.ca(s[1:2, "Q10"]), rm.ca(sdat[1:2, 6]))
+      expect_equal(rm.ca(s[1:2, "Q10"]), rm.ca(sdat[1:2, 7]))
       expect_equal(rm.ca(s[, "weight"]), rm.ca(sdat[, "weight"]))
 
       

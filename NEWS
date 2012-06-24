@@ -1,3 +1,10 @@
+surveydata 0.1-04 (13/5/2012)
+-----------------
+
+New features:
+* Modified pattern search to have sep and exclude, rather than a regex (as.surveydata, which.q. etc.)
+* Merged surveyortools package: encoding and cleandata
+
 surveydata 0.1-03 (31/10/2011)
 -----------------
 

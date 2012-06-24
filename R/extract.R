@@ -33,20 +33,20 @@
 }
 
 #' @rdname extract
-#' @usage x[i, j, ...]
+#' @usage x[i, j, drop=FALSE]
 #' @param i row index
 #' @param j column index
 #' @param ... Other arguments passed to \code{[.data.frame}
 #' @export 
 #' @aliases [.surveydata
 #' @method [ surveydata
-`[.surveydata` <- function(x, i, j, ...){
+`[.surveydata` <- function(x, i, j, drop=TRUE){
   has.j <- !missing(j)
   if(has.j && is.character(j)) j <- which.q(x, j) 
   xorig <- x
-  #class(ret) <- "data.frame"
-  ret <- NextMethod("[") ###`[`(ret, i, j, ...)
-  if(has.j)varlabels(ret) <- varlabels(xorig)[j] else varlabels(ret) <- varlabels(xorig)
+  #ret <- NextMethod("[") 
+  ret <- NextMethod("[", ret, drop=drop)
+  if(has.j) varlabels(ret) <- varlabels(xorig)[j] else varlabels(ret) <- varlabels(xorig)
   as.surveydata(ret, ptn=pattern(xorig), renameVarlabels=FALSE)
 }
 

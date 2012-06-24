@@ -1,6 +1,5 @@
 \docType{package}
 \name{surveydata-package}
-\alias{"surveydata-package"}
 \alias{surveydata}
 \alias{surveydata-package}
 \title{Tools, classes and methods to manipulate survey data.}
@@ -32,6 +31,18 @@
   \code{\link[surveydata]{qText}} \item
   \code{\link[surveydata]{qTextCommon}} \item
   \code{\link[surveydata]{qTextUnique}} }
+
+  Functions to fix common encoding problems: \itemize{
+  \item \code{\link[surveydata]{entToInc}} \item
+  \code{\link[surveydata]{incToEnt}} \item
+  \code{\link[surveydata]{fixCommonEncodingProblems}} }
+
+  Functions to clean data: \itemize{ \item
+  \code{\link[surveydata]{removeDK}} to remove "Don't know"
+  responses \item \code{\link[surveydata]{removeAllDK}} to
+  remove "Don't know" responses from all questions \item
+  \code{\link[surveydata]{fixLevels01}} to fix level
+  formatting of all question with Yes/No type answers }
 }
 \examples{
 # Create surveydata object
@@ -77,7 +88,7 @@ qTextCommon(sv, "Q4")
 qTextUnique(sv, "Q4")
 }
 \author{
-  Andrie de Vries \email{andrie.de.vries@pentalibra.com}
+  Andrie de Vries \email{andrie@pentalibra.com}
 }
 \keyword{package}
 

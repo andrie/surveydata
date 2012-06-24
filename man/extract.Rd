@@ -1,6 +1,5 @@
 \name{extract}
-\alias{"$<-.surveydata"}
-\alias{"[.surveydata"}
+\alias{$<-.surveydata}
 \alias{[.surveydata}
 \alias{extract}
 \alias{replace}

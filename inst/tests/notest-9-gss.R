@@ -12,7 +12,7 @@
 #gss <- read.spss(file=file.path(path, filename), to.data.frame=TRUE)
 #save(gss, file=file.path(path, "gss.rda"))
 
-path <- file.path("f:", "git", "surveydata", "surveydata", "inst", "tests")
+path <- file.path("inst", "tests")
 filename <- "gss.rda"
 load(file=file.path(path, filename))
 

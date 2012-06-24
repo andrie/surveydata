@@ -1,6 +1,6 @@
 \name{names}
-\alias{"names<-"}
 \alias{names}
+\alias{names<-}
 \title{Updates names and variable.labels attribute of surveydata.}
 \usage{
   names(x) <- value

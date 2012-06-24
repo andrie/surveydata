@@ -1,5 +1,4 @@
 \name{pattern}
-\alias{"pattern<-"}
 \alias{pattern}
 \alias{pattern<-}
 \title{Returns and updates pattern attribute.}

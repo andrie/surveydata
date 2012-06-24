@@ -5,7 +5,7 @@
 
 
 qPattern <- function(Q, ptn){
-  paste(ptn[1], Q, ptn[2], sep="")
+  paste0(ptn[1], Q, ptn[2])
 }
 
 
@@ -24,9 +24,18 @@ qPattern <- function(Q, ptn){
 #' @export
 #' @param Q Character string with question number, e.g. "Q2"
 which.q <- function(x, Q, ptn=pattern(x)){
+  if(!is.list(ptn))stop("ptn must be a list of two elements")
   num <- !is.na(suppressWarnings(as.numeric(Q)))
   chr <- !num
-  whichQone <- function(qx) grep(qPattern(qx, ptn), names(x))
+  whichQone <- function(qx){
+    #grep(qPattern(qx, ptn), names(x))
+#    browser()
+    prefix <- "^"
+    postfix <- sprintf("($|(%s.+$))", ptn$sep)
+    pattern <- paste0(prefix, qx, postfix)
+    w <- grep(pattern, names(x))
+    w[names(x)[w] != paste0(qx, ptn$sep, ptn$exclude)]
+  }
   if(any(num)) 
     x1 <- as.numeric(Q[which(num)])
   else
