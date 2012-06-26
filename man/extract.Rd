@@ -7,7 +7,7 @@
 \usage{
   x$name <- value
 
-  x[i, j, ...]
+  x[i, j, drop=FALSE]
 }
 \arguments{
   \item{x}{surveydata object}
