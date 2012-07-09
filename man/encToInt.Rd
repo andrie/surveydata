@@ -17,14 +17,13 @@
 \description{
   Conversion of character vector to integer vector.  The
   encoding of the character vector can be specified but
-  will default to the current locale.
+  defaults to the current locale.
 }
 \examples{
 encToInt("\\\\xfa")
 }
 \seealso{
-  \code{\link{intToEnc}}, \code{\link{iconv}} and
-  \code{\link{utf8ToInt}}
+  \code{\link{iconv}}
 
   Other Functions to clean data:
   \code{\link{fixCommonEncodingProblems}},

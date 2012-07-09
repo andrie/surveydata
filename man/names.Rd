@@ -1,14 +1,14 @@
-\name{names}
-\alias{names}
+\name{names<-}
 \alias{names<-}
+\alias{names<-.surveydata}
 \title{Updates names and variable.labels attribute of surveydata.}
 \usage{
-  names(x) <- value
+  \\method{names}{surveydata}(x) <- value
 }
 \arguments{
-  \item{value}{New names}
-
   \item{x}{surveydata object}
+
+  \item{value}{New names}
 }
 \description{
   Updates names and variable.labels attribute of

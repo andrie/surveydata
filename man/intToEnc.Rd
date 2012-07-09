@@ -17,14 +17,13 @@
 \description{
   Conversion of integer vector to character vector.  The
   encoding of the character vector can be specified but
-  will default to the current locale.
+  defaults to the current locale.
 }
 \examples{
 intToEnc(8212)
 }
 \seealso{
-  \code{\link{encToInt}}, \code{\link{iconv}} and
-  \code{\link{utf8ToInt}}
+  \code{\link{iconv}}
 
   Other Functions to clean data: \code{\link{encToInt}},
   \code{\link{fixCommonEncodingProblems}},
