@@ -160,3 +160,43 @@ fixLevels01 <- function(dat, origin=c("R", "SPSS")){
       "R" = fixLevels01R(dat),
       "SPSS" = fixLevels01SPSS(dat))
 }
+
+#' Changes vector to ordered factor, adding NA levels if applicable.
+#' 
+#' @param x Vector
+#' @export
+#' @family Tools
+qOrder <- function(x){
+  #factor(x, level=levels(x), labels=levels(x), ordered=TRUE)
+  if(any(is.na(x))){
+    addNA(ordered(x))
+  } else {
+    ordered(x)
+  }
+}
+
+#' Applies function only to named elements of a list.
+#' 
+#' This is useful to clean only some columns in a list (or data.frame or surveydata object). This is just a wrapper around \code{\link{lapply}} where only the named elements are changed.
+#' @param x List
+#' @param names Character vector identifying which elements of the list to apply FUN
+#' @param FUN The function to apply.
+#' @param ... Additional arguments passed to FUN
+#' @export 
+#' @family Tools
+lapplyNames <- function(x, names, FUN, ...){
+  oldClass <- class(x)
+  index <- match(names, names(x))
+  if(any(is.na(index))) stop(paste("Names not found:", paste(names[is.na(index)], collapse=", ")))
+  x <- unclass(x)
+  x[index] <- lapply(x[index], FUN, ...)
+  class(x) <- oldClass
+  x
+}
+
+#lapplyNames <- function(x, names, FUN, ...){
+#  index <- match(names, names(x))
+#  if(any(is.na(index))) stop(paste("Names not found:", paste(names[is.na(index)], collapse=", ")))
+#  x[index, drop=TRUE] <- lapply(x[index, drop=TRUE], FUN, ...)
+#  x
+#}

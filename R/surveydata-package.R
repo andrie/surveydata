@@ -6,7 +6,7 @@
 
 #' Tools, classes and methods to manipulate survey data.
 #'
-#' Surveydata objects have been designed to function with SPSS export data, i.e. the result of an SPSS import,  \code{read.spss()}.  This type of data is contained in a data.frame, with information about the questionnaire text in the \code{variable.labels} attribute.  Surveydata objects keep track of the variable labels, by offering methods for renaming, subsetting, etc.
+#' Surveydata objects have been designed to function with SPSS export data, i.e. the result of an SPSS import,  \code{\link[foreign]{read.spss}}.  This type of data is contained in a data.frame, with information about the questionnaire text in the \code{variable.labels} attribute.  Surveydata objects keep track of the variable labels, by offering methods for renaming, subsetting, etc.
 #' 
 #' Coercion functions:
 #' \itemize{
@@ -36,16 +36,16 @@
 #' 
 #' Functions to fix common encoding problems:
 #' \itemize{
-#' \item \code{\link[surveydata]{entToInc}} 
-#' \item \code{\link[surveydata]{incToEnt}} 
-#' \item \code{\link[surveydata]{fixCommonEncodingProblems}}
+#' \item \code{\link[surveydata]{encToInt}} 
+#' \item \code{\link[surveydata]{intToEnc}} 
+#' \item \code{\link{fixCommonEncodingProblems}}
 #' }
 #' 
 #' Functions to clean data:
 #' \itemize{
-#' \item \code{\link[surveydata]{removeDK}} to remove "Don't know" responses 
-#' \item \code{\link[surveydata]{removeAllDK}} to remove "Don't know" responses from all questions
-#' \item \code{\link[surveydata]{fixLevels01}} to fix level formatting of all question with Yes/No type answers
+#' \item \code{\link{removeDK}} to remove "Don't know" responses 
+#' \item \code{\link{removeAllDK}} to remove "Don't know" responses from all questions
+#' \item \code{\link{fixLevels01}} to fix level formatting of all question with Yes/No type answers
 #' }
 #' 
 #' 
@@ -53,6 +53,7 @@
 #' @aliases surveydata surveydata-package
 #' @docType package
 #' @import stringr
+#' @importFrom plyr quickdf
 #' @title Tools, classes and methods to manipulate survey data.
 #' @author Andrie de Vries \email{andrie@@pentalibra.com}
 #' @keywords package
