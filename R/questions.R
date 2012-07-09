@@ -34,7 +34,7 @@ which.q <- function(x, Q, ptn=pattern(x)){
     postfix <- sprintf("($|(%s.+$))", ptn$sep)
     pattern <- paste0(prefix, qx, postfix)
     w <- grep(pattern, names(x))
-    w[names(x)[w] != paste0(qx, ptn$sep, ptn$exclude)]
+    w[names(x)[w] != paste0(qx, ptn[["sep"]], ptn[["exclude"]])]
   }
   if(any(num)) 
     x1 <- as.numeric(Q[which(num)])
@@ -64,8 +64,25 @@ which.q <- function(x, Q, ptn=pattern(x)){
 #' @family Questions
 #' @keywords Questions
 questions <- function(x, ptn=pattern(x)){
-  unique(gsub(qPattern("(.*?)", ptn), "\\1", names(x)))
+  #unique(gsub(qPattern("(.*?)", ptn), "\\1", names(x)))
+  
+  n <- names(x)
+  ptn1 <- sprintf(".*%s%s$", ptn[1], ptn[2])
+  other <- grepl(ptn1, n)
+  ptn2 <- sprintf("^(.*)(%s.*)+", ptn[1])
+  n[!other] <- gsub(ptn2, "\\1", n[!other]) 
+  unique(n)
 }
+
+
+#qs2 <- function(x, ptn=pattern(x)){
+#  n <- names(x)
+#  other <- grepl(".*_other$", n)
+#  sep <- ptn[[1]]
+#  ptn <- sprintf("^(.*)(%s.*)+", sep)
+#  n[!other] <- gsub(ptn, "\\1", n[!other]) 
+#  unique(n)
+#}
 
 #------------------------------------------------------------------------------
 
