@@ -17,9 +17,11 @@
 #' @seealso \code{\link{surveydata-package}}, \code{\link{is.surveydata}}
 as.surveydata <- function(x, sep="_", exclude="other", ptn=pattern(x),  
     defaultPtn=list(sep=sep, exclude=exclude), renameVarlabels=FALSE){
-  #if(!is.list(ptn)) stop("ptn must be a list with elements sep and exclude")
   if(!is.list(defaultPtn)) stop("defaultPtn must be a list with elements sep and exclude")
+  
   if(is.null(ptn)) ptn <- defaultPtn
+  #if(!is.list(ptn)) stop("ptn must be a list with elements sep and exclude")
+  #if(!(names(ptn)==c("sep", "exclude"))) stop("defaultPtn must be a list with elements sep and exclude")
   if(!inherits(x, "surveydata")) class(x) <- c("surveydata", class(x))
   if(renameVarlabels) names(varlabels(x)) <- names(x)
   pattern(x) <- ptn
@@ -67,14 +69,16 @@ is.surveydata <- function(x){
 
 #' Updates names and variable.labels attribute of surveydata.
 #' 
-#' @param value New names
-#' @name names
-#' @aliases names names<- 
-#' @usage names(x) <- value
+#' @name names<-
+#' @rdname names
+#' @aliases names<- names<-.surveydata
 #' @param x surveydata object
-#' @method `names<-` surveydata
+#' @param value New names
+#' @method names<- surveydata
+#' @export 
+#' @usage \\method{names}{surveydata}(x) <- value
 #' @seealso \code{\link{surveydata-package}}, \code{\link{is.surveydata}}
-`names<-.surveydata` <- function(x, value){
+"names<-.surveydata" <- function(x, value){
   xattr <- attributes(x)
   ret <- as.data.frame(x)
   names(ret) <- value
