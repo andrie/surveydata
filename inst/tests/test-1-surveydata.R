@@ -36,7 +36,8 @@
 
 #------------------------------------------------------------------------------
 
-context("Surveydata class functions")
+context("Surveydata")
+
 test_that("as.surveydata and is.surveydata works as expected", {
       s <- as.surveydata(sdat)
       #expected_pattern <- c("^", "(_[[:digit:]])*(_.*)?$")
@@ -64,7 +65,7 @@ test_that("Varlabel names are allocated correctly",{
 
 #------------------------------------------------------------------------------
 
-context("Varlabel functions")
+#context("Varlabel functions")
 test_that("Varlabel functions work as expected", {
       s <- as.surveydata(sdat)
       expect_equal(varlabels(s), sdat_labels)
@@ -85,7 +86,7 @@ test_that("Varlabel functions work as expected", {
 
 #------------------------------------------------------------------------------
 
-context("Pattern functions")
+#context("Pattern functions")
 test_that("Pattern functions work as expected", {
       pattern <- "-pattern-"
       s <- as.surveydata(sdat)
@@ -98,7 +99,7 @@ test_that("Pattern functions work as expected", {
       expect_that(attr(s, "pattern"), equals(pattern))
     })
 
-context("Remove attributes")
+#context("Remove attributes")
 test_that("Removing attributes work as expected", {
       s <- as.surveydata(sdat)
       
@@ -113,7 +114,7 @@ test_that("Removing attributes work as expected", {
 
 #------------------------------------------------------------------------------
 
-context("Rename columns")
+#context("Rename columns")
 
 test_that("Name_replace works as expected", {
       s <- as.surveydata(sdat)
