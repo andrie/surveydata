@@ -48,6 +48,7 @@
   has.j <- !missing(j)
   
   if(!has.i & !has.j) return(x)
+  
   #if(has.j && is.character(j)) j <- which.q(x, j) 
   if(has.j){ # && is.character(j)) {
     newname <- j
@@ -61,7 +62,7 @@
     
   } else {
     newname <- i
-    if (is.numeric(i)) {
+    if (!is.character(i)) {
       w <- i
       name <- i
     } else { 

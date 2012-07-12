@@ -113,3 +113,17 @@ test_that("`[` complex extract works as expected", {
 
 #------------------------------------------------------------------------------
 
+test_that("`[` extract with logicals", {
+      s <- as.surveydata(sdat)
+      
+      i <- s$id==1
+      j <- grepl("Q4", names(s))
+      expect_equal(rm.ca(s[i, ]), rm.ca(sdat[i, ]))
+      expect_equal(rm.ca(s[!i, ]), rm.ca(sdat[!i, ]))
+      expect_equal(rm.ca(s[i, j]), rm.ca(sdat[i, j]))
+      expect_equal(rm.ca(s[i, !j]), rm.ca(sdat[i, !j]))
+      expect_equal(rm.ca(s[!i, j]), rm.ca(sdat[!i, j]))
+      expect_equal(rm.ca(s[!i, j]), rm.ca(sdat[!i, j]))
+      expect_equal(rm.ca(s[!i, !j]), rm.ca(sdat[!i, !j]))
+      
+    })
