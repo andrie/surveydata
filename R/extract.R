@@ -28,9 +28,8 @@
   x <- as.data.frame(x)
   #x <- `$<-.data.frame`(x, name, value)
   x <- NextMethod("$<-")
-  x <- as.surveydata(x, renameVarlabels=FALSE)
   varlabels(x) <- labels
-  x
+  as.surveydata(x, renameVarlabels=FALSE)
 }
 
 #' Extract a subset of surveydata.
@@ -44,44 +43,48 @@
 #' @aliases [ [.surveydata
 #' @method [ surveydata
 "[.surveydata" <- function(x, i, j, drop=FALSE){
+  name <- NULL
+  mdrop <- missing(drop)
+  Narg <- nargs() - (!mdrop) -1
   has.i <- !missing(i)
   has.j <- !missing(j)
   
   if(!has.i & !has.j) return(x)
   
-  #if(has.j && is.character(j)) j <- which.q(x, j) 
-  if(has.j){ # && is.character(j)) {
-    newname <- j
-    if (is.character(j)) w <- which.q(x, j) else w <- j
-    if(length(w)!=0) {
-      j <- w
-      name <- j
+  if(Narg >= 1L & has.j){ 
+    name <- j
+    if (is.character(j)) {
+      w <- which.q(x, j) 
+      if(length(w)!=0) {
+        j <- name <- w
+      }
     } else {
-      name <- newname
+      name <- j
     }
-    
-  } else {
-    newname <- i
-    if (!is.character(i)) {
-      w <- i
-      name <- i
-    } else { 
+  } else { #!has.j
+    name <- seq_along(x)
+  }
+  
+  if(Narg==1L & has.i) {
+    name <- i
+    if (is.character(i)) {
       w <- which.q(x, i)  
       if(length(w)!=0) {
-        i <- w
-        name <- i
+        i <- name <- w
       } else {
-        name <- newname
+        name <- i
       }
-    }
-  }
-  xorig <- x
-  #ret <- NextMethod("[") 
+    } else { 
+      name <- i
+    } 
+  } 
+  #browser()
+  
   ret <- NextMethod("[", drop=drop)
-  #if(has.j) varlabels(ret) <- varlabels(xorig)[j] else varlabels(ret) <- varlabels(xorig)
-  #if(has.j | has.i) varlabels(ret) <- varlabels(xorig)[name] else varlabels(ret) <- varlabels(xorig)
-  varlabels(ret) <- varlabels(xorig)[name]
-  as.surveydata(ret, ptn=pattern(xorig), renameVarlabels=FALSE)
+  #if(has.j) varlabels(ret) <- varlabels(xorig)[name]
+  #if(exists("name")) varlabels(ret) <- varlabels(x)[name]
+  varlabels(ret) <- varlabels(x)[name]
+  as.surveydata(ret, ptn=pattern(x), renameVarlabels=FALSE)
 }
 
 #' Extract or replace subsets of surveydata.
@@ -109,35 +112,23 @@
     }
     
   } else {
-    newname <- i
-    w <- which.q(x, i)
-    if(length(w)!=0) {
-      i <- w
-      name <- i
-    } else {
-      name <- newname
-    }
+    name <- j
   }
   
   xorig <- x
   
   labels <- varlabels(x)
   if(is.null(value)){
-    #labels <- labels[names(labels)!=name]
     labels <- labels[-name]
   }
-  #if(length(grep(name, names(x)))==0){
   if(length(w)==0){
-    #labels <- c(labels, newname)
     labels[newname] <- newname
   }  
     
-  #ret <- NextMethod("[") 
   ret <- NextMethod("[<-")
-  if(has.j | has.i) varlabels(ret) <- varlabels(xorig)[j] else varlabels(ret) <- varlabels(xorig)
-  x <- as.surveydata(ret, ptn=pattern(xorig), renameVarlabels=FALSE)
-  varlabels(x) <- labels
-  x
+  if(has.j) varlabels(ret) <- varlabels(xorig)[j] else varlabels(ret) <- varlabels(xorig)
+  varlabels(ret) <- labels
+  as.surveydata(ret, ptn=pattern(xorig), renameVarlabels=FALSE)
 }
 
 
