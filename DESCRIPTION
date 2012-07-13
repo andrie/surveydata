@@ -10,9 +10,9 @@ Description: Tools, classes and methods to manipulate
     survey data.
 Author@R: person("Andrie", "de Vries",
     email="andrie@pentalibra.com")
-Version: 0.1-06
+Version: 0.1-07
 URL: 
-Date: 2012-07-09
+Date: 2012-07-13
 ByteCompile: yes
 Depends:
     R (>= 2.15.0)
