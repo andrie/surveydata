@@ -65,7 +65,6 @@ test_that("Varlabel names are allocated correctly",{
 
 #------------------------------------------------------------------------------
 
-#context("Varlabel functions")
 test_that("Varlabel functions work as expected", {
       s <- as.surveydata(sdat)
       expect_equal(varlabels(s), sdat_labels)
@@ -86,7 +85,6 @@ test_that("Varlabel functions work as expected", {
 
 #------------------------------------------------------------------------------
 
-#context("Pattern functions")
 test_that("Pattern functions work as expected", {
       pattern <- "-pattern-"
       s <- as.surveydata(sdat)
@@ -99,7 +97,6 @@ test_that("Pattern functions work as expected", {
       expect_that(attr(s, "pattern"), equals(pattern))
     })
 
-#context("Remove attributes")
 test_that("Removing attributes work as expected", {
       s <- as.surveydata(sdat)
       
@@ -113,8 +110,6 @@ test_that("Removing attributes work as expected", {
     })
 
 #------------------------------------------------------------------------------
-
-#context("Rename columns")
 
 test_that("Name_replace works as expected", {
       s <- as.surveydata(sdat)
@@ -134,4 +129,17 @@ test_that("Name_replace works as expected", {
       expect_equal(pattern(s), newpat)
       
     })
+
+#------------------------------------------------------------------------------
+
+test_that("warnings are issued when names and varlabels mismatch", {
+      s <- as.surveydata(sdat)
+      
+      s2 <- s
+      varlabels(s2) <- varlabels(s2)[-1]
+      shows_message(is.surveydata(s2))
+      
+    })
+
+
 

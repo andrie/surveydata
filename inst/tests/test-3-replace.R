@@ -24,9 +24,10 @@
       "Question 10",
       "crossbreak",
       "crossbreak2",
-      "weight")
+      "weight"
+  )
   names(sdat_labels) <- names(sdat)
-  attributes(sdat)$variable.labels <- sdat_labels
+  varlabels(sdat) <- sdat_labels
 }
 
 rm.ca <- function(x){
@@ -39,7 +40,7 @@ rm.ca <- function(x){
 context("Replace")
 
 test_that("`$<-` NULL removes column as well as varlabel", {
-      s <- as.surveydata(sdat)
+      s <- as.surveydata(sdat, renameVarlabels=TRUE)
       s$id <- NULL
       expect_true(is.na(match("id", names(s))))
       expect_true(is.na(match("id", names(varlabels(s)))))
@@ -49,14 +50,14 @@ test_that("`$<-` NULL removes column as well as varlabel", {
     })
 
 test_that("`$<-` existing_name maintains correct varlabels",{
-      s <- as.surveydata(sdat)
+      s <- as.surveydata(sdat, renameVarlabels=TRUE)
       expect_equal(varlabels(sdat), varlabels(s))
       s$Q4_1 <- 1:4
       expect_equal(varlabels(sdat), varlabels(s))
     })
 
 test_that("`$<-` newname inserts column and new varlabel", {
-      s <- as.surveydata(sdat)
+      s <- as.surveydata(sdat, renameVarlabels=TRUE)
       s$newid <- 101:104
       expect_equal(s$newid, 101:104)
       expect_true(all(s$newid==101:104))
@@ -67,7 +68,7 @@ test_that("`$<-` newname inserts column and new varlabel", {
 #------------------------------------------------------------------------------
 
 test_that("`[<-` NULL removes column as well as varlabel", {
-      s <- as.surveydata(sdat)
+      s <- as.surveydata(sdat, renameVarlabels=TRUE)
       s[, "id"] <- NULL
       #browser()
       expect_true(is.na(match("id", names(s))))
@@ -78,16 +79,16 @@ test_that("`[<-` NULL removes column as well as varlabel", {
     })
 
 test_that("`[<-` existing_name maintains correct varlabels",{
-      s <- as.surveydata(sdat)
+      s <- as.surveydata(sdat, renameVarlabels=TRUE)
       expect_equal(varlabels(sdat), varlabels(s))
       s[, "Q4_1"] <- 1:4
       expect_equal(varlabels(sdat), varlabels(s))
     })
 
-context("Temp")
+#------------------------------------------------------------------------------
 
 test_that("`[<-` newname inserts column and new varlabel", {
-      s <- as.surveydata(sdat)
+      s <- as.surveydata(sdat, renameVarlabels=TRUE)
       s["newid"] <- 101:104
       expect_equal(s$newid, 101:104)
       expect_false(is.na(match("newid", names(varlabels(s)))))

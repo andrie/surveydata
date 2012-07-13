@@ -24,8 +24,7 @@
       "crossbreak",
       "crossbreak2",
       "weight")
-  names(sdat_labels) <- names(sdat)
-  attributes(sdat)$variable.labels <- sdat_labels
+  varlabels(sdat) <- sdat_labels
 }
 
 
@@ -43,10 +42,10 @@ test_that("Merge of surveyordata objects work as expected",{
           crossbreak2 = c("X", "Y"),
           weight      = c(0.95, 1.05)
       )
-      varlabels(sdat2) <- sdat_labels
+      varlabels(sdat2) <- names(sdat2)
       
-      s1 <- as.surveydata(sdat)
-      s2 <- as.surveydata(sdat2, ptn=c("^", "$"))
+      s1 <- as.surveydata(sdat, renameVarlabels=TRUE)
+      s2 <- as.surveydata(sdat2, ptn=c("_", ""), renameVarlabels=TRUE)
       expect_that(
           sm <- merge(s1, s2, all=TRUE),
           gives_warning("In merge of surveydata objects, patterns of objects differ")

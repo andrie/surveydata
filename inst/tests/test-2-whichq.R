@@ -63,7 +63,7 @@ rm.ca <- function(x){
 context("which.q")
 
 test_that("which.q returns correct question positions", {
-      s <- as.surveydata(sdat)
+      s <- as.surveydata(sdat, renameVarlabels=TRUE)
       expect_that(which.q(s, c(1)), equals(1))
       expect_that(which.q(s, c(4)), equals(4))
       expect_that(which.q(s, c(-1)), equals(-1))
@@ -85,7 +85,7 @@ test_that("which.q returns correct question positions", {
 #context("which.q 2")
 
 test_that("which.q returns correct question positions", {
-      s2 <- as.surveydata(sdat2, ptn=list(sep="__", exclude="ignore"))
+      s2 <- as.surveydata(sdat2, ptn=list(sep="__", exclude="ignore"), renameVarlabels=TRUE)
       expect_that(which.q(s2, c(1)), equals(1))
       expect_that(which.q(s2, c(4)), equals(4))
       expect_that(which.q(s2, c(-1)), equals(-1))

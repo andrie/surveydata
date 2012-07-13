@@ -24,9 +24,10 @@
       "Question 10",
       "crossbreak",
       "crossbreak2",
-      "weight")
+      "weight"
+  )
   names(sdat_labels) <- names(sdat)
-  attributes(sdat)$variable.labels <- sdat_labels
+  varlabels(sdat) <- sdat_labels
 }
 
 rm.ca <- function(x){
@@ -40,7 +41,7 @@ rm.ca <- function(x){
 context("Extract")
 
 test_that("`$` extracts correct columns", {
-      s <- as.surveydata(sdat)
+      s <- as.surveydata(sdat, renameVarlabels=TRUE)
       
       expect_equal(s$id, 1:4)
       expect_equal(s$Q4_1, c(1, 2, 1, 2))
@@ -55,8 +56,15 @@ test_that("`$` extracts correct columns", {
 #context("Surveydata `[` simple extract")
 
 test_that("`[` simple extract returns surveydata object", {
-      s <- as.surveydata(sdat)
-
+      s <- as.surveydata(sdat, renameVarlabels=TRUE)
+#      load_all(pkg)
+#      which.q(s, "Q4")
+#      x <- NULL
+#      x <- s[2]
+#      x
+#      varlabels(x)
+#      str(x)
+      
       expect_is(s[], "surveydata")
       expect_is(s[, 2], "surveydata")
       expect_is(s[1, ], "surveydata")
@@ -66,8 +74,8 @@ test_that("`[` simple extract returns surveydata object", {
     })
 
 test_that("`[` simple extract returns correct data", {
-      s <- as.surveydata(sdat)
-            
+      s <- as.surveydata(sdat, renameVarlabels=TRUE)
+      
       expect_equal(s[], s)
       expect_equal(rm.ca(s[2, ]), rm.ca(sdat[2, ]))
       expect_equal(rm.ca(s[, 2]), rm.ca(sdat[, 2, drop=FALSE]))
@@ -79,8 +87,8 @@ test_that("`[` simple extract returns correct data", {
     })
 
 test_that("`[` simple extract returns correct varlabels", {
-      s <- as.surveydata(sdat)
-            
+      s <- as.surveydata(sdat, renameVarlabels=TRUE)
+      
       expect_equal(varlabels(s[]), sdat_labels)
       expect_equal(varlabels(s[2]), sdat_labels[2])
       expect_equal(varlabels(s[, 2]), sdat_labels[2])
@@ -96,7 +104,7 @@ test_that("`[` simple extract returns correct varlabels", {
     
 #context("Surveydata `[` complex extract")
 test_that("`[` complex extract works as expected", {
-      s <- as.surveydata(sdat)
+      s <- as.surveydata(sdat, renameVarlabels=TRUE)
       
       expect_equal(rm.ca(s[, c(1, 3)]), rm.ca(sdat[, c(1, 3)]))
       expect_equal(rm.ca(s[, -1]), rm.ca(sdat[, -1]))
@@ -114,9 +122,9 @@ test_that("`[` complex extract works as expected", {
 #------------------------------------------------------------------------------
 
 test_that("`[` extract with logicals", {
-      s <- as.surveydata(sdat)
+      s <- as.surveydata(sdat, renameVarlabels=TRUE)
       
-      i <- s$id==1
+      i <- sdat$id==1
       j <- grepl("Q4", names(s))
       expect_equal(rm.ca(s[i, ]), rm.ca(sdat[i, ]))
       expect_equal(rm.ca(s[!i, ]), rm.ca(sdat[!i, ]))

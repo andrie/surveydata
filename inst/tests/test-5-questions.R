@@ -18,7 +18,7 @@
       weight      = c(0.9, 1.1, 0.8, 1.2)
   )
   
-  varlabels(sdat) <- c(
+  varlabels(sdat) <- setNames(c(
       "RespID",
       "Question 1", 
       "Question 4: red", "Question 4: green", "Question 4: blue", 
@@ -26,7 +26,8 @@
       "Question 10",
       "crossbreak",
       "crossbreak2",
-      "weight")
+      "weight"),
+  names(sdat))
 }
 
 
