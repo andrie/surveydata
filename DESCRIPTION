@@ -13,6 +13,7 @@ Author@R: person("Andrie", "de Vries",
 Version: 0.1-06
 URL: 
 Date: 2012-07-09
+ByteCompile: yes
 Depends:
     R (>= 2.15.0)
 Imports:
