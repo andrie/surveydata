@@ -12,7 +12,12 @@ Data processing a survey file can be tricky, since the standard methods for deal
 
 The `surveydata` package defines a `surveydata` class and the following methods that knows how to deal with the `variable.labels` attribute:
 
-* `merge`
+* `as.surveydata`
+* `[.surveydata`
+* `[<-.surveydata`
+* `$.surveydata`
+* `$<-.surveydata`
+* `merge.surveydata`
 
 In addition, `surveydata` defines the following convenient methods for extracting and working with the variable labels:
 
