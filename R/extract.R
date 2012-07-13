@@ -44,8 +44,8 @@
 #' @method [ surveydata
 "[.surveydata" <- function(x, i, j, drop=FALSE){
   name <- NULL
-  mdrop <- missing(drop)
-  Narg <- nargs() - (!mdrop) -1
+  has.drop <- !missing(drop)
+  Narg <- nargs() - (has.drop) -1
   has.i <- !missing(i)
   has.j <- !missing(j)
   
@@ -66,6 +66,7 @@
   }
   
   if(Narg==1L & has.i) {
+    drop <- NULL
     name <- i
     if (is.character(i)) {
       w <- which.q(x, i)  
@@ -80,9 +81,13 @@
   } 
   #browser()
   
-  ret <- NextMethod("[", drop=drop)
-  #if(has.j) varlabels(ret) <- varlabels(xorig)[name]
-  #if(exists("name")) varlabels(ret) <- varlabels(x)[name]
+  if(is.null(drop)){
+    ret <- NextMethod("[<-")
+  } else {
+    ret <- NextMethod("[<-", drop=drop)
+  }
+
+#  ret <- NextMethod("[")
   varlabels(ret) <- varlabels(x)[name]
   as.surveydata(ret, ptn=pattern(x), renameVarlabels=FALSE)
 }
@@ -98,21 +103,42 @@
 #' @export 
 #' @seealso \code{\link{surveydata-package}}, \code{\link{varlabels}}
 "[<-.surveydata" <- function(x, i, j, value){
+
+  has.value <- !missing(value)
+  Narg <- nargs() - (has.value) - 1
   
   has.i <- !missing(i)
   has.j <- !missing(j)
-  if(has.j && is.character(j)) {
-    newname <- j
-    w <- which.q(x, j)
-    if(length(w)!=0) {
-      j <- w
-      name <- j
+  if(Narg >= 1L & has.j){ 
+    if(is.character(j)) {
+      newname <- j
+      w <- which.q(x, j)
+      if(length(w)!=0) {
+        j <- w
+        name <- j
+      } else {
+        name <- newname
+      }
+      
     } else {
-      name <- newname
+      name <- j
     }
-    
-  } else {
-    name <- j
+  }
+  
+  if(Narg==1L & has.i) {
+    if(is.character(i)) {
+      newname <- i
+      w <- which.q(x, i)
+      if(length(w)!=0) {
+        i <- w
+        name <- i
+      } else {
+        name <- newname
+      }
+      
+    } else {
+      name <- i
+    }
   }
   
   xorig <- x
@@ -126,7 +152,6 @@
   }  
     
   ret <- NextMethod("[<-")
-  if(has.j) varlabels(ret) <- varlabels(xorig)[j] else varlabels(ret) <- varlabels(xorig)
   varlabels(ret) <- labels
   as.surveydata(ret, ptn=pattern(xorig), renameVarlabels=FALSE)
 }

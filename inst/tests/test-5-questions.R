@@ -88,7 +88,7 @@ test_that("qText, qTextCommon and qTextUnique work as expected", {
 
 #context("Questions 2")
 test_that("qText, qTextCommon and qTextUnique work as expected", {
-      s2 <- as.surveydata(sdat2, sep="__", exclude="ignore")
+      s2 <- as.surveydata(sdat2, sep="__", exclude="ignore", renameVarlabels=TRUE)
       expect_equal(qText(s2, "Q1"), "Question 1")
       expect_equal(qText(s2, "Q4"), c("Question 4: red", "Question 4: green", "Question 4: blue"))
       expect_equal(qText(s2, "Q10"), "Question 10")
