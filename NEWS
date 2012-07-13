@@ -1,3 +1,10 @@
+surveydata 0.1-07 (13/7/2012)
+-----------------
+
+Changes:
+* Bug fixes in [.surveydata
+* Added warning in as.surveydata() if names and varlabel names don't match
+
 surveydata 0.1-06 (9/7/2012)
 -----------------
 
