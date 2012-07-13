@@ -24,6 +24,8 @@ as.surveydata <- function(x, sep="_", exclude="other", ptn=pattern(x),
   #if(!(names(ptn)==c("sep", "exclude"))) stop("defaultPtn must be a list with elements sep and exclude")
   if(!inherits(x, "surveydata")) class(x) <- c("surveydata", class(x))
   if(renameVarlabels) names(varlabels(x)) <- names(x)
+  if(length(x)!=length(varlabels(x))) warning("surveydata: varlabels must have same length as object")
+  if(!isTRUE(all.equal(names(x), names(varlabels(x))))) warning("surveydata: names and varlabel names must match")
   pattern(x) <- ptn
   x
 }
@@ -61,6 +63,8 @@ as.data.frame.surveydata <- function(x, ... , rm.pattern=FALSE){
 #' @seealso \code{\link{surveydata-package}}
 #' @export 
 is.surveydata <- function(x){
+  if(length(x)!=length(varlabels(x))) warning("surveydata: varlabels must have same length as object")
+  if(!isTRUE(all.equal(names(x), names(varlabels(x))))) warning("surveydata: names and varlabel names must match")
   inherits(x, "surveydata")
 }
 
@@ -82,9 +86,8 @@ is.surveydata <- function(x){
   xattr <- attributes(x)
   ret <- as.data.frame(x)
   names(ret) <- value
-  ret <- as.surveydata(ret, ptn=pattern(x))
   names(attr(ret, "variable.labels")) <- value
-  ret
+  as.surveydata(ret, ptn=pattern(x))
 }
 
 #------------------------------------------------------------------------------
