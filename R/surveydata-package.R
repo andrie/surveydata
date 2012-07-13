@@ -54,6 +54,8 @@
 #' @docType package
 #' @import stringr
 #' @importFrom plyr quickdf
+#' @importFrom surveydata qTextCommon which.q 
+#' @importFrom surveyor tableGuess
 #' @title Tools, classes and methods to manipulate survey data.
 #' @author Andrie de Vries \email{andrie@@pentalibra.com}
 #' @keywords package
