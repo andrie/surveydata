@@ -52,10 +52,8 @@
 #' @name surveydata-package
 #' @aliases surveydata surveydata-package
 #' @docType package
-#' @import stringr
 #' @importFrom plyr quickdf
-#' @importFrom surveydata qTextCommon which.q 
-#' @importFrom surveyor tableGuess
+#' @importFrom stringr str_match str_trim
 #' @title Tools, classes and methods to manipulate survey data.
 #' @author Andrie de Vries \email{andrie@@pentalibra.com}
 #' @keywords package
