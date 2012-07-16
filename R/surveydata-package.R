@@ -58,13 +58,28 @@
 #' @author Andrie de Vries \email{andrie@@pentalibra.com}
 #' @keywords package
 #' 
-#' @example /inst/examples/example.R
+#' @example /inst/examples/example1.R
 NULL
+
+
+#==============================================================================
+
+#' Data frame with survey data of member satisfaction survey.
+#' 
+#' @docType data
+#' @keywords datasets
+#' @name membersurvey
+#' @usage membersurvey
+#' @format data frame
+NULL
+
+#==============================================================================
 
 #' Prints message on loading package.
 #' 
 #' @rdname onLoad
 #' @keywords internal
 .onLoad <- function(libname, pkgname){
-    packageStartupMessage("The surveydata package is experimental: function syntax may change in future versions.\n")
+    packageStartupMessage("The surveydata package is experimental: syntax may change in future versions.\n")
 }
+
