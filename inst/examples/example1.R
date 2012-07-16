@@ -12,7 +12,7 @@ sdat <- data.frame(
     weight      = c(0.9, 1.1, 0.8, 1.2)
 )
 
-sdat_labels <- c(
+varlabels(sdat) <- c(
     "RespID",
     "Question 1", 
     "Question 4: red", "Question 4: green", "Question 4: blue", 
@@ -21,9 +21,7 @@ sdat_labels <- c(
     "crossbreak2",
     "weight")
 
-attributes(sdat)$variable.labels <- sdat_labels
-
-sv <- as.surveydata(sdat)
+sv <- as.surveydata(sdat, renameVarlabels=TRUE)
 
 # Extract specific questions
 sv[, "Q1"]
@@ -32,6 +30,12 @@ sv[, "Q4"]
 # Query attributes
 varlabels(sv)
 pattern(sv)
+
+# Find unique questions
+
+questions(sv)
+which.q(sv, "Q1")
+which.q(sv, "Q4")
 
 # Find question text
 qText(sv, "Q1")
