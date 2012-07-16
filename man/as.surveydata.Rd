@@ -33,6 +33,14 @@
   Methods for creating "surveydata" objects, testing for
   class, and coercion from other objects.
 }
+\examples{
+membersurvey <- get("membersurvey")
+ms <- as.surveydata(membersurvey, renameVarlabels=TRUE)
+questions(ms)
+qText(ms, "Q30")
+head(ms[, "Q1"])
+head(ms["Q1"])
+}
 \seealso{
   \code{\link{surveydata-package}},
   \code{\link{is.surveydata}}
