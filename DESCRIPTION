@@ -10,15 +10,17 @@ Description: Tools, classes and methods to manipulate
     survey data.
 Author@R: person("Andrie", "de Vries",
     email="andrie@pentalibra.com")
-Version: 0.1-07
+Version: 0.1-08
 URL: 
-Date: 2012-07-13
+Date: 2012-08-12
 ByteCompile: yes
 Depends:
     R (>= 2.15.0)
 Imports:
     stringr (>= 0.5),
     plyr
+Suggests:
+    XLConnect
 Collate:
     'surveydata-package.R'
     'surveydata.R'
@@ -29,3 +31,4 @@ Collate:
     'extract.R'
     'cleandata.R'
     'encoding.R'
+    'excel.R'
