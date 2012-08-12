@@ -52,7 +52,7 @@
 #' @name surveydata-package
 #' @aliases surveydata surveydata-package
 #' @docType package
-#' @importFrom plyr quickdf
+#' @importFrom plyr quickdf ldply
 #' @importFrom stringr str_match str_trim
 #' @title Tools, classes and methods to manipulate survey data.
 #' @author Andrie de Vries \email{andrie@@pentalibra.com}
@@ -75,10 +75,7 @@ NULL
 
 #==============================================================================
 
-#' Prints message on loading package.
-#' 
-#' @rdname onLoad
-#' @keywords internal
+# Prints message on loading package.
 .onLoad <- function(libname, pkgname){
     packageStartupMessage("The surveydata package is experimental: syntax may change in future versions.\n")
 }
