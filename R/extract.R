@@ -156,5 +156,3 @@
   as.surveydata(ret, ptn=pattern(xorig), renameVarlabels=FALSE)
 }
 
-
-

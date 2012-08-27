@@ -25,6 +25,7 @@
 #' \itemize{
 #' \item \code{\link[surveydata]{merge}} 
 #' \item \code{\link[surveydata]{extract}} 
+#' \item \code{\link{cbind.surveydata}}
 #' }
 #' 
 #' To extract question text from varlabels:
@@ -34,18 +35,29 @@
 #' \item \code{\link[surveydata]{qTextUnique}} 
 #' }
 #' 
-#' Functions to fix common encoding problems:
+#' To fix common encoding problems:
 #' \itemize{
 #' \item \code{\link[surveydata]{encToInt}} 
 #' \item \code{\link[surveydata]{intToEnc}} 
 #' \item \code{\link{fixCommonEncodingProblems}}
 #' }
 #' 
-#' Functions to clean data:
+#' To clean data:
 #' \itemize{
 #' \item \code{\link{removeDK}} to remove "Don't know" responses 
 #' \item \code{\link{removeAllDK}} to remove "Don't know" responses from all questions
 #' \item \code{\link{fixLevels01}} to fix level formatting of all question with Yes/No type answers
+#' }
+#' 
+#' To export questions to Excel for translation / recoding:
+#' \itemize{
+#' \item \code{\link{writeQuestionExcel}}
+#' \item \code{\link{readQuestionExcel}}
+#' }
+#' 
+#' Miscellaneous tools:
+#' \itemize{
+#' \item \code{\link{dropout}} to determine questions where respondents drop out
 #' }
 #' 
 #' 
