@@ -46,3 +46,20 @@ merge.surveydata <- function(x, y, ...){
 }
 
 
+#' Combines surveydata object by columns.
+#' 
+#' @param ... surveydata objects
+#' @param deparse.level ignored
+#' @method cbind surveydata
+#' @export
+cbind.surveydata <- function(..., deparse.level=1){
+  ptn <- pattern(..1)
+  varlab <- do.call(c, lapply(list(...), varlabels))
+  ret <- do.call(cbind.data.frame, list(...))
+  varlabels(ret) <- varlab
+  as.surveydata(ret)
+}
+
+
+
+
