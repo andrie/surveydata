@@ -142,7 +142,6 @@ test_that("Import of all sheets in single workbook works", {
       
       newData <- readAllSheets(file=xlFile, .progress="none")
       
-      load_all("surveydata")
       zz1 <- updateQuestion(ss, new=newData)
       
       rest1 <- structure(list(
@@ -168,7 +167,6 @@ test_that("Import of all sheets in single workbook works", {
       
       newData <- readAllSheets(file=xlFile, .progress="none")
       
-      load_all("surveydata")
       zz2 <- updateQuestion(ss, new=newData)
       
       rest2 <- structure(list(
