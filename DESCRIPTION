@@ -8,7 +8,9 @@ LazyLoad: true
 Author: Andrie de Vries <apdevries@gmail.com>
 Description: Data obtained from surveys contains information not only about the
     survey responses, but also the survey metadata, e.g. the original survey
-    questions and the answer options.
+    questions and the answer options. The surveydata package makes it easy to
+    keep track of this metadata, as well as to easily extract columns with
+    specific questions.
 Author@R: person("Andrie", "de Vries",
     email="apdevries@gmail.com")
 Version: 0.1-09
