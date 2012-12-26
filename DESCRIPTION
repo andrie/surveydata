@@ -1,18 +1,19 @@
 Package: surveydata
 Maintainer: Andrie de Vries
-    <andrie@pentalibra.com>
-License: GPL (>=2)
+    <apdevries@gmail.com>
+License: GPL-2|GPL-3
 Title: Tools, classes and methods to manipulate survey data
 LazyData: true
 LazyLoad: true
-Author: Andrie de Vries <andrie@pentalibra.com>
-Description: Tools, classes and methods to manipulate
-    survey data.
+Author: Andrie de Vries <apdevries@gmail.com>
+Description: Data obtained from surveys contains information not only about the
+    survey responses, but also the survey metadata, e.g. the original survey
+    questions and the answer options.
 Author@R: person("Andrie", "de Vries",
-    email="andrie@pentalibra.com")
-Version: 0.1-08
+    email="apdevries@gmail.com")
+Version: 0.1-09
 URL: 
-Date: 2012-08-12
+Date: 2012-12-26
 ByteCompile: yes
 Depends:
     R (>= 2.15.0)
@@ -32,3 +33,4 @@ Collate:
     'cleandata.R'
     'encoding.R'
     'excel.R'
+    'tools.R'

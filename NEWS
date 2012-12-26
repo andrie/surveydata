@@ -1,3 +1,11 @@
+surveydata 0.1-08 (17/8/2012)
+-----------------
+
+Changes:
+* Added writeQuestionExcel() and readQuestionExcel() for exporting and importing questions for easy translation or recoding
+* Added dropout() to calculate where respondents drop out from survey
+
+
 surveydata 0.1-07 (13/7/2012)
 -----------------
 

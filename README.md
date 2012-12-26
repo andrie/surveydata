@@ -1,10 +1,10 @@
 # Surveydata
 
-This package provides a class to work with typical survey data in SPSS format.
+This package provides a class to work with typical survey data that originated in SPSS or other formats.
 
 Once an SPSS data files is imported into R, it is:
 
-* A data.frame with a row for each respondent and a column for each question
+* A data frame with a row for each respondent and a column for each question
 * Column names are typically names in the pattern Q1, Q2_1, Q2_2, Q3, etc. Underscores separate the subquestions when these originated in a grid (array) of questions.
 * Additional detail about the questions are stored in the `variable.labels` attribute of the data.frame. This typically contains the original questionnaire text for each question.
 

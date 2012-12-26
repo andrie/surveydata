@@ -102,7 +102,7 @@ qTextCommon(sv, "Q4")
 qTextUnique(sv, "Q4")
 }
 \author{
-  Andrie de Vries \email{andrie@pentalibra.com}
+  Andrie de Vries \email{apdevries@gmail.com}
 }
 \keyword{package}
 
