@@ -16,9 +16,9 @@
   pattern identification
 }
 \seealso{
-  Other Questions: \code{\link{qText}},
-  \code{\link{qTextCommon}}, \code{\link{questions}},
-  \code{\link{which.q}}
+  Other Question functions: \code{\link{qText}},
+  \code{\link{qTextCommon}}, \code{\link{qTextUnique}},
+  \code{\link{questions}}, \code{\link{which.q}}
 }
 \keyword{Questions}
 

@@ -23,27 +23,25 @@ qPattern <- function(Q, ptn){
 }
 
 
-#' Functions to identify columns corresponding to questions.
+#' Identifies the columns indices corresponding to a specific question.
 #' 
-#' \code{which.q} returns the column indices that match a pattern.
-#' \code{questions} returns a list of all the unique questions in the surveydata object.
-#' 
-#' Both functions utilise the \code{\link{pattern}} attribute of the surveydata object.
+#' In many survey systems, subquestions take the form Q1_a, Q1_b, with the main question and subquestion separated by an underscore. This function conveniently returns column index of matches found for a question id in a \code{\link{surveydata}} object. It does this by using the \code{\link{pattern}} attribute of the surveydata object.
 #' 
 #' @inheritParams as.surveydata
-#' @param ptn A character vector of length two, consisting of a prefix and suffix.  When subsetting based on question numbers, the combination of prefix, question number and suffix forms a \code{\link{regex}} pattern that defines the pattern to extract valid question numbers.
-#' @aliases which.q questions
-#' @family Questions
+#' @param Q Character string with question number, e.g. "Q2"
+#' @seealso \code{\link{questions}} to return all questions matching the \code{\link{pattern}}
+#' @family Question functions
 #' @keywords Questions
 #' @export
-#' @param Q Character string with question number, e.g. "Q2"
+#' @examples
+#' which.q(membersurvey, "Q1")
+#' which.q(membersurvey, "Q3")
+#' which.q(membersurvey, c("Q1", "Q3"))
 which.q <- function(x, Q, ptn=pattern(x)){
   if(!is.list(ptn))stop("ptn must be a list of two elements")
   num <- !is.na(suppressWarnings(as.numeric(Q)))
   chr <- !num
   whichQone <- function(qx){
-    #grep(qPattern(qx, ptn), names(x))
-#    browser()
     prefix <- "^"
     postfix <- sprintf("($|(%s.+$))", ptn$sep)
     pattern <- paste0(prefix, qx, postfix)
@@ -70,16 +68,20 @@ which.q <- function(x, Q, ptn=pattern(x)){
 
 
 
-#------------------------------------------------------------------------------
-
-#' @rdname which.q
+#' Returns a list of all the unique questions in the surveydata object.
+#' 
+#' In many survey systems, subquestions take the form Q1_a, Q1_b, with the main question and subquestion separated by an underscore. This function conveniently returns all of the main questions in a \code{\link{surveydata}} object. It does this by using the \code{\link{pattern}} attribute of the surveydata object.
+#' 
 #' @inheritParams as.surveydata
-#' @export 
-#' @family Questions
+#' @inheritParams which.q
+#' @seealso which.q
+#' @family Question functions
 #' @keywords Questions
+#' @export
+#' @return numeric vector
+#' @examples
+#' questions(membersurvey)
 questions <- function(x, ptn=pattern(x)){
-  #unique(gsub(qPattern("(.*?)", ptn), "\\1", names(x)))
-  
   n <- names(x)
   ptn1 <- sprintf(".*%s%s$", ptn[1], ptn[2])
   other <- grepl(ptn1, n)
@@ -89,26 +91,23 @@ questions <- function(x, ptn=pattern(x)){
 }
 
 
-#qs2 <- function(x, ptn=pattern(x)){
-#  n <- names(x)
-#  other <- grepl(".*_other$", n)
-#  sep <- ptn[[1]]
-#  ptn <- sprintf("^(.*)(%s.*)+", sep)
-#  n[!other] <- gsub(ptn, "\\1", n[!other]) 
-#  unique(n)
-#}
-
-#------------------------------------------------------------------------------
 
 #' Returns question text.
 #' 
-#' Given a question id, e.g. "Q4", returns question text 
+#' Given a question id, e.g. "Q4", returns question text for this question. Note that this returns. The functions \code{\link{qTextUnique}} and \code{\link{qTextCommon}} returns the unique and common components of the question text.
 #'
 #' @param x A surveydata object
-#' @param Q The question id, e.g. Q4
-#' @family Questions
+#' @param Q The question id, e.g. "Q4"
+#' @family Question functions
 #' @keywords Questions
 #' @export 
+#' @return character vector
+#' @examples
+#' questions(membersurvey)
+#' qText(membersurvey, "Q1")
+#' qText(membersurvey, "Q3")
+#' qTextUnique(membersurvey, "Q3")
+#' qTextCommon(membersurvey, "Q3")
 qText <- function(x, Q){
   w <- which.q(x, Q)
   as.character(varlabels(x)[w])
@@ -117,12 +116,20 @@ qText <- function(x, Q){
 
 #' Returns unique elements of question text.
 #' 
-#' Given a question id, e.g. Q4, finds all subquestions, e.g. Q4_1, Q4_2, etc, 
+#' Given a question id, e.g. "Q4", finds all subquestions, e.g. Q4_1, Q4_2, etc, 
 #' and returns the question text that is unique to each 
 #'
 #' @inheritParams qText
+#' @family Question functions
 #' @keywords Questions
 #' @export 
+#' @return character vector
+#' @examples
+#' questions(membersurvey)
+#' qText(membersurvey, "Q1")
+#' qText(membersurvey, "Q3")
+#' qTextUnique(membersurvey, "Q3")
+#' qTextCommon(membersurvey, "Q3")
 qTextUnique <- function(x, Q){
   text <- qText(x, Q)
   splitCommonUnique(text)$unique
@@ -130,13 +137,20 @@ qTextUnique <- function(x, Q){
 
 #' Returns common element of question text.
 #' 
-#' Given a question id, e.g. Q4, finds all subquestions, e.g. Q4_1, Q4_2, etc, 
-#' and returns the question text that is common to each 
+#' Given a question id, e.g. "Q4", finds all subquestions, e.g. Q4_1, Q4_2, etc, 
+#' and returns the question text that is common to each. 
 #'
 #' @inheritParams qText
-#' @family Questions
+#' @family Question functions
 #' @keywords Questions
 #' @export 
+#' @return character vector
+#' @examples
+#' questions(membersurvey)
+#' qText(membersurvey, "Q1")
+#' qText(membersurvey, "Q3")
+#' qTextUnique(membersurvey, "Q3")
+#' qTextCommon(membersurvey, "Q3")
 qTextCommon <- function(x, Q){
   text <- qText(x, Q)
   splitCommonUnique(text)$common
@@ -146,17 +160,21 @@ qTextCommon <- function(x, Q){
 #' Get common and unique text in question based on regex pattern identification
 #' 
 #' @param x A character vector
-#' @family Questions
+#' @family Question functions
 #' @keywords Questions
 #' @param ptn A \code{\link{regex}} pattern that defines how the string should be split into common and unique elements
 splitCommonUnique <- function(x, ptn=NULL){
   if(is.null(ptn)){
     ptn <- c(
-        "^(.*)\\((.*)\\)$",                  # Find "Please tell us" in "Email (Please tell us)"
-        "^(.*):\\s?(.*)$",                   # Find "What is your choice?" in "What is your choice?: Email"
-        "^(.\\d*)[[(]\\d+[])]\\s?(.*)$",     # Find "Q3" in "Q3(001)Email" or "Q03[01] Email"
-        "^\\[(.*)\\]\\s*(.*)$"               # Find "What is your choice?" in "[Email]What is your choice?"
-            )
+      # Find "Please tell us" in "Email (Please tell us)"
+      "^(.*)\\((.*)\\)$",
+      # Find "What is your choice?" in "What is your choice?: Email"
+      "^(.*):\\s?(.*)$",
+      # Find "Q3" in "Q3(001)Email" or "Q03[01] Email"
+      "^(.\\d*)[[(]\\d+[])]\\s?(.*)$",
+      # Find "What is your choice?" in "[Email]What is your choice?"
+      "^\\[(.*)\\]\\s*(.*)$"
+    )
   }
   mostCommon <- function(x){
     r <- vapply(x, function(xt)sum(grepl(xt, x, fixed=TRUE)), 1)

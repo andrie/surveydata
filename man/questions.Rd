@@ -1,13 +1,10 @@
-\name{which.q}
-\alias{which.q}
-\title{Identifies the columns indices corresponding to a specific question.}
+\name{questions}
+\alias{questions}
+\title{Returns a list of all the unique questions in the surveydata object.}
 \usage{
-  which.q(x, Q, ptn = pattern(x))
+  questions(x, ptn = pattern(x))
 }
 \arguments{
-  \item{Q}{Character string with question number, e.g.
-  "Q2"}
-
   \item{x}{Object to coerce to surveydata}
 
   \item{ptn}{A character vector of length two, consisting
@@ -17,27 +14,26 @@
   valid question numbers.  See \code{\link{pattern}} and
   \code{\link{which.q}} for more detail.}
 }
+\value{
+  numeric vector
+}
 \description{
   In many survey systems, subquestions take the form Q1_a,
   Q1_b, with the main question and subquestion separated by
-  an underscore. This function conveniently returns column
-  index of matches found for a question id in a
-  \code{\link{surveydata}} object. It does this by using
-  the \code{\link{pattern}} attribute of the surveydata
-  object.
+  an underscore. This function conveniently returns all of
+  the main questions in a \code{\link{surveydata}} object.
+  It does this by using the \code{\link{pattern}} attribute
+  of the surveydata object.
 }
 \examples{
-which.q(membersurvey, "Q1")
-which.q(membersurvey, "Q3")
-which.q(membersurvey, c("Q1", "Q3"))
+questions(membersurvey)
 }
 \seealso{
-  \code{\link{questions}} to return all questions matching
-  the \code{\link{pattern}}
+  which.q
 
   Other Question functions: \code{\link{qText}},
   \code{\link{qTextCommon}}, \code{\link{qTextUnique}},
-  \code{\link{questions}}, \code{\link{splitCommonUnique}}
+  \code{\link{splitCommonUnique}}, \code{\link{which.q}}
 }
 \keyword{Questions}
 
