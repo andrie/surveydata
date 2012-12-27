@@ -25,8 +25,8 @@
 #' @param x Object to coerce to surveydata
 #' @param sep Separator between question and subquestion names
 #' @param exclude Excludes from pattern search
-#' @param ptn A character vector of length two, consisting of a prefix and suffix.  When subsetting based on question numbers, the prefix, question number and suffix forms a regex pattern that defines the pattern to extract valid question numbers.  See \code{\link{pattern}} and \code{\link{which.q}} for more detail.
-#' @param defaultPtn The default for ptn, if it does't exist in the object that is being coerced.
+#' @param ptn A list with two elements, \code{sep} and \code{exclude}.  See \code{\link{pattern}} and \code{\link{which.q}} for more detail. By default
+#' @param defaultPtn The default for ptn, if it doesn't exist in the object that is being coerced. 
 #' @param renameVarlabels If TRUE, turns variable.labels attribute into a named vector, using \code{names(x)} as names.
 #' @export
 #' @seealso \code{\link{surveydata-package}}, \code{\link{is.surveydata}}
@@ -37,26 +37,18 @@ as.surveydata <- function(x, sep="_", exclude="other", ptn=pattern(x),
   if(!is.list(defaultPtn)) stop("defaultPtn must be a list with elements sep and exclude")
   
   if(is.null(ptn)) ptn <- defaultPtn
-  #if(!is.list(ptn)) stop("ptn must be a list with elements sep and exclude")
-  #if(!(names(ptn)==c("sep", "exclude"))) stop("defaultPtn must be a list with elements sep and exclude")
   if(!inherits(x, "surveydata")) class(x) <- c("surveydata", class(x))
   if(renameVarlabels) names(varlabels(x)) <- names(x)
-  if(length(x)!=length(varlabels(x))) warning("surveydata: varlabels must have same length as object")
-  if(!isTRUE(all.equal(names(x), names(varlabels(x))))) warning("surveydata: names and varlabel names must match")
+  if(length(x)!=length(varlabels(x))) 
+    warning("surveydata: varlabels must have same length as object")
+  if(!isTRUE(all.equal(names(x), names(varlabels(x))))) 
+    warning("surveydata: names and varlabel names must match")
   pattern(x) <- ptn
   x
 }
-#as.surveydata <- function(x, ptn=pattern(x), defaultPtn=c("^", "($|(_\\d+(_\\d+)*)$)"), renameVarlabels=FALSE){
-#  if(is.null(ptn)) ptn <- defaultPtn
-#  if(!inherits(x, "surveydata")) class(x) <- c("surveydata", class(x))
-#  if(renameVarlabels) names(varlabels(x)) <- names(x)
-#  pattern(x) <- ptn
-#  x
-#}
+
 
 #' Coerces surveydata object to data.frame.
-#' 
-#' Coerces surveydata object to data.frame
 #' 
 #' @method as.data.frame surveydata
 #' @aliases as.data.frame.surveydata as.data.frame
@@ -74,18 +66,17 @@ as.data.frame.surveydata <- function(x, ... , rm.pattern=FALSE){
 
 #' Tests whether an object is of class surveydata.
 #' 
-#' Tests whether an object is of class surveydata.
-#' 
 #' @param x Object to check for being of class surveydata
 #' @seealso \code{\link{surveydata-package}}
 #' @export 
 is.surveydata <- function(x){
-  if(length(x)!=length(varlabels(x))) warning("surveydata: varlabels must have same length as object")
-  if(!isTRUE(all.equal(names(x), names(varlabels(x))))) warning("surveydata: names and varlabel names must match")
+  if(length(x)!=length(varlabels(x))) 
+    warning("surveydata: varlabels must have same length as object")
+  if(!isTRUE(all.equal(names(x), names(varlabels(x))))) 
+    warning("surveydata: names and varlabel names must match")
   inherits(x, "surveydata")
 }
 
-#------------------------------------------------------------------------------
 
 
 #' Updates names and variable.labels attribute of surveydata.
@@ -107,5 +98,4 @@ is.surveydata <- function(x){
   as.surveydata(ret, ptn=pattern(x))
 }
 
-#------------------------------------------------------------------------------
 
