@@ -1,9 +1,17 @@
+surveydata 0.1-09 (27/12/2012)
+-----------------
+
+Changes:
+* No functional changes.
+* Complete overhaul and review of documentation, to get package ready for first release to CRAN.
+
+
 surveydata 0.1-08 (17/8/2012)
 -----------------
 
 Changes:
-* Added writeQuestionExcel() and readQuestionExcel() for exporting and importing questions for easy translation or recoding
-* Added dropout() to calculate where respondents drop out from survey
+* Added writeQuestionExcel() and readQuestionExcel() for exporting and importing questions for easy translation or recoding.
+* Added dropout() to calculate where respondents drop out from survey.
 
 
 surveydata 0.1-07 (13/7/2012)
@@ -11,7 +19,7 @@ surveydata 0.1-07 (13/7/2012)
 
 Changes:
 * Bug fixes in [.surveydata
-* Added warning in as.surveydata() if names and varlabel names don't match
+* Added warning in as.surveydata() if names and varlabel names don't match.
 
 surveydata 0.1-06 (9/7/2012)
 -----------------
@@ -24,30 +32,30 @@ surveydata 0.1-05 (29/6/2012)
 -----------------
 
 Changes:
-* Documentation improvements and small issue fixes
-* [.surveydata now uses drop=FALSE by default
+* Documentation improvements and small issue fixes.
+* [.surveydata now uses drop=FALSE by default.
 
 
 surveydata 0.1-04 (13/5/2012)
 -----------------
 
 New features:
-* Modified pattern search to have sep and exclude, rather than a regex (as.surveydata, which.q. etc.)
-* Merged surveyortools package: encoding and cleandata
+* Modified pattern search to have sep and exclude, rather than a regex (as.surveydata, which.q. etc.).
+* Merged surveyortools package: encoding and cleandata.
 
 surveydata 0.1-03 (31/10/2011)
 -----------------
 
 New features:
-* Now imports packages rather than declaring dependencies.
+* Now imports packages rather than declaring dependencies..
 
 
 surveydata 0.1-00
 -----------------
 
 New features:
-* First alpha release
-* varlabels and varlabels<- to read and modify variable.labels attribute
-* pattern and pattern<- to set regex pattern that defines unique questions
-* qText returns question text using regex patterns
-* extracts subsets with regex patterns using, for example surveydata[, "Q1"] 
+* First alpha release.
+* varlabels and varlabels<- to read and modify variable.labels attribute.
+* pattern and pattern<- to set regex pattern that defines unique questions.
+* qText returns question text using regex patterns.
+* extracts subsets with regex patterns using, for example surveydata[, "Q1"].
