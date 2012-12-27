@@ -15,7 +15,7 @@
   attributes from x}
 }
 \description{
-  Coerces surveydata object to data.frame
+  Coerces surveydata object to data.frame.
 }
 \seealso{
   \code{\link{surveydata-package}}

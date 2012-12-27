@@ -13,28 +13,42 @@
   \item{value}{New value}
 }
 \description{
-  The pattern attribute defines a regular expression that
-  identifies how column names are labelled.  It is not
-  uncommon for survey software to use underscores to
-  distinguish subquestions in a grid of questions, e.g.
-  Q4_1, Q4_2, Q4_3, etc.
+  The pattern attribute contains information about the
+  separator character used to name subquestions in the
+  data.  Survey software typically makes use of underscores
+  to distinguish subquestions in a grid of questions, e.g.
+  Q4_1, Q4_2, Q4_3, Q4_other. The function \code{pattern}
+  returns the pattern attribute, and \code{pattern<-}
+  updates the attribute.
 }
-\details{
-  The pattern attribute consists of a vector of length two:
-  a prefix and a suffix.  When extracting question text,
-  the pattern is concatenated with the question id as
-  {prefix+qid+suffix} to search for a matching pattern.
+\examples{
+# Extract the pattern from membersurvey
 
-  The default pattern consists of: prefix: "^" Indicating
-  the start of the string suffix: "($|(_\\d+(_\\d+)*)$)"
-  indicating either the end of string ($) or (underscore +
-  digits followed by option underscore + digits)
+oldptn <- pattern(membersurvey)
+oldptn
 
-  \code{pattern} returns the pattern attribute of data, and
-  \code{pattern<-} updates the attribute.
+# The pattern is used to extract columns
+
+names(membersurvey)
+grep("Q20", names(membersurvey), value=TRUE)
+
+head(membersurvey["Q20"])
+head(membersurvey["Q20_other"])
+
+# Define a new pattern
+
+pattern(membersurvey) <- list(sep="_", exclude="")
+head(membersurvey["Q20"])
+
+# Reset original pattern
+
+pattern(membersurvey) <- oldptn
+rm(oldptn)
 }
 \seealso{
-  \code{\link{surveydata-package}}, \code{\link{which.q}},
-  \code{\link{regexp}}
+  \code{\link{as.surveydata}}, \code{\link{which.q}}
+
+  Other Attribute functions: \code{\link{varlabels}},
+  \code{\link{varlabels<-}}
 }
 

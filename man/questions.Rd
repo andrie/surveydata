@@ -7,12 +7,9 @@
 \arguments{
   \item{x}{Object to coerce to surveydata}
 
-  \item{ptn}{A character vector of length two, consisting
-  of a prefix and suffix.  When subsetting based on
-  question numbers, the prefix, question number and suffix
-  forms a regex pattern that defines the pattern to extract
-  valid question numbers.  See \code{\link{pattern}} and
-  \code{\link{which.q}} for more detail.}
+  \item{ptn}{A list with two elements, \code{sep} and
+  \code{exclude}.  See \code{\link{pattern}} and
+  \code{\link{which.q}} for more detail. By default}
 }
 \value{
   numeric vector

@@ -15,15 +15,12 @@
 
   \item{exclude}{Excludes from pattern search}
 
-  \item{ptn}{A character vector of length two, consisting
-  of a prefix and suffix.  When subsetting based on
-  question numbers, the prefix, question number and suffix
-  forms a regex pattern that defines the pattern to extract
-  valid question numbers.  See \code{\link{pattern}} and
-  \code{\link{which.q}} for more detail.}
+  \item{ptn}{A list with two elements, \code{sep} and
+  \code{exclude}.  See \code{\link{pattern}} and
+  \code{\link{which.q}} for more detail. By default}
 
-  \item{defaultPtn}{The default for ptn, if it does't exist
-  in the object that is being coerced.}
+  \item{defaultPtn}{The default for ptn, if it doesn't
+  exist in the object that is being coerced.}
 
   \item{renameVarlabels}{If TRUE, turns variable.labels
   attribute into a named vector, using \code{names(x)} as
@@ -44,7 +41,6 @@ sdat <- data.frame(
     Q4_3 = c(5, 5, 6, 6), 
     Q10 = factor(c("Male", "Female", "Female", "Male")),
     crossbreak  = c("A", "A", "B", "B"), 
-    crossbreak2 = c("D", "E", "D", "E"),
     weight      = c(0.9, 1.1, 0.8, 1.2)
 )
 
@@ -54,8 +50,8 @@ varlabels(sdat) <- c(
     "Question 4: red", "Question 4: green", "Question 4: blue", 
     "Question 10",
     "crossbreak",
-    "crossbreak2",
-    "weight")
+    "weight"
+  )
 
 sv <- as.surveydata(sdat, renameVarlabels=TRUE)
 

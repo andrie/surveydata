@@ -8,7 +8,6 @@ sdat <- data.frame(
     Q4_3 = c(5, 5, 6, 6), 
     Q10 = factor(c("Male", "Female", "Female", "Male")),
     crossbreak  = c("A", "A", "B", "B"), 
-    crossbreak2 = c("D", "E", "D", "E"),
     weight      = c(0.9, 1.1, 0.8, 1.2)
 )
 
@@ -18,8 +17,8 @@ varlabels(sdat) <- c(
     "Question 4: red", "Question 4: green", "Question 4: blue", 
     "Question 10",
     "crossbreak",
-    "crossbreak2",
-    "weight")
+    "weight"
+  )
 
 sv <- as.surveydata(sdat, renameVarlabels=TRUE)
 
