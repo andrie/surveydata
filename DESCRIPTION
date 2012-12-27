@@ -36,3 +36,4 @@ Collate:
     'encoding.R'
     'excel.R'
     'tools.R'
+    'pattern.R'
