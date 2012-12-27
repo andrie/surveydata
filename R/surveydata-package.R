@@ -70,7 +70,8 @@
 #' @author Andrie de Vries \email{apdevries@@gmail.com}
 #' @keywords package
 #' 
-#' @example /inst/examples/example1.R
+#' @example /inst/examples/example-asSurveydata.R
+#' @example /inst/examples/example-questions.R
 NULL
 
 

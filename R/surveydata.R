@@ -30,8 +30,8 @@
 #' @param renameVarlabels If TRUE, turns variable.labels attribute into a named vector, using \code{names(x)} as names.
 #' @export
 #' @seealso \code{\link{surveydata-package}}, \code{\link{is.surveydata}}
-#' @example /inst/examples/example1.R
-#' @example /inst/examples/example2.R
+#' @example /inst/examples/example-asSurveydata.R
+#' @example /inst/examples/example-questions.R
 as.surveydata <- function(x, sep="_", exclude="other", ptn=pattern(x),  
     defaultPtn=list(sep=sep, exclude=exclude), renameVarlabels=FALSE){
   if(!is.list(defaultPtn)) stop("defaultPtn must be a list with elements sep and exclude")
