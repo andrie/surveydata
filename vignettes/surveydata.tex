@@ -1,0 +1,219 @@
+\documentclass[a4paper]{article}
+
+%\VignetteIndexEntry{Introduction to surveydata package}
+%\VignettePackage{surveydata}
+
+% Definitions
+%\newcommand{\slan}{{\tt S}}
+%\newcommand{\rlan}{{\tt R}}
+\newcommand{\sdata}{{\tt surveydata}}
+\newcommand{\code}[1]{{\tt #1}}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{.1in}
+\setlength{\textwidth}{140mm}
+\setlength{\oddsidemargin}{10mm}
+
+\title{Introduction to the \sdata{} package for working with survey data.}
+\author{Andrie de Vries}
+
+\usepackage{Sweave}
+\begin{document}
+\input{surveydata-concordance}
+
+\maketitle
+
+\sdata{} is a package that makes it easy to work with typical survey data that originated in SPSS or other formats.
+
+A surveydata object consists of:
+
+\begin{itemize}
+
+  \item{A data frame with a row for each respondent and a column for each question.   Column names are typically names in the pattern Q1, Q2\_1, Q2\_2, Q3 - where underscores separate the subquestions when these originated in a grid (array) of questions.}
+
+  \item{Question metadata gets stored in the \texttt{variable.labels} attribute of the data frame. This typically contains the original questionnaire text for each question.}
+  
+  \item{Information about the subquestion separator (typically an underscore) is stored in the \texttt{patterns} attribute.}
+  
+\end{itemize}
+
+
+Data processing a survey file can be tricky, since the standard methods for dealing with data frames does not conserve the \texttt{variable.labels} attribute.  The \sdata package defines a \texttt{surveydata} class and the following methods that knows how to deal with the \texttt{variable.labels} attribute:
+
+\itemize{
+  \item {\texttt{as.surveydata}}
+  \item {\texttt{[.surveydata}}
+  \item {\texttt{[<-.surveydata}}
+  \item {\texttt{\$.surveydata}}
+  \item {\texttt{\$<-.surveydata}}
+  \item {\texttt{merge.surveydata}}
+}
+
+In addition, \sdata defines the following convenient methods for extracting and working with the variable labels:
+
+\itemize{
+  \item {varlabels}
+  \item{varlabels<-}
+}
+
+\section{Example}
+
+Load the package.
+
+\begin{Schunk}
+\begin{Sinput}
+> library(surveydata)
+\end{Sinput}
+\end{Schunk}
+
+Create sample data and a surveydata object:
+
+\begin{Schunk}
+\begin{Sinput}
+> sdat <- data.frame(
++     id   = 1:4,
++     Q1   = c("Yes", "No", "Yes", "Yes"),
++     Q4_1 = c(1, 2, 1, 2), 
++     Q4_2 = c(3, 4, 4, 3), 
++     Q4_3 = c(5, 5, 6, 6), 
++     Q10 = factor(c("Male", "Female", "Female", "Male")),
++     crossbreak  = c("A", "A", "B", "B"), 
++     weight      = c(0.9, 1.1, 0.8, 1.2)
++ )
+> varlabels(sdat) <- c(
++     "RespID",
++     "Question 1", 
++     "Question 4: red", "Question 4: green", "Question 4: blue", 
++     "Question 10",
++     "crossbreak",
++     "weight"
++   )
+\end{Sinput}
+\end{Schunk}
+
+
+Now create a surveydata object.
+
+\begin{Schunk}
+\begin{Sinput}
+> sv <- as.surveydata(sdat, renameVarlabels=TRUE)
+\end{Sinput}
+\end{Schunk}
+
+It is easy to extract specific questions:
+
+\begin{Schunk}
+\begin{Sinput}
+> sv[, "Q1"]
+\end{Sinput}
+\begin{Soutput}
+   Q1
+1 Yes
+2  No
+3 Yes
+4 Yes
+\end{Soutput}
+\begin{Sinput}
+> sv[, "Q4"]
+\end{Sinput}
+\begin{Soutput}
+  Q4_1 Q4_2 Q4_3
+1    1    3    5
+2    2    4    5
+3    1    4    6
+4    2    3    6
+\end{Soutput}
+\end{Schunk}
+
+The extraction makes use of the underlying metadata, contained in the \texttt{varlabels} and \texttt{pattern} attributes:
+
+\begin{Schunk}
+\begin{Sinput}
+> varlabels(sv)
+\end{Sinput}
+\begin{Soutput}
+                 id                  Q1                Q4_1                Q4_2 
+           "RespID"        "Question 1"   "Question 4: red" "Question 4: green" 
+               Q4_3                 Q10          crossbreak              weight 
+ "Question 4: blue"       "Question 10"        "crossbreak"            "weight" 
+\end{Soutput}
+\begin{Sinput}
+> pattern(sv)
+\end{Sinput}
+\begin{Soutput}
+$sep
+[1] "_"
+
+$exclude
+[1] "other"
+\end{Soutput}
+\end{Schunk}
+
+It is easy to query the surveydata object to find out which questions it contains, as well as which columns store the data for those questions.
+
+\begin{Schunk}
+\begin{Sinput}
+> questions(sv)
+\end{Sinput}
+\begin{Soutput}
+[1] "id"         "Q1"         "Q4"         "Q10"        "crossbreak"
+[6] "weight"    
+\end{Soutput}
+\begin{Sinput}
+> which.q(sv, "Q1")
+\end{Sinput}
+\begin{Soutput}
+[1] 2
+\end{Soutput}
+\begin{Sinput}
+> which.q(sv, "Q4")
+\end{Sinput}
+\begin{Soutput}
+[1] 3 4 5
+\end{Soutput}
+\end{Schunk}
+
+The function \texttt{qText} gives access to the questionnaire text.
+
+\begin{Schunk}
+\begin{Sinput}
+> qText(sv, "Q1")
+\end{Sinput}
+\begin{Soutput}
+[1] "Question 1"
+\end{Soutput}
+\begin{Sinput}
+> qText(sv, "Q4")
+\end{Sinput}
+\begin{Soutput}
+[1] "Question 4: red"   "Question 4: green" "Question 4: blue" 
+\end{Soutput}
+\begin{Sinput}
+> qTextCommon(sv, "Q4")
+\end{Sinput}
+\begin{Soutput}
+[1] "Question 4"
+\end{Soutput}
+\begin{Sinput}
+> qTextUnique(sv, "Q4")
+\end{Sinput}
+\begin{Soutput}
+[1] "red"   "green" "blue" 
+\end{Soutput}
+\end{Schunk}
+
+
+\section{Final thoughts}
+
+The last word.
+
+
+% Start a new page
+% Not echoed, not evaluated
+% ONLY here for checkVignettes so that all output doesn't
+% end up on one enormous page
+
+\end{document}
+
+
+
+
