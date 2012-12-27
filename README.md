@@ -13,9 +13,7 @@ A surveydata object consists of:
   * Question metadata gets stored in the `variable.labels` attribute of the data frame. This typically contains the original questionnaire text for each question.
   * Information about the subquestion separator (typically an underscore) is stored in the `patterns` attribute.
 
-Data processing a survey file can be tricky, since the standard methods for dealing with data.frames will not conserve the `variable.labels` attribute.
-
-The `surveydata` package defines a `surveydata` class and the following methods that knows how to deal with the `variable.labels` attribute:
+Data processing a survey file can be tricky, since the standard methods for dealing with data frames does not conserve the `variable.labels` attribute.  The `surveydata` package defines a `surveydata` class and the following methods that knows how to deal with the `variable.labels` attribute:
 
 * `as.surveydata`
 * `[.surveydata`
