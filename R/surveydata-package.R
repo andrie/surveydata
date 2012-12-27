@@ -24,7 +24,7 @@
 #' To subset or merge surveydata objects:
 #' \itemize{
 #' \item \code{\link[surveydata]{merge}} 
-#' \item \code{\link[surveydata]{extract}} 
+#' \item \code{\link[surveydata]{Extract}} 
 #' \item \code{\link{cbind.surveydata}}
 #' }
 #' 

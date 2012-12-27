@@ -18,37 +18,18 @@
 #
 
 
-#' Extract or replace subsets of surveydata.
-#' 
 #' Extract or replace subsets of surveydata, ensuring that the varlabels stay in synch.
 #'
-#' @name extract 
-#' @aliases $<- $<-.surveydata
-#' @param x surveydata object
-#' @param name Names of columns
-#' @param value New value
-#' @method $<- surveydata
-#' @usage \\method{$}{surveydata}(x, name) <- value
-#' @export 
-#' @seealso \code{\link{surveydata-package}}, \code{\link{varlabels}}
-"$<-.surveydata" <- function(x, name, value){
-  labels <- varlabels(x)
-  if(is.null(value)){
-    labels <- labels[names(labels)!=name]
-  }
-  if(length(grep(name, names(x)))==0){
-    labels[name] <- name
-  }  
-  x <- as.data.frame(x)
-  #x <- `$<-.data.frame`(x, name, value)
-  x <- NextMethod("$<-")
-  varlabels(x) <- labels
-  as.surveydata(x, renameVarlabels=FALSE)
-}
-
-#' Extract a subset of surveydata.
+#' The surveydata package makes it easy to extract specific questions from a surveydata object. Because survey data typically has question names like Q1_a, Q1_b, Q1_c the extract method for a surveydata object makes it easy to extract all columns by simply specifing "Q1" as the argument to the column index.
 #' 
-#' @rdname extract
+#' Extraction is similar to data frames, with three important exceptions:
+#' \itemize{
+#' \item{The column argument j is evaluated using \code{\link{which.q}} and will return all columns where the column names match the \code{\link{pattern}}.}
+#' \item{The drop argument is FALSE. Thus the result will always be a surveydata object, even if only a single column is returned.}
+#' \item{All extraction methods retain the \code{\link{pattern}} and \code{\link{varlabels}} arguments.}
+#' }
+#' 
+#' @name Extract
 #' @param i row index
 #' @param j column index
 #' @param drop logical. Passed to \code{\link{[.data.frame}}. Note that the default is FALSE.
@@ -56,6 +37,7 @@
 #' @export 
 #' @aliases [ [.surveydata
 #' @method [ surveydata
+#' @example /inst/examples/example-extract.R
 "[.surveydata" <- function(x, i, j, drop=FALSE){
   name <- NULL
   has.drop <- !missing(drop)
@@ -93,31 +75,25 @@
       name <- i
     } 
   } 
-  #browser()
   
   if(is.null(drop)){
     ret <- NextMethod("[<-")
   } else {
     ret <- NextMethod("[<-", drop=drop)
   }
-
-#  ret <- NextMethod("[")
+  
   varlabels(ret) <- varlabels(x)[name]
   as.surveydata(ret, ptn=pattern(x), renameVarlabels=FALSE)
 }
 
-#' Extract or replace subsets of surveydata.
-#' 
-#' Extract or replace subsets of surveydata, ensuring that the varlabels stay in synch.
-#'
-#' @rdname extract 
-# @aliases $<- $<-.surveydata
-#' @method [<- surveydata
-#' @usage \\method{[}{surveydata}(x, i, j) <- value
-#' @export 
-#' @seealso \code{\link{surveydata-package}}, \code{\link{varlabels}}
-"[<-.surveydata" <- function(x, i, j, value){
 
+
+#' @rdname Extract 
+#' @method [<- surveydata
+#' @usage \method{[}{surveydata}(x, i, j) <- value
+#' @export 
+"[<-.surveydata" <- function(x, i, j, value){
+  
   has.value <- !missing(value)
   Narg <- nargs() - (has.value) - 1
   
@@ -164,9 +140,34 @@
   if(length(w)==0){
     labels[newname] <- newname
   }  
-    
+  
   ret <- NextMethod("[<-")
   varlabels(ret) <- labels
   as.surveydata(ret, ptn=pattern(xorig), renameVarlabels=FALSE)
 }
+
+
+#' @rdname Extract 
+#' @aliases $<- $<-.surveydata
+#' @param x surveydata object
+#' @param name Names of columns
+#' @param value New value
+#' @method $<- surveydata
+#' @usage \method{$}{surveydata}(x, name) <- value
+#' @export 
+#' @seealso \code{\link{surveydata-package}}, \code{\link{varlabels}}
+"$<-.surveydata" <- function(x, name, value){
+  labels <- varlabels(x)
+  if(is.null(value)){
+    labels <- labels[names(labels)!=name]
+  }
+  if(length(grep(name, names(x)))==0){
+    labels[name] <- name
+  }  
+  x <- as.data.frame(x)
+  x <- NextMethod("$<-")
+  varlabels(x) <- labels
+  as.surveydata(x, renameVarlabels=FALSE)
+}
+
 
