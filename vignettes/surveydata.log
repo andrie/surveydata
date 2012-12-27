@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.5.21)  27 DEC 2012 14:34
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.5.21)  27 DEC 2012 19:01
 entering extended mode
 **surveydata.tex
 ("C:\Users\andrie\Ubuntu One\dev\surveydata\surveydata\vignettes\surveydata.tex
@@ -244,17 +244,18 @@ LaTeX Font Info:    Font shape `TS1/aer/m/n' in size <10> not available
 (Font)              Font shape `TS1/cmr/m/n' tried instead on input line 31.
  [1
 
-{C:/Users/andrie/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3]
+{C:/Users/andrie/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4
+]
 ("C:\Users\andrie\Ubuntu One\dev\surveydata\surveydata\vignettes\surveydata.aux
 ") ) 
 Here is how much of TeX's memory you used:
  2370 strings out of 494045
- 33295 string characters out of 3145966
+ 33305 string characters out of 3145966
  78225 words of memory out of 3000000
  5625 multiletter control sequences out of 15000+200000
  24756 words of font info for 58 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 35i,6n,21p,340b,284s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 35i,6n,21p,351b,185s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\andrie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi6
 00\tcrm1000.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
@@ -265,9 +266,9 @@ fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsltt10.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on surveydata.pdf (3 pages, 111495 bytes).
+Output written on surveydata.pdf (4 pages, 118773 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
+ 57 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  5 words of extra memory for PDF output out of 10000 (max. 10000000)
 

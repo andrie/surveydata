@@ -37,27 +37,27 @@ A surveydata object consists of:
 \end{itemize}
 
 
-Data processing a survey file can be tricky, since the standard methods for dealing with data frames does not conserve the \texttt{variable.labels} attribute.  The \sdata package defines a \texttt{surveydata} class and the following methods that knows how to deal with the \texttt{variable.labels} attribute:
+Data processing a survey file can be tricky, since the standard methods for dealing with data frames does not conserve the \texttt{variable.labels} attribute.  The \sdata{} package defines a \texttt{surveydata} class and the following methods that knows how to deal with the \texttt{variable.labels} attribute:
 
-\itemize{
+\begin{itemize}
   \item {\texttt{as.surveydata}}
   \item {\texttt{[.surveydata}}
   \item {\texttt{[<-.surveydata}}
   \item {\texttt{\$.surveydata}}
   \item {\texttt{\$<-.surveydata}}
   \item {\texttt{merge.surveydata}}
-}
+\end{itemize}
 
-In addition, \sdata defines the following convenient methods for extracting and working with the variable labels:
+In addition, \sdata{} defines the following convenient methods for extracting and working with the variable labels:
 
 \itemize{
   \item {varlabels}
   \item{varlabels<-}
 }
 
-\section{Example}
+\section{Defining a surveydata object}
 
-Load the package.
+First load the \sdata{} package.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -65,7 +65,7 @@ Load the package.
 \end{Sinput}
 \end{Schunk}
 
-Create sample data and a surveydata object:
+Next, create sample data. A data frame is the ideal data structure for survey data, and the convention is that data for each respondent is stored in the rows, while each column represents answers to a specific question.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -79,6 +79,17 @@ Create sample data and a surveydata object:
 +     crossbreak  = c("A", "A", "B", "B"), 
 +     weight      = c(0.9, 1.1, 0.8, 1.2)
 + )
+> 
+\end{Sinput}
+\end{Schunk}
+
+
+The survey metadata consists of the questionnaire text.  For example, this can be represented by a character vector, with an element for each question.
+
+To assign this metadata to the survey data, use the \texttt{varlabels} function.  This function assigns the questionnaire text to the \texttt{variable.labels} attribute of the data frame.
+
+\begin{Schunk}
+\begin{Sinput}
 > varlabels(sdat) <- c(
 +     "RespID",
 +     "Question 1", 
@@ -91,7 +102,7 @@ Create sample data and a surveydata object:
 \end{Schunk}
 
 
-Now create a surveydata object.
+Finally, create the surveydata object. To do this, call the \texttt{as.surveydata} function.  The argument \texttt{renameVarlabels} controls whether the \texttt{varlabels} get renamed with the same names as the data.  This is an essential step, and ensures that the question text remains in synch with the column names.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -99,7 +110,16 @@ Now create a surveydata object.
 \end{Sinput}
 \end{Schunk}
 
-It is easy to extract specific questions:
+
+\section{Extracting specific questions}
+
+It is easy to extract specific questions with the \texttt{[} operator. This works very similar to extraction of data frames. However, there are two iiomportant differences:
+
+\begin{itemize}
+\item{The extraction operators will always return a \sdata{} object, even if only a single column is returned. This is different from the behaviour of data frames, where a single column is simplified to a vector.}
+\item{Extracing a question with multiple subquestions, e.g. "Q4" returns multiple columns.}
+\end{itemize}
+
 
 \begin{Schunk}
 \begin{Sinput}
@@ -148,6 +168,8 @@ $exclude
 \end{Soutput}
 \end{Schunk}
 
+\section{Working with question columns}
+
 It is easy to query the surveydata object to find out which questions it contains, as well as which columns store the data for those questions.
 
 \begin{Schunk}
@@ -171,6 +193,8 @@ It is easy to query the surveydata object to find out which questions it contain
 [1] 3 4 5
 \end{Soutput}
 \end{Schunk}
+
+\section{Reading the questionnaire text}
 
 The function \texttt{qText} gives access to the questionnaire text.
 
