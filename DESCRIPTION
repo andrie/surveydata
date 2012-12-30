@@ -2,28 +2,26 @@ Package: surveydata
 Maintainer: Andrie de Vries
     <apdevries@gmail.com>
 License: GPL-2|GPL-3
-Title: Tools, classes and methods to manipulate survey data
+Title: Tools to manipulate survey data
 LazyData: true
 LazyLoad: true
 Author: Andrie de Vries <apdevries@gmail.com>
 Description: Data obtained from surveys contains information not only about the
     survey responses, but also the survey metadata, e.g. the original survey
     questions and the answer options. The surveydata package makes it easy to
-    keep track of this metadata, as well as to easily extract columns with
+    keep track of this metadata, and to easily extract columns with
     specific questions.
 Author@R: person("Andrie", "de Vries",
     email="apdevries@gmail.com")
-Version: 0.1-09
-URL: 
-Date: 2012-12-26
+Version: 0.1-10
+URL: https://github.com/andrie/surveydata
+Date: 2012-12-27
 ByteCompile: yes
 Depends:
     R (>= 2.15.0)
 Imports:
     stringr (>= 0.5),
     plyr
-Suggests:
-    XLConnect
 Collate:
     'surveydata-package.R'
     'surveydata.R'
@@ -34,6 +32,5 @@ Collate:
     'extract.R'
     'cleandata.R'
     'encoding.R'
-    'excel.R'
     'tools.R'
     'pattern.R'

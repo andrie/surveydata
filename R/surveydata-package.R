@@ -49,12 +49,6 @@
 #' \item \code{\link{fixLevels01}} to fix level formatting of all question with Yes/No type answers
 #' }
 #' 
-#' To export questions to Excel for translation / recoding:
-#' \itemize{
-#' \item \code{\link{writeQuestionExcel}}
-#' \item \code{\link{readQuestionExcel}}
-#' }
-#' 
 #' Miscellaneous tools:
 #' \itemize{
 #' \item \code{\link{dropout}} to determine questions where respondents drop out
@@ -89,7 +83,7 @@ NULL
 #==============================================================================
 
 # Prints message on loading package.
-.onLoad <- function(libname, pkgname){
-    packageStartupMessage("The surveydata package is experimental: syntax may change in future versions.\n")
-}
+# .onLoad <- function(libname, pkgname){
+#     packageStartupMessage("The surveydata package is experimental: syntax may change in future versions.\n")
+# }
 

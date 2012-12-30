@@ -1,10 +1,10 @@
 \name{Extract}
 \alias{$<-}
 \alias{$<-.surveydata}
+\alias{Extract}
 \alias{[}
 \alias{[.surveydata}
 \alias{[<-.surveydata}
-\alias{Extract}
 \title{Extract or replace subsets of surveydata, ensuring that the varlabels stay in synch.}
 \usage{
   \method{[}{surveydata} (x, i, j, drop = FALSE)

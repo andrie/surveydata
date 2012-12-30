@@ -1,3 +1,12 @@
+surveydata 0.1-10 (27/12/2012)
+-----------------
+
+Changes:
+* Removed XLConnect functions for survey translation, and included in separate surveytranslate package.
+* Added vignette.
+* First submission to CRAN.
+
+
 surveydata 0.1-09 (27/12/2012)
 -----------------
 
