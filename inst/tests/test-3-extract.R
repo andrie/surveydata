@@ -100,6 +100,19 @@ test_that("`[` simple extract returns correct varlabels", {
       
     })
 
+test_that("`[` simple extract with drop=TRUE returns vectors", {
+  s <- as.surveydata(sdat, renameVarlabels=TRUE)
+  
+  expect_equal(rm.ca(s[, 2, drop=TRUE]), rm.ca(sdat[, 2, drop=TRUE]))
+  expect_equal(rm.ca(s[, "Q1", drop=TRUE]), rm.ca(sdat[, 2, drop=TRUE]))
+  expect_equal(rm.ca(s[, "Q4", drop=TRUE]), rm.ca(sdat[, 3:5, drop=TRUE]))
+  expect_equal(rm.ca(s[2, "Q4", drop=TRUE]), rm.ca(sdat[2, 3:5, drop=TRUE]))
+  expect_equal(rm.ca(s[1:2, "Q10", drop=TRUE]), rm.ca(sdat[1:2, 7, drop=TRUE]))
+  expect_equal(rm.ca(s[, "weight", drop=TRUE]), rm.ca(sdat[, "weight", drop=TRUE]))
+  
+})
+
+
 #------------------------------------------------------------------------------
     
 #context("Surveydata `[` complex extract")

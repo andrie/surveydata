@@ -82,8 +82,12 @@
     ret <- NextMethod("[<-", drop=drop)
   }
   
-  varlabels(ret) <- varlabels(x)[name]
-  as.surveydata(ret, ptn=pattern(x), renameVarlabels=FALSE)
+  if(is.data.frame(ret)){
+    varlabels(ret) <- varlabels(x)[name]
+    as.surveydata(ret, ptn=pattern(x), renameVarlabels=FALSE)
+  } else {
+    ret
+  }
 }
 
 

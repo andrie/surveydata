@@ -1,3 +1,17 @@
+surveydata 0.1-14 (25/10/2013)
+-----------------
+
+Changes:
+* Added README.md to .Rbuildignore to comply with CRAN
+
+
+surveydata 0.1-12 (05/01/2013)
+-----------------
+
+Changes:
+* When drop=TRUE, [.surveydata simplifies the results and returns a vector, similar to [.data.frame
+
+
 surveydata 0.1-10 (27/12/2012)
 -----------------
 
