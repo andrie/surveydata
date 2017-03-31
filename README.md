@@ -1,6 +1,10 @@
-# Surveydata
+# Surveydata: a package provides a class to work with typical survey data that originated in SPSS or other formats.
 
-This package provides a class to work with typical survey data that originated in SPSS or other formats.
+master: [![master build status](https://travis-ci.org/andrie/surveydata.svg?branch=master)](https://travis-ci.org/andrie/surveydata)
+dev: [![dev build status](https://travis-ci.org/andrie/surveydata.svg?branch=dev)](https://travis-ci.org/andrie/surveydata)
+[![](http://www.r-pkg.org/badges/version/surveydata)](http://www.r-pkg.org/pkg/surveydata)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/surveydata)](http://www.r-pkg.org/pkg/surveydata)
+[![Coverage Status](https://img.shields.io/codecov/c/github/andrie/surveydata/master.svg)](https://codecov.io/github/andrie/surveydata?branch=master)
 
 A surveydata object consists of:
 
