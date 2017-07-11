@@ -20,16 +20,16 @@
 
 #' Coercion from and to surveydata.
 #' 
-#' Methods for creating "surveydata" objects, testing for class, and coercion from other objects.
+#' Methods for creating `surveydata` objects, testing for class, and coercion from other objects.
 #' 
 #' @param x Object to coerce to surveydata
 #' @param sep Separator between question and subquestion names
 #' @param exclude Excludes from pattern search
-#' @param ptn A list with two elements, \code{sep} and \code{exclude}.  See \code{\link{pattern}} and \code{\link{which.q}} for more detail. By default
-#' @param defaultPtn The default for ptn, if it doesn't exist in the object that is being coerced. 
-#' @param renameVarlabels If TRUE, turns variable.labels attribute into a named vector, using \code{names(x)} as names.
+#' @param ptn A list with two elements, `sep` and `exclude`.  See [pattern()] and [which.q()] for more detail.
+#' @param defaultPtn The default for `ptn`, if it doesn't exist in the object that is being coerced. 
+#' @param renameVarlabels If TRUE, turns variable.labels attribute into a named vector, using `names(x)` as names.
 #' @export
-#' @seealso \code{\link{surveydata-package}}, \code{\link{is.surveydata}}
+#' @seealso [surveydata-package], [is.surveydata()]
 #' @example /inst/examples/example-asSurveydata.R
 #' @example /inst/examples/example-questions.R
 as.surveydata <- function(x, sep="_", exclude="other", ptn=pattern(x),  
@@ -55,8 +55,8 @@ as.surveydata <- function(x, sep="_", exclude="other", ptn=pattern(x),
 #' @export 
 #' @param x Surveydata object to coerce to class data.frame
 #' @param ... ignored
-#' @param rm.pattern If TRUE removes \code{\link{pattern}} attributes from x
-#' @seealso \code{\link{surveydata-package}}
+#' @param rm.pattern If TRUE removes [pattern()] attributes from x
+#' @seealso [surveydata-package]
 as.data.frame.surveydata <- function(x, ... , rm.pattern=FALSE){
   stopifnot(is.surveydata(x))
   if(rm.pattern) pattern(x) <- NULL
@@ -67,7 +67,7 @@ as.data.frame.surveydata <- function(x, ... , rm.pattern=FALSE){
 #' Tests whether an object is of class surveydata.
 #' 
 #' @param x Object to check for being of class surveydata
-#' @seealso \code{\link{surveydata-package}}
+#' @seealso [surveydata-package]
 #' @export 
 is.surveydata <- function(x){
   if(length(x)!=length(varlabels(x))) 
@@ -89,7 +89,7 @@ is.surveydata <- function(x){
 #' @method names<- surveydata
 #' @export 
 #' @usage \\method{names}{surveydata}(x) <- value
-#' @seealso \code{\link{surveydata-package}}, \code{\link{is.surveydata}}
+#' @seealso [surveydata-package()], [is.surveydata()]
 "names<-.surveydata" <- function(x, value){
   xattr <- attributes(x)
   ret <- as.data.frame(x)

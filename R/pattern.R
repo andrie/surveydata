@@ -20,14 +20,14 @@
 
 #' Returns and updates pattern attribute.
 #' 
-#' The pattern attribute contains information about the separator character used to name subquestions in the data.  Survey software typically makes use of underscores to distinguish subquestions in a grid of questions, e.g. Q4_1, Q4_2, Q4_3, Q4_other. The function \code{pattern} returns the pattern attribute, and \code{pattern<-} updates the attribute.
+#' The pattern attribute contains information about the separator character used to name subquestions in the data.  Survey software typically makes use of underscores to distinguish subquestions in a grid of questions, e.g. Q4_1, Q4_2, Q4_3, Q4_other. The function [pattern()] returns the `pattern` attribute, and [pattern<-] updates the attribute.
 #' 
 #' 
 #' @aliases pattern pattern<-
 #' @param x surveydata object
 #' @export pattern 
 #' @family Attribute functions
-#' @seealso \code{\link{as.surveydata}}, \code{\link{which.q}}
+#' @seealso [as.surveydata()], [which.q()]
 #' @example inst/examples/example-pattern.R
 pattern <- function(x){
   attr(x, "pattern")

@@ -1,0 +1,11 @@
+language: r
+cache: packages
+sudo: false
+
+r:
+ - release
+ - devel
+ - oldrel
+
+after_success:
+  - test $TRAVIS_R_VERSION_STRING = "release" && Rscript -e 'withr::with_envvar(c(NOT_CRAN="true"), {covr::codecov()})'
