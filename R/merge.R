@@ -48,7 +48,7 @@ merge_varlabels <- function(dat1, dat2, new_names=union(names(dat1), names(dat2)
 #' @aliases merge merge.surveydata
 #' @param x surveydata object
 #' @param y surveydata object
-#' @param ... Other parameters passed to \code{\link{merge}}
+#' @param ... Other parameters passed to [merge()]
 #' @method merge surveydata
 #' @export
 merge.surveydata <- function(x, y, ...){

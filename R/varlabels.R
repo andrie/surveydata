@@ -20,14 +20,14 @@
 
 #' Returns and updates variable.labels attribute of surveydata object.
 #' 
-#' In a surveydata object, the \code{variable.labels} attribute store metadata about the original question text (see \code{\link[foreign]{read.spss}} for details).  The function \code{varlabels} returns the \code{variable.labels} attribute of data, and \code{varlabels(x) <- value} updates this attribute.
+#' In a surveydata object, the `variable.labels` attribute store metadata about the original question text (see [foreign::read.spss()] for details).  The function [varlabels()] returns the `variable.labels` attribute of data, and `varlabels(x) <- value` updates this attribute.
 #' 
-#' In a surveydata object, the \code{varlabels} attribute is a named character vector, where the names correspond to the names of the the columns in 
+#' In a surveydata object, the `varlabels` attribute is a named character vector, where the names correspond to the names of the the columns in 
 #' 
 #' @param x surveydata object
 #' @param value New value
 #' @export  
-#' @seealso \code{\link{surveydata-package}}
+#' @seealso [surveydata-package]
 #' @family Attribute functions
 #' @example /inst/examples/example-varlabels.R
 varlabels <- function(x){

@@ -23,22 +23,20 @@
 #' The surveydata package makes it easy to extract specific questions from a surveydata object. Because survey data typically has question names like Q1_a, Q1_b, Q1_c the extract method for a surveydata object makes it easy to extract all columns by simply specifing "Q1" as the argument to the column index.
 #' 
 #' Extraction is similar to data frames, with three important exceptions:
-#' \itemize{
-#' \item{The column argument j is evaluated using \code{\link{which.q}} and will return all columns where the column names match the \code{\link{pattern}}.}
-#' \item{The drop argument is FALSE. Thus the result will always be a surveydata object, even if only a single column is returned.}
-#' \item{All extraction methods retain the \code{\link{pattern}} and \code{\link{varlabels}} arguments.}
-#' }
+#' * The column argument j is evaluated using [which.q()] and will return all columns where the column names match the [pattern()].
+#' * The drop argument is FALSE. Thus the result will always be a surveydata object, even if only a single column is returned.
+#' * All extraction methods retain the `pattern` and `varlabels` arguments.
 #' 
 #' @name Extract
 #' @param i row index
 #' @param j column index
-#' @param drop logical. Passed to \code{\link{[.data.frame}}. Note that the default is FALSE.
-#' @param ... Other arguments passed to \code{[.data.frame}
+#' @param drop logical. Passed to `[.data.frame`. Note that the default is `FALSE`.
+#' @param ... Other arguments passed to `[.data.frame`
 #' @export 
-#' @aliases [ [.surveydata
+#' @aliases [ "[.surveydata"
 #' @method [ surveydata
 #' @example /inst/examples/example-extract.R
-"[.surveydata" <- function(x, i, j, drop=FALSE){
+`[.surveydata` <- function(x, i, j, drop=FALSE){
   name <- NULL
   has.drop <- !missing(drop)
   Narg <- nargs() - (has.drop) -1
@@ -96,7 +94,7 @@
 #' @method [<- surveydata
 #' @usage \method{[}{surveydata}(x, i, j) <- value
 #' @export 
-"[<-.surveydata" <- function(x, i, j, value){
+`[<-.surveydata` <- function(x, i, j, value){
   
   has.value <- !missing(value)
   Narg <- nargs() - (has.value) - 1
@@ -159,8 +157,8 @@
 #' @method $<- surveydata
 #' @usage \method{$}{surveydata}(x, name) <- value
 #' @export 
-#' @seealso \code{\link{surveydata-package}}, \code{\link{varlabels}}
-"$<-.surveydata" <- function(x, name, value){
+#' @seealso [surveydata-package], [varlabels]
+`$<-.surveydata` <- function(x, name, value){
   labels <- varlabels(x)
   if(is.null(value)){
     labels <- labels[names(labels)!=name]

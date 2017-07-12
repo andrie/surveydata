@@ -21,9 +21,9 @@
 #' Conversion of character vector to integer vector.  The encoding of the character vector can be specified but defaults to the current locale.  
 #' 
 #' @param x Character vector 
-#' @param encoding A character string describing the encoding of x.  Defaults to the current locale.  See also \code{\link{iconvlist}}
+#' @param encoding A character string describing the encoding of x.  Defaults to the current locale.  See also [iconvlist()]
 #' @return An integer vector
-#' @seealso \code{\link{iconv}}
+#' @seealso [iconv()]
 #' @examples
 #' encToInt("\\xfa")
 #' @export 
@@ -38,9 +38,9 @@ encToInt <- function(x, encoding=localeToCharset()){
 #' Conversion of integer vector to character vector.  The encoding of the character vector can be specified but defaults to the current locale.  
 #' 
 #' @param x Integer vector 
-#' @param encoding A character string describing the encoding of x.  Defaults to the current locale.  See also \code{\link{iconvlist}}
+#' @param encoding A character string describing the encoding of x.  Defaults to the current locale.  See also [iconvlist()]
 #' @return A character vector
-#' @seealso \code{\link{iconv}}
+#' @seealso [iconv()]
 #' @examples
 #' intToEnc(8212)
 #' @export 

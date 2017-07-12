@@ -1,4 +1,4 @@
-# Surveydata: a package provides a class to work with typical survey data that originated in SPSS or other formats.
+# Surveydata: a package provides to work with typical survey data formats.
 
 master: [![master build status](https://travis-ci.org/andrie/surveydata.svg?branch=master)](https://travis-ci.org/andrie/surveydata)
 dev: [![dev build status](https://travis-ci.org/andrie/surveydata.svg?branch=dev)](https://travis-ci.org/andrie/surveydata)
