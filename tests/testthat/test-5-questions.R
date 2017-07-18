@@ -150,6 +150,12 @@ test_that("splitCommonUnique works as expected", {
   test <- c("What is your choice? [Email]", "What is your choice? [Phone]")
   exp  <- list(common="What is your choice?", unique=c("Email", "Phone"))
   expect_equal(splitCommonUnique(test), exp)
+
+  test <- c("Question (answer 1 (with embedded parens))", 
+            "Question (answer 2 without embedded parens)")
+  exp  <- list(common="Question", unique=c("answer 1 (with embedded parens)",
+                                           "answer 2 without embedded parens"))
+  expect_equal(splitCommonUnique(test), exp)
   
   test <- c("Q_1", "Q_2")
   exp  <- list(common="Q_", unique=c("1", "2"))
