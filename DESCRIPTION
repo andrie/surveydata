@@ -19,7 +19,9 @@ Depends:
 Imports:
     stringr (>= 0.5),
     plyr,
-    dplyr
+    dplyr,
+    magrittr,
+    purrr
 Suggests:
     testthat,
     knitr,

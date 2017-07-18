@@ -12,7 +12,7 @@
 \alias{summarize_.surveydata}
 \title{Methods to support dplyr verbs.}
 \usage{
-mutate.surveydata(.data, ...)
+\method{mutate}{surveydata}(.data, ...)
 
 select.surveydata(.data, ...)
 
@@ -22,7 +22,7 @@ filter.surveydata(.data, ...)
 
 filter_.surveydata(.data, ...)
 
-arrange.surveydata(.data, ...)
+\method{arrange}{surveydata}(.data, ...)
 
 arrange_.surveydata(.data, ...)
 

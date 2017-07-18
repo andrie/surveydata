@@ -144,44 +144,55 @@ qTextCommon <- function(x, Q){
 #' @family Question functions
 #' @keywords Questions
 #' @param ptn A [regex()] pattern that defines how the string should be split into common and unique elements
+#' @importFrom dplyr tibble mutate arrange slice if_else 
+#' @importFrom magrittr %>%
+#' @importFrom purrr map
 splitCommonUnique <- function(x, ptn=NULL){
   if(is.null(ptn)){
     ptn <- c(
       # Find "Please tell us" in "Email (Please tell us)"
-      "^(.+)\\((.+)\\)$",
+      "^(.+)\\s*\\((.+?)\\)$",
+      # Find "Please tell (foo) us" in "Email (Please tell (foo) us)"
+      "^(.+?)\\((.+)\\)$",
       # Find "What is your choice?" in "What is your choice?: Email"
-      "^(.+):\\s?(.+)$",
+      "^(.+)\\s*:\\s*(.+)$",
       # Find "Q3" in "Q3(001)Email" or "Q03[01] Email"
-      "^(.+\\d+)[[(]\\d+[])]\\s?(.+)$",
+      "^(.+\\d+)\\s*[[(]\\d+[])]\\s?(.+)$",
       # Find "What is your choice?" in "[Email]What is your choice?"
       "^\\[(.+)\\]\\s*(.+)$",
       # Find "What is your choice?" in "What is your choice? [Email]"
-      "^(.+?)\\s*\\[(.+)\\]$"
+      "^(.+?)\\s*\\[(.+)\\]$",
+      "^(.+?_)(\\d+)"
     )
   }
-  mostCommon <- function(x){
-    r <- vapply(x, function(xt)sum(grepl(xt, x, fixed=TRUE)), 1)
-    sort(r, decreasing=TRUE)[1]
+  length_pattern <- function(ptn, x){
+    do_one <- function(n)length(unique(gsub(ptn, paste0("\\", n), x)))
+    tibble(
+      ptn   = ptn, 
+      n     = sum(grepl(ptn, x)),
+      left  = do_one(1), 
+      right = do_one(2)
+    ) 
   }
-  pattern_sum <- vapply(ptn, function(p)sum(grepl(p, x)), FUN.VALUE = 0, USE.NAMES=FALSE)
-  if(max(pattern_sum) >= 1){
-    which_patterns <- order(pattern_sum, decreasing=TRUE)[1]
-    test_pattern <- ptn[which_patterns]
-    x1 <- gsub(test_pattern, "\\1", x)
-    x2 <- gsub(test_pattern, "\\2", x)
-    
-    r1 <- mostCommon(x1)
-    r2 <- mostCommon(x2)
-    
-    if(unname(r1) > unname(r2)){
-      z <- list(common=names(r1)[1], unique=str_trim(x2))
-    } else {  
-      z <- list(common=names(r2)[1], unique=str_trim(x1))
-    }
-    nNa <- sum(is.na(z$unique))  
-    if(nNa > 0) z$unique[is.na(z$unique)] <- paste("NA_", seq_len(nNa), sep="")
-  } else {
-    z <- strCommonUnique(x)
-  }  
+  
+  identify_pattern <- function(ptn, x){
+    purrr::map_df(ptn, length_pattern, x) %>% 
+      mutate(
+        common = pmin(left, right),
+        unique = pmax(left, right),
+        grep_c = if_else(left < right, "\\1", "\\2"),
+        grep_u = if_else(left < right, "\\2", "\\1")
+      ) %>% 
+      arrange(-n, common) %>% 
+      slice(1)
+  }
+  
+  bp <- identify_pattern(ptn, x) # best pattern
+  z <- list (
+    common = gsub(bp$ptn, bp$grep_c, x)[1] %>% str_trim(),
+    unique = gsub(bp$ptn, bp$grep_u, x) %>% str_trim()
+  )
+  nNa <- sum(is.na(z$unique))  
+  if(nNa > 0) z$unique[is.na(z$unique)] <- paste("NA_", seq_len(nNa), sep="")
   z
 }
