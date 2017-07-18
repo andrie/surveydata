@@ -1,4 +1,8 @@
-# @export
+#' Methods to support dplyr verbs.
+#' @rdname dplyr_verbs
+#' @param .data surveydata object or tbl passed to dplyr verb
+#' @param ... passed to dplyr verb
+#' @export
 #' @importFrom stats setNames
 mutate.surveydata <- function(.data, ...){
   var_labels <- varlabels(.data)
@@ -17,18 +21,34 @@ mutate.surveydata <- function(.data, ...){
 mutate_.surveydata <- mutate.surveydata
 
 
-# @export
+#' @export
+#' @rdname dplyr_verbs
 select.surveydata <- mutate.surveydata
+
+#' @export
+#' @rdname dplyr_verbs
 select_.surveydata <- mutate.surveydata
 
-# @export
+#' @export
+#' @rdname dplyr_verbs
 filter.surveydata <- mutate.surveydata
+
+#' @export
+#' @rdname dplyr_verbs
 filter_.surveydata <- mutate.surveydata
 
-# @export
+#' @export
+#' @rdname dplyr_verbs
 arrange.surveydata <- mutate.surveydata
+
+#' @export
+#' @rdname dplyr_verbs
 arrange_.surveydata <- mutate.surveydata
 
-# @export
+#' @export
+#' @rdname dplyr_verbs
 summarize.surveydata <- mutate.surveydata
+
+#' @export
+#' @rdname dplyr_verbs
 summarize_.surveydata <- mutate.surveydata
