@@ -143,10 +143,8 @@ qTextCommon <- function(x, Q){
 #' @param x A character vector
 #' @family Question functions
 #' @keywords Questions
+#' @importFrom dplyr mutate arrange slice
 #' @param ptn A [regex()] pattern that defines how the string should be split into common and unique elements
-#' @importFrom dplyr tibble mutate arrange slice if_else 
-#' @importFrom magrittr %>%
-#' @importFrom purrr map
 splitCommonUnique <- function(x, ptn=NULL){
   if(is.null(ptn)){
     ptn <- c(
@@ -176,6 +174,7 @@ splitCommonUnique <- function(x, ptn=NULL){
   }
   
   identify_pattern <- function(ptn, x){
+    left <- right <- n <- common <- NULL # R CMD check trick
     purrr::map_df(ptn, length_pattern, x) %>% 
       mutate(
         common = pmin(left, right),

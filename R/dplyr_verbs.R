@@ -1,10 +1,16 @@
 #' Methods to support dplyr verbs.
-#' @rdname dplyr_verbs
+#' @name dplyr-surveydata
 #' @param .data surveydata object or tbl passed to dplyr verb
 #' @param ... passed to dplyr verb
+#' @keywords internal
+#' 
 #' @export
 #' @importFrom stats setNames
-mutate.surveydata <- function(.data, ...){
+#' @importFrom dplyr mutate
+#' @examples 
+#' library(dplyr)
+#' membersurvey %>% as.tbl() %>% filter(Q2 == 2009)
+mutate_.surveydata <- function(.data, ...){
   var_labels <- varlabels(.data)
   z <- NextMethod(.data)
   same <- intersect(names(z), names(var_labels))
@@ -18,37 +24,32 @@ mutate.surveydata <- function(.data, ...){
   as.surveydata(z)
 }
 
-mutate_.surveydata <- mutate.surveydata
+
+#' @export
+#' @rdname dplyr-surveydata
+#' @importFrom dplyr select_
+select_.surveydata <- mutate_.surveydata
 
 
 #' @export
-#' @rdname dplyr_verbs
-select.surveydata <- mutate.surveydata
+#' @rdname dplyr-surveydata
+#' @importFrom dplyr filter_
+filter_.surveydata <- mutate_.surveydata
+
 
 #' @export
-#' @rdname dplyr_verbs
-select_.surveydata <- mutate.surveydata
+#' @rdname dplyr-surveydata
+#' @importFrom dplyr arrange_
+arrange_.surveydata <- mutate_.surveydata
+
 
 #' @export
-#' @rdname dplyr_verbs
-filter.surveydata <- mutate.surveydata
+#' @rdname dplyr-surveydata
+#' @importFrom dplyr summarize_
+summarize_.surveydata <- mutate_.surveydata
+
 
 #' @export
-#' @rdname dplyr_verbs
-filter_.surveydata <- mutate.surveydata
-
-#' @export
-#' @rdname dplyr_verbs
-arrange.surveydata <- mutate.surveydata
-
-#' @export
-#' @rdname dplyr_verbs
-arrange_.surveydata <- mutate.surveydata
-
-#' @export
-#' @rdname dplyr_verbs
-summarize.surveydata <- mutate.surveydata
-
-#' @export
-#' @rdname dplyr_verbs
-summarize_.surveydata <- mutate.surveydata
+#' @rdname dplyr-surveydata
+#' @importFrom dplyr slice_
+slice_.surveydata <- mutate_.surveydata
