@@ -2,9 +2,9 @@ if(interactive()) library(testthat)
 context("Encoding")
 
 test_that("encoding functions work",{
-  expect_equal(encToInt("\\xfa"), c(92L, 120L, 102L, 97L))
-  expect_equal(intToEnc(8212), "-")
-  expect_equal(intToEnc(encToInt("\\xfa")), "\\xfa")
+  expect_equal(encToInt("\\xfa", encoding = "ISO8859-1"), c(92L, 120L, 102L, 97L))
+  expect_equal(intToEnc(8212, "ISO8859-1"), "-")
+  expect_equal(intToEnc(encToInt("\\xfa", encoding = "ISO8859-1"), encoding = "ISO8859-1"), "\\xfa")
   expect_equal(encToInt(intToEnc(8212, encoding = "UTF-8"), encoding = "UTF-8"), 8212)
 
   ### Disabling test - this fails on Travis.  
