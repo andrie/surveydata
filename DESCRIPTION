@@ -1,6 +1,6 @@
 Package: surveydata
 License: GPL-2|GPL-3
-Title: Tools to Work With Survey Data
+Title: Tools to Work with Survey Data
 LazyData: true
 LazyLoad: true
 Copyright: Andrie de Vries

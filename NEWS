@@ -1,18 +1,25 @@
-surveydata 0.1-14 (25/10/2013)
+surveydata 0.2.0 (2017-07-19)
+-----------------
+
+Changes:
+* Supports dplyr verbs, including mutate, filter, arrange and select
+* Updated vignette
+
+surveydata 0.1-14 (2013-10-25)
 -----------------
 
 Changes:
 * Added README.md to .Rbuildignore to comply with CRAN
 
 
-surveydata 0.1-12 (05/01/2013)
+surveydata 0.1-12 (2013-01-05)
 -----------------
 
 Changes:
 * When drop=TRUE, [.surveydata simplifies the results and returns a vector, similar to [.data.frame
 
 
-surveydata 0.1-10 (27/12/2012)
+surveydata 0.1-10 (2012-12-27)
 -----------------
 
 Changes:
@@ -21,7 +28,7 @@ Changes:
 * First submission to CRAN.
 
 
-surveydata 0.1-09 (27/12/2012)
+surveydata 0.1-09 (2012-12-27)
 -----------------
 
 Changes:
