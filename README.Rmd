@@ -1,5 +1,5 @@
 ---
-title: "Surveydata: Tools to work With Survey Data"
+title: "Surveydata: Tools to Work with Survey Data"
 output: github_document
 ---
 
