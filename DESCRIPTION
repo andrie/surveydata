@@ -3,7 +3,8 @@ License: GPL-2|GPL-3
 Title: Tools to Work With Survey Data
 LazyData: true
 LazyLoad: true
-Authors@R: person("Andrie", "de Vries", role=c("aut", "cre"),
+Copyright: Andrie de Vries
+Authors@R: person("Andrie", "de Vries", role=c("aut", "cre", "cph"),
     email="apdevries@gmail.com")
 Description: Data obtained from surveys contains information not only about the
     survey responses, but also the survey metadata, e.g. the original survey
