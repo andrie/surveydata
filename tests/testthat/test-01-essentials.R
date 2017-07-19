@@ -37,6 +37,10 @@ test_that("Basic functionality", {
   expect_equal(length(ptn), 2)
   expect_equal(ptn, list(sep = "_", exclude = "other"))
   
+  ms <- membersurvey
+  ms <- rm.pattern(ms)
+  expect_null(pattern(ms))
+  
   q <- questions(test_survey)
   expect_is(q, "character")
   expect_equal(q, c("id", "Q1", "Q4", "Q10", "crossbreak", "weight"))
