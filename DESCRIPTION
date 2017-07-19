@@ -8,7 +8,7 @@ Authors@R: person("Andrie", "de Vries", role=c("aut", "cre", "cph"),
     email="apdevries@gmail.com")
 Description: Data obtained from surveys contains information not only about the
     survey responses, but also the survey metadata, e.g. the original survey
-    questions and the answer options. The surveydata package makes it easy to
+    questions and the answer options. The 'surveydata' package makes it easy to
     keep track of this metadata, and to easily extract columns with
     specific questions.
 Version: 0.2.0
