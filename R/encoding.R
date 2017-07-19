@@ -37,8 +37,8 @@ encToInt <- function(x, encoding=localeToCharset()){
 #' 
 #' Conversion of integer vector to character vector.  The encoding of the character vector can be specified but defaults to the current locale.  
 #' 
-#' @param x Integer vector 
-#' @param encoding A character string describing the encoding of x.  Defaults to the current locale.  See also [iconvlist()]
+#' @param x Integer vector
+#' @inheritParams encToInt 
 #' @return A character vector
 #' @seealso [iconv()]
 #' @examples
@@ -55,20 +55,23 @@ intToEnc <- function(x, encoding=localeToCharset()){
 #' This function tries to resolve typical encoding problems when importing web data on Windows.
 #' Typical problems occur with pound and hyphen (-), especially when these originated in MS-Word.
 #' @param x A character vector
+#' @inheritParams encToInt 
 #' @export
 #' @family Functions to clean data
 #' @keywords encoding
-fixCommonEncodingProblems <- function(x){
+fixCommonEncodingProblems <- function(x, encoding = localeToCharset()){
   # Define character constants that need to be replaced
-  ps <- list()
-  ps[[1]] <- c(intToEnc(194), "")
-  ps[[2]] <- c(intToEnc(128), "")
-  ps[[3]] <- c(intToEnc(226), "-")
-  ps[[4]] <- c(intToEnc(147), "")
-  ps[[5]] <- c("^Missing$", "NA")
+
+  ps <- list(
+    c(intToEnc(194, encoding = encoding), ""),
+    c(intToEnc(128, encoding = encoding), ""),
+    c(intToEnc(226, encoding = encoding), "-"),
+    c(intToEnc(147, encoding = encoding), ""),
+    c("^Missing$", "NA")
+  )
   # Now perform the actual processing
-  for(i in 1:length(ps)){
-    x <- gsub(ps[[i]][1], ps[[i]][2], x)
+  for(pt in ps){
+    x <- gsub(pt[1], pt[2], x, useBytes = TRUE)
   }
   x 
 }

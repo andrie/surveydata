@@ -1,0 +1,219 @@
+The `surveydata` package makes it easy to work with typical survey data that originated in SPSS or other formats.
+
+## Motivation
+
+Specifically, the package makes it easy question text (metadata) with the data itself.
+
+To track the questions of a survey, you have two options:
+
+* Keep the data in a data frame, and keep a separate list of the questions
+* Keep the questions as an attribute of the data frame
+
+Neither of these options are ideal, since any subsetting of the survey data means you must keep track of the question metadata separately.
+
+This package solves the problem by creating a new class, `surveydata`, and keeping the questions as an attribute of this class.  Whenever you do a subsetting operation, the metadata stays intact.
+
+In addition, the metadata knows if a question consists of a single column, or multiple columns.  When doing subsetting on the question name, the resulting object can be either a single column or multiple columns.
+
+```{r options, echo=FALSE}
+# from https://stackoverflow.com/questions/23114654/knitr-output-hook-with-an-output-lines-option-that-works-like-echo-26
+library(knitr)
+hook_output <- knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+   lines <- options$output.lines
+   if (is.null(lines)) {
+     return(hook_output(x, options))  # pass to default hook
+   }
+   x <- unlist(strsplit(x, "\n"))
+   more <- "..."
+   if (length(lines)==1) {        # first n lines
+     if (length(x) > lines) {
+       # truncate the output, but add ....
+       x <- c(head(x, lines), more)
+     }
+   } else {
+     x <- c(if (abs(lines[1])>1) more else NULL, 
+            x[lines], 
+            if (length(x)>lines[abs(length(lines))]) more else NULL
+           )
+   }
+   # paste these lines together
+   x <- paste(c(x, ""), collapse = "\n")
+   hook_output(x, options)
+ })
+```
+
+```{r load, message=FALSE}
+library(surveydata)
+library(dplyr)
+```
+```{r motivation, output.lines = 14}
+sv <- membersurvey %>% as.tbl()
+sv
+```
+
+Notice from this summary that Question 2 has two columns, i.e. `Q2_1` and `Q2_2`.  You can extract both these columns by simply referring to `Q2`:
+  
+```{r motivation-q2}
+sv[, "Q2"]
+```
+
+However, the subset of `Q1` returns only a single column:
+
+```{r motivation-q1}
+sv[, "Q2"]
+```
+
+Note that in both cases the `surveydata` object doesn't return a vector - subsetting a `surveydata` object always returns a `surveydata` object.
+
+## About surveydata objects
+
+A surveydata object consists of:
+
+* A data frame with a row for each respondent and a column for each question.   Column names are typically names in the pattern `Q1`, `Q2_1`, `Q2_2`, `Q3` - where underscores separate the subquestions when these originated in a grid (array) of questions.
+
+* Question metadata gets stored in the `{variable.labels} attribute of the data frame. This typically contains the original questionnaire text for each question.
+
+* Information about the subquestion separator (typically an underscore) is stored in the `patterns` attribute.
+
+
+Data processing a survey file can be tricky, since the standard methods for dealing with data frames does not conserve the `variable.labels` attribute.  The `surveydata` package defines a `surveydata` class and the following methods that knows how to deal with the `variable.labels` attribute:
+
+* `as.surveydata`
+* `[.surveydata`
+* `[<-.surveydata`
+* `$.surveydata`
+* `$<-.surveydata`
+* `merge.surveydata`
+
+In addition, `surveydata` defines the following convenient methods for extracting and working with the variable labels:
+
+* `varlabels`
+* `varlabels<-`
+
+
+## Defining a surveydata object
+
+First load the `surveydata` package.
+
+```{r Setup}
+library(surveydata)
+```
+
+Next, create sample data. A data frame is the ideal data structure for survey data, and the convention is that data for each respondent is stored in the rows, while each column represents answers to a specific question.
+
+```{r sample-data}
+
+sdat <- data.frame(
+id   = 1:4,
+Q1   = c("Yes", "No", "Yes", "Yes"),
+Q4_1 = c(1, 2, 1, 2), 
+Q4_2 = c(3, 4, 4, 3), 
+Q4_3 = c(5, 5, 6, 6), 
+Q10 = factor(c("Male", "Female", "Female", "Male")),
+crossbreak  = c("A", "A", "B", "B"), 
+weight      = c(0.9, 1.1, 0.8, 1.2)
+)
+
+```
+
+
+The survey metadata consists of the questionnaire text.  For example, this can be represented by a character vector, with an element for each question.
+
+To assign this metadata to the survey data, use the `varlabels()` function.  This function assigns the questionnaire text to the `variable.labels` attribute of the data frame.
+
+```{r varlabels}
+
+varlabels(sdat) <- c(
+"RespID",
+"Question 1", 
+"Question 4: red", "Question 4: green", "Question 4: blue", 
+"Question 10",
+"crossbreak",
+"weight"
+)
+```
+
+
+Finally, create the surveydata object. To do this, call the `as.surveydata()` function.  The argument `renameVarlabels` controls whether the `varlabels` get renamed with the same names as the data.  This is an essential step, and ensures that the question text remains in synch with the column names.
+
+```{r init}
+sv <- as.surveydata(sdat, renameVarlabels = TRUE)
+```
+
+
+## Extracting specific questions
+
+It is easy to extract specific questions with the `[` operator. This works very similar to extraction of data frames. However, there are two important differences:
+
+* The extraction operators will always return a `surveydata` object, even if only a single column is returned. This is different from the behaviour of data frames, where a single column is simplified to a vector.
+* Extracing a question with multiple subquestions, e.g. "Q4" returns multiple columns
+
+
+```{r extract}
+sv[, "Q1"]
+sv[, "Q4"]
+```
+
+The extraction makes use of the underlying metadata, contained in the `varlabels` and `pattern` attributes:
+
+```{r attributes}
+
+varlabels(sv)
+pattern(sv)
+```
+
+## Working with question columns
+
+It is easy to query the surveydata object to find out which questions it contains, as well as which columns store the data for those questions.
+
+```{r questions}
+questions(sv)
+which.q(sv, "Q1")
+which.q(sv, "Q4")
+```
+
+## Reading the questionnaire text
+
+The function `qText()` gives access to the questionnaire text.
+
+```{r qtext}
+qText(sv, "Q1")
+qText(sv, "Q4")
+```
+
+
+### Getting the common question text
+
+Use `qTextCommon()` to retrieve the common text, i.e. the question itself:
+
+```{r qTextCommon}
+qTextCommon(sv, "Q4")
+```
+
+### Getting the unique question text
+
+And use `qTextUnique()` to retrieve the unique part of the question, i.e. the subquestions:
+
+```{r qTextUnique}
+qTextUnique(sv, "Q4")
+```
+
+
+## Using `surveydata` with `dplyr`
+
+The `surveydata` object knows how to deal with the following `dplyr` verbs:
+
+* `select`
+* `filter`
+* `mutate`
+* `arrange`
+* `summarize`
+
+In every case the resulting object will also be of class `surveydata`.
+
+
+
+## Summary
+
+The `surveydata` object can make it much easier to work with survey data.

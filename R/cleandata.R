@@ -30,10 +30,7 @@
 #' @family Functions to clean data
 #' @keywords "clean data"
 hasDK <- function(x, dk = "Don't Know"){
-  ifelse(is.factor(x), 
-         l <- levels(x),
-         l <- unique(x)
-  )
+  l <- if(is.factor(x)) levels(x) else unique(x)
   any(l %in% dk)
 }
 
@@ -193,7 +190,7 @@ qOrder <- function(x){
 
 #' Applies function only to named elements of a list.
 #' 
-#' This is useful to clean only some columns in a list (or `data.frame` or `surveydata` object). This is just a wrapper around [lapply()] where only the named elements are changed.
+#' This is useful to clean only some columns in a list (or `data.frame` or `surveydata` object). This is a simple wrapper around [lapply()] where only the named elements are changed.
 #' @param x list
 #' @param names character vector identifying which elements of the list to apply FUN
 #' @param FUN function to apply.
