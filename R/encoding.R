@@ -71,7 +71,7 @@ fixCommonEncodingProblems <- function(x, encoding = localeToCharset()){
   )
   # Now perform the actual processing
   for(pt in ps){
-    x <- gsub(pt[1], pt[2], x)
+    x <- gsub(pt[1], pt[2], x, useBytes = TRUE)
   }
   x 
 }
