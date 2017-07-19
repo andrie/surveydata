@@ -2,10 +2,11 @@ The `surveydata` package makes it easy to work with typical survey data that ori
 
 ## Motivation
 
-Specifically, it helps keep the question text with the data itself.
+Specifically, the package makes it easy question text (metadata) with the data itself.
 
 To track the questions of a survey, you have two options:
-  * Keep the data in a data frame, and keep a separate list of the questions
+
+* Keep the data in a data frame, and keep a separate list of the questions
 * Keep the questions as an attribute of the data frame
 
 Neither of these options are ideal, since any subsetting of the survey data means you must keep track of the question metadata separately.
@@ -14,21 +15,52 @@ This package solves the problem by creating a new class, `surveydata`, and keepi
 
 In addition, the metadata knows if a question consists of a single column, or multiple columns.  When doing subsetting on the question name, the resulting object can be either a single column or multiple columns.
 
-```{r motivation, message=FALSE}
+```{r options, echo=FALSE}
+# from https://stackoverflow.com/questions/23114654/knitr-output-hook-with-an-output-lines-option-that-works-like-echo-26
+library(knitr)
+hook_output <- knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+   lines <- options$output.lines
+   if (is.null(lines)) {
+     return(hook_output(x, options))  # pass to default hook
+   }
+   x <- unlist(strsplit(x, "\n"))
+   more <- "..."
+   if (length(lines)==1) {        # first n lines
+     if (length(x) > lines) {
+       # truncate the output, but add ....
+       x <- c(head(x, lines), more)
+     }
+   } else {
+     x <- c(if (abs(lines[1])>1) more else NULL, 
+            x[lines], 
+            if (length(x)>lines[abs(length(lines))]) more else NULL
+           )
+   }
+   # paste these lines together
+   x <- paste(c(x, ""), collapse = "\n")
+   hook_output(x, options)
+ })
+```
+
+```{r load, message=FALSE}
 library(surveydata)
 library(dplyr)
+```
+```{r motivation, output.lines = 14}
 sv <- membersurvey %>% as.tbl()
 sv
 ```
 
 Notice from this summary that Question 2 has two columns, i.e. `Q2_1` and `Q2_2`.  You can extract both these columns by simply referring to `Q2`:
   
-  ```{r motivation-q2}
+```{r motivation-q2}
 sv[, "Q2"]
 ```
 
 However, the subset of `Q1` returns only a single column:
-  ```{r motivation-q1}
+
+```{r motivation-q1}
 sv[, "Q2"]
 ```
 

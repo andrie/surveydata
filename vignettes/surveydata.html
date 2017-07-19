@@ -77,14 +77,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The <code>surveydata</code> package makes it easy to work with typical survey data that originated in SPSS or other formats.</p>
 <div id="motivation" class="section level2">
 <h2>Motivation</h2>
-<p>Specifically, it helps keep the question text with the data itself.</p>
-<p>To track the questions of a survey, you have two options: * Keep the data in a data frame, and keep a separate list of the questions * Keep the questions as an attribute of the data frame</p>
+<p>Specifically, the package makes it easy question text (metadata) with the data itself.</p>
+<p>To track the questions of a survey, you have two options:</p>
+<ul>
+<li>Keep the data in a data frame, and keep a separate list of the questions</li>
+<li>Keep the questions as an attribute of the data frame</li>
+</ul>
 <p>Neither of these options are ideal, since any subsetting of the survey data means you must keep track of the question metadata separately.</p>
 <p>This package solves the problem by creating a new class, <code>surveydata</code>, and keeping the questions as an attribute of this class. Whenever you do a subsetting operation, the metadata stays intact.</p>
 <p>In addition, the metadata knows if a question consists of a single column, or multiple columns. When doing subsetting on the question name, the resulting object can be either a single column or multiple columns.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(surveydata)
-<span class="kw">library</span>(dplyr)
-sv &lt;-<span class="st"> </span>membersurvey %&gt;%<span class="st"> </span><span class="kw">as.tbl</span>()
+<span class="kw">library</span>(dplyr)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sv &lt;-<span class="st"> </span>membersurvey %&gt;%<span class="st"> </span><span class="kw">as.tbl</span>()
 sv</code></pre></div>
 <pre><code>## # A tibble: 215 x 109
 ##       id  Q1_1  Q1_2          Q2   Q3_1   Q3_2   Q3_3   Q3_4   Q3_5   Q3_6
@@ -100,33 +104,39 @@ sv</code></pre></div>
 ##  9    23    18   3.0        2008    Yes    Yes    Yes    Yes    Yes    Yes
 ## 10    25    24   8.0        2006     No     No     No    Yes    Yes    Yes
 ## # ... with 205 more rows, and 99 more variables: Q3_7 &lt;fctr&gt;, Q3_8 &lt;fctr&gt;,
-## #   Q3_9 &lt;fctr&gt;, Q3_10 &lt;fctr&gt;, Q3_11 &lt;fctr&gt;, Q3_12 &lt;fctr&gt;, Q3_13 &lt;fctr&gt;,
-## #   Q3_14 &lt;fctr&gt;, Q3_15 &lt;fctr&gt;, Q4 &lt;fctr&gt;, Q5 &lt;fctr&gt;, Q6_1 &lt;fctr&gt;,
-## #   Q6_2 &lt;fctr&gt;, Q6_3 &lt;fctr&gt;, Q6_4 &lt;fctr&gt;, Q6_5 &lt;fctr&gt;, Q6_6 &lt;fctr&gt;,
-## #   Q6_7 &lt;fctr&gt;, Q6_8 &lt;fctr&gt;, Q6_9 &lt;fctr&gt;, Q6_10 &lt;fctr&gt;, Q7 &lt;fctr&gt;,
-## #   Q8 &lt;fctr&gt;, Q9_1 &lt;fctr&gt;, Q9_2 &lt;fctr&gt;, Q9_3 &lt;fctr&gt;, Q9_4 &lt;fctr&gt;,
-## #   Q9_5 &lt;fctr&gt;, Q10 &lt;fctr&gt;, Q11_1 &lt;fctr&gt;, Q11_2 &lt;fctr&gt;, Q11_3 &lt;fctr&gt;,
-## #   Q11_4 &lt;fctr&gt;, Q11_5 &lt;fctr&gt;, Q11_other &lt;fctr&gt;, Q12_1 &lt;fctr&gt;,
-## #   Q13_1 &lt;fctr&gt;, Q13_2 &lt;fctr&gt;, Q13_3 &lt;fctr&gt;, Q13_4 &lt;fctr&gt;, Q14_1 &lt;fctr&gt;,
-## #   Q14_2 &lt;fctr&gt;, Q14_3 &lt;fctr&gt;, Q14_4 &lt;fctr&gt;, Q14_5 &lt;fctr&gt;, Q14_6 &lt;fctr&gt;,
-## #   Q14_7 &lt;fctr&gt;, Q14_8 &lt;fctr&gt;, Q14_9 &lt;fctr&gt;, Q14_10 &lt;fctr&gt;, Q15_1 &lt;fctr&gt;,
-## #   Q15_2 &lt;fctr&gt;, Q15_3 &lt;fctr&gt;, Q15_4 &lt;fctr&gt;, Q15_5 &lt;fctr&gt;, Q15_6 &lt;fctr&gt;,
-## #   Q19_1 &lt;fctr&gt;, Q19_2 &lt;fctr&gt;, Q19_3 &lt;fctr&gt;, Q19_4 &lt;fctr&gt;, Q19_5 &lt;fctr&gt;,
-## #   Q19_6 &lt;fctr&gt;, Q20_1 &lt;fctr&gt;, Q20_2 &lt;fctr&gt;, Q20_3 &lt;fctr&gt;, Q20_4 &lt;fctr&gt;,
-## #   Q20_5 &lt;fctr&gt;, Q20_6 &lt;fctr&gt;, Q20_7 &lt;fctr&gt;, Q20_8 &lt;fctr&gt;, Q20_9 &lt;fctr&gt;,
-## #   Q20_10 &lt;fctr&gt;, Q20_other &lt;fctr&gt;, Q21_1 &lt;fctr&gt;, Q21_2 &lt;fctr&gt;,
-## #   Q21_3 &lt;fctr&gt;, Q21_4 &lt;fctr&gt;, Q21_5 &lt;fctr&gt;, Q21_6 &lt;fctr&gt;, Q23_1 &lt;fctr&gt;,
-## #   Q23_2 &lt;fctr&gt;, Q23_3 &lt;fctr&gt;, Q23_4 &lt;fctr&gt;, Q23_5 &lt;fctr&gt;,
-## #   Q23_other &lt;fctr&gt;, Q24 &lt;dbl&gt;, Q25 &lt;dbl&gt;, Q26_1 &lt;ord&gt;, Q27_1 &lt;dbl&gt;,
-## #   Q27_2 &lt;dbl&gt;, Q30 &lt;fctr&gt;, Q30_other &lt;fctr&gt;, Q31 &lt;fctr&gt;,
-## #   Q31_other &lt;fctr&gt;, Q32 &lt;ord&gt;, Q33 &lt;fctr&gt;, Q35 &lt;fctr&gt;, weight &lt;dbl&gt;,
-## #   size &lt;dbl&gt;</code></pre>
+...</code></pre>
 <p>Notice from this summary that Question 2 has two columns, i.e. <code>Q2_1</code> and <code>Q2_2</code>. You can extract both these columns by simply referring to <code>Q2</code>:</p>
-<p><code>r   sv[, &quot;Q2&quot;]</code></p>
-<p><code>## # A tibble: 215 x 1   ##             Q2   ##          &lt;ord&gt;   ##  1        2009   ##  2 Before 2002   ##  3 Before 2002   ##  4        2010   ##  5        2010   ##  6 Before 2002   ##  7        2009   ##  8        2011   ##  9        2008   ## 10        2006   ## # ... with 205 more rows</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sv[, <span class="st">&quot;Q2&quot;</span>]</code></pre></div>
+<pre><code>## # A tibble: 215 x 1
+##             Q2
+##          &lt;ord&gt;
+##  1        2009
+##  2 Before 2002
+##  3 Before 2002
+##  4        2010
+##  5        2010
+##  6 Before 2002
+##  7        2009
+##  8        2011
+##  9        2008
+## 10        2006
+## # ... with 205 more rows</code></pre>
 <p>However, the subset of <code>Q1</code> returns only a single column:</p>
-<p><code>r   sv[, &quot;Q2&quot;]</code></p>
-<p><code>## # A tibble: 215 x 1   ##             Q2   ##          &lt;ord&gt;   ##  1        2009   ##  2 Before 2002   ##  3 Before 2002   ##  4        2010   ##  5        2010   ##  6 Before 2002   ##  7        2009   ##  8        2011   ##  9        2008   ## 10        2006   ## # ... with 205 more rows</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sv[, <span class="st">&quot;Q2&quot;</span>]</code></pre></div>
+<pre><code>## # A tibble: 215 x 1
+##             Q2
+##          &lt;ord&gt;
+##  1        2009
+##  2 Before 2002
+##  3 Before 2002
+##  4        2010
+##  5        2010
+##  6 Before 2002
+##  7        2009
+##  8        2011
+##  9        2008
+## 10        2006
+## # ... with 205 more rows</code></pre>
 <p>Note that in both cases the <code>surveydata</code> object doesn’t return a vector - subsetting a <code>surveydata</code> object always returns a <code>surveydata</code> object.</p>
 </div>
 <div id="about-surveydata-objects" class="section level2">

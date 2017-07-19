@@ -1,25 +1,19 @@
-Surveydata
+Surveydata: Tools to Work With Survey Data
 ================
 
-Surveydata: a package provides to work with typical survey data formats.
-========================================================================
-
-master: [![master build status](https://travis-ci.org/andrie/surveydata.svg?branch=master)](https://travis-ci.org/andrie/surveydata) dev: [![dev build status](https://travis-ci.org/andrie/surveydata.svg?branch=dev)](https://travis-ci.org/andrie/surveydata) [![](http://www.r-pkg.org/badges/version/surveydata)](http://www.r-pkg.org/pkg/surveydata) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/surveydata)](http://www.r-pkg.org/pkg/surveydata) [![Coverage Status](https://img.shields.io/codecov/c/github/andrie/surveydata/master.svg)](https://codecov.io/github/andrie/surveydata?branch=master)
-
-Usage
------
-
-Usage
------
+master: [![master build status](https://travis-ci.org/andrie/surveydata.svg?branch=master)](https://travis-ci.org/andrie/surveydata) dev: [![dev build status](https://travis-ci.org/andrie/surveydata.svg?branch=dev)](https://travis-ci.org/andrie/surveydata) [![](http://www.r-pkg.org/badges/version/surveydata)](http://www.r-pkg.org/pkg/surveydata) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/surveydata)](http://www.r-pkg.org/pkg/surveydata) [![Coverage Status](https://img.shields.io/codecov/github/andrie/surveydata/master.svg)](https://codecov.io/github/andrie/surveydata?branch=master)
 
 The `surveydata` package makes it easy to work with typical survey data that originated in SPSS or other formats.
 
 Motivation
 ----------
 
-Specifically, it helps keep the question text with the data itself.
+Specifically, the package makes it easy question text (metadata) with the data itself.
 
-To track the questions of a survey, you have two options: \* Keep the data in a data frame, and keep a separate list of the questions \* Keep the questions as an attribute of the data frame
+To track the questions of a survey, you have two options:
+
+-   Keep the data in a data frame, and keep a separate list of the questions
+-   Keep the questions as an attribute of the data frame
 
 Neither of these options are ideal, since any subsetting of the survey data means you must keep track of the question metadata separately.
 
@@ -30,6 +24,9 @@ In addition, the metadata knows if a question consists of a single column, or mu
 ``` r
 library(surveydata)
 library(dplyr)
+```
+
+``` r
 sv <- membersurvey %>% as.tbl()
 sv
 ```
@@ -48,39 +45,49 @@ sv
     ##  9    23    18   3.0        2008    Yes    Yes    Yes    Yes    Yes    Yes
     ## 10    25    24   8.0        2006     No     No     No    Yes    Yes    Yes
     ## # ... with 205 more rows, and 99 more variables: Q3_7 <fctr>, Q3_8 <fctr>,
-    ## #   Q3_9 <fctr>, Q3_10 <fctr>, Q3_11 <fctr>, Q3_12 <fctr>, Q3_13 <fctr>,
-    ## #   Q3_14 <fctr>, Q3_15 <fctr>, Q4 <fctr>, Q5 <fctr>, Q6_1 <fctr>,
-    ## #   Q6_2 <fctr>, Q6_3 <fctr>, Q6_4 <fctr>, Q6_5 <fctr>, Q6_6 <fctr>,
-    ## #   Q6_7 <fctr>, Q6_8 <fctr>, Q6_9 <fctr>, Q6_10 <fctr>, Q7 <fctr>,
-    ## #   Q8 <fctr>, Q9_1 <fctr>, Q9_2 <fctr>, Q9_3 <fctr>, Q9_4 <fctr>,
-    ## #   Q9_5 <fctr>, Q10 <fctr>, Q11_1 <fctr>, Q11_2 <fctr>, Q11_3 <fctr>,
-    ## #   Q11_4 <fctr>, Q11_5 <fctr>, Q11_other <fctr>, Q12_1 <fctr>,
-    ## #   Q13_1 <fctr>, Q13_2 <fctr>, Q13_3 <fctr>, Q13_4 <fctr>, Q14_1 <fctr>,
-    ## #   Q14_2 <fctr>, Q14_3 <fctr>, Q14_4 <fctr>, Q14_5 <fctr>, Q14_6 <fctr>,
-    ## #   Q14_7 <fctr>, Q14_8 <fctr>, Q14_9 <fctr>, Q14_10 <fctr>, Q15_1 <fctr>,
-    ## #   Q15_2 <fctr>, Q15_3 <fctr>, Q15_4 <fctr>, Q15_5 <fctr>, Q15_6 <fctr>,
-    ## #   Q19_1 <fctr>, Q19_2 <fctr>, Q19_3 <fctr>, Q19_4 <fctr>, Q19_5 <fctr>,
-    ## #   Q19_6 <fctr>, Q20_1 <fctr>, Q20_2 <fctr>, Q20_3 <fctr>, Q20_4 <fctr>,
-    ## #   Q20_5 <fctr>, Q20_6 <fctr>, Q20_7 <fctr>, Q20_8 <fctr>, Q20_9 <fctr>,
-    ## #   Q20_10 <fctr>, Q20_other <fctr>, Q21_1 <fctr>, Q21_2 <fctr>,
-    ## #   Q21_3 <fctr>, Q21_4 <fctr>, Q21_5 <fctr>, Q21_6 <fctr>, Q23_1 <fctr>,
-    ## #   Q23_2 <fctr>, Q23_3 <fctr>, Q23_4 <fctr>, Q23_5 <fctr>,
-    ## #   Q23_other <fctr>, Q24 <dbl>, Q25 <dbl>, Q26_1 <ord>, Q27_1 <dbl>,
-    ## #   Q27_2 <dbl>, Q30 <fctr>, Q30_other <fctr>, Q31 <fctr>,
-    ## #   Q31_other <fctr>, Q32 <ord>, Q33 <fctr>, Q35 <fctr>, weight <dbl>,
-    ## #   size <dbl>
+    ...
 
 Notice from this summary that Question 2 has two columns, i.e. `Q2_1` and `Q2_2`. You can extract both these columns by simply referring to `Q2`:
 
-`r   sv[, "Q2"]`
+``` r
+sv[, "Q2"]
+```
 
-`## # A tibble: 215 x 1   ##             Q2   ##          <ord>   ##  1        2009   ##  2 Before 2002   ##  3 Before 2002   ##  4        2010   ##  5        2010   ##  6 Before 2002   ##  7        2009   ##  8        2011   ##  9        2008   ## 10        2006   ## # ... with 205 more rows`
+    ## # A tibble: 215 x 1
+    ##             Q2
+    ##          <ord>
+    ##  1        2009
+    ##  2 Before 2002
+    ##  3 Before 2002
+    ##  4        2010
+    ##  5        2010
+    ##  6 Before 2002
+    ##  7        2009
+    ##  8        2011
+    ##  9        2008
+    ## 10        2006
+    ## # ... with 205 more rows
 
 However, the subset of `Q1` returns only a single column:
 
-`r   sv[, "Q2"]`
+``` r
+sv[, "Q2"]
+```
 
-`## # A tibble: 215 x 1   ##             Q2   ##          <ord>   ##  1        2009   ##  2 Before 2002   ##  3 Before 2002   ##  4        2010   ##  5        2010   ##  6 Before 2002   ##  7        2009   ##  8        2011   ##  9        2008   ## 10        2006   ## # ... with 205 more rows`
+    ## # A tibble: 215 x 1
+    ##             Q2
+    ##          <ord>
+    ##  1        2009
+    ##  2 Before 2002
+    ##  3 Before 2002
+    ##  4        2010
+    ##  5        2010
+    ##  6 Before 2002
+    ##  7        2009
+    ##  8        2011
+    ##  9        2008
+    ## 10        2006
+    ## # ... with 205 more rows
 
 Note that in both cases the `surveydata` object doesn't return a vector - subsetting a `surveydata` object always returns a `surveydata` object.
 
