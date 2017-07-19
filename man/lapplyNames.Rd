@@ -16,7 +16,7 @@ lapplyNames(x, names, FUN, ...)
 \item{...}{additional arguments passed to \code{FUN}}
 }
 \description{
-This is useful to clean only some columns in a list (or \code{data.frame} or \code{surveydata} object). This is just a wrapper around \code{\link[=lapply]{lapply()}} where only the named elements are changed.
+This is useful to clean only some columns in a list (or \code{data.frame} or \code{surveydata} object). This is a simple wrapper around \code{\link[=lapply]{lapply()}} where only the named elements are changed.
 }
 \seealso{
 Other Tools: \code{\link{qOrder}}

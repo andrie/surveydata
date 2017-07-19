@@ -7,10 +7,11 @@
 #' @export
 #' @importFrom stats setNames
 #' @importFrom dplyr mutate
+#' @details The surveydata exposes functionality to support some of the dplyr verbs, e.g. [dplyr::filter()]
 #' @examples 
 #' library(dplyr)
 #' membersurvey %>% as.tbl() %>% filter(Q2 == 2009)
-mutate_.surveydata <- function(.data, ...){
+mutate.surveydata <- function(.data, ...){
   var_labels <- varlabels(.data)
   z <- NextMethod(.data)
   same <- intersect(names(z), names(var_labels))
@@ -21,35 +22,48 @@ mutate_.surveydata <- function(.data, ...){
   }
   new_labels <- new_labels[names(z)]
   varlabels(z) <- new_labels
-  as.surveydata(z)
+  z <- as.surveydata(z)
+  # class(z) <- c("surveydata", class(z))
+  z
 }
 
+#' @export
+#' @rdname dplyr-surveydata
+#' @importFrom dplyr select
+as.tbl.surveydata <- mutate.surveydata
 
 #' @export
 #' @rdname dplyr-surveydata
-#' @importFrom dplyr select_
-select_.surveydata <- mutate_.surveydata
+#' @importFrom dplyr select
+select.surveydata <- mutate.surveydata
+
+
+#' @method filter surveydata
+#' @export
+#' @rdname dplyr-surveydata
+filter.surveydata <- mutate.surveydata
+
+#' @importFrom dplyr filter
+#' @export filter
+#' @rdname dplyr-surveydata
+#' @name filter
+#' @keywords internal
+#' @inheritParams mutate.surveydata
+NULL
+
+#' @export
+#' @rdname dplyr-surveydata
+#' @importFrom dplyr arrange
+arrange.surveydata <- mutate.surveydata
 
 
 #' @export
 #' @rdname dplyr-surveydata
-#' @importFrom dplyr filter_
-filter_.surveydata <- mutate_.surveydata
+#' @importFrom dplyr summarize
+summarize.surveydata <- mutate.surveydata
 
 
 #' @export
 #' @rdname dplyr-surveydata
-#' @importFrom dplyr arrange_
-arrange_.surveydata <- mutate_.surveydata
-
-
-#' @export
-#' @rdname dplyr-surveydata
-#' @importFrom dplyr summarize_
-summarize_.surveydata <- mutate_.surveydata
-
-
-#' @export
-#' @rdname dplyr-surveydata
-#' @importFrom dplyr slice_
-slice_.surveydata <- mutate_.surveydata
+#' @importFrom dplyr slice
+slice.surveydata <- mutate.surveydata

@@ -2,25 +2,29 @@
 % Please edit documentation in R/dplyr_verbs.R
 \name{dplyr-surveydata}
 \alias{dplyr-surveydata}
-\alias{mutate_.surveydata}
-\alias{select_.surveydata}
-\alias{filter_.surveydata}
-\alias{arrange_.surveydata}
-\alias{summarize_.surveydata}
-\alias{slice_.surveydata}
+\alias{mutate.surveydata}
+\alias{as.tbl.surveydata}
+\alias{select.surveydata}
+\alias{filter.surveydata}
+\alias{filter}
+\alias{arrange.surveydata}
+\alias{summarize.surveydata}
+\alias{slice.surveydata}
 \title{Methods to support dplyr verbs.}
 \usage{
-mutate_.surveydata(.data, ...)
+\method{mutate}{surveydata}(.data, ...)
 
-\method{select_}{surveydata}(.data, ...)
+as.tbl.surveydata(.data, ...)
 
-\method{filter_}{surveydata}(.data, ...)
+\method{select}{surveydata}(.data, ...)
 
-\method{arrange_}{surveydata}(.data, ...)
+\method{filter}{surveydata}(.data, ...)
 
-\method{summarize_}{surveydata}(.data, ...)
+\method{arrange}{surveydata}(.data, ...)
 
-\method{slice_}{surveydata}(.data, ...)
+\method{summarize}{surveydata}(.data, ...)
+
+\method{slice}{surveydata}(.data, ...)
 }
 \arguments{
 \item{.data}{surveydata object or tbl passed to dplyr verb}
@@ -29,6 +33,9 @@ mutate_.surveydata(.data, ...)
 }
 \description{
 Methods to support dplyr verbs.
+}
+\details{
+The surveydata exposes functionality to support some of the dplyr verbs, e.g. \code{\link[dplyr:filter]{dplyr::filter()}}
 }
 \examples{
 library(dplyr)
