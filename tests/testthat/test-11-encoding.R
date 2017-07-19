@@ -7,7 +7,12 @@ test_that("encoding functions work",{
   expect_equal(intToEnc(encToInt("\\xfa")), "\\xfa")
   expect_equal(encToInt(intToEnc(8212, encoding = "UTF-8"), encoding = "UTF-8"), 8212)
   
-  test <- paste0(intToEnc(194), intToEnc(128), intToEnc(226), intToEnc(147), collapse = "")
-  expect_equal(fixCommonEncodingProblems(test), "-")
+  test <- paste0(
+    intToEnc(194, encoding = "UTF-8"), 
+    intToEnc(128, encoding = "UTF-8"), 
+    intToEnc(226, encoding = "UTF-8"), 
+    intToEnc(147, encoding = "UTF-8"), 
+    collapse = "")
+  expect_equal(fixCommonEncodingProblems(test, encoding = "UTF-8"), "-")
 })
 

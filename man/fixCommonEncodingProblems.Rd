@@ -4,10 +4,12 @@
 \alias{fixCommonEncodingProblems}
 \title{Fix common encoding problems when working with web imported data.}
 \usage{
-fixCommonEncodingProblems(x)
+fixCommonEncodingProblems(x, encoding = localeToCharset())
 }
 \arguments{
 \item{x}{A character vector}
+
+\item{encoding}{A character string describing the encoding of x.  Defaults to the current locale.  See also \code{\link[=iconvlist]{iconvlist()}}}
 }
 \description{
 This function tries to resolve typical encoding problems when importing web data on Windows.
