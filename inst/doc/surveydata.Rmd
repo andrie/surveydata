@@ -1,0 +1,14 @@
+---
+title: "Introduction to the surveydata package."
+author: "Andrie de Vries"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to the surveydata package.}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, child="../inst/vignette_child/child.Rmd"}
+```
