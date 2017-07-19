@@ -61,13 +61,7 @@ intToEnc <- function(x, encoding=localeToCharset()){
 #' @keywords encoding
 fixCommonEncodingProblems <- function(x, encoding = localeToCharset()){
   # Define character constants that need to be replaced
-  ps <- list()
-  ps[[1]] <- c(intToEnc(194), "")
-  ps[[2]] <- c(intToEnc(128), "")
-  ps[[3]] <- c(intToEnc(226), "-")
-  ps[[4]] <- c(intToEnc(147), "")
-  ps[[5]] <- c("^Missing$", "NA")
-  
+
   ps <- list(
     c(intToEnc(194, encoding = encoding), ""),
     c(intToEnc(128, encoding = encoding), ""),
@@ -76,8 +70,8 @@ fixCommonEncodingProblems <- function(x, encoding = localeToCharset()){
     c("^Missing$", "NA")
   )
   # Now perform the actual processing
-  for(i in 1:length(ps)){
-    x <- gsub(ps[[i]][1], ps[[i]][2], x)
+  for(pt in ps){
+    x <- gsub(pt[1], pt[2], x)
   }
   x 
 }
