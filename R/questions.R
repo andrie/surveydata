@@ -94,6 +94,7 @@ questions <- function(x, ptn=pattern(x)){
 #'
 #' @param x A surveydata object
 #' @param Q The question id, e.g. "Q4". If not supplied, returns the text for all questions.
+#' 
 #' @family Question functions
 #' @keywords Questions
 #' @export 
