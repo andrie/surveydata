@@ -21,8 +21,13 @@ Imports:
     stringr (>= 0.5),
     plyr,
     dplyr,
+    rlang,
     magrittr,
-    purrr
+    purrr,
+    ggplot2,
+    scales,
+    tidyr,
+    DT
 Suggests:
     testthat,
     knitr,

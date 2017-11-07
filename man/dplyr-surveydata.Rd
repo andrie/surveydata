@@ -14,7 +14,7 @@
 \usage{
 \method{mutate}{surveydata}(.data, ...)
 
-as.tbl.surveydata(.data, ...)
+\method{as.tbl}{surveydata}(.data, ...)
 
 \method{select}{surveydata}(.data, ...)
 

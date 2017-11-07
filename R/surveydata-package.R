@@ -49,8 +49,18 @@
 #' @importFrom stats na.omit
 #' @importFrom utils localeToCharset
 #' @importFrom dplyr tibble if_else 
-#' @importFrom magrittr %>%
+#' @importFrom magrittr '%>%'
 #' @importFrom purrr map
+#' 
+#' @import rlang
+#' @import ggplot2
+#' @import dplyr
+#' @importFrom purrr map_chr map_dbl map_df
+#' @importFrom tidyr gather
+#' @importFrom scales percent
+#' @importFrom stats complete.cases na.omit
+#' @importFrom utils head tail
+#'  
 #' @title Tools, classes and methods to manipulate survey data.
 #' @author Andrie de Vries \email{apdevries@@gmail.com}
 #' @keywords package
