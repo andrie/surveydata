@@ -93,15 +93,23 @@ questions <- function(x, ptn=pattern(x)){
 #' Given a question id, e.g. "Q4", returns question text for this question. Note that this returns. The functions [qTextUnique()] and [qTextCommon()] returns the unique and common components of the question text.
 #'
 #' @param x A surveydata object
-#' @param Q The question id, e.g. "Q4"
+#' @param Q The question id, e.g. "Q4". If not supplied, returns the text for all questions.
 #' @family Question functions
 #' @keywords Questions
 #' @export 
 #' @return character vector
 #' @example /inst/examples/example-questions.R
 qText <- function(x, Q){
-  w <- which.q(x, Q)
-  as.character(varlabels(x)[w])
+  
+  do_one <- function(q){
+    w <- which.q(x, q)
+    as.character(varlabels(x)[w])
+  }
+  if(missing(Q) || is.null(Q)) {
+    sapply(questions(x), do_one)
+  } else {
+    do_one(Q)
+  }
 }
 
 

@@ -3,6 +3,7 @@
 # Author: Andrie
 #------------------------------------------------------------------------------
 
+if(interactive()) library(testthat)
 
 {
   sdat <- data.frame(
@@ -55,6 +56,11 @@ test_that("qText, qTextCommon and qTextUnique work as expected", {
     "crossbreak2",
     "weight")
   )  
+  
+  expect_equal(
+    qText(s),
+    sapply(questions(s), qText, x = s)
+  )
   
 })
 
