@@ -32,7 +32,7 @@ survey_plot_title <- function(data, q, width = 50){
   ggtitle(
     label = paste0(
       q, ": ", 
-      qTextCommon(data, q)) %>% str_wrap_to_width(50),
+      question_text_common(data, q)) %>% str_wrap_to_width(50),
     subtitle = paste(
       "n =", 
       data[, q] %>% filter(complete.cases(.)) %>% nrow()
@@ -61,7 +61,7 @@ survey_plot_yes_no <- function(data, q){
   } else {
     sdat <- dat %>% 
       map_df(function(x)sum(na.omit(x) == "Yes") / length(na.omit(x)))
-    names(sdat) <- qTextUnique(data, q) %>% str_wrap_to_width(30)
+    names(sdat) <- question_text_unique(data, q) %>% str_wrap_to_width(30)
     sdat <- gather(sdat) %>% 
       arrange(.value) %>% 
       mutate(.key = factor(.key, .key))
@@ -139,7 +139,7 @@ survey_plot_satisfaction <- function(data, q, fun = c("net", "top3", "top2")){
   )
   data.frame(
     sats = map_dbl(data[, q], fun),
-    aspect = qTextUnique(data, q)
+    aspect = question_text_unique(data, q)
   ) %>% 
     arrange(-sats) %>% 
     mutate(aspect = factor(aspect, aspect)) %>% 

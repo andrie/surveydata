@@ -90,7 +90,7 @@ questions <- function(x, ptn=pattern(x)){
 
 #' Returns question text.
 #' 
-#' Given a question id, e.g. "Q4", returns question text for this question. Note that this returns. The functions [qTextUnique()] and [qTextCommon()] returns the unique and common components of the question text.
+#' Given a question id, e.g. "Q4", returns question text for this question. Note that this returns. The functions [question_text_unique()] and [question_text_common()] returns the unique and common components of the question text.
 #'
 #' @param x A surveydata object
 #' @param Q The question id, e.g. "Q4". If not supplied, returns the text for all questions.
@@ -100,7 +100,7 @@ questions <- function(x, ptn=pattern(x)){
 #' @export 
 #' @return character vector
 #' @example /inst/examples/example-questions.R
-qText <- function(x, Q){
+question_text <- function(x, Q){
   
   do_one <- function(q){
     w <- which.q(x, q)
@@ -113,37 +113,61 @@ qText <- function(x, Q){
   }
 }
 
+#' @export
+#' @rdname surveydata-deprecated
+qText <- function(...){
+  .Deprecated("question_text")
+  question_text(...)
+}
+
 
 #' Returns unique elements of question text.
 #' 
 #' Given a question id, e.g. "Q4", finds all subquestions, e.g. Q4_1, Q4_2, etc, 
 #' and returns the question text that is unique to each 
 #'
-#' @inheritParams qText
+#' @inheritParams question_text
 #' @family Question functions
 #' @keywords Questions
 #' @export 
 #' @return character vector
 #' @example /inst/examples/example-questions.R
-qTextUnique <- function(x, Q){
-  text <- qText(x, Q)
-  splitCommonUnique(text)$unique
+question_text_unique <- function(x, Q){
+  text <- question_text(x, Q)
+  split_common_unique(text)$unique
 }
+
+
+#' @export
+#' @rdname surveydata-deprecated
+qTextUnique <- function(...){
+  .Deprecated("question_text_unique")
+  question_text_unique(...)
+}
+
 
 #' Returns common element of question text.
 #' 
 #' Given a question id, e.g. "Q4", finds all subquestions, e.g. Q4_1, Q4_2, etc, 
 #' and returns the question text that is common to each. 
 #'
-#' @inheritParams qText
+#' @inheritParams question_text
 #' @family Question functions
 #' @keywords Questions
 #' @export 
 #' @return character vector
 #' @example /inst/examples/example-questions.R
-qTextCommon <- function(x, Q){
-  text <- qText(x, Q)
-  splitCommonUnique(text)$common
+question_text_common <- function(x, Q){
+  text <- question_text(x, Q)
+  split_common_unique(text)$common
+}
+
+
+#' @export
+#' @rdname surveydata-deprecated
+qTextCommon <- function(...){
+  .Deprecated("question_text_common")
+  question_text_common(...)
 }
 
 
@@ -154,7 +178,7 @@ qTextCommon <- function(x, Q){
 #' @keywords Questions
 #' @importFrom dplyr mutate arrange slice
 #' @param ptn A [regex()] pattern that defines how the string should be split into common and unique elements
-splitCommonUnique <- function(x, ptn=NULL){
+split_common_unique <- function(x, ptn=NULL){
   if(is.null(ptn)){
     ptn <- c(
       # Find "Please tell us" in "Email (Please tell us)"

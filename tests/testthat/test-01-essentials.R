@@ -42,11 +42,11 @@ test_that("Basic functionality", {
   res <- which.q(tsv, "Q4")
   expect_equal(res, 3:5)
   
-  expect_equal(qText(tsv, "Q1"), "Question 1")
-  expect_equal(qText(tsv, "Q4"), paste("Question 4:", c("red", "green", "blue")))
+  expect_equal(question_text(tsv, "Q1"), "Question 1")
+  expect_equal(question_text(tsv, "Q4"), paste("Question 4:", c("red", "green", "blue")))
   
-  expect_equal(qTextCommon(tsv, "Q4"), "Question 4")
-  expect_equal(qTextUnique(tsv, "Q4"), c("red", "green", "blue"))
+  expect_equal(question_text_common(tsv, "Q4"), "Question 4")
+  expect_equal(question_text_unique(tsv, "Q4"), c("red", "green", "blue"))
     
 })
 

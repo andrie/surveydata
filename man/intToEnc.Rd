@@ -24,7 +24,7 @@ intToEnc(8212)
 \code{\link[=iconv]{iconv()}}
 
 Other Functions to clean data: \code{\link{encToInt}},
-  \code{\link{fixCommonEncodingProblems}},
+  \code{\link{fix_common_encoding_problems}},
   \code{\link{fix_levels_01_spss}},
   \code{\link{has_dont_know}}, \code{\link{leveltest}},
   \code{\link{remove_all_dont_know}},

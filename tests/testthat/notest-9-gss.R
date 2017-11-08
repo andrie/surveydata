@@ -36,7 +36,7 @@ context("Integrated test of reading and analysing a survey file")
               "MARITAL STATUS OF 5TH PERSON", "MARITAL STATUS OF 6TH PERSON"
           ), .Names = c("mar1", "mar2", "mar3", "mar4", "mar5", "mar6")))
   
-    expect_equal((qText(gss, "where")), 
+    expect_equal((question_text(gss, "where")), 
       c("WHERE IS 1ST PERSON STAYING?", "WHERE IS 11TH PERSON (VISITOR) STAYING?", 
           "WHERE IS 2ND PERSON STAYING?", "WHERE IS 3RD PERSON STAYING?", 
           "WHERE IS 4TH PERSON STAYING?", "WHERE IS 5TH PERSON STAYING?", 

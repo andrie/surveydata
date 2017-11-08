@@ -10,6 +10,8 @@ remove_all_dont_know(x, dk = NULL, message = TRUE)
 \item{x}{List or data frame}
 
 \item{dk}{Character vector, containing search terms, e.g. \code{c("Do not know", "DK")}.  These terms will be replaced by \code{NA}. If \code{NULL}, defaults to \code{c("I don't know", "Don't Know", "Don't know", "Dont know" , "DK")}}
+
+\item{message}{If TRUE, displays message with the number of instances that were removed.}
 }
 \value{
 A data frame
@@ -21,7 +23,7 @@ Removes "Do not know" and other similar words from factor levels in data frame
 \code{\link[=hasDK]{hasDK()}} and \code{\link[=removeDK]{removeDK()}}
 
 Other Functions to clean data: \code{\link{encToInt}},
-  \code{\link{fixCommonEncodingProblems}},
+  \code{\link{fix_common_encoding_problems}},
   \code{\link{fix_levels_01_spss}},
   \code{\link{has_dont_know}}, \code{\link{intToEnc}},
   \code{\link{leveltest}}, \code{\link{remove_dont_know}}

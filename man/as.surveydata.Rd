@@ -22,8 +22,6 @@ un_surveydata(x)
 \item{defaultPtn}{The default for \code{ptn}, if it doesn't exist in the object that is being coerced.}
 
 \item{renameVarlabels}{If TRUE, turns variable.labels attribute into a named vector, using \code{names(x)} as names.}
-
-\item{x}{surveydata object}
 }
 \description{
 Methods for creating \code{surveydata} objects, testing for class, and coercion from other objects.
@@ -71,11 +69,11 @@ which.q(sv, "Q1")
 which.q(sv, "Q4")
 
 # Find question text
-qText(sv, "Q1")
-qText(sv, "Q4")
+question_text(sv, "Q1")
+question_text(sv, "Q4")
 
-qTextCommon(sv, "Q4")
-qTextUnique(sv, "Q4")
+question_text_common(sv, "Q4")
+question_text_unique(sv, "Q4")
 
 
 # Basic operations on a surveydata object, illustrated with the example dataset membersurvey
@@ -88,9 +86,9 @@ which.q(membersurvey, "Q1")
 which.q(membersurvey, "Q3")
 which.q(membersurvey, c("Q1", "Q3"))
 
-qText(membersurvey, "Q3")
-qTextUnique(membersurvey, "Q3")
-qTextCommon(membersurvey, "Q3")
+question_text(membersurvey, "Q3")
+question_text_unique(membersurvey, "Q3")
+question_text_common(membersurvey, "Q3")
 
 # Extracting columns from a surveydata object
 

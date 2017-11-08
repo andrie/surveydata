@@ -23,19 +23,19 @@
 #' * [cbind.surveydata()]
 #' 
 #' To extract question text from varlabels:
-#' * [qText()] 
-#' * [qTextCommon()]
-#' * [qTextUnique()] 
+#' * [question_text()] 
+#' * [question_text_common()]
+#' * [question_text_unique()] 
 #' 
 #' To fix common encoding problems:
 #' * [encToInt()]
 #' * [intToEnc()]
-#' * [fixCommonEncodingProblems()]
+#' * [fix_common_encoding_problems()]
 #' 
 #' To clean data:
-#' * [removeDK()] to remove "Don't know" responses 
-#' * [removeAllDK()] to remove "Don't know" responses from all questions
-#' * [fixLevels01()] to fix level formatting of all question with Yes/No type answers
+#' * [remove_dont_know()] to remove "Don't know" responses 
+#' * [remove_all_dont_know()] to remove "Don't know" responses from all questions
+#' * [fix_levels_01()] to fix level formatting of all question with Yes/No type answers
 #' 
 #' Miscellaneous tools:
 #' * [dropout()] to determine questions where respondents drop out

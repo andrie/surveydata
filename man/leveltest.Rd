@@ -12,15 +12,13 @@ leveltest_r(x)
 }
 \arguments{
 \item{x}{surveydata object}
-
-\item{x}{surveydata object}
 }
 \description{
 Fix level formatting of all question with Yes/No type answers.
 }
 \seealso{
 Other Functions to clean data: \code{\link{encToInt}},
-  \code{\link{fixCommonEncodingProblems}},
+  \code{\link{fix_common_encoding_problems}},
   \code{\link{fix_levels_01_spss}},
   \code{\link{has_dont_know}}, \code{\link{intToEnc}},
   \code{\link{remove_all_dont_know}},

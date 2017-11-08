@@ -49,7 +49,6 @@ as.surveydata <- function(x, sep="_", exclude="other", ptn=pattern(x),
   x
 }
 
-#' @param x surveydata object
 #' @export
 #' @rdname as.surveydata
 un_surveydata <- function(x){

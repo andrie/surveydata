@@ -15,6 +15,6 @@ test_that("encoding functions work",{
     intToEnc(226, encoding = "UTF-8"),
     intToEnc(147, encoding = "UTF-8"),
     collapse = "")
-  expect_equal(fixCommonEncodingProblems(test, encoding = "UTF-8"), "-")
+  expect_equal(fix_common_encoding_problems(test, encoding = "UTF-8"), "-")
 })
 

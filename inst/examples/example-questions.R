@@ -8,9 +8,9 @@ which.q(membersurvey, "Q1")
 which.q(membersurvey, "Q3")
 which.q(membersurvey, c("Q1", "Q3"))
 
-qText(membersurvey, "Q3")
-qTextUnique(membersurvey, "Q3")
-qTextCommon(membersurvey, "Q3")
+question_text(membersurvey, "Q3")
+question_text_unique(membersurvey, "Q3")
+question_text_common(membersurvey, "Q3")
 
 # Extracting columns from a surveydata object
 

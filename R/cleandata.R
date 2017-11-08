@@ -70,6 +70,8 @@ remove_dont_know <- function(x, dk = "Don't Know"){
 #' 
 #' @param x List or data frame 
 #' @param dk Character vector, containing search terms, e.g. `c("Do not know", "DK")`.  These terms will be replaced by `NA`. If `NULL`, defaults to `c("I don't know", "Don't Know", "Don't know", "Dont know" , "DK")`
+#' @param message If TRUE, displays message with the number of instances that were removed.
+#' 
 #' @seealso [hasDK()] and [removeDK()]
 #' @return A data frame
 #' @export
@@ -115,7 +117,6 @@ leveltest_spss <- function(x){
 }
 
 
-#' @param x surveydata object
 #' @export
 #' @rdname leveltest
 leveltest_r <- function(x){

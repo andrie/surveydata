@@ -19,7 +19,7 @@ Tests the levels of x contain any instances of "Don't know".  If so, replaces th
 }
 \seealso{
 Other Functions to clean data: \code{\link{encToInt}},
-  \code{\link{fixCommonEncodingProblems}},
+  \code{\link{fix_common_encoding_problems}},
   \code{\link{fix_levels_01_spss}},
   \code{\link{has_dont_know}}, \code{\link{intToEnc}},
   \code{\link{leveltest}},

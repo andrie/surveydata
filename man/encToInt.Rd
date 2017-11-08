@@ -23,7 +23,7 @@ encToInt("\\\\xfa")
 \seealso{
 \code{\link[=iconv]{iconv()}}
 
-Other Functions to clean data: \code{\link{fixCommonEncodingProblems}},
+Other Functions to clean data: \code{\link{fix_common_encoding_problems}},
   \code{\link{fix_levels_01_spss}},
   \code{\link{has_dont_know}}, \code{\link{intToEnc}},
   \code{\link{leveltest}},
