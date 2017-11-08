@@ -22,6 +22,8 @@
 #' 
 #' Methods for creating `surveydata` objects, testing for class, and coercion from other objects.
 #' 
+#' The function`un_surveydata()` removes the `surveydata` class from the object, leaving intact the other classes, e.g. `data.frame` or `tibble`
+#' 
 #' @param x Object to coerce to surveydata
 #' @param sep Separator between question and subquestion names
 #' @param exclude Excludes from pattern search
@@ -46,6 +48,15 @@ as.surveydata <- function(x, sep="_", exclude="other", ptn=pattern(x),
   pattern(x) <- ptn
   x
 }
+
+#' @param x surveydata object
+#' @export
+#' @rdname as.surveydata
+un_surveydata <- function(x){
+  class(x) <- setdiff(class(x), "surveydata")
+  x
+}
+
 
 
 #' Coerces surveydata object to data.frame.

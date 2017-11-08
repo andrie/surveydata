@@ -2,13 +2,33 @@ if(interactive()) library(testthat)
 context("clean data")
 
 test_that("cleandata functions work",{
-  expect_false(any(sapply(membersurvey, hasDK)))
-  expect_equal(membersurvey$Q2, removeDK(membersurvey$Q2))
-  expect_equal(membersurvey, removeAllDK(membersurvey))
+  expect_false(
+    any(sapply(membersurvey, has_dont_know))
+  )
   expect_equal(
-    levels(removeDK(membersurvey$Q2, dk = "Before 2002")),
-    as.character(2003:2011))
-  expect_false(leveltestR(membersurvey))
-  expect_is(fixLevels01(membersurvey), "surveydata")
+    membersurvey$Q2, 
+    remove_dont_know(membersurvey$Q2)
+  )
+  expect_equal(
+    membersurvey, 
+    remove_all_dont_know(membersurvey)
+  )
+  expect_equal(
+    levels(remove_dont_know(membersurvey$Q2, dk = "Before 2002")),
+    as.character(2003:2011)
+  )
+  expect_false(
+    leveltest_r(membersurvey)
+  )
+  expect_is(fix_levels_01(membersurvey), "surveydata")
+})
+
+
+test_that("deprecated functions return warnings",{
+  expect_warning(sapply(membersurvey, hasDK))
+  expect_warning(removeAllDK(membersurvey, message = FALSE))
+  expect_warning(removeDK(membersurvey$Q2, dk = "Before 2002"))
+  expect_warning(leveltestR(membersurvey))
+  expect_warning(fixLevels01(membersurvey))
 })
 

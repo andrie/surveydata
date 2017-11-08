@@ -2,10 +2,13 @@
 % Please edit documentation in R/surveydata.R
 \name{as.surveydata}
 \alias{as.surveydata}
+\alias{un_surveydata}
 \title{Coercion from and to surveydata.}
 \usage{
 as.surveydata(x, sep = "_", exclude = "other", ptn = pattern(x),
   defaultPtn = list(sep = sep, exclude = exclude), renameVarlabels = FALSE)
+
+un_surveydata(x)
 }
 \arguments{
 \item{x}{Object to coerce to surveydata}
@@ -19,9 +22,14 @@ as.surveydata(x, sep = "_", exclude = "other", ptn = pattern(x),
 \item{defaultPtn}{The default for \code{ptn}, if it doesn't exist in the object that is being coerced.}
 
 \item{renameVarlabels}{If TRUE, turns variable.labels attribute into a named vector, using \code{names(x)} as names.}
+
+\item{x}{surveydata object}
 }
 \description{
 Methods for creating \code{surveydata} objects, testing for class, and coercion from other objects.
+}
+\details{
+The function\code{un_surveydata()} removes the \code{surveydata} class from the object, leaving intact the other classes, e.g. \code{data.frame} or \code{tibble}
 }
 \examples{
 # Create surveydata object

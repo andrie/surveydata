@@ -1,31 +1,41 @@
 
-#' Remove surveydata class from object.
-#' 
-#' @param x surveydata object
-#' @export
-un_surveydata <- function(x){
-  class(x) <- setdiff(class(x), "surveydata")
-  x
-}
 
 #' @importFrom purrr map_chr
 str_wrap_to_width <- function(x, width = 30){
   map_chr(x, ~paste(strwrap(., width = width), collapse = "\n"))
 }
 
+utils::globalVariables(c(".key", ".value"))
+order_key_by_value <- function(data){
+  if (!is.factor(data$.key)) {
+    data %>%     
+      arrange(.value) %>% 
+      mutate(.key = factor(.key, .key))
+  } else {
+    data
+  }
+}
 
-#' Construct plot title from survey question.
+
+
+
+#' Construct plot title from the question text, wrapping at the desired width.
+#' 
+#' This creates a plot title using `[ggplot2::ggtitle()]`. The main title is string wrapped, and the subtitle is the number of observations in the data.
 #'
 #' @param data surveydata object
 #' @param q Question
+#' @param width Passed to [strwrap()]
 #' 
 #' @export
-make_plot_title <- function(data, q){
+survey_plot_title <- function(data, q, width = 50){
   ggtitle(
-    label = paste0(q, ": ", 
-                   qTextCommon(data, q)) %>% str_wrap_to_width(50),
-    subtitle = paste("n =", 
-                     data[, q] %>% filter(complete.cases(.)) %>% nrow()
+    label = paste0(
+      q, ": ", 
+      qTextCommon(data, q)) %>% str_wrap_to_width(50),
+    subtitle = paste(
+      "n =", 
+      data[, q] %>% filter(complete.cases(.)) %>% nrow()
     )
   )
 } 
@@ -34,11 +44,11 @@ utils::globalVariables(c("."))
 
 #' Plot data in yes/no format.
 #' 
-#' @inheritParams make_plot_title
+#' @inheritParams survey_plot_title
 #' 
 #' @export
-#' @family plotting functions
-plot_yes_no <- function(data, q){
+#' @family survey plotting functions
+survey_plot_yes_no <- function(data, q){
   dat <- data[, q]
   single <- ncol(dat) == 1
   if (single) {
@@ -60,31 +70,19 @@ plot_yes_no <- function(data, q){
     geom_point(colour = "blue") +
     scale_y_continuous(labels = scales::percent, limits = c(0, NA)) +
     coord_flip() +
-    make_plot_title(data, q) +
+    survey_plot_title(data, q) +
     xlab(NULL) +
     ylab(NULL)
 }
 
 
-utils::globalVariables(c(".key", ".value"))
-order_key_by_value <- function(data){
-  if (!is.factor(data$.key)) {
-    data %>%     
-      arrange(.value) %>% 
-      mutate(.key = factor(.key, .key))
-  } else {
-    data
-  }
-}
-
-
 #' Plots single and  as multi-response questions.
 #' 
-#' @inheritParams make_plot_title
+#' @inheritParams survey_plot_title
 #' 
 #' @export
-#' @family plotting functions
-plot_survey_question <- function(data, q){
+#' @family survey plotting functions
+survey_plot_question <- function(data, q){
   dat <- data[, q]
   dat %>% mutate(.key = .[[1]]) %>% 
     select(.key) %>% 
@@ -96,7 +94,7 @@ plot_survey_question <- function(data, q){
     ggplot(aes(x = .key, y = .value)) +
     geom_point(colour = "blue") +
     coord_flip() +
-    make_plot_title(data, q) +
+    survey_plot_title(data, q) +
     scale_y_continuous(labels = scales::percent, limits = c(0, NA)) +
     xlab(NULL) +
     ylab(NULL)
@@ -123,12 +121,12 @@ utils::globalVariables(c("sats", "aspect"))
 
 #' Plot satisfaction 
 #' 
-#' @inheritParams make_plot_title
+#' @inheritParams survey_plot_title
 #' @param fun Aggregation function, one of `net` (compute net satisfaction score), `top3` (compute top 3 box score) and `top2` (compute top 2 box score)
 #' 
 #' @export
-#' @family plotting functions
-plot_sats <- function(data, q, fun = c("net", "top3", "top2")){
+#' @family survey plotting functions
+survey_plot_satisfaction <- function(data, q, fun = c("net", "top3", "top2")){
   fun <- match.arg(fun)
   sats_levels <- levels(data[, q][[1]])
   fun <- switch(
@@ -151,7 +149,7 @@ plot_sats <- function(data, q, fun = c("net", "top3", "top2")){
                        minor_breaks = seq(0, 1, by = 0.1), 
                        limits = c(0, 1)) +
     coord_flip() +
-    make_plot_title(data, q) +
+    survey_plot_title(data, q) +
     xlab(NULL) +
     ylab(NULL)
 }
