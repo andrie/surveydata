@@ -11,12 +11,12 @@ Description: Data obtained from surveys contains information not only about the
     questions and the answer options. The 'surveydata' package makes it easy to
     keep track of this metadata, and to easily extract columns with
     specific questions.
-Version: 0.2.0
+Version: 0.2.0.9000
 URL: https://github.com/andrie/surveydata
-Date: 2017-07-19
+Date: 2017-11-08
 ByteCompile: yes
 Depends:
-    R (>= 2.15.0)
+    R (>= 3.0.0)
 Imports:
     stringr (>= 0.5),
     plyr,

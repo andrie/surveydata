@@ -1,7 +1,7 @@
 # Creates surveydata class and provides methods
 
 #
-#  surveydata/R/surveydata.R by Andrie de Vries  Copyright (C) 2011-2012
+#  surveydata/R/surveydata.R by Andrie de Vries  Copyright (C) 2011-2017
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
