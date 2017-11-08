@@ -36,24 +36,25 @@
 
 #------------------------------------------------------------------------------
 
+if(interactive()) library(testthat)
 context("Surveydata")
 
 test_that("as.surveydata and is.surveydata works as expected", {
       s <- as.surveydata(sdat)
       #expected_pattern <- c("^", "(_[[:digit:]])*(_.*)?$")
       expected_pattern <- list(sep="_", exclude="other")
-      expect_that(s, is_a("surveydata"))
-      expect_that(s, is_a("data.frame"))
-      expect_that(is.surveydata(s), is_true())
-      expect_that(is.surveydata(sdat), is_false())
-      expect_that(pattern(s), equals(expected_pattern))
+      expect_is(s, "surveydata")
+      expect_is(s, "data.frame")
+      expect_true(is.surveydata(s))
+      expect_false(is.surveydata(sdat))
+      expect_equal(pattern(s), expected_pattern)
       
       #new_pattern <- c("", "new_pattern$")
       new_pattern <- list(sep=":", exclude="last") 
       s <- as.surveydata(sdat, ptn=new_pattern)
-      expect_that(s, is_a("surveydata"))
-      expect_that(is.surveydata(s), is_true())
-      expect_that(pattern(s), equals(new_pattern))
+      expect_is(s, "surveydata")
+      expect_true(is.surveydata(s))
+      expect_equal(pattern(s), new_pattern)
     })
 
 test_that("Varlabel names are allocated correctly",{
@@ -89,12 +90,12 @@ test_that("Pattern functions work as expected", {
       pattern <- "-pattern-"
       s <- as.surveydata(sdat)
       attr(s, "pattern") <- pattern
-      expect_that(pattern(s), equals(pattern))
+      expect_equal(pattern(s), pattern)
       
       attr(s, "pattern") <- NULL
-      expect_that(is.null(pattern(s)), is_true())
+      expect_true(is.null(pattern(s)))
       pattern(s) <- pattern
-      expect_that(attr(s, "pattern"), equals(pattern))
+      expect_equal(attr(s, "pattern"), pattern)
     })
 
 test_that("Removing attributes work as expected", {
@@ -133,11 +134,9 @@ test_that("Name_replace works as expected", {
 #------------------------------------------------------------------------------
 
 test_that("warnings are issued when names and varlabels mismatch", {
-      s <- as.surveydata(sdat)
-      
-      s2 <- s
+      s2 <- as.surveydata(sdat)
       varlabels(s2) <- varlabels(s2)[-1]
-      shows_message(is.surveydata(s2))
+      expect_warning(is.surveydata(s2), "names and varlabel names must match")
       
     })
 
