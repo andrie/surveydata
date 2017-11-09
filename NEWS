@@ -1,3 +1,17 @@
+surveydata 0.2.1 (2017-11-08)
+-----------------
+
+Breaking changes:
+
+* Most of the functions now have `snake_case` names that are more descriptive, e.g. `qText()` is now `question_text()`.
+* The `question_text()` function now returns all text if the question number is empty.
+
+
+New functionality:
+
+* New set of plotting functions
+
+
 surveydata 0.2.0 (2017-07-19)
 -----------------
 
@@ -5,6 +19,7 @@ Changes:
 
 * Supports `dplyr` verbs, including `mutate()`, `filter()`, `arrange()` and `select()`
 * Updated vignette
+
 
 surveydata 0.1-14 (2013-10-25)
 -----------------
