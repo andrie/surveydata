@@ -12,7 +12,7 @@
 
 <meta name="author" content="Andrie de Vries" />
 
-<meta name="date" content="2017-11-07" />
+<meta name="date" content="2018-01-16" />
 
 <title>Introduction to the surveydata package.</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Introduction to the surveydata package.</h1>
 <h4 class="author"><em>Andrie de Vries</em></h4>
-<h4 class="date"><em>2017-11-07</em></h4>
+<h4 class="date"><em>2018-01-16</em></h4>
 
 
 
@@ -237,21 +237,21 @@ sv</code></pre></div>
 </div>
 <div id="reading-the-questionnaire-text" class="section level2">
 <h2>Reading the questionnaire text</h2>
-<p>The function <code>qText()</code> gives access to the questionnaire text.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qText</span>(sv, <span class="st">&quot;Q1&quot;</span>)</code></pre></div>
+<p>The function <code>question_text()</code> gives access to the questionnaire text.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">question_text</span>(sv, <span class="st">&quot;Q1&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;Question 1&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qText</span>(sv, <span class="st">&quot;Q4&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">question_text</span>(sv, <span class="st">&quot;Q4&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;Question 4: red&quot;   &quot;Question 4: green&quot; &quot;Question 4: blue&quot;</code></pre>
 <div id="getting-the-common-question-text" class="section level3">
 <h3>Getting the common question text</h3>
-<p>Use <code>qTextCommon()</code> to retrieve the common text, i.e. the question itself:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qTextCommon</span>(sv, <span class="st">&quot;Q4&quot;</span>)</code></pre></div>
+<p>Use <code>question_text_common()</code> to retrieve the common text, i.e. the question itself:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">question_text_common</span>(sv, <span class="st">&quot;Q4&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;Question 4&quot;</code></pre>
 </div>
 <div id="getting-the-unique-question-text" class="section level3">
 <h3>Getting the unique question text</h3>
-<p>And use <code>qTextUnique()</code> to retrieve the unique part of the question, i.e. the subquestions:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qTextUnique</span>(sv, <span class="st">&quot;Q4&quot;</span>)</code></pre></div>
+<p>And use <code>question_text_unique()</code> to retrieve the unique part of the question, i.e. the subquestions:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">question_text_unique</span>(sv, <span class="st">&quot;Q4&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;red&quot;   &quot;green&quot; &quot;blue&quot;</code></pre>
 </div>
 </div>

@@ -1,3 +1,5 @@
+library(surveydata)
+
 # Create surveydata object
 
 sdat <- data.frame(
@@ -20,7 +22,7 @@ varlabels(sdat) <- c(
     "weight"
   )
 
-sv <- as.surveydata(sdat, renameVarlabels=TRUE)
+sv <- as.surveydata(sdat, renameVarlabels = TRUE)
 
 # Extract specific questions
 sv[, "Q1"]

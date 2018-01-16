@@ -30,6 +30,8 @@ Methods for creating \code{surveydata} objects, testing for class, and coercion 
 The function\code{un_surveydata()} removes the \code{surveydata} class from the object, leaving intact the other classes, e.g. \code{data.frame} or \code{tibble}
 }
 \examples{
+library(surveydata)
+
 # Create surveydata object
 
 sdat <- data.frame(
@@ -52,7 +54,7 @@ varlabels(sdat) <- c(
     "weight"
   )
 
-sv <- as.surveydata(sdat, renameVarlabels=TRUE)
+sv <- as.surveydata(sdat, renameVarlabels = TRUE)
 
 # Extract specific questions
 sv[, "Q1"]

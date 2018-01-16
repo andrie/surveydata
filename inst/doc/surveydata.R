@@ -88,9 +88,9 @@ which.q(sv, "Q4")
 question_text(sv, "Q1")
 question_text(sv, "Q4")
 
-## ----question_text_common------------------------------------------------
+## ----qTextCommon---------------------------------------------------------
 question_text_common(sv, "Q4")
 
-## ----question_text_unique------------------------------------------------
+## ----qTextUnique---------------------------------------------------------
 question_text_unique(sv, "Q4")
 
