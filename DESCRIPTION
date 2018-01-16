@@ -1,5 +1,5 @@
 Package: surveydata
-Version: 0.2.1
+Version: 0.2.1.9000
 Date: 2018-01-16
 License: GPL-2|GPL-3
 Title: Tools to Work with Survey Data
@@ -37,4 +37,3 @@ Suggests:
 RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
-
