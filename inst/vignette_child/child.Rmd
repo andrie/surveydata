@@ -175,28 +175,28 @@ which.q(sv, "Q4")
 
 ## Reading the questionnaire text
 
-The function `qText()` gives access to the questionnaire text.
+The function `question_text()` gives access to the questionnaire text.
 
-```{r qtext}
-qText(sv, "Q1")
-qText(sv, "Q4")
+```{r question_text}
+question_text(sv, "Q1")
+question_text(sv, "Q4")
 ```
 
 
 ### Getting the common question text
 
-Use `qTextCommon()` to retrieve the common text, i.e. the question itself:
+Use `question_text_common()` to retrieve the common text, i.e. the question itself:
 
 ```{r qTextCommon}
-qTextCommon(sv, "Q4")
+question_text_common(sv, "Q4")
 ```
 
 ### Getting the unique question text
 
-And use `qTextUnique()` to retrieve the unique part of the question, i.e. the subquestions:
+And use `question_text_unique()` to retrieve the unique part of the question, i.e. the subquestions:
 
 ```{r qTextUnique}
-qTextUnique(sv, "Q4")
+question_text_unique(sv, "Q4")
 ```
 
 

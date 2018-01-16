@@ -24,11 +24,10 @@ intToEnc(8212)
 \code{\link[=iconv]{iconv()}}
 
 Other Functions to clean data: \code{\link{encToInt}},
-  \code{\link{fixCommonEncodingProblems}},
-  \code{\link{fixLevels01R}},
-  \code{\link{fixLevels01SPSS}}, \code{\link{fixLevels01}},
-  \code{\link{hasDK}}, \code{\link{leveltestR}},
-  \code{\link{leveltestSPSS}}, \code{\link{removeAllDK}},
-  \code{\link{removeDK}}
+  \code{\link{fix_common_encoding_problems}},
+  \code{\link{fix_levels_01_spss}},
+  \code{\link{has_dont_know}}, \code{\link{leveltest}},
+  \code{\link{remove_all_dont_know}},
+  \code{\link{remove_dont_know}}
 }
 \keyword{encoding}

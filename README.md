@@ -1,7 +1,7 @@
 Surveydata: Tools to Work with Survey Data
 ================
 
-master: [![master build status](https://travis-ci.org/andrie/surveydata.svg?branch=master)](https://travis-ci.org/andrie/surveydata) dev: [![dev build status](https://travis-ci.org/andrie/surveydata.svg?branch=dev)](https://travis-ci.org/andrie/surveydata) [![](http://www.r-pkg.org/badges/version/surveydata)](http://www.r-pkg.org/pkg/surveydata) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/surveydata)](http://www.r-pkg.org/pkg/surveydata) [![Coverage Status](https://img.shields.io/codecov/c/github/andrie/surveydata/master.svg)](https://codecov.io/github/andrie/surveydata?branch=master)
+master: [![master build status](https://travis-ci.org/andrie/surveydata.svg?branch=master)](https://travis-ci.org/andrie/surveydata) dev: [![dev build status](https://travis-ci.org/andrie/surveydata.svg?branch=dev)](https://travis-ci.org/andrie/surveydata) [![](http://www.r-pkg.org/badges/version/surveydata)](http://www.r-pkg.org/pkg/surveydata) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/surveydata)](http://www.r-pkg.org/pkg/surveydata) [![Coverage Status](http://img.shields.io/codecov/c/github/andrie/surveydata/master.svg)](https://codecov.io/github/andrie/surveydata?branch=master)
 
 The `surveydata` package makes it easy to work with typical survey data that originated in SPSS or other formats.
 
@@ -32,19 +32,19 @@ sv
 ```
 
     ## # A tibble: 215 x 109
-    ##       id  Q1_1  Q1_2          Q2   Q3_1   Q3_2   Q3_3   Q3_4   Q3_5   Q3_6
-    ##    <dbl> <dbl> <dbl>       <ord> <fctr> <fctr> <fctr> <fctr> <fctr> <fctr>
-    ##  1     3     8   2.0        2009     No     No     No     No     No     No
-    ##  2     5    35  12.0 Before 2002    Yes     No     No     No     No     No
-    ##  3     6    34  12.0 Before 2002    Yes    Yes     No     No     No    Yes
-    ##  4    11    20   9.0        2010     No     No     No     No     No     No
-    ##  5    13    20   3.0        2010     No     No     No     No     No     No
-    ##  6    15    36  20.0 Before 2002     No    Yes     No     No     No     No
-    ##  7    21    12   2.5        2009    Yes     No     No     No     No    Yes
-    ##  8    22    11   0.5        2011    Yes    Yes    Yes    Yes    Yes     No
-    ##  9    23    18   3.0        2008    Yes    Yes    Yes    Yes    Yes    Yes
-    ## 10    25    24   8.0        2006     No     No     No    Yes    Yes    Yes
-    ## # ... with 205 more rows, and 99 more variables: Q3_7 <fctr>, Q3_8 <fctr>,
+    ##       id  Q1_1   Q1_2 Q2         Q3_1  Q3_2  Q3_3  Q3_4  Q3_5  Q3_6  Q3_7 
+    ##    <dbl> <dbl>  <dbl> <ord>      <fct> <fct> <fct> <fct> <fct> <fct> <fct>
+    ##  1  3.00  8.00  2.00  2009       No    No    No    No    No    No    No   
+    ##  2  5.00 35.0  12.0   Before 20~ Yes   No    No    No    No    No    No   
+    ##  3  6.00 34.0  12.0   Before 20~ Yes   Yes   No    No    No    Yes   No   
+    ##  4 11.0  20.0   9.00  2010       No    No    No    No    No    No    No   
+    ##  5 13.0  20.0   3.00  2010       No    No    No    No    No    No    No   
+    ##  6 15.0  36.0  20.0   Before 20~ No    Yes   No    No    No    No    No   
+    ##  7 21.0  12.0   2.50  2009       Yes   No    No    No    No    Yes   Yes  
+    ##  8 22.0  11.0   0.500 2011       Yes   Yes   Yes   Yes   Yes   No    No   
+    ##  9 23.0  18.0   3.00  2008       Yes   Yes   Yes   Yes   Yes   Yes   No   
+    ## 10 25.0  24.0   8.00  2006       No    No    No    Yes   Yes   Yes   No   
+    ## # ... with 205 more rows, and 98 more variables: Q3_8 <fct>, Q3_9 <fct>,
     ...
 
 Notice from this summary that Question 2 has two columns, i.e. `Q2_1` and `Q2_2`. You can extract both these columns by simply referring to `Q2`:
@@ -54,18 +54,18 @@ sv[, "Q2"]
 ```
 
     ## # A tibble: 215 x 1
-    ##             Q2
-    ##          <ord>
-    ##  1        2009
+    ##    Q2         
+    ##    <ord>      
+    ##  1 2009       
     ##  2 Before 2002
     ##  3 Before 2002
-    ##  4        2010
-    ##  5        2010
+    ##  4 2010       
+    ##  5 2010       
     ##  6 Before 2002
-    ##  7        2009
-    ##  8        2011
-    ##  9        2008
-    ## 10        2006
+    ##  7 2009       
+    ##  8 2011       
+    ##  9 2008       
+    ## 10 2006       
     ## # ... with 205 more rows
 
 However, the subset of `Q1` returns only a single column:
@@ -75,18 +75,18 @@ sv[, "Q2"]
 ```
 
     ## # A tibble: 215 x 1
-    ##             Q2
-    ##          <ord>
-    ##  1        2009
+    ##    Q2         
+    ##    <ord>      
+    ##  1 2009       
     ##  2 Before 2002
     ##  3 Before 2002
-    ##  4        2010
-    ##  5        2010
+    ##  4 2010       
+    ##  5 2010       
     ##  6 Before 2002
-    ##  7        2009
-    ##  8        2011
-    ##  9        2008
-    ## 10        2006
+    ##  7 2009       
+    ##  8 2011       
+    ##  9 2008       
+    ## 10 2006       
     ## # ... with 205 more rows
 
 Note that in both cases the `surveydata` object doesn't return a vector - subsetting a `surveydata` object always returns a `surveydata` object.
@@ -239,36 +239,36 @@ which.q(sv, "Q4")
 Reading the questionnaire text
 ------------------------------
 
-The function `qText()` gives access to the questionnaire text.
+The function `question_text()` gives access to the questionnaire text.
 
 ``` r
-qText(sv, "Q1")
+question_text(sv, "Q1")
 ```
 
     ## [1] "Question 1"
 
 ``` r
-qText(sv, "Q4")
+question_text(sv, "Q4")
 ```
 
     ## [1] "Question 4: red"   "Question 4: green" "Question 4: blue"
 
 ### Getting the common question text
 
-Use `qTextCommon()` to retrieve the common text, i.e. the question itself:
+Use `question_text_common()` to retrieve the common text, i.e. the question itself:
 
 ``` r
-qTextCommon(sv, "Q4")
+question_text_common(sv, "Q4")
 ```
 
     ## [1] "Question 4"
 
 ### Getting the unique question text
 
-And use `qTextUnique()` to retrieve the unique part of the question, i.e. the subquestions:
+And use `question_text_unique()` to retrieve the unique part of the question, i.e. the subquestions:
 
 ``` r
-qTextUnique(sv, "Q4")
+question_text_unique(sv, "Q4")
 ```
 
     ## [1] "red"   "green" "blue"

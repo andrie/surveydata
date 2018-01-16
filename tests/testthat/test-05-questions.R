@@ -3,6 +3,7 @@
 # Author: Andrie
 #------------------------------------------------------------------------------
 
+if(interactive()) library(testthat)
 
 {
   sdat <- data.frame(
@@ -35,15 +36,15 @@
 
 context("Questions")
 
-test_that("qText, qTextCommon and qTextUnique work as expected", {
+test_that("question_text, qTextCommon and qTextUnique work as expected", {
   s <- as.surveydata(sdat)
-  expect_equal(qText(s, "Q1"), "Question 1")
-  expect_equal(qText(s, "Q4"), c("Question 4: red", "Question 4: green", "Question 4: blue"))
-  expect_equal(qText(s, "Q10"), "Question 10")
-  expect_equal(qText(s, "Q99"), character(0))
+  expect_equal(question_text(s, "Q1"), "Question 1")
+  expect_equal(question_text(s, "Q4"), c("Question 4: red", "Question 4: green", "Question 4: blue"))
+  expect_equal(question_text(s, "Q10"), "Question 10")
+  expect_equal(question_text(s, "Q99"), character(0))
   
-  expect_equal(qTextCommon(s, "Q4"), "Question 4")
-  expect_equal(qTextUnique(s, "Q4"), c("red", "green", "blue"))
+  expect_equal(question_text_common(s, "Q4"), "Question 4")
+  expect_equal(question_text_unique(s, "Q4"), c("red", "green", "blue"))
   
   expect_equal(questions(s), c(
     "id",
@@ -55,6 +56,11 @@ test_that("qText, qTextCommon and qTextUnique work as expected", {
     "crossbreak2",
     "weight")
   )  
+  
+  expect_equal(
+    question_text(s),
+    sapply(questions(s), question_text, x = s)
+  )
   
 })
 
@@ -87,15 +93,15 @@ test_that("qText, qTextCommon and qTextUnique work as expected", {
 }
 
 #context("Questions 2")
-test_that("qText, qTextCommon and qTextUnique work as expected", {
+test_that("question_text, qTextCommon and qTextUnique work as expected", {
   s2 <- as.surveydata(sdat2, sep="__", exclude="ignore", renameVarlabels=TRUE)
-  expect_equal(qText(s2, "Q1"), "Question 1")
-  expect_equal(qText(s2, "Q4"), c("Question 4: red", "Question 4: green", "Question 4: blue"))
-  expect_equal(qText(s2, "Q10"), "Question 10")
-  expect_equal(qText(s2, "Q99"), character(0))
+  expect_equal(question_text(s2, "Q1"), "Question 1")
+  expect_equal(question_text(s2, "Q4"), c("Question 4: red", "Question 4: green", "Question 4: blue"))
+  expect_equal(question_text(s2, "Q10"), "Question 10")
+  expect_equal(question_text(s2, "Q99"), character(0))
   
-  expect_equal(qTextCommon(s2, "Q4"), "Question 4")
-  expect_equal(qTextUnique(s2, "Q4"), c("red", "green", "blue"))
+  expect_equal(question_text_common(s2, "Q4"), "Question 4")
+  expect_equal(question_text_unique(s2, "Q4"), c("red", "green", "blue"))
   
   expect_equal(questions(s2), c(
     "id",
@@ -113,53 +119,53 @@ test_that("qText, qTextCommon and qTextUnique work as expected", {
 
 #------------------------------------------------------------------------------
 
-#context("splitCommonUnique")
-test_that("splitCommonUnique works as expected", {
+#context("split_common_unique")
+test_that("split_common_unique works as expected", {
   test <- c("Email (Please tell us)", "Phone (Please tell us)")
   exp  <- list(common="Please tell us", unique=c("Email", "Phone"))
-  expect_equal(splitCommonUnique(test), exp)
+  expect_equal(split_common_unique(test), exp)
   
   test <- c("What is your choice?: Email", "What is your choice?: Phone")
   exp  <- list(common="What is your choice?", unique=c("Email", "Phone"))
-  expect_equal(splitCommonUnique(test), exp)
+  expect_equal(split_common_unique(test), exp)
   
   test <- c("What is your choice?:Email", "What is your choice?:Phone")
   exp  <- list(common="What is your choice?", unique=c("Email", "Phone"))
-  expect_equal(splitCommonUnique(test), exp)
+  expect_equal(split_common_unique(test), exp)
   
   test <- c("Q3(001)Email", "Q3(001)Phone")
   exp  <- list(common="Q3", unique=c("Email", "Phone"))
-  expect_equal(splitCommonUnique(test), exp)
+  expect_equal(split_common_unique(test), exp)
   
   test <- c("Q3(001) Email", "Q3(001) Phone")
   exp  <- list(common="Q3", unique=c("Email", "Phone"))
-  expect_equal(splitCommonUnique(test), exp)
+  expect_equal(split_common_unique(test), exp)
   
   test <- c("Q3[001] Email", "Q3[001] Phone")
   exp  <- list(common="Q3", unique=c("Email", "Phone"))
-  expect_equal(splitCommonUnique(test), exp)
+  expect_equal(split_common_unique(test), exp)
   
   test <- c("Q3[01]Email", "Q3[01]Phone")
   exp  <- list(common="Q3", unique=c("Email", "Phone"))
-  expect_equal(splitCommonUnique(test), exp)
+  expect_equal(split_common_unique(test), exp)
   
   test <- c("[Email]What is your choice?", "[Phone]What is your choice?")
   exp  <- list(common="What is your choice?", unique=c("Email", "Phone"))
-  expect_equal(splitCommonUnique(test), exp)
+  expect_equal(split_common_unique(test), exp)
   
   test <- c("What is your choice? [Email]", "What is your choice? [Phone]")
   exp  <- list(common="What is your choice?", unique=c("Email", "Phone"))
-  expect_equal(splitCommonUnique(test), exp)
+  expect_equal(split_common_unique(test), exp)
 
   test <- c("Question (answer 1 (with embedded parens))", 
             "Question (answer 2 without embedded parens)")
   exp  <- list(common="Question", unique=c("answer 1 (with embedded parens)",
                                            "answer 2 without embedded parens"))
-  expect_equal(splitCommonUnique(test), exp)
+  expect_equal(split_common_unique(test), exp)
   
   test <- c("Q_1", "Q_2")
   exp  <- list(common="Q_", unique=c("1", "2"))
-  expect_equal(splitCommonUnique(test), exp)
+  expect_equal(split_common_unique(test), exp)
 })
 
 

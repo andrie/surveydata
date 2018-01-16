@@ -1,5 +1,5 @@
 #
-#  surveydata/R/encoding.R by Andrie de Vries  Copyright (C) 2011-2012
+#  surveydata/R/encoding.R by Andrie de Vries  Copyright (C) 2011-2017
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -29,8 +29,8 @@
 #' @export 
 #' @family Functions to clean data
 #' @keywords encoding
-encToInt <- function(x, encoding=localeToCharset()){
-	utf8ToInt(iconv(x, from=encoding[1], to="UTF-8"))
+encToInt <- function(x, encoding = localeToCharset()){
+	utf8ToInt(iconv(x, from = encoding[1], to = "UTF-8"))
 }
 
 #' Converts an integer vector to a character vector.
@@ -46,20 +46,21 @@ encToInt <- function(x, encoding=localeToCharset()){
 #' @export 
 #' @family Functions to clean data
 #' @keywords encoding
-intToEnc <- function(x, encoding=localeToCharset()){
-	iconv(intToUtf8(x), from="UTF-8", to=encoding[1])
+intToEnc <- function(x, encoding = localeToCharset()){
+	iconv(intToUtf8(x), from = "UTF-8", to = encoding[1])
 }
 
 #' Fix common encoding problems when working with web imported data.
 #' 
 #' This function tries to resolve typical encoding problems when importing web data on Windows.
-#' Typical problems occur with pound and hyphen (-), especially when these originated in MS-Word.
+#' Typical problems occur with pound and emdash (-), especially when these originated in MS-Word.
+#' 
 #' @param x A character vector
 #' @inheritParams encToInt 
 #' @export
 #' @family Functions to clean data
 #' @keywords encoding
-fixCommonEncodingProblems <- function(x, encoding = localeToCharset()){
+fix_common_encoding_problems <- function(x, encoding = localeToCharset()){
   # Define character constants that need to be replaced
 
   ps <- list(

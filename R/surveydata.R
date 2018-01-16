@@ -1,7 +1,7 @@
 # Creates surveydata class and provides methods
 
 #
-#  surveydata/R/surveydata.R by Andrie de Vries  Copyright (C) 2011-2012
+#  surveydata/R/surveydata.R by Andrie de Vries  Copyright (C) 2011-2017
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -21,6 +21,8 @@
 #' Coercion from and to surveydata.
 #' 
 #' Methods for creating `surveydata` objects, testing for class, and coercion from other objects.
+#' 
+#' The function`un_surveydata()` removes the `surveydata` class from the object, leaving intact the other classes, e.g. `data.frame` or `tibble`
 #' 
 #' @param x Object to coerce to surveydata
 #' @param sep Separator between question and subquestion names
@@ -46,6 +48,14 @@ as.surveydata <- function(x, sep="_", exclude="other", ptn=pattern(x),
   pattern(x) <- ptn
   x
 }
+
+#' @export
+#' @rdname as.surveydata
+un_surveydata <- function(x){
+  class(x) <- setdiff(class(x), "surveydata")
+  x
+}
+
 
 
 #' Coerces surveydata object to data.frame.

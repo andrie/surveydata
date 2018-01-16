@@ -1,3 +1,5 @@
+library(surveydata)
+
 # Create surveydata object
 
 sdat <- data.frame(
@@ -20,7 +22,7 @@ varlabels(sdat) <- c(
     "weight"
   )
 
-sv <- as.surveydata(sdat, renameVarlabels=TRUE)
+sv <- as.surveydata(sdat, renameVarlabels = TRUE)
 
 # Extract specific questions
 sv[, "Q1"]
@@ -37,10 +39,10 @@ which.q(sv, "Q1")
 which.q(sv, "Q4")
 
 # Find question text
-qText(sv, "Q1")
-qText(sv, "Q4")
+question_text(sv, "Q1")
+question_text(sv, "Q4")
 
-qTextCommon(sv, "Q4")
-qTextUnique(sv, "Q4")
+question_text_common(sv, "Q4")
+question_text_unique(sv, "Q4")
 
 

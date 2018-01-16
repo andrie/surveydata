@@ -7,8 +7,7 @@ master: [![master build status](https://travis-ci.org/andrie/surveydata.svg?bran
 dev: [![dev build status](https://travis-ci.org/andrie/surveydata.svg?branch=dev)](https://travis-ci.org/andrie/surveydata)
 [![](http://www.r-pkg.org/badges/version/surveydata)](http://www.r-pkg.org/pkg/surveydata)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/surveydata)](http://www.r-pkg.org/pkg/surveydata)
-[![Coverage Status](https://img.shields.io/codecov/c/github/andrie/surveydata/master.svg)](https://codecov.io/github/andrie/surveydata?branch=master)
+[![Coverage Status](http://img.shields.io/codecov/c/github/andrie/surveydata/master.svg)](https://codecov.io/github/andrie/surveydata?branch=master)
 
-
-```{r, child="inst/vignette_child/child.Rmd"}
+```{r, child = rprojroot::find_package_root_file("inst/vignette_child/child.Rmd")}
 ```
