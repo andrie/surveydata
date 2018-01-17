@@ -13,15 +13,9 @@ matrix:
     dist: trusty
     r: release
     after_success:
-    - Rscript -e 'withr::with_envvar(c(NOT_CRAN="true"), {covr::codecov()})'
+    - Rscript -e 'withr::with_envvar(c(NOT_CRAN="true"), covr::codecov())'
 
   - os: linux
     dist: trusty
     r: devel
 
-  - os: osx
-    osx_image: xcode9
-    latex: false
-
-r_build_args: '--no-build-vignettes'
-r_check_args: '--as-cran --ignore-vignettes'
