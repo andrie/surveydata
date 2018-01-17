@@ -48,6 +48,7 @@ utils::globalVariables(c("."))
 #' 
 #' @export
 #' @family survey plotting functions
+#' @example inst/examples/example-plots.R
 survey_plot_yes_no <- function(data, q){
   dat <- data[, q]
   single <- ncol(dat) == 1
@@ -82,6 +83,7 @@ survey_plot_yes_no <- function(data, q){
 #' 
 #' @export
 #' @family survey plotting functions
+#' @example inst/examples/example-plots.R
 survey_plot_question <- function(data, q){
   dat <- data[, q]
   dat %>% mutate(.key = .[[1]]) %>% 
@@ -126,6 +128,7 @@ utils::globalVariables(c("sats", "aspect"))
 #' 
 #' @export
 #' @family survey plotting functions
+#' @example inst/examples/example-plots.R
 survey_plot_satisfaction <- function(data, q, fun = c("net", "top3", "top2")){
   fun <- match.arg(fun)
   sats_levels <- levels(data[, q][[1]])
@@ -143,7 +146,7 @@ survey_plot_satisfaction <- function(data, q, fun = c("net", "top3", "top2")){
   ) %>% 
     arrange(-sats) %>% 
     mutate(aspect = factor(aspect, aspect)) %>% 
-    ggplot(aes(x=aspect, y=sats)) + 
+    ggplot(aes(x = aspect, y = sats)) + 
     geom_point(colour = "blue") +
     scale_y_continuous(breaks = seq(0, 1, by = 0.5), 
                        minor_breaks = seq(0, 1, by = 0.1), 

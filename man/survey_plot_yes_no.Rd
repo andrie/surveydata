@@ -14,6 +14,14 @@ survey_plot_yes_no(data, q)
 \description{
 Plot data in yes/no format.
 }
+\examples{
+membersurvey \%>\% question_text()
+
+survey_plot_question(membersurvey, "Q2")
+survey_plot_yes_no(membersurvey, "Q2")
+survey_plot_satisfaction(membersurvey, "Q14")
+
+}
 \seealso{
 Other survey plotting functions: \code{\link{survey_plot_question}},
   \code{\link{survey_plot_satisfaction}}

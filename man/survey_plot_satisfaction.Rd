@@ -16,6 +16,14 @@ survey_plot_satisfaction(data, q, fun = c("net", "top3", "top2"))
 \description{
 Plot satisfaction
 }
+\examples{
+membersurvey \%>\% question_text()
+
+survey_plot_question(membersurvey, "Q2")
+survey_plot_yes_no(membersurvey, "Q2")
+survey_plot_satisfaction(membersurvey, "Q14")
+
+}
 \seealso{
 Other survey plotting functions: \code{\link{survey_plot_question}},
   \code{\link{survey_plot_yes_no}}
