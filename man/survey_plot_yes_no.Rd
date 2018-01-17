@@ -15,7 +15,7 @@ survey_plot_yes_no(data, q)
 Plot data in yes/no format.
 }
 \examples{
-membersurvey \%>\% question_text()
+question_text(membersurvey)
 
 survey_plot_question(membersurvey, "Q2")
 survey_plot_yes_no(membersurvey, "Q2")
