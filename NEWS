@@ -1,4 +1,4 @@
-surveydata 0.2.1 (2017-11-08)
+surveydata 0.2.1 (2018-01-17)
 -----------------
 
 Breaking changes:
@@ -10,6 +10,10 @@ Breaking changes:
 New functionality:
 
 * New set of plotting functions
+
+Other changes:
+
+* Package documentation built with `pkgdown`
 
 
 surveydata 0.2.0 (2017-07-19)
