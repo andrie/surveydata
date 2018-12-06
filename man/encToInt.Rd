@@ -30,4 +30,5 @@ Other Functions to clean data: \code{\link{fix_common_encoding_problems}},
   \code{\link{remove_all_dont_know}},
   \code{\link{remove_dont_know}}
 }
+\concept{Functions to clean data}
 \keyword{encoding}

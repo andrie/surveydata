@@ -60,6 +60,8 @@
 #' @importFrom scales percent
 #' @importFrom stats complete.cases na.omit
 #' @importFrom utils head tail
+#' 
+#' @importFrom assertthat assert_that
 #'  
 #' @title Tools, classes and methods to manipulate survey data.
 #' @author Andrie de Vries \email{apdevries@@gmail.com}

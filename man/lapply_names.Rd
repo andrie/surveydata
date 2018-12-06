@@ -21,3 +21,4 @@ This is useful to clean only some columns in a list (or \code{data.frame} or \co
 \seealso{
 Other Tools: \code{\link{question_order}}
 }
+\concept{Tools}

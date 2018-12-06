@@ -43,3 +43,4 @@ Other Attribute functions: \code{\link{pattern}}
 
 Other Attribute functions: \code{\link{pattern}}
 }
+\concept{Attribute functions}

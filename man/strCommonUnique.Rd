@@ -21,4 +21,5 @@ test <- c("Q_1", "Q_2", "Q_3")
 strCommonUnique(test)$common
 strCommonUnique(test)$unique
 }
+\concept{Strings}
 \keyword{string}

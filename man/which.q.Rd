@@ -52,4 +52,5 @@ Other Question functions: \code{\link{question_text_common}},
   \code{\link{question_text}}, \code{\link{questions}},
   \code{\link{split_common_unique}}
 }
+\concept{Question functions}
 \keyword{Questions}

@@ -25,5 +25,6 @@ Other Functions to clean data: \code{\link{encToInt}},
   \code{\link{leveltest}},
   \code{\link{remove_all_dont_know}}
 }
+\concept{Functions to clean data}
 \keyword{"clean}
 \keyword{data"}

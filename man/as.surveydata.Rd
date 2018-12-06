@@ -6,7 +6,8 @@
 \title{Coercion from and to surveydata.}
 \usage{
 as.surveydata(x, sep = "_", exclude = "other", ptn = pattern(x),
-  defaultPtn = list(sep = sep, exclude = exclude), renameVarlabels = FALSE)
+  defaultPtn = list(sep = sep, exclude = exclude),
+  renameVarlabels = FALSE)
 
 un_surveydata(x)
 }

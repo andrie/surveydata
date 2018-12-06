@@ -20,4 +20,5 @@ Other Question functions: \code{\link{question_text_common}},
   \code{\link{question_text}}, \code{\link{questions}},
   \code{\link{which.q}}
 }
+\concept{Question functions}
 \keyword{Questions}

@@ -1,6 +1,6 @@
 Package: surveydata
-Version: 0.2.1.9000
-Date: 2018-01-16
+Version: 0.2.2
+Date: 2018-12-06
 License: GPL-2|GPL-3
 Title: Tools to Work with Survey Data
 LazyData: true
@@ -28,7 +28,8 @@ Imports:
     ggplot2,
     scales,
     tidyr,
-    DT
+    DT,
+    assertthat
 Suggests:
     testthat,
     knitr,
@@ -36,6 +37,8 @@ Suggests:
     withr,
     covr,
     rprojroot
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
+Encoding: UTF-8
+

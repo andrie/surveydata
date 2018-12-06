@@ -3,7 +3,6 @@
 \name{pattern}
 \alias{pattern}
 \alias{pattern<-}
-\alias{pattern<-}
 \title{Returns and updates pattern attribute.}
 \usage{
 pattern(x)
@@ -47,3 +46,4 @@ rm(oldptn)
 
 Other Attribute functions: \code{\link{varlabels}}
 }
+\concept{Attribute functions}

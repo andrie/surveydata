@@ -30,6 +30,7 @@ mutate.surveydata <- function(.data, ...){
 #' @export
 #' @rdname dplyr-surveydata
 #' @importFrom dplyr select
+#' @importFrom dplyr as.tbl
 as.tbl.surveydata <- mutate.surveydata
 
 #' @export
