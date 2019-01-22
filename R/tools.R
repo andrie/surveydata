@@ -16,7 +16,7 @@
 #
 
 
-#' Calculates at which questions repondents drop out.
+#' Calculates at which questions respondents drop out.
 #' 
 #' The number of respondents for each question is calculated as the length of the vector, after omitting NA values.
 #' 
@@ -29,6 +29,6 @@
 dropout <- function(x, summary=TRUE){
   len <- sapply(x, function(xx)length(na.omit(xx)))
   ll <- rev(cummax(rev(len)))
-  len[c(1, 1+which(diff(ll) != 0))]
+  len[c(1, 1 + which(diff(ll) != 0))]
 }
 

@@ -17,7 +17,7 @@ mutate.surveydata <- function(.data, ...){
   same <- intersect(names(z), names(var_labels))
   new_labels <- var_labels[same]
   diff <- setdiff(names(z), names(var_labels))
-  if(length(diff) > 0){
+  if (length(diff) > 0) {
     new_labels[diff] <- setNames(diff, diff)
   }
   new_labels <- new_labels[names(z)]
@@ -60,8 +60,14 @@ arrange.surveydata <- mutate.surveydata
 
 #' @export
 #' @rdname dplyr-surveydata
+#' @importFrom dplyr summarise
+summarise.surveydata <- mutate.surveydata
+
+#' @export
+#' @rdname dplyr-surveydata
 #' @importFrom dplyr summarize
 summarize.surveydata <- mutate.surveydata
+
 
 
 #' @export

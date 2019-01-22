@@ -1,6 +1,6 @@
 Package: surveydata
-Version: 0.2.2
-Date: 2018-12-06
+Version: 0.2.3
+Date: 2019-01-22
 License: GPL-2|GPL-3
 Title: Tools to Work with Survey Data
 LazyData: true

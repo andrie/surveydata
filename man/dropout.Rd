@@ -2,7 +2,7 @@
 % Please edit documentation in R/tools.R
 \name{dropout}
 \alias{dropout}
-\title{Calculates at which questions repondents drop out.}
+\title{Calculates at which questions respondents drop out.}
 \usage{
 dropout(x, summary = TRUE)
 }

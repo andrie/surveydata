@@ -1,3 +1,28 @@
+surveydata 0.2.3 (2019-01-19)
+-----------------
+
+
+Changes:
+
+* No new functionality
+* Internal changes to comply with `dplyr_0.1.2`
+
+
+
+
+surveydata 0.2.2 (2018-12-06)
+-----------------
+
+
+New functionality:
+
+* Add print_opentext()
+
+Other changes:
+
+* Fix some import problems.
+
+
 surveydata 0.2.1 (2018-01-17)
 -----------------
 

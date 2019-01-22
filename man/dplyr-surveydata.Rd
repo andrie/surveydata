@@ -8,7 +8,7 @@
 \alias{filter.surveydata}
 \alias{filter}
 \alias{arrange.surveydata}
-\alias{summarize.surveydata}
+\alias{summarise.surveydata}
 \alias{slice.surveydata}
 \title{Methods to support dplyr verbs.}
 \usage{
@@ -22,7 +22,7 @@
 
 \method{arrange}{surveydata}(.data, ...)
 
-\method{summarize}{surveydata}(.data, ...)
+\method{summarise}{surveydata}(.data, ...)
 
 \method{slice}{surveydata}(.data, ...)
 }

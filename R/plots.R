@@ -55,8 +55,8 @@ survey_plot_yes_no <- function(data, q){
   if (single) {
     sdat <- dat %>% 
       mutate(.key = .[[1]]) %>% 
-      group_by(.key) %>% 
       filter(!is.na(.key)) %>% 
+      group_by(.key) %>% 
       summarise(.value = n()) %>%
       mutate(.value = .value / sum(.value))
   } else {
@@ -88,9 +88,9 @@ survey_plot_question <- function(data, q){
   dat <- data[, q]
   dat %>% mutate(.key = .[[1]]) %>% 
     select(.key) %>% 
+    filter(!is.na(.key)) %>% 
     group_by(.key) %>% 
     summarize(.value = n()) %>% 
-    filter(!is.na(.key)) %>% 
     mutate(.value = .value / sum(.value)) %>% 
     order_key_by_value() %>% 
     ggplot(aes(x = .key, y = .value)) +
