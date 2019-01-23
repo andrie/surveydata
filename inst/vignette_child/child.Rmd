@@ -70,11 +70,11 @@ Note that in both cases the `surveydata` object doesn't return a vector - subset
 
 A surveydata object consists of:
 
-* A data frame with a row for each respondent and a column for each question.   Column names are typically names in the pattern `Q1`, `Q2_1`, `Q2_2`, `Q3` - where underscores separate the subquestions when these originated in a grid (array) of questions.
+* A data frame with a row for each respondent and a column for each question.   Column names are typically names in the pattern `Q1`, `Q2_1`, `Q2_2`, `Q3` - where underscores separate the sub-questions when these originated in a grid (array) of questions.
 
 * Question metadata gets stored in the `{variable.labels} attribute of the data frame. This typically contains the original questionnaire text for each question.
 
-* Information about the subquestion separator (typically an underscore) is stored in the `patterns` attribute.
+* Information about the sub-question separator (typically an underscore) is stored in the `patterns` attribute.
 
 
 Data processing a survey file can be tricky, since the standard methods for dealing with data frames does not conserve the `variable.labels` attribute.  The `surveydata` package defines a `surveydata` class and the following methods that knows how to deal with the `variable.labels` attribute:
@@ -147,7 +147,7 @@ sv <- as.surveydata(sdat, renameVarlabels = TRUE)
 It is easy to extract specific questions with the `[` operator. This works very similar to extraction of data frames. However, there are two important differences:
 
 * The extraction operators will always return a `surveydata` object, even if only a single column is returned. This is different from the behaviour of data frames, where a single column is simplified to a vector.
-* Extracing a question with multiple subquestions, e.g. "Q4" returns multiple columns
+* Extracting a question with multiple sub-questions, e.g. "Q4" returns multiple columns
 
 
 ```{r extract}
@@ -193,7 +193,7 @@ question_text_common(sv, "Q4")
 
 ### Getting the unique question text
 
-And use `question_text_unique()` to retrieve the unique part of the question, i.e. the subquestions:
+And use `question_text_unique()` to retrieve the unique part of the question, i.e. the sub-questions:
 
 ```{r qTextUnique}
 question_text_unique(sv, "Q4")

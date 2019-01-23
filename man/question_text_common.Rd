@@ -15,7 +15,7 @@ question_text_common(x, Q)
 character vector
 }
 \description{
-Given a question id, e.g. "Q4", finds all subquestions, e.g. Q4_1, Q4_2, etc,
+Given a question id, e.g. "Q4", finds all sub-questions, e.g. "Q4_1", "Q4_2", etc,
 and returns the question text that is common to each.
 }
 \examples{

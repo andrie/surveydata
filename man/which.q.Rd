@@ -14,7 +14,7 @@ which.q(x, Q, ptn = pattern(x))
 \item{ptn}{A list with two elements, \code{sep} and \code{exclude}.  See \code{\link[=pattern]{pattern()}} and \code{\link[=which.q]{which.q()}} for more detail.}
 }
 \description{
-In many survey systems, subquestions take the form Q1_a, Q1_b, with the main question and subquestion separated by an underscore. This function conveniently returns column index of matches found for a question id in a \link{surveydata} object. It does this by using the \link{pattern} attribute of the surveydata object.
+In many survey systems, sub-questions take the form "Q1_a", "Q1_b", with the main question and sub-question separated by an underscore. This function conveniently returns column index of matches found for a question id in a \link{surveydata} object. It does this by using the \link{pattern} attribute of the \code{surveydata} object.
 }
 \examples{
 # Basic operations on a surveydata object, illustrated with the example dataset membersurvey

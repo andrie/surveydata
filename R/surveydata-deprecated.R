@@ -1,7 +1,7 @@
 #' Deprecated functions.
 #'
 #' @description
-#' These functions have all been superceded with functions using `snake_case` function names.
+#' These functions have all been superseded with functions using `snake_case` function names.
 #'
 #' * `hasDK`: [has_dont_know()]
 #' * `removeDK`: [remove_dont_know()]

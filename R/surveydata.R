@@ -25,7 +25,7 @@
 #' The function`un_surveydata()` removes the `surveydata` class from the object, leaving intact the other classes, e.g. `data.frame` or `tibble`
 #'
 #' @param x Object to coerce to surveydata
-#' @param sep Separator between question and subquestion names
+#' @param sep Separator between question and sub-question names
 #' @param exclude Excludes from pattern search
 #' @param ptn A list with two elements, `sep` and `exclude`.  See [pattern()] and [which.q()] for more detail.
 #' @param defaultPtn The default for `ptn`, if it doesn't exist in the object that is being coerced.

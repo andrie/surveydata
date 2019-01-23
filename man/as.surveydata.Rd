@@ -14,7 +14,7 @@ un_surveydata(x)
 \arguments{
 \item{x}{Object to coerce to surveydata}
 
-\item{sep}{Separator between question and subquestion names}
+\item{sep}{Separator between question and sub-question names}
 
 \item{exclude}{Excludes from pattern search}
 

@@ -15,7 +15,7 @@ pattern(x) <- value
 \item{value}{New value}
 }
 \description{
-The pattern attribute contains information about the separator character used to name subquestions in the data.  Survey software typically makes use of underscores to distinguish subquestions in a grid of questions, e.g. Q4_1, Q4_2, Q4_3, Q4_other. The function \code{\link[=pattern]{pattern()}} returns the \code{pattern} attribute, and \link{pattern<-} updates the attribute.
+The pattern attribute contains information about the separator character used to name sub-questions in the data.  Survey software typically makes use of underscores to distinguish sub-questions in a grid of questions, e.g. "Q4_1", "Q4_2", "Q4_3", "Q4_other". The function \code{\link[=pattern]{pattern()}} returns the \code{pattern} attribute, and \link{pattern<-} updates the attribute.
 }
 \examples{
 # Extract the pattern from membersurvey

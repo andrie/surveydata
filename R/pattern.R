@@ -20,7 +20,7 @@
 
 #' Returns and updates pattern attribute.
 #'
-#' The pattern attribute contains information about the separator character used to name subquestions in the data.  Survey software typically makes use of underscores to distinguish subquestions in a grid of questions, e.g. Q4_1, Q4_2, Q4_3, Q4_other. The function [pattern()] returns the `pattern` attribute, and [pattern<-] updates the attribute.
+#' The pattern attribute contains information about the separator character used to name sub-questions in the data.  Survey software typically makes use of underscores to distinguish sub-questions in a grid of questions, e.g. "Q4_1", "Q4_2", "Q4_3", "Q4_other". The function [pattern()] returns the `pattern` attribute, and [pattern<-] updates the attribute.
 #'
 #'
 #' @aliases pattern pattern<-

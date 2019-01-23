@@ -25,7 +25,7 @@ qPattern <- function(Q, ptn) {
 
 #' Identifies the columns indices corresponding to a specific question.
 #'
-#' In many survey systems, subquestions take the form Q1_a, Q1_b, with the main question and subquestion separated by an underscore. This function conveniently returns column index of matches found for a question id in a [surveydata] object. It does this by using the [pattern] attribute of the surveydata object.
+#' In many survey systems, sub-questions take the form "Q1_a", "Q1_b", with the main question and sub-question separated by an underscore. This function conveniently returns column index of matches found for a question id in a [surveydata] object. It does this by using the [pattern] attribute of the `surveydata` object.
 #'
 #' @inheritParams as.surveydata
 #' @param Q Character string with question number, e.g. "Q2"
@@ -71,7 +71,7 @@ which.q <- function(x, Q, ptn = pattern(x)) {
 
 #' Returns a list of all the unique questions in the surveydata object.
 #'
-#' In many survey systems, subquestions take the form Q1_a, Q1_b, with the main question and subquestion separated by an underscore. This function conveniently returns all of the main questions in a [surveydata()] object. It does this by using the [pattern()] attribute of the surveydata object.
+#' In many survey systems, sub-questions take the form Q1_a, Q1_b, with the main question and sub-question separated by an underscore. This function conveniently returns all of the main questions in a [surveydata()] object. It does this by using the [pattern()] attribute of the surveydata object.
 #'
 #' @inheritParams as.surveydata
 #' @inheritParams which.q
@@ -126,7 +126,7 @@ qText <- function(...) {
 
 #' Returns unique elements of question text.
 #'
-#' Given a question id, e.g. "Q4", finds all subquestions, e.g. Q4_1, Q4_2, etc,
+#' Given a question id, e.g. "Q4", finds all sub-questions, e.g. Q4_1, Q4_2, etc,
 #' and returns the question text that is unique to each
 #'
 #' @inheritParams question_text
@@ -151,7 +151,7 @@ qTextUnique <- function(...) {
 
 #' Returns common element of question text.
 #'
-#' Given a question id, e.g. "Q4", finds all subquestions, e.g. Q4_1, Q4_2, etc,
+#' Given a question id, e.g. "Q4", finds all sub-questions, e.g. "Q4_1", "Q4_2", etc,
 #' and returns the question text that is common to each.
 #'
 #' @inheritParams question_text

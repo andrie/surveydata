@@ -15,7 +15,7 @@ questions(x, ptn = pattern(x))
 numeric vector
 }
 \description{
-In many survey systems, subquestions take the form Q1_a, Q1_b, with the main question and subquestion separated by an underscore. This function conveniently returns all of the main questions in a \code{\link[=surveydata]{surveydata()}} object. It does this by using the \code{\link[=pattern]{pattern()}} attribute of the surveydata object.
+In many survey systems, sub-questions take the form Q1_a, Q1_b, with the main question and sub-question separated by an underscore. This function conveniently returns all of the main questions in a \code{\link[=surveydata]{surveydata()}} object. It does this by using the \code{\link[=pattern]{pattern()}} attribute of the surveydata object.
 }
 \examples{
 # Basic operations on a surveydata object, illustrated with the example dataset membersurvey

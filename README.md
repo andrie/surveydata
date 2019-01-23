@@ -115,14 +115,14 @@ A surveydata object consists of:
 
   - A data frame with a row for each respondent and a column for each
     question. Column names are typically names in the pattern `Q1`,
-    `Q2_1`, `Q2_2`, `Q3` - where underscores separate the subquestions
+    `Q2_1`, `Q2_2`, `Q3` - where underscores separate the sub-questions
     when these originated in a grid (array) of questions.
 
   - Question metadata gets stored in the \`{variable.labels} attribute
     of the data frame. This typically contains the original
     questionnaire text for each question.
 
-  - Information about the subquestion separator (typically an
+  - Information about the sub-question separator (typically an
     underscore) is stored in the `patterns` attribute.
 
 Data processing a survey file can be tricky, since the standard methods
@@ -209,7 +209,7 @@ important differences:
     even if only a single column is returned. This is different from the
     behaviour of data frames, where a single column is simplified to a
     vector.
-  - Extracing a question with multiple subquestions, e.g. “Q4” returns
+  - Extracting a question with multiple sub-questions, e.g. “Q4” returns
     multiple columns
 
 <!-- end list -->
@@ -313,7 +313,7 @@ question_text_common(sv, "Q4")
 ### Getting the unique question text
 
 And use `question_text_unique()` to retrieve the unique part of the
-question, i.e. the subquestions:
+question, i.e. the sub-questions:
 
 ``` r
 question_text_unique(sv, "Q4")

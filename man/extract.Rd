@@ -8,7 +8,7 @@
 \alias{[<-.surveydata}
 \alias{$<-.surveydata}
 \alias{$<-}
-\title{Extract or replace subsets of surveydata, ensuring that the varlabels stay in synch.}
+\title{Extract or replace subsets of surveydata, ensuring that the varlabels stay synchronized.}
 \usage{
 \method{[}{surveydata}(x, i, j, drop = FALSE)
 
@@ -32,13 +32,13 @@
 \item{...}{Other arguments passed to \code{[.data.frame}}
 }
 \description{
-The surveydata package makes it easy to extract specific questions from a surveydata object. Because survey data typically has question names like Q1_a, Q1_b, Q1_c the extract method for a surveydata object makes it easy to extract all columns by simply specifing "Q1" as the argument to the column index.
+The \code{surveydata} package makes it easy to extract specific questions from a surveydata object. Because survey data typically has question names like "Q1_a", "Q1_b", "Q1_c" the extract method for a \code{surveydata} object makes it easy to extract all columns by simply specifying "Q1" as the argument to the column index.
 }
 \details{
 Extraction is similar to data frames, with three important exceptions:
 \itemize{
-\item The column argument j is evaluated using \code{\link[=which.q]{which.q()}} and will return all columns where the column names match the \code{\link[=pattern]{pattern()}}.
-\item The drop argument is FALSE. Thus the result will always be a surveydata object, even if only a single column is returned.
+\item The column argument \code{j} is evaluated using \code{\link[=which.q]{which.q()}} and will return all columns where the column names match the \code{\link[=pattern]{pattern()}}.
+\item The \code{drop} argument is \code{FALSE}. Thus the result will always be a surveydata object, even if only a single column is returned.
 \item All extraction methods retain the \code{pattern} and \code{varlabels} arguments.
 }
 }

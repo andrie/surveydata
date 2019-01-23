@@ -49,7 +49,7 @@ fixCommonEncodingProblems(...)
 \item{...}{passed to replacement function}
 }
 \description{
-These functions have all been superceded with functions using \code{snake_case} function names.
+These functions have all been superseded with functions using \code{snake_case} function names.
 \itemize{
 \item \code{hasDK}: \code{\link[=has_dont_know]{has_dont_know()}}
 \item \code{removeDK}: \code{\link[=remove_dont_know]{remove_dont_know()}}

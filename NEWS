@@ -6,6 +6,7 @@ Changes:
 
 * No new functionality
 * Internal changes to comply with `dplyr_0.1.2`
+* Documentation improvements, including spell check and improved `pkgdown`
 
 
 

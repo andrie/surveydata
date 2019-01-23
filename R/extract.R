@@ -18,13 +18,13 @@
 #
 
 
-#' Extract or replace subsets of surveydata, ensuring that the varlabels stay in synch.
+#' Extract or replace subsets of surveydata, ensuring that the varlabels stay synchronized.
 #'
-#' The surveydata package makes it easy to extract specific questions from a surveydata object. Because survey data typically has question names like Q1_a, Q1_b, Q1_c the extract method for a surveydata object makes it easy to extract all columns by simply specifing "Q1" as the argument to the column index.
+#' The `surveydata` package makes it easy to extract specific questions from a surveydata object. Because survey data typically has question names like "Q1_a", "Q1_b", "Q1_c" the extract method for a `surveydata` object makes it easy to extract all columns by simply specifying "Q1" as the argument to the column index.
 #'
 #' Extraction is similar to data frames, with three important exceptions:
-#' * The column argument j is evaluated using [which.q()] and will return all columns where the column names match the [pattern()].
-#' * The drop argument is FALSE. Thus the result will always be a surveydata object, even if only a single column is returned.
+#' * The column argument `j` is evaluated using [which.q()] and will return all columns where the column names match the [pattern()].
+#' * The `drop` argument is `FALSE`. Thus the result will always be a surveydata object, even if only a single column is returned.
 #' * All extraction methods retain the `pattern` and `varlabels` arguments.
 #'
 #' @name Extract
@@ -55,7 +55,8 @@
     } else {
       name <- j
     }
-  } else { # !has.j
+  } else { 
+    # !has.j
     name <- seq_along(x)
   }
 
