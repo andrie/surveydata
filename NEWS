@@ -16,11 +16,11 @@ surveydata 0.2.2 (2018-12-06)
 
 New functionality:
 
-* Add print_opentext()
+* Add `print_opentext()`
 
 Other changes:
 
-* Fix some import problems.
+* Fix some package `Imports:` problems.
 
 
 surveydata 0.2.1 (2018-01-17)

@@ -1,17 +1,4 @@
-#' Methods to support dplyr verbs.
-#' @name dplyr-surveydata
-#' @param .data surveydata object or tbl passed to dplyr verb
-#' @param ... passed to dplyr verb
-#' @keywords internal
-#' 
-#' @export
-#' @importFrom stats setNames
-#' @importFrom dplyr mutate
-#' @details The surveydata exposes functionality to support some of the dplyr verbs, e.g. [dplyr::filter()]
-#' @examples 
-#' library(dplyr)
-#' membersurvey %>% as.tbl() %>% filter(Q2 == 2009)
-mutate.surveydata <- function(.data, ...){
+verb.surveydata <- function(.data, ...) {
   var_labels <- varlabels(.data)
   z <- NextMethod(.data)
   same <- intersect(names(z), names(var_labels))
@@ -22,55 +9,73 @@ mutate.surveydata <- function(.data, ...){
   }
   new_labels <- new_labels[names(z)]
   varlabels(z) <- new_labels
-  z <- as.surveydata(z)
-  # class(z) <- c("surveydata", class(z))
-  z
+  as.surveydata(z)
 }
+
+
+#' Methods to support dplyr verbs.
+#'
+#' The `surveydata` package exposes functionality to support some of the `dplyr` verbs, e.g. [dplyr::filter()].  The computation is performed by `dplyr`, and the resulting object is of class `surveydata` (as well as the `dplyr` result).
+#'
+#' @name dplyr-surveydata
+#' @param .data `surveydata` object or `tbl` passed to `dplyr` verb
+#' @param ... passed to dplyr verb
+#' @keywords internal
+#'
+#' @importFrom stats setNames
+#' @example inst/examples/example-dplyr-verbs.R
+NULL
+
+#' @export
+#' @rdname dplyr-surveydata
+#' @importFrom dplyr mutate
+mutate.surveydata <- verb.surveydata
+
 
 #' @export
 #' @rdname dplyr-surveydata
 #' @importFrom dplyr select
 #' @importFrom dplyr as.tbl
-as.tbl.surveydata <- mutate.surveydata
+as.tbl.surveydata <- verb.surveydata
 
 #' @export
 #' @rdname dplyr-surveydata
 #' @importFrom dplyr select
-select.surveydata <- mutate.surveydata
+select.surveydata <- verb.surveydata
 
 
 #' @method filter surveydata
 #' @export
 #' @rdname dplyr-surveydata
-filter.surveydata <- mutate.surveydata
+filter.surveydata <- verb.surveydata
 
 #' @importFrom dplyr filter
 #' @export filter
 #' @rdname dplyr-surveydata
 #' @name filter
 #' @keywords internal
-#' @inheritParams mutate.surveydata
+#' @inheritParams verb.surveydata
 NULL
 
 #' @export
 #' @rdname dplyr-surveydata
 #' @importFrom dplyr arrange
-arrange.surveydata <- mutate.surveydata
+arrange.surveydata <- verb.surveydata
 
 
 #' @export
 #' @rdname dplyr-surveydata
 #' @importFrom dplyr summarise
-summarise.surveydata <- mutate.surveydata
+summarise.surveydata <- verb.surveydata
 
 #' @export
 #' @rdname dplyr-surveydata
 #' @importFrom dplyr summarize
-summarize.surveydata <- mutate.surveydata
+summarize.surveydata <- verb.surveydata
 
 
 
 #' @export
 #' @rdname dplyr-surveydata
 #' @importFrom dplyr slice
-slice.surveydata <- mutate.surveydata
+slice.surveydata <- verb.surveydata

@@ -1,0 +1,72 @@
+reference:
+  - title: "Overview"
+    contents:
+      - surveydata-package
+      - membersurvey
+      
+  - title: "Coercion functions"
+    desc: "Coerces various objects to a `surveydata` object"
+    contents: 
+      - matches("^[ai]s.*surveydata$")
+
+  - title: "Access and modify attributes"
+    contents:
+      - pattern
+      - varlabels
+
+  - title: "Subset or merge surveydata objects"
+    contents:
+      - merge
+      - Extract
+      - cbind.surveydata
+
+  - title: "To extract question text from varlabels"
+    contents:
+      - matches("question")
+      - which.q
+      - split_common_unique
+      - strCommonUnique
+      
+  - title: "Work with open text response data"
+    contents:
+      - matches("opentext")
+
+  - title: "Plot functions"
+    contents:
+      - matches(".*?plot.*?")
+
+  - title: "To fix common encoding problems"
+    contents:
+      - encToInt
+      - intToEnc
+
+  - title: "To clean data"
+    contents:
+      - matches("remove_")
+      - fix_levels_01
+      - has_dont_know
+
+  - title: "Miscellaneous tools"
+    contents:
+      - matches("leveltest_")
+      - fix_common_encoding_problems
+      - dropout
+      - rm.attrs
+      - rm.pattern
+      - lapply_names
+      
+  - title: "dplyr verbs"
+    contents:
+      - mutate.surveydata
+      
+
+  - title: "Deprecated functions"
+    contents:
+      - matches("qText")
+      - matches("DK")
+      - matches("fixLevels")
+      - qOrder
+      - leveltestR
+      - leveltestSPSS
+
+

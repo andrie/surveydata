@@ -1,27 +1,21 @@
 language: r
 sudo: false
 cache: packages
+dist: trusty
+os: linux
 
 matrix:
   include:
 
-  - os: linux
-    dist: trusty
-    r: oldrel
+  - r: oldrel
 
-  - os: linux
-    dist: trusty
-    r: release
+  - r: release
     after_success:
     - Rscript -e 'withr::with_envvar(c(NOT_CRAN="true"), covr::codecov())'
     
     
-  - os: linux
-    dist: trusty
+  - r_github_packages: tidyverse/dplyr
     r: release
-    r_github_packages: tidyverse/dplyr
 
-  - os: linux
-    dist: trusty
-    r: devel
+  - r: devel
 

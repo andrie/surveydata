@@ -1,3 +1,5 @@
+^Meta$
+^doc$
 ^CRAN-RELEASE$
 README.Rmd
 README.md
@@ -6,3 +8,4 @@ README.md
 ^\.Rproj\.user$
 cran-comments.md
 ^docs$
+_pkgdown.yml

@@ -9,6 +9,7 @@
 \alias{filter}
 \alias{arrange.surveydata}
 \alias{summarise.surveydata}
+\alias{summarize.surveydata}
 \alias{slice.surveydata}
 \title{Methods to support dplyr verbs.}
 \usage{
@@ -24,21 +25,26 @@
 
 \method{summarise}{surveydata}(.data, ...)
 
+\method{summarize}{surveydata}(.data, ...)
+
 \method{slice}{surveydata}(.data, ...)
 }
 \arguments{
-\item{.data}{surveydata object or tbl passed to dplyr verb}
+\item{.data}{\code{surveydata} object or \code{tbl} passed to \code{dplyr} verb}
 
 \item{...}{passed to dplyr verb}
 }
 \description{
-Methods to support dplyr verbs.
-}
-\details{
-The surveydata exposes functionality to support some of the dplyr verbs, e.g. \code{\link[dplyr:filter]{dplyr::filter()}}
+The \code{surveydata} package exposes functionality to support some of the \code{dplyr} verbs, e.g. \code{\link[dplyr:filter]{dplyr::filter()}}.  The computation is performed by \code{dplyr}, and the resulting object is of class \code{surveydata} (as well as the \code{dplyr} result).
 }
 \examples{
-library(dplyr)
-membersurvey \%>\% as.tbl() \%>\% filter(Q2 == 2009)
+withr::with_package("dplyr", help = "dplyr", {
+  membersurvey \%>\% 
+    as.tbl() \%>\% 
+    .[c("id", "Q1", "Q2")] \%>\% 
+    filter(Q2 == 2009)
+})
+
+
 }
 \keyword{internal}

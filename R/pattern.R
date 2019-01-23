@@ -19,17 +19,17 @@
 
 
 #' Returns and updates pattern attribute.
-#' 
+#'
 #' The pattern attribute contains information about the separator character used to name subquestions in the data.  Survey software typically makes use of underscores to distinguish subquestions in a grid of questions, e.g. Q4_1, Q4_2, Q4_3, Q4_other. The function [pattern()] returns the `pattern` attribute, and [pattern<-] updates the attribute.
-#' 
-#' 
+#'
+#'
 #' @aliases pattern pattern<-
 #' @param x surveydata object
-#' @export pattern 
+#' @export pattern
 #' @family Attribute functions
 #' @seealso [as.surveydata()], [which.q()]
 #' @example inst/examples/example-pattern.R
-pattern <- function(x){
+pattern <- function(x) {
   attr(x, "pattern")
 }
 
@@ -37,7 +37,7 @@ pattern <- function(x){
 #' @usage pattern(x) <- value
 #' @param value New value
 #' @export pattern<-
-"pattern<-" <- function(x, value){
+"pattern<-" <- function(x, value) {
   attr(x, "pattern") <- value
   x
 }
@@ -47,7 +47,7 @@ pattern <- function(x){
 #'
 #' @param x Surveydata object
 #' @keywords Internal
-rm.pattern <- function(x){
+rm.pattern <- function(x) {
   pattern(x) <- NULL
   x
 }
@@ -56,9 +56,8 @@ rm.pattern <- function(x){
 #'
 #' @param x Surveydata object
 #' @keywords Internal
-rm.attrs <- function(x){
+rm.attrs <- function(x) {
   attr(x, "pattern") <- NULL
   attr(x, "variable.labels") <- NULL
   x
 }
-

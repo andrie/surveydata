@@ -1,7 +1,7 @@
-if(interactive()) library(testthat)
+if (interactive()) library(testthat)
 context("Encoding")
 
-test_that("encoding functions work",{
+test_that("encoding functions work", {
   skip_on_os(c("mac", "linux", "solaris"))
 
   expect_equal(encToInt("\\xfa", encoding = "ISO8859-1"), c(92L, 120L, 102L, 97L))
@@ -14,7 +14,7 @@ test_that("encoding functions work",{
     intToEnc(128, encoding = "UTF-8"),
     intToEnc(226, encoding = "UTF-8"),
     intToEnc(147, encoding = "UTF-8"),
-    collapse = "")
+    collapse = ""
+  )
   expect_equal(fix_common_encoding_problems(test, encoding = "UTF-8"), "-")
 })
-

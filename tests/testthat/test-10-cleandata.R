@@ -1,16 +1,16 @@
-if(interactive()) library(testthat)
+if (interactive()) library(testthat)
 context("clean data")
 
-test_that("cleandata functions work",{
+test_that("cleandata functions work", {
   expect_false(
     any(sapply(membersurvey, has_dont_know))
   )
   expect_equal(
-    membersurvey$Q2, 
+    membersurvey$Q2,
     remove_dont_know(membersurvey$Q2)
   )
   expect_equal(
-    membersurvey, 
+    membersurvey,
     remove_all_dont_know(membersurvey)
   )
   expect_equal(
@@ -24,11 +24,10 @@ test_that("cleandata functions work",{
 })
 
 
-test_that("deprecated functions return warnings",{
+test_that("deprecated functions return warnings", {
   expect_warning(sapply(membersurvey, hasDK))
   expect_warning(removeAllDK(membersurvey, message = FALSE))
   expect_warning(removeDK(membersurvey$Q2, dk = "Before 2002"))
   expect_warning(leveltestR(membersurvey))
   expect_warning(fixLevels01(membersurvey))
 })
-
