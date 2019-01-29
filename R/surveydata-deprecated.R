@@ -18,6 +18,7 @@
 #' @param ... passed to replacement function
 #'
 #' @export
+#' @keywords internal
 #' @rdname surveydata-deprecated
 hasDK <- function(...) {
   .Deprecated("has_dont_know")
@@ -25,6 +26,7 @@ hasDK <- function(...) {
 }
 
 #' @export
+#' @keywords internal
 #' @rdname surveydata-deprecated
 removeDK <- function(...) {
   .Deprecated("remove_dont_know")
@@ -32,6 +34,7 @@ removeDK <- function(...) {
 }
 
 #' @export
+#' @keywords internal
 #' @rdname surveydata-deprecated
 removeAllDK <- function(...) {
   .Deprecated("remove_all_dont_know")
@@ -40,6 +43,7 @@ removeAllDK <- function(...) {
 
 
 #' @export
+#' @keywords internal
 #' @rdname surveydata-deprecated
 leveltestSPSS <- function(...) {
   .Deprecated("leveltest_spss")
@@ -48,6 +52,7 @@ leveltestSPSS <- function(...) {
 
 
 #' @export
+#' @keywords internal
 #' @rdname surveydata-deprecated
 leveltestR <- function(...) {
   .Deprecated("leveltest_r")
@@ -56,6 +61,7 @@ leveltestR <- function(...) {
 
 
 #' @export
+#' @keywords internal
 #' @rdname surveydata-deprecated
 fixLevels01SPSS <- function(...) {
   .Deprecated("fix_levels_01_spss")
@@ -64,6 +70,7 @@ fixLevels01SPSS <- function(...) {
 
 
 #' @export
+#' @keywords internal
 #' @rdname surveydata-deprecated
 fixLevels01R <- function(...) {
   .Deprecated("fix_levels_01_r")
@@ -72,6 +79,7 @@ fixLevels01R <- function(...) {
 
 
 #' @export
+#' @keywords internal
 #' @rdname surveydata-deprecated
 fixLevels01 <- function(...) {
   .Deprecated("fix_levels_01")
@@ -80,6 +88,7 @@ fixLevels01 <- function(...) {
 
 
 #' @export
+#' @keywords internal
 #' @rdname surveydata-deprecated
 qOrder <- function(...) {
   .Deprecated("question_order")
@@ -88,6 +97,7 @@ qOrder <- function(...) {
 
 
 #' @export
+#' @keywords internal
 #' @rdname surveydata-deprecated
 lapplyNames <- function(...) {
   .Deprecated("lapply_names")
@@ -95,8 +105,38 @@ lapplyNames <- function(...) {
 }
 
 #' @export
+#' @keywords internal
 #' @rdname surveydata-deprecated
 fixCommonEncodingProblems <- function(...) {
   .Deprecated(fix_common_encoding_problems)
   fix_common_encoding_problems(...)
 }
+
+
+#' @export
+#' @keywords internal
+#' @rdname surveydata-deprecated
+qText <- function(...) {
+  .Deprecated("question_text")
+  question_text(...)
+}
+
+
+#' @export
+#' @keywords internal
+#' @rdname surveydata-deprecated
+qTextUnique <- function(...) {
+  .Deprecated("question_text_unique")
+  question_text_unique(...)
+}
+
+
+#' @export
+#' @keywords internal
+#' @rdname surveydata-deprecated
+qTextCommon <- function(...) {
+  .Deprecated("question_text_common")
+  question_text_common(...)
+}
+
+

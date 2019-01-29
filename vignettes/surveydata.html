@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Andrie de Vries" />
+
+<meta name="date" content="2019-01-24" />
+
+<title>Introduction to the surveydata package.</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction to the surveydata package.</h1>
+<h4 class="author"><em>Andrie de Vries</em></h4>
+<h4 class="date"><em>2019-01-24</em></h4>
+
+
+
+<p>The <code>surveydata</code> package makes it easy to work with typical survey data that originated in SPSS or other formats.</p>
+<div id="motivation" class="section level2">
+<h2>Motivation</h2>
+<p>Specifically, the package makes it easy question text (metadata) with the data itself.</p>
+<p>To track the questions of a survey, you have two options:</p>
+<ul>
+<li>Keep the data in a data frame, and keep a separate list of the questions</li>
+<li>Keep the questions as an attribute of the data frame</li>
+</ul>
+<p>Neither of these options are ideal, since any subsetting of the survey data means you must keep track of the question metadata separately.</p>
+<p>This package solves the problem by creating a new class, <code>surveydata</code>, and keeping the questions as an attribute of this class. Whenever you do a subsetting operation, the metadata stays intact.</p>
+<p>In addition, the metadata knows if a question consists of a single column, or multiple columns. When doing subsetting on the question name, the resulting object can be either a single column or multiple columns.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(surveydata)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">sv &lt;-<span class="st"> </span>membersurvey <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.tbl</span>()</a>
+<a class="sourceLine" id="cb2-2" title="2">sv</a></code></pre></div>
+<pre><code>## # A tibble: 215 x 109
+##       id  Q1_1  Q1_2 Q2     Q3_1  Q3_2  Q3_3  Q3_4  Q3_5  Q3_6  Q3_7  Q3_8 
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;ord&gt;  &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;
+##  1     3     8   2   2009   No    No    No    No    No    No    No    No   
+##  2     5    35  12   Befor~ Yes   No    No    No    No    No    No    No   
+##  3     6    34  12   Befor~ Yes   Yes   No    No    No    Yes   No    No   
+##  4    11    20   9   2010   No    No    No    No    No    No    No    No   
+##  5    13    20   3   2010   No    No    No    No    No    No    No    No   
+##  6    15    36  20   Befor~ No    Yes   No    No    No    No    No    No   
+##  7    21    12   2.5 2009   Yes   No    No    No    No    Yes   Yes   No   
+##  8    22    11   0.5 2011   Yes   Yes   Yes   Yes   Yes   No    No    No   
+##  9    23    18   3   2008   Yes   Yes   Yes   Yes   Yes   Yes   No    No   
+## 10    25    24   8   2006   No    No    No    Yes   Yes   Yes   No    No   
+## # ... with 205 more rows, and 97 more variables: Q3_9 &lt;fct&gt;, Q3_10 &lt;fct&gt;,
+...</code></pre>
+<p>Notice from this summary that Question 2 has two columns, i.e. <code>Q2_1</code> and <code>Q2_2</code>. You can extract both these columns by simply referring to <code>Q2</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">sv[, <span class="st">&quot;Q2&quot;</span>]</a></code></pre></div>
+<pre><code>## # A tibble: 215 x 1
+##    Q2         
+##    &lt;ord&gt;      
+##  1 2009       
+##  2 Before 2002
+##  3 Before 2002
+##  4 2010       
+##  5 2010       
+##  6 Before 2002
+##  7 2009       
+##  8 2011       
+##  9 2008       
+## 10 2006       
+## # ... with 205 more rows</code></pre>
+<p>However, the subset of <code>Q1</code> returns only a single column:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">sv[, <span class="st">&quot;Q2&quot;</span>]</a></code></pre></div>
+<pre><code>## # A tibble: 215 x 1
+##    Q2         
+##    &lt;ord&gt;      
+##  1 2009       
+##  2 Before 2002
+##  3 Before 2002
+##  4 2010       
+##  5 2010       
+##  6 Before 2002
+##  7 2009       
+##  8 2011       
+##  9 2008       
+## 10 2006       
+## # ... with 205 more rows</code></pre>
+<p>Note that in both cases the <code>surveydata</code> object doesn’t return a vector - subsetting a <code>surveydata</code> object always returns a <code>surveydata</code> object.</p>
+</div>
+<div id="about-surveydata-objects" class="section level2">
+<h2>About surveydata objects</h2>
+<p>A surveydata object consists of:</p>
+<ul>
+<li><p>A data frame with a row for each respondent and a column for each question. Column names are typically names in the pattern <code>Q1</code>, <code>Q2_1</code>, <code>Q2_2</code>, <code>Q3</code> - where underscores separate the sub-questions when these originated in a grid (array) of questions.</p></li>
+<li><p>Question metadata gets stored in the `{variable.labels} attribute of the data frame. This typically contains the original questionnaire text for each question.</p></li>
+<li><p>Information about the sub-question separator (typically an underscore) is stored in the <code>patterns</code> attribute.</p></li>
+</ul>
+<p>Data processing a survey file can be tricky, since the standard methods for dealing with data frames does not conserve the <code>variable.labels</code> attribute. The <code>surveydata</code> package defines a <code>surveydata</code> class and the following methods that knows how to deal with the <code>variable.labels</code> attribute:</p>
+<ul>
+<li><code>as.surveydata</code></li>
+<li><code>[.surveydata</code></li>
+<li><code>[&lt;-.surveydata</code></li>
+<li><code>$.surveydata</code></li>
+<li><code>$&lt;-.surveydata</code></li>
+<li><code>merge.surveydata</code></li>
+</ul>
+<p>In addition, <code>surveydata</code> defines the following convenient methods for extracting and working with the variable labels:</p>
+<ul>
+<li><code>varlabels</code></li>
+<li><code>varlabels&lt;-</code></li>
+</ul>
+</div>
+<div id="defining-a-surveydata-object" class="section level2">
+<h2>Defining a surveydata object</h2>
+<p>First load the <code>surveydata</code> package.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">library</span>(surveydata)</a></code></pre></div>
+<p>Next, create sample data. A data frame is the ideal data structure for survey data, and the convention is that data for each respondent is stored in the rows, while each column represents answers to a specific question.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">sdat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb9-2" title="2">   <span class="dt">id   =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb9-3" title="3">   <span class="dt">Q1   =</span> <span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;Yes&quot;</span>),</a>
+<a class="sourceLine" id="cb9-4" title="4">   <span class="dt">Q4_1 =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>), </a>
+<a class="sourceLine" id="cb9-5" title="5">   <span class="dt">Q4_2 =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>), </a>
+<a class="sourceLine" id="cb9-6" title="6">   <span class="dt">Q4_3 =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">6</span>), </a>
+<a class="sourceLine" id="cb9-7" title="7">   <span class="dt">Q10 =</span> <span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>)),</a>
+<a class="sourceLine" id="cb9-8" title="8">   <span class="dt">crossbreak  =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;B&quot;</span>), </a>
+<a class="sourceLine" id="cb9-9" title="9">   <span class="dt">weight      =</span> <span class="kw">c</span>(<span class="fl">0.9</span>, <span class="fl">1.1</span>, <span class="fl">0.8</span>, <span class="fl">1.2</span>)</a>
+<a class="sourceLine" id="cb9-10" title="10">)</a></code></pre></div>
+<p>The survey metadata consists of the questionnaire text. For example, this can be represented by a character vector, with an element for each question.</p>
+<p>To assign this metadata to the survey data, use the <code>varlabels()</code> function. This function assigns the questionnaire text to the <code>variable.labels</code> attribute of the data frame.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">varlabels</span>(sdat) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb10-2" title="2">   <span class="st">&quot;RespID&quot;</span>,</a>
+<a class="sourceLine" id="cb10-3" title="3">   <span class="st">&quot;Question 1&quot;</span>, </a>
+<a class="sourceLine" id="cb10-4" title="4">   <span class="st">&quot;Question 4: red&quot;</span>, <span class="st">&quot;Question 4: green&quot;</span>, <span class="st">&quot;Question 4: blue&quot;</span>, </a>
+<a class="sourceLine" id="cb10-5" title="5">   <span class="st">&quot;Question 10&quot;</span>,</a>
+<a class="sourceLine" id="cb10-6" title="6">   <span class="st">&quot;crossbreak&quot;</span>,</a>
+<a class="sourceLine" id="cb10-7" title="7">   <span class="st">&quot;weight&quot;</span></a>
+<a class="sourceLine" id="cb10-8" title="8">)</a></code></pre></div>
+<p>Finally, create the surveydata object. To do this, call the <code>as.surveydata()</code> function. The argument <code>renameVarlabels</code> controls whether the <code>varlabels</code> get renamed with the same names as the data. This is an essential step, and ensures that the question text remains in synch with the column names.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">sv &lt;-<span class="st"> </span><span class="kw">as.surveydata</span>(sdat, <span class="dt">renameVarlabels =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+</div>
+<div id="extracting-specific-questions" class="section level2">
+<h2>Extracting specific questions</h2>
+<p>It is easy to extract specific questions with the <code>[</code> operator. This works very similar to extraction of data frames. However, there are two important differences:</p>
+<ul>
+<li>The extraction operators will always return a <code>surveydata</code> object, even if only a single column is returned. This is different from the behaviour of data frames, where a single column is simplified to a vector.</li>
+<li>Extracting a question with multiple sub-questions, e.g. “Q4” returns multiple columns</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">sv[, <span class="st">&quot;Q1&quot;</span>]</a></code></pre></div>
+<pre><code>##    Q1
+## 1 Yes
+## 2  No
+## 3 Yes
+## 4 Yes</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">sv[, <span class="st">&quot;Q4&quot;</span>]</a></code></pre></div>
+<pre><code>##   Q4_1 Q4_2 Q4_3
+## 1    1    3    5
+## 2    2    4    5
+## 3    1    4    6
+## 4    2    3    6</code></pre>
+<p>The extraction makes use of the underlying metadata, contained in the <code>varlabels</code> and <code>pattern</code> attributes:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">varlabels</span>(sv)</a></code></pre></div>
+<pre><code>##                  id                  Q1                Q4_1 
+##            &quot;RespID&quot;        &quot;Question 1&quot;   &quot;Question 4: red&quot; 
+##                Q4_2                Q4_3                 Q10 
+## &quot;Question 4: green&quot;  &quot;Question 4: blue&quot;       &quot;Question 10&quot; 
+##          crossbreak              weight 
+##        &quot;crossbreak&quot;            &quot;weight&quot;</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">pattern</span>(sv)</a></code></pre></div>
+<pre><code>## $sep
+## [1] &quot;_&quot;
+## 
+## $exclude
+## [1] &quot;other&quot;</code></pre>
+</div>
+<div id="working-with-question-columns" class="section level2">
+<h2>Working with question columns</h2>
+<p>It is easy to query the surveydata object to find out which questions it contains, as well as which columns store the data for those questions.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">questions</span>(sv)</a></code></pre></div>
+<pre><code>## [1] &quot;id&quot;         &quot;Q1&quot;         &quot;Q4&quot;         &quot;Q10&quot;        &quot;crossbreak&quot;
+## [6] &quot;weight&quot;</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">which.q</span>(sv, <span class="st">&quot;Q1&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">which.q</span>(sv, <span class="st">&quot;Q4&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] 3 4 5</code></pre>
+</div>
+<div id="reading-the-questionnaire-text" class="section level2">
+<h2>Reading the questionnaire text</h2>
+<p>The function <code>question_text()</code> gives access to the questionnaire text.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">question_text</span>(sv, <span class="st">&quot;Q1&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;Question 1&quot;</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">question_text</span>(sv, <span class="st">&quot;Q4&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;Question 4: red&quot;   &quot;Question 4: green&quot; &quot;Question 4: blue&quot;</code></pre>
+<div id="getting-the-common-question-text" class="section level3">
+<h3>Getting the common question text</h3>
+<p>Use <code>question_text_common()</code> to retrieve the common text, i.e. the question itself:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">question_text_common</span>(sv, <span class="st">&quot;Q4&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;Question 4&quot;</code></pre>
+</div>
+<div id="getting-the-unique-question-text" class="section level3">
+<h3>Getting the unique question text</h3>
+<p>And use <code>question_text_unique()</code> to retrieve the unique part of the question, i.e. the sub-questions:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">question_text_unique</span>(sv, <span class="st">&quot;Q4&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;red&quot;   &quot;green&quot; &quot;blue&quot;</code></pre>
+</div>
+</div>
+<div id="using-surveydata-with-dplyr" class="section level2">
+<h2>Using <code>surveydata</code> with <code>dplyr</code></h2>
+<p>The <code>surveydata</code> object knows how to deal with the following <code>dplyr</code> verbs:</p>
+<ul>
+<li><code>select</code></li>
+<li><code>filter</code></li>
+<li><code>mutate</code></li>
+<li><code>arrange</code></li>
+<li><code>summarize</code></li>
+</ul>
+<p>In every case the resulting object will also be of class <code>surveydata</code>.</p>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>The <code>surveydata</code> object can make it much easier to work with survey data.</p>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

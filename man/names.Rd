@@ -18,3 +18,4 @@ Updates names and variable.labels attribute of surveydata.
 \seealso{
 \code{\link[=surveydata-package]{surveydata-package()}}, \code{\link[=is.surveydata]{is.surveydata()}}
 }
+\keyword{internal}

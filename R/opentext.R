@@ -1,4 +1,4 @@
-#' Print open text
+#' Print open text questions.
 #'
 #' @param data data
 #' @param q Question number

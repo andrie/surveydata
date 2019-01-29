@@ -100,6 +100,7 @@ is.surveydata <- function(x) {
 #' @param x surveydata object
 #' @param value New names
 #' @export
+#' @keywords internal
 #' @seealso [surveydata-package()], [is.surveydata()]
 `names<-.surveydata` <- function(x, value) {
   xattr <- attributes(x)

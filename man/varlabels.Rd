@@ -7,7 +7,7 @@
 \usage{
 varlabels(x)
 
-"varlabels(x) <- value"
+varlabels(x) <- value
 }
 \arguments{
 \item{x}{surveydata object}
@@ -15,7 +15,7 @@ varlabels(x)
 \item{value}{New value}
 }
 \description{
-In a surveydata object, the \code{variable.labels} attribute store metadata about the original question text (see \code{\link[foreign:read.spss]{foreign::read.spss()}} for details).  The function \code{\link[=varlabels]{varlabels()}} returns the \code{variable.labels} attribute of data, and \code{varlabels(x) <- value} updates this attribute.
+In a surveydata object, the \code{variable.labels} attribute store metadata about the original question text (see \code{\link[foreign:read.spss]{foreign::read.spss()}} for details).  The function \code{varlabels()} returns the \code{variable.labels} attribute of data, and \code{varlabels(x) <- value} updates this attribute.
 }
 \details{
 In a surveydata object, the \code{varlabels} attribute is a named character vector, where the names correspond to the names of the the columns in
@@ -44,3 +44,4 @@ Other Attribute functions: \code{\link{pattern}}
 Other Attribute functions: \code{\link{pattern}}
 }
 \concept{Attribute functions}
+\keyword{internal}

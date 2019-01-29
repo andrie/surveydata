@@ -123,7 +123,7 @@ survey_plot_question <- function(data, q) {
 
 utils::globalVariables(c("sats", "aspect"))
 
-#' Plot satisfaction
+#' Plot satisfaction questions.
 #'
 #' @inheritParams survey_plot_title
 #' @param fun Aggregation function, one of `net` (compute net satisfaction score), `top3` (compute top 3 box score) and `top2` (compute top 2 box score)

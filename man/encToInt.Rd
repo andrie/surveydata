@@ -2,7 +2,7 @@
 % Please edit documentation in R/encoding.R
 \name{encToInt}
 \alias{encToInt}
-\title{Converts a character vector to an integer vector}
+\title{Converts a character vector to an integer vector.}
 \usage{
 encToInt(x, encoding = localeToCharset())
 }

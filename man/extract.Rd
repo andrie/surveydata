@@ -61,3 +61,4 @@ head(membersurvey["Q20_other"])
 \seealso{
 \link{surveydata-package}, \link{varlabels}
 }
+\keyword{internal}

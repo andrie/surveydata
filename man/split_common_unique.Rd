@@ -2,7 +2,7 @@
 % Please edit documentation in R/questions.R
 \name{split_common_unique}
 \alias{split_common_unique}
-\title{Get common and unique text in question based on regex pattern identification}
+\title{Get common and unique text in question based on regex pattern identification.}
 \usage{
 split_common_unique(x, ptn = NULL)
 }
@@ -12,7 +12,7 @@ split_common_unique(x, ptn = NULL)
 \item{ptn}{A \code{\link[=regex]{regex()}} pattern that defines how the string should be split into common and unique elements}
 }
 \description{
-Get common and unique text in question based on regex pattern identification
+Get common and unique text in question based on regex pattern identification.
 }
 \seealso{
 Other Question functions: \code{\link{question_text_common}},

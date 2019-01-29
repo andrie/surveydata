@@ -2,7 +2,7 @@
 % Please edit documentation in R/opentext.R
 \name{print_opentext}
 \alias{print_opentext}
-\title{Print open text}
+\title{Print open text questions.}
 \usage{
 print_opentext(data, q, cat = TRUE)
 }
@@ -14,7 +14,7 @@ print_opentext(data, q, cat = TRUE)
 \item{cat}{If TRUE, prints results using \code{cat()}}
 }
 \description{
-Print open text
+Print open text questions.
 }
 \examples{
 print_opentext(membersurvey, "Q33")

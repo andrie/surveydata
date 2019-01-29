@@ -16,7 +16,7 @@
 #
 
 
-#' Converts a character vector to an integer vector
+#' Converts a character vector to an integer vector.
 #'
 #' Conversion of character vector to integer vector.  The encoding of the character vector can be specified but defaults to the current locale.
 #'

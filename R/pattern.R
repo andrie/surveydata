@@ -36,7 +36,8 @@ pattern <- function(x) {
 #' @rdname pattern
 #' @usage pattern(x) <- value
 #' @param value New value
-#' @export pattern<-
+#' @export
+#' @keywords internal
 "pattern<-" <- function(x, value) {
   attr(x, "pattern") <- value
   x

@@ -21,7 +21,7 @@
 #' Finds the common and unique elements in a character vector.
 #'
 #' Function takes a character string as input and find the common and
-#' unique elements.  Assumes that the common element is at start of string
+#' unique elements.  Assumes that the common element is at start of string.
 #'
 #' @param string Character vector
 #' @return list of common and unique strings

@@ -167,7 +167,7 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="varlabels.html">varlabels()</a></code> <code><a href="varlabels.html">`varlabels(x) <- value`</a></code> </p>
+          <p><code><a href="varlabels.html">varlabels()</a></code> <code><a href="varlabels.html">`varlabels<-`()</a></code> </p>
         </td>
         <td><p>Returns and updates variable.labels attribute of surveydata object.</p></td>
       </tr>
@@ -189,7 +189,7 @@
         <td>
           <p><code><a href="Extract.html">`[`(<i>&lt;surveydata&gt;</i>)</a></code> <code><a href="Extract.html">`[<-`(<i>&lt;surveydata&gt;</i>)</a></code> <code><a href="Extract.html">`$<-`(<i>&lt;surveydata&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Extract or replace subsets of surveydata, ensuring that the varlabels stay in synch.</p></td>
+        <td><p>Extract or replace subsets of surveydata, ensuring that the varlabels stay synchronized.</p></td>
       </tr><tr>
         
         <td>
@@ -251,65 +251,13 @@
         <td>
           <p><code><a href="split_common_unique.html">split_common_unique()</a></code> </p>
         </td>
-        <td><p>Get common and unique text in question based on regex pattern identification</p></td>
+        <td><p>Get common and unique text in question based on regex pattern identification.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="strCommonUnique.html">strCommonUnique()</a></code> </p>
         </td>
         <td><p>Finds the common and unique elements in a character vector.</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-work-with-open-text-response-data" class="hasAnchor"><a href="#section-work-with-open-text-response-data" class="anchor"></a>Work with open text response data</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="as_opentext_datatable.html">as_opentext_datatable()</a></code> </p>
-        </td>
-        <td><p>Converts free format question text to datatable using the <code>DT</code> package.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print_opentext.html">print_opentext()</a></code> </p>
-        </td>
-        <td><p>Print open text</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-plot-functions" class="hasAnchor"><a href="#section-plot-functions" class="anchor"></a>Plot functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="survey_plot_question.html">survey_plot_question()</a></code> </p>
-        </td>
-        <td><p>Plots single and  as multi-response questions.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="survey_plot_satisfaction.html">survey_plot_satisfaction()</a></code> </p>
-        </td>
-        <td><p>Plot satisfaction</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="survey_plot_title.html">survey_plot_title()</a></code> </p>
-        </td>
-        <td><p>Construct plot title from the question text, wrapping at the desired width.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="survey_plot_yes_no.html">survey_plot_yes_no()</a></code> </p>
-        </td>
-        <td><p>Plot data in yes/no format.</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -321,9 +269,15 @@
       <tr>
         
         <td>
+          <p><code><a href="fix_common_encoding_problems.html">fix_common_encoding_problems()</a></code> </p>
+        </td>
+        <td><p>Fix common encoding problems when working with web imported data.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="encToInt.html">encToInt()</a></code> </p>
         </td>
-        <td><p>Converts a character vector to an integer vector</p></td>
+        <td><p>Converts a character vector to an integer vector.</p></td>
       </tr><tr>
         
         <td>
@@ -362,6 +316,64 @@
           <p><code><a href="has_dont_know.html">has_dont_know()</a></code> </p>
         </td>
         <td><p>Tests whether levels contain "Don't know".</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="leveltest.html">leveltest_spss()</a></code> <code><a href="leveltest.html">leveltest_r()</a></code> </p>
+        </td>
+        <td><p>Fix level formatting of all question with Yes/No type answers.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-plot-functions" class="hasAnchor"><a href="#section-plot-functions" class="anchor"></a>Plot functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="survey_plot_question.html">survey_plot_question()</a></code> </p>
+        </td>
+        <td><p>Plots single and  as multi-response questions.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="survey_plot_satisfaction.html">survey_plot_satisfaction()</a></code> </p>
+        </td>
+        <td><p>Plot satisfaction questions.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="survey_plot_title.html">survey_plot_title()</a></code> </p>
+        </td>
+        <td><p>Construct plot title from the question text, wrapping at the desired width.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="survey_plot_yes_no.html">survey_plot_yes_no()</a></code> </p>
+        </td>
+        <td><p>Plot data in yes/no format.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-work-with-open-text-response-data" class="hasAnchor"><a href="#section-work-with-open-text-response-data" class="anchor"></a>Work with open text response data</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="as_opentext_datatable.html">as_opentext_datatable()</a></code> </p>
+        </td>
+        <td><p>Converts free format question text to datatable using the <code>DT</code> package.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="print_opentext.html">print_opentext()</a></code> </p>
+        </td>
+        <td><p>Print open text questions.</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -371,18 +383,6 @@
         </th>
       </tr>
       <tr>
-        
-        <td>
-          <p><code><a href="leveltest.html">leveltest_spss()</a></code> <code><a href="leveltest.html">leveltest_r()</a></code> </p>
-        </td>
-        <td><p>Fix level formatting of all question with Yes/No type answers.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fix_common_encoding_problems.html">fix_common_encoding_problems()</a></code> </p>
-        </td>
-        <td><p>Fix common encoding problems when working with web imported data.</p></td>
-      </tr><tr>
         
         <td>
           <p><code><a href="dropout.html">dropout()</a></code> </p>
@@ -410,7 +410,7 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-dplyr-verbs" class="hasAnchor"><a href="#section-dplyr-verbs" class="anchor"></a>dplyr verbs</h2>
+          <h2 id="section-using-dplyr-verbs" class="hasAnchor"><a href="#section-using-dplyr-verbs" class="anchor"></a>Using 'dplyr' verbs</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -420,20 +420,6 @@
           <p><code><a href="dplyr-surveydata.html">mutate(<i>&lt;surveydata&gt;</i>)</a></code> <code><a href="dplyr-surveydata.html">as.tbl(<i>&lt;surveydata&gt;</i>)</a></code> <code><a href="dplyr-surveydata.html">select(<i>&lt;surveydata&gt;</i>)</a></code> <code><a href="dplyr-surveydata.html">filter(<i>&lt;surveydata&gt;</i>)</a></code> <code><a href="dplyr-surveydata.html">arrange(<i>&lt;surveydata&gt;</i>)</a></code> <code><a href="dplyr-surveydata.html">summarise(<i>&lt;surveydata&gt;</i>)</a></code> <code><a href="dplyr-surveydata.html">summarize(<i>&lt;surveydata&gt;</i>)</a></code> <code><a href="dplyr-surveydata.html">slice(<i>&lt;surveydata&gt;</i>)</a></code> </p>
         </td>
         <td><p>Methods to support dplyr verbs.</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-deprecated-functions" class="hasAnchor"><a href="#section-deprecated-functions" class="anchor"></a>Deprecated functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="surveydata-deprecated.html">qText()</a></code> <code><a href="surveydata-deprecated.html">qTextUnique()</a></code> <code><a href="surveydata-deprecated.html">qTextCommon()</a></code> <code><a href="surveydata-deprecated.html">hasDK()</a></code> <code><a href="surveydata-deprecated.html">removeDK()</a></code> <code><a href="surveydata-deprecated.html">removeAllDK()</a></code> <code><a href="surveydata-deprecated.html">leveltestSPSS()</a></code> <code><a href="surveydata-deprecated.html">leveltestR()</a></code> <code><a href="surveydata-deprecated.html">fixLevels01SPSS()</a></code> <code><a href="surveydata-deprecated.html">fixLevels01R()</a></code> <code><a href="surveydata-deprecated.html">fixLevels01()</a></code> <code><a href="surveydata-deprecated.html">qOrder()</a></code> <code><a href="surveydata-deprecated.html">lapplyNames()</a></code> <code><a href="surveydata-deprecated.html">fixCommonEncodingProblems()</a></code> </p>
-        </td>
-        <td><p>Deprecated functions.</p></td>
       </tr>
     </tbody>
     </table>
@@ -447,13 +433,12 @@
       <li><a href="#section-access-and-modify-attributes">Access and modify attributes</a></li>
       <li><a href="#section-subset-or-merge-surveydata-objects">Subset or merge surveydata objects</a></li>
       <li><a href="#section-to-extract-question-text-from-varlabels">To extract question text from varlabels</a></li>
-      <li><a href="#section-work-with-open-text-response-data">Work with open text response data</a></li>
-      <li><a href="#section-plot-functions">Plot functions</a></li>
       <li><a href="#section-to-fix-common-encoding-problems">To fix common encoding problems</a></li>
       <li><a href="#section-to-clean-data">To clean data</a></li>
+      <li><a href="#section-plot-functions">Plot functions</a></li>
+      <li><a href="#section-work-with-open-text-response-data">Work with open text response data</a></li>
       <li><a href="#section-miscellaneous-tools">Miscellaneous tools</a></li>
-      <li><a href="#section-dplyr-verbs">dplyr verbs</a></li>
-      <li><a href="#section-deprecated-functions">Deprecated functions</a></li>
+      <li><a href="#section-using-dplyr-verbs">Using 'dplyr' verbs</a></li>
     </ul>
   </div>
 </div>

@@ -64,7 +64,7 @@
       <h1>Introduction to the surveydata package.</h1>
                         <h4 class="author">Andrie de Vries</h4>
             
-            <h4 class="date">2019-01-23</h4>
+            <h4 class="date">2019-01-29</h4>
       
       
       <div class="hidden name"><code>surveydata.Rmd</code></div>
@@ -144,9 +144,9 @@
 <a href="#about-surveydata-objects" class="anchor"></a>About surveydata objects</h2>
 <p>A surveydata object consists of:</p>
 <ul>
-<li><p>A data frame with a row for each respondent and a column for each question. Column names are typically names in the pattern <code>Q1</code>, <code>Q2_1</code>, <code>Q2_2</code>, <code>Q3</code> - where underscores separate the subquestions when these originated in a grid (array) of questions.</p></li>
+<li><p>A data frame with a row for each respondent and a column for each question. Column names are typically names in the pattern <code>Q1</code>, <code>Q2_1</code>, <code>Q2_2</code>, <code>Q3</code> - where underscores separate the sub-questions when these originated in a grid (array) of questions.</p></li>
 <li><p>Question metadata gets stored in the `{variable.labels} attribute of the data frame. This typically contains the original questionnaire text for each question.</p></li>
-<li><p>Information about the subquestion separator (typically an underscore) is stored in the <code>patterns</code> attribute.</p></li>
+<li><p>Information about the sub-question separator (typically an underscore) is stored in the <code>patterns</code> attribute.</p></li>
 </ul>
 <p>Data processing a survey file can be tricky, since the standard methods for dealing with data frames does not conserve the <code>variable.labels</code> attribute. The <code>surveydata</code> package defines a <code>surveydata</code> class and the following methods that knows how to deal with the <code>variable.labels</code> attribute:</p>
 <ul>
@@ -198,7 +198,7 @@
 <p>It is easy to extract specific questions with the <code>[</code> operator. This works very similar to extraction of data frames. However, there are two important differences:</p>
 <ul>
 <li>The extraction operators will always return a <code>surveydata</code> object, even if only a single column is returned. This is different from the behaviour of data frames, where a single column is simplified to a vector.</li>
-<li>Extracing a question with multiple subquestions, e.g. “Q4” returns multiple columns</li>
+<li>Extracting a question with multiple sub-questions, e.g. “Q4” returns multiple columns</li>
 </ul>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">sv[, <span class="st">"Q1"</span>]</a></code></pre></div>
 <pre><code>##    Q1
@@ -257,7 +257,7 @@
 <div id="getting-the-unique-question-text" class="section level3">
 <h3 class="hasAnchor">
 <a href="#getting-the-unique-question-text" class="anchor"></a>Getting the unique question text</h3>
-<p>And use <code><a href="../reference/question_text_unique.html">question_text_unique()</a></code> to retrieve the unique part of the question, i.e. the subquestions:</p>
+<p>And use <code><a href="../reference/question_text_unique.html">question_text_unique()</a></code> to retrieve the unique part of the question, i.e. the sub-questions:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw"><a href="../reference/question_text_unique.html">question_text_unique</a></span>(sv, <span class="st">"Q4"</span>)</a></code></pre></div>
 <pre><code>## [1] "red"   "green" "blue"</code></pre>
 </div>

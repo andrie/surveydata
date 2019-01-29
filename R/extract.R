@@ -33,6 +33,7 @@
 #' @param drop logical. Passed to `[.data.frame`. Note that the default is `FALSE`.
 #' @param ... Other arguments passed to `[.data.frame`
 #' @export
+#' @keywords internal
 #' @aliases [ "[.surveydata"
 #' @method [ surveydata
 #' @example /inst/examples/example-extract.R
@@ -95,6 +96,7 @@
 #' @method [<- surveydata
 #' @usage \method{[}{surveydata}(x, i, j) <- value
 #' @export
+#' @keywords internal
 `[<-.surveydata` <- function(x, i, j, value) {
   has.value <- !missing(value)
   Narg <- nargs() - (has.value) - 1
@@ -155,6 +157,7 @@
 #' @method $<- surveydata
 #' @usage \method{$}{surveydata}(x, name) <- value
 #' @export
+#' @keywords internal
 #' @seealso [surveydata-package], [varlabels]
 `$<-.surveydata` <- function(x, name, value) {
   labels <- varlabels(x)

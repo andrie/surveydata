@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extract or replace subsets of surveydata, ensuring that the varlabels stay in synch. — Extract • surveydata</title>
+<title>Extract or replace subsets of surveydata, ensuring that the varlabels stay synchronized. — Extract • surveydata</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Extract or replace subsets of surveydata, ensuring that the varlabels stay in synch. — Extract" />
+<meta property="og:title" content="Extract or replace subsets of surveydata, ensuring that the varlabels stay synchronized. — Extract" />
 
-<meta property="og:description" content="The surveydata package makes it easy to extract specific questions from a surveydata object. Because survey data typically has question names like Q1_a, Q1_b, Q1_c the extract method for a surveydata object makes it easy to extract all columns by simply specifing &quot;Q1&quot; as the argument to the column index." />
+<meta property="og:description" content="The surveydata package makes it easy to extract specific questions from a surveydata object. Because survey data typically has question names like &quot;Q1_a&quot;, &quot;Q1_b&quot;, &quot;Q1_c&quot; the extract method for a surveydata object makes it easy to extract all columns by simply specifying &quot;Q1&quot; as the argument to the column index." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -97,14 +97,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extract or replace subsets of surveydata, ensuring that the varlabels stay in synch.</h1>
+    <h1>Extract or replace subsets of surveydata, ensuring that the varlabels stay synchronized.</h1>
     
     <div class="hidden name"><code>Extract.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>The surveydata package makes it easy to extract specific questions from a surveydata object. Because survey data typically has question names like Q1_a, Q1_b, Q1_c the extract method for a surveydata object makes it easy to extract all columns by simply specifing "Q1" as the argument to the column index.</p>
+    <p>The <code>surveydata</code> package makes it easy to extract specific questions from a surveydata object. Because survey data typically has question names like "Q1_a", "Q1_b", "Q1_c" the extract method for a <code>surveydata</code> object makes it easy to extract all columns by simply specifying "Q1" as the argument to the column index.</p>
     
     </div>
 
@@ -153,8 +153,8 @@ $(x, name) <- value</pre>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Extraction is similar to data frames, with three important exceptions:</p><ul>
-<li><p>The column argument j is evaluated using <code><a href='which.q.html'>which.q()</a></code> and will return all columns where the column names match the <code><a href='pattern.html'>pattern()</a></code>.</p></li>
-<li><p>The drop argument is FALSE. Thus the result will always be a surveydata object, even if only a single column is returned.</p></li>
+<li><p>The column argument <code>j</code> is evaluated using <code><a href='which.q.html'>which.q()</a></code> and will return all columns where the column names match the <code><a href='pattern.html'>pattern()</a></code>.</p></li>
+<li><p>The <code>drop</code> argument is <code>FALSE</code>. Thus the result will always be a surveydata object, even if only a single column is returned.</p></li>
 <li><p>All extraction methods retain the <code>pattern</code> and <code>varlabels</code> arguments.</p></li>
 </ul>
     

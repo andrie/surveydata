@@ -20,7 +20,7 @@
 
 #' Returns and updates variable.labels attribute of surveydata object.
 #'
-#' In a surveydata object, the `variable.labels` attribute store metadata about the original question text (see [foreign::read.spss()] for details).  The function [varlabels()] returns the `variable.labels` attribute of data, and `varlabels(x) <- value` updates this attribute.
+#' In a surveydata object, the `variable.labels` attribute store metadata about the original question text (see [foreign::read.spss()] for details).  The function `varlabels()` returns the `variable.labels` attribute of data, and `varlabels(x) <- value` updates this attribute.
 #'
 #' In a surveydata object, the `varlabels` attribute is a named character vector, where the names correspond to the names of the the columns in
 #'
@@ -35,11 +35,10 @@ varlabels <- function(x) {
 }
 
 #' @rdname varlabels
-#' @usage "varlabels(x) <- value"
-#' @aliases varlabels<-
-#' @export varlabels<-
+#' @export
+#' @keywords internal
 #' @family Attribute functions
-"varlabels<-" <- function(x, value) {
+`varlabels<-` <- function(x, value) {
   attr(x, "variable.labels") <- value
   x
 }

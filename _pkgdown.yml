@@ -27,16 +27,9 @@ reference:
       - split_common_unique
       - strCommonUnique
       
-  - title: "Work with open text response data"
-    contents:
-      - matches("opentext")
-
-  - title: "Plot functions"
-    contents:
-      - matches(".*?plot.*?")
-
   - title: "To fix common encoding problems"
     contents:
+      - fix_common_encoding_problems
       - encToInt
       - intToEnc
 
@@ -45,28 +38,25 @@ reference:
       - matches("remove_")
       - fix_levels_01
       - has_dont_know
+      - matches("leveltest_")
+
+  - title: "Plot functions"
+    contents:
+      - matches(".*?plot.*?")
+
+  - title: "Work with open text response data"
+    contents:
+      - matches("opentext")
 
   - title: "Miscellaneous tools"
     contents:
-      - matches("leveltest_")
-      - fix_common_encoding_problems
       - dropout
       - rm.attrs
       - rm.pattern
       - lapply_names
       
-  - title: "dplyr verbs"
+  - title: "Using 'dplyr' verbs"
     contents:
       - mutate.surveydata
       
-
-  - title: "Deprecated functions"
-    contents:
-      - matches("qText")
-      - matches("DK")
-      - matches("fixLevels")
-      - qOrder
-      - leveltestR
-      - leveltestSPSS
-
 

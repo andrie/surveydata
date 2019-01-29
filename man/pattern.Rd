@@ -47,3 +47,4 @@ rm(oldptn)
 Other Attribute functions: \code{\link{varlabels}}
 }
 \concept{Attribute functions}
+\keyword{internal}
