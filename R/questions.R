@@ -201,8 +201,8 @@ split_common_unique <- function(x, ptn = NULL) {
 
   bp <- identify_pattern(ptn, x) # best pattern
   z <- list(
-    common = gsub(bp$ptn, bp$grep_c, x)[1] %>% str_trim(),
-    unique = gsub(bp$ptn, bp$grep_u, x) %>% str_trim()
+    common = trimws(gsub(bp$ptn, bp$grep_c, x)[1]),
+    unique = trimws(gsub(bp$ptn, bp$grep_u, x))
   )
   nNa <- sum(is.na(z$unique))
   if (nNa > 0) z$unique[is.na(z$unique)] <- paste("NA_", seq_len(nNa), sep = "")
