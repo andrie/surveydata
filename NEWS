@@ -1,3 +1,16 @@
+surveydata 0.2.3.9000 (???)
+-----------------
+
+
+Changes:
+
+* No new functionality
+* Removed dependency on `stringr` #8, contributed by [Evan Odell](https://github.com/evanodell)
+* Removed dependency on `plyr`
+* More documentation improvements and cleanup of `pkgdown`
+
+
+
 surveydata 0.2.3 (2019-01-19)
 -----------------
 
