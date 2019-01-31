@@ -19,6 +19,15 @@
 #
 
 
+# quickdf function modified from `plyr`
+quickdf <- function(list) {
+  rows <- unique(unlist(lapply(list, NROW)))
+  stopifnot(length(rows) == 1)
+  class(list) <- "data.frame"
+  attr(list, "row.names") <- c(NA_integer_, -rows)
+  list
+}
+
 
 # don't know --------------------------------------------------------------
 
@@ -155,7 +164,7 @@ fix_levels_01_spss <- function(dat) {
       x
     }
   })
-  ret <- plyr::quickdf(ret)
+  ret <- quickdf(ret)
   attributes(ret)$variable.labels <- varlabels(dat)
   ret
 }
@@ -173,7 +182,7 @@ fix_levels_01_r <- function(dat) {
       x
     }
   })
-  ret <- plyr::quickdf(ret)
+  ret <- (ret)
   pattern(ret) <- pattern(dat)
   varlabels(ret) <- varlabels(dat)
   as.surveydata(ret)

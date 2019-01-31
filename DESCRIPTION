@@ -1,13 +1,16 @@
 Package: surveydata
 Version: 0.2.3.9000
-Date: 2019-01-29
+Date: 2019-01-31
 License: GPL-2|GPL-3
 Title: Tools to Work with Survey Data
 LazyData: true
 LazyLoad: true
 Copyright: Andrie de Vries
-Authors@R: person("Andrie", "de Vries", role=c("aut", "cre", "cph"),
-    email="apdevries@gmail.com")
+Authors@R: c(
+    person("Andrie", "de Vries", role=c("aut", "cre", "cph"), 
+        email="apdevries@gmail.com"),
+    person("Evan", "Odell", role=c("ctb"))
+    )
 Description: Data obtained from surveys contains information not only about the
     survey responses, but also the survey metadata, e.g. the original survey
     questions and the answer options. The 'surveydata' package makes it easy to
@@ -19,7 +22,6 @@ ByteCompile: yes
 Depends:
     R (>= 3.0.0)
 Imports:
-    plyr,
     dplyr,
     rlang,
     magrittr,

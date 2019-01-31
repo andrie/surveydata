@@ -44,7 +44,6 @@
 #' @name surveydata-package
 #' @aliases surveydata surveydata-package
 #' @docType package
-#' @importFrom plyr quickdf
 #' @importFrom stats na.omit
 #' @importFrom utils localeToCharset
 #' @importFrom dplyr tibble if_else
