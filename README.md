@@ -38,6 +38,12 @@ the resulting object can be either a single column or multiple columns.
 
 ``` r
 library(surveydata)
+```
+
+    ## Warning in as.POSIXlt.POSIXct(Sys.time()): unable to identify current timezone 'C':
+    ## please set environment variable 'TZ'
+
+``` r
 library(dplyr)
 ```
 
@@ -47,19 +53,19 @@ sv
 ```
 
     ## # A tibble: 215 x 109
-    ##       id  Q1_1  Q1_2 Q2     Q3_1  Q3_2  Q3_3  Q3_4  Q3_5  Q3_6  Q3_7  Q3_8 
-    ##    <dbl> <dbl> <dbl> <ord>  <fct> <fct> <fct> <fct> <fct> <fct> <fct> <fct>
-    ##  1     3     8   2   2009   No    No    No    No    No    No    No    No   
-    ##  2     5    35  12   Befor~ Yes   No    No    No    No    No    No    No   
-    ##  3     6    34  12   Befor~ Yes   Yes   No    No    No    Yes   No    No   
-    ##  4    11    20   9   2010   No    No    No    No    No    No    No    No   
-    ##  5    13    20   3   2010   No    No    No    No    No    No    No    No   
-    ##  6    15    36  20   Befor~ No    Yes   No    No    No    No    No    No   
-    ##  7    21    12   2.5 2009   Yes   No    No    No    No    Yes   Yes   No   
-    ##  8    22    11   0.5 2011   Yes   Yes   Yes   Yes   Yes   No    No    No   
-    ##  9    23    18   3   2008   Yes   Yes   Yes   Yes   Yes   Yes   No    No   
-    ## 10    25    24   8   2006   No    No    No    Yes   Yes   Yes   No    No   
-    ## # ... with 205 more rows, and 97 more variables: Q3_9 <fct>, Q3_10 <fct>,
+    ##       id  Q1_1  Q1_2 Q2    Q3_1  Q3_2  Q3_3  Q3_4  Q3_5  Q3_6  Q3_7  Q3_8  Q3_9 
+    ##    <dbl> <dbl> <dbl> <ord> <fct> <fct> <fct> <fct> <fct> <fct> <fct> <fct> <fct>
+    ##  1     3     8   2   2009  No    No    No    No    No    No    No    No    No   
+    ##  2     5    35  12   Befo~ Yes   No    No    No    No    No    No    No    Yes  
+    ##  3     6    34  12   Befo~ Yes   Yes   No    No    No    Yes   No    No    No   
+    ##  4    11    20   9   2010  No    No    No    No    No    No    No    No    No   
+    ##  5    13    20   3   2010  No    No    No    No    No    No    No    No    No   
+    ##  6    15    36  20   Befo~ No    Yes   No    No    No    No    No    No    Yes  
+    ##  7    21    12   2.5 2009  Yes   No    No    No    No    Yes   Yes   No    No   
+    ##  8    22    11   0.5 2011  Yes   Yes   Yes   Yes   Yes   No    No    No    No   
+    ##  9    23    18   3   2008  Yes   Yes   Yes   Yes   Yes   Yes   No    No    Yes  
+    ## 10    25    24   8   2006  No    No    No    Yes   Yes   Yes   No    No    Yes  
+    ## # ... with 205 more rows, and 96 more variables: Q3_10 <fct>, Q3_11 <fct>,
     ...
 
 Notice from this summary that Question 2 has two columns, i.e. `Q2_1`
@@ -241,12 +247,10 @@ The extraction makes use of the underlying metadata, contained in the
 varlabels(sv)
 ```
 
-    ##                  id                  Q1                Q4_1 
-    ##            "RespID"        "Question 1"   "Question 4: red" 
-    ##                Q4_2                Q4_3                 Q10 
-    ## "Question 4: green"  "Question 4: blue"       "Question 10" 
-    ##          crossbreak              weight 
-    ##        "crossbreak"            "weight"
+    ##                  id                  Q1                Q4_1                Q4_2 
+    ##            "RespID"        "Question 1"   "Question 4: red" "Question 4: green" 
+    ##                Q4_3                 Q10          crossbreak              weight 
+    ##  "Question 4: blue"       "Question 10"        "crossbreak"            "weight"
 
 ``` r
 pattern(sv)
@@ -261,8 +265,7 @@ pattern(sv)
 ## Working with question columns
 
 It is easy to query the surveydata object to find out which questions it
-contains, as well as which columns store the data for those
-    questions.
+contains, as well as which columns store the data for those questions.
 
 ``` r
 questions(sv)
