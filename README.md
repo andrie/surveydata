@@ -16,8 +16,8 @@ that originated in SPSS or other formats.
 
 ## Motivation
 
-Specifically, the package makes it easy question text (metadata) with
-the data itself.
+Specifically, the package makes it easy to include the question text as
+metadata with the data itself.
 
 To track the questions of a survey, you have two options:
 
@@ -30,11 +30,12 @@ data means you must keep track of the question metadata separately.
 
 This package solves the problem by creating a new class, `surveydata`,
 and keeping the questions as an attribute of this class. Whenever you do
-a subsetting operation, the metadata stays intact.
+a subset operation, the metadata stays intact.
 
 In addition, the metadata knows if a question consists of a single
-column, or multiple columns. When doing subsetting on the question name,
-the resulting object can be either a single column or multiple columns.
+column, or multiple columns. When creating a subset on the question
+name, the resulting object can be either a single column or multiple
+columns.
 
 ``` r
 library(surveydata)

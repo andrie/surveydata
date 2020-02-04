@@ -11,6 +11,3 @@ dev: [![dev build status](https://travis-ci.org/andrie/surveydata.svg?branch=dev
 
 ```{r, child = rprojroot::find_package_root_file("inst/vignette_child/child.Rmd")}
 ```
-
-
-
