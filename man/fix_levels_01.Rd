@@ -21,12 +21,14 @@ fix_levels_01(dat, origin = c("R", "SPSS"))
 Fix level formatting of all question with Yes/No type answers.
 }
 \seealso{
-Other Functions to clean data: \code{\link{encToInt}},
-  \code{\link{fix_common_encoding_problems}},
-  \code{\link{has_dont_know}}, \code{\link{intToEnc}},
-  \code{\link{leveltest}},
-  \code{\link{remove_all_dont_know}},
-  \code{\link{remove_dont_know}}
+Other Functions to clean data: 
+\code{\link{encToInt}()},
+\code{\link{fix_common_encoding_problems}()},
+\code{\link{has_dont_know}()},
+\code{\link{intToEnc}()},
+\code{\link{leveltest}},
+\code{\link{remove_all_dont_know}()},
+\code{\link{remove_dont_know}()}
 }
 \concept{Functions to clean data}
 \keyword{"clean}

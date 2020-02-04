@@ -47,10 +47,12 @@ str(membersurvey[, "id"])
 \seealso{
 \code{\link[=questions]{questions()}} to return all questions matching the \code{\link[=pattern]{pattern()}}
 
-Other Question functions: \code{\link{question_text_common}},
-  \code{\link{question_text_unique}},
-  \code{\link{question_text}}, \code{\link{questions}},
-  \code{\link{split_common_unique}}
+Other Question functions: 
+\code{\link{question_text_common}()},
+\code{\link{question_text_unique}()},
+\code{\link{question_text}()},
+\code{\link{questions}()},
+\code{\link{split_common_unique}()}
 }
 \concept{Question functions}
 \keyword{Questions}

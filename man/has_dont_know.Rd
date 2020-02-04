@@ -18,12 +18,14 @@ TRUE or FALSE
 Returns TRUE if x contains any instances of dk
 }
 \seealso{
-Other Functions to clean data: \code{\link{encToInt}},
-  \code{\link{fix_common_encoding_problems}},
-  \code{\link{fix_levels_01_spss}}, \code{\link{intToEnc}},
-  \code{\link{leveltest}},
-  \code{\link{remove_all_dont_know}},
-  \code{\link{remove_dont_know}}
+Other Functions to clean data: 
+\code{\link{encToInt}()},
+\code{\link{fix_common_encoding_problems}()},
+\code{\link{fix_levels_01_spss}()},
+\code{\link{intToEnc}()},
+\code{\link{leveltest}},
+\code{\link{remove_all_dont_know}()},
+\code{\link{remove_dont_know}()}
 }
 \concept{Functions to clean data}
 \keyword{"clean}

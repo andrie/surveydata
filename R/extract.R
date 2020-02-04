@@ -31,7 +31,6 @@
 #' @param i row index
 #' @param j column index
 #' @param drop logical. Passed to `[.data.frame`. Note that the default is `FALSE`.
-#' @param ... Other arguments passed to `[.data.frame`
 #' @export
 #' @keywords internal
 #' @aliases [ "[.surveydata"

@@ -23,13 +23,11 @@
 
 \item{j}{column index}
 
-\item{drop}{logical. Passed to \code{[.data.frame}. Note that the default is \code{FALSE}.}
+\item{drop}{logical. Passed to \verb{[.data.frame}. Note that the default is \code{FALSE}.}
 
 \item{value}{New value}
 
 \item{name}{Names of columns}
-
-\item{...}{Other arguments passed to \code{[.data.frame}}
 }
 \description{
 The \code{surveydata} package makes it easy to extract specific questions from a surveydata object. Because survey data typically has question names like "Q1_a", "Q1_b", "Q1_c" the extract method for a \code{surveydata} object makes it easy to extract all columns by simply specifying "Q1" as the argument to the column index.

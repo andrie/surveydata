@@ -44,7 +44,8 @@ rm(oldptn)
 \seealso{
 \code{\link[=as.surveydata]{as.surveydata()}}, \code{\link[=which.q]{which.q()}}
 
-Other Attribute functions: \code{\link{varlabels}}
+Other Attribute functions: 
+\code{\link{varlabels}()}
 }
 \concept{Attribute functions}
 \keyword{internal}

@@ -18,6 +18,7 @@ Converts free format question text to datatable using the \code{DT} package.
 as_opentext_datatable(membersurvey, "Q33")
 }
 \seealso{
-Other open text functions: \code{\link{print_opentext}}
+Other open text functions: 
+\code{\link{print_opentext}()}
 }
 \concept{open text functions}

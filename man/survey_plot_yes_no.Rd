@@ -23,7 +23,8 @@ survey_plot_satisfaction(membersurvey, "Q14")
 
 }
 \seealso{
-Other survey plotting functions: \code{\link{survey_plot_question}},
-  \code{\link{survey_plot_satisfaction}}
+Other survey plotting functions: 
+\code{\link{survey_plot_question}()},
+\code{\link{survey_plot_satisfaction}()}
 }
 \concept{survey plotting functions}

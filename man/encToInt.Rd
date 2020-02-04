@@ -18,17 +18,19 @@ An integer vector
 Conversion of character vector to integer vector.  The encoding of the character vector can be specified but defaults to the current locale.
 }
 \examples{
-encToInt("\\xfa")
+encToInt("\xfa")
 }
 \seealso{
 \code{\link[=iconv]{iconv()}}
 
-Other Functions to clean data: \code{\link{fix_common_encoding_problems}},
-  \code{\link{fix_levels_01_spss}},
-  \code{\link{has_dont_know}}, \code{\link{intToEnc}},
-  \code{\link{leveltest}},
-  \code{\link{remove_all_dont_know}},
-  \code{\link{remove_dont_know}}
+Other Functions to clean data: 
+\code{\link{fix_common_encoding_problems}()},
+\code{\link{fix_levels_01_spss}()},
+\code{\link{has_dont_know}()},
+\code{\link{intToEnc}()},
+\code{\link{leveltest}},
+\code{\link{remove_all_dont_know}()},
+\code{\link{remove_dont_know}()}
 }
 \concept{Functions to clean data}
 \keyword{encoding}

@@ -13,6 +13,7 @@ question_order(x)
 Changes vector to ordered factor, adding NA levels if applicable.
 }
 \seealso{
-Other Tools: \code{\link{lapply_names}}
+Other Tools: 
+\code{\link{lapply_names}()}
 }
 \concept{Tools}

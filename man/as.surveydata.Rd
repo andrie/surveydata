@@ -5,9 +5,14 @@
 \alias{un_surveydata}
 \title{Coercion from and to surveydata.}
 \usage{
-as.surveydata(x, sep = "_", exclude = "other", ptn = pattern(x),
+as.surveydata(
+  x,
+  sep = "_",
+  exclude = "other",
+  ptn = pattern(x),
   defaultPtn = list(sep = sep, exclude = exclude),
-  renameVarlabels = FALSE)
+  renameVarlabels = FALSE
+)
 
 un_surveydata(x)
 }

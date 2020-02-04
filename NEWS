@@ -1,4 +1,4 @@
-surveydata 0.2.3.9000 (???)
+surveydata 0.2.4
 -----------------
 
 
@@ -8,6 +8,7 @@ Changes:
 * Removed dependency on `stringr` #8, contributed by [Evan Odell](https://github.com/evanodell)
 * Removed dependency on `plyr`
 * More documentation improvements and cleanup of `pkgdown`
+* Minor changes to documentation in response to stricter R CMD check warnings
 
 
 

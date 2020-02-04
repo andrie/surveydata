@@ -28,25 +28,20 @@ NULL
 
 #' @export
 #' @rdname dplyr-surveydata
-#' @importFrom dplyr mutate
 mutate.surveydata <- verb.surveydata
 
 
 #' @export
 #' @rdname dplyr-surveydata
-#' @importFrom dplyr select
-#' @importFrom dplyr as.tbl
 as.tbl.surveydata <- verb.surveydata
 
 #' @export
 #' @rdname dplyr-surveydata
-#' @importFrom dplyr select
 select.surveydata <- verb.surveydata
 
 
 #' @method filter surveydata
 #' @export
-#' @rdname dplyr-surveydata
 filter.surveydata <- verb.surveydata
 
 #' @importFrom dplyr filter
@@ -54,28 +49,23 @@ filter.surveydata <- verb.surveydata
 #' @rdname dplyr-surveydata
 #' @name filter
 #' @keywords internal
-#' @inheritParams verb.surveydata
 NULL
 
 #' @export
 #' @rdname dplyr-surveydata
-#' @importFrom dplyr arrange
 arrange.surveydata <- verb.surveydata
 
 
 #' @export
 #' @rdname dplyr-surveydata
-#' @importFrom dplyr summarise
 summarise.surveydata <- verb.surveydata
 
 #' @export
 #' @rdname dplyr-surveydata
-#' @importFrom dplyr summarize
 summarize.surveydata <- verb.surveydata
 
 
 
 #' @export
 #' @rdname dplyr-surveydata
-#' @importFrom dplyr slice
 slice.surveydata <- verb.surveydata

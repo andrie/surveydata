@@ -18,12 +18,14 @@ A factor with "Dont know" removed
 Tests the levels of x contain any instances of "Don't know".  If so, replaces these levels with \code{NA}
 }
 \seealso{
-Other Functions to clean data: \code{\link{encToInt}},
-  \code{\link{fix_common_encoding_problems}},
-  \code{\link{fix_levels_01_spss}},
-  \code{\link{has_dont_know}}, \code{\link{intToEnc}},
-  \code{\link{leveltest}},
-  \code{\link{remove_all_dont_know}}
+Other Functions to clean data: 
+\code{\link{encToInt}()},
+\code{\link{fix_common_encoding_problems}()},
+\code{\link{fix_levels_01_spss}()},
+\code{\link{has_dont_know}()},
+\code{\link{intToEnc}()},
+\code{\link{leveltest}},
+\code{\link{remove_all_dont_know}()}
 }
 \concept{Functions to clean data}
 \keyword{"clean}

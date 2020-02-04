@@ -5,7 +5,6 @@
 \alias{mutate.surveydata}
 \alias{as.tbl.surveydata}
 \alias{select.surveydata}
-\alias{filter.surveydata}
 \alias{filter}
 \alias{arrange.surveydata}
 \alias{summarise.surveydata}
@@ -18,8 +17,6 @@
 \method{as.tbl}{surveydata}(.data, ...)
 
 \method{select}{surveydata}(.data, ...)
-
-\method{filter}{surveydata}(.data, ...)
 
 \method{arrange}{surveydata}(.data, ...)
 

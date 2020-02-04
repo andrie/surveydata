@@ -20,6 +20,7 @@ Print open text questions.
 print_opentext(membersurvey, "Q33")
 }
 \seealso{
-Other open text functions: \code{\link{as_opentext_datatable}}
+Other open text functions: 
+\code{\link{as_opentext_datatable}()}
 }
 \concept{open text functions}

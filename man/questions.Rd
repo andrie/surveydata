@@ -48,10 +48,12 @@ str(membersurvey[, "id"])
 \seealso{
 which.q
 
-Other Question functions: \code{\link{question_text_common}},
-  \code{\link{question_text_unique}},
-  \code{\link{question_text}},
-  \code{\link{split_common_unique}}, \code{\link{which.q}}
+Other Question functions: 
+\code{\link{question_text_common}()},
+\code{\link{question_text_unique}()},
+\code{\link{question_text}()},
+\code{\link{split_common_unique}()},
+\code{\link{which.q}()}
 }
 \concept{Question functions}
 \keyword{Questions}

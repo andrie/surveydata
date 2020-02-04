@@ -14,5 +14,5 @@ survey_plot_title(data, q, width = 50)
 \item{width}{Passed to \code{\link[=strwrap]{strwrap()}}}
 }
 \description{
-This creates a plot title using \code{[ggplot2::ggtitle()]}. The main title is string wrapped, and the subtitle is the number of observations in the data.
+This creates a plot title using \verb{[ggplot2::ggtitle()]}. The main title is string wrapped, and the subtitle is the number of observations in the data.
 }

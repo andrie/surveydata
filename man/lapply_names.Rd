@@ -19,6 +19,7 @@ lapply_names(x, names, FUN, ...)
 This is useful to clean only some columns in a list (or \code{data.frame} or \code{surveydata} object). This is a simple wrapper around \code{\link[=lapply]{lapply()}} where only the named elements are changed.
 }
 \seealso{
-Other Tools: \code{\link{question_order}}
+Other Tools: 
+\code{\link{question_order}()}
 }
 \concept{Tools}
