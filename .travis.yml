@@ -1,9 +1,13 @@
 language: r
 
-r:
-  - oldrel
-  - release
+matrix:
+  include:
+
+  - r: oldrel
+
+  - r: release
     after_success:
     - Rscript -e 'withr::with_envvar(c(NOT_CRAN="true"), covr::codecov())'
-  - devel
+    
+  - r: devel
 
