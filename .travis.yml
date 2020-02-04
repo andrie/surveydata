@@ -1,21 +1,9 @@
 language: r
-sudo: false
-cache: packages
-dist: trusty
-os: linux
 
-matrix:
-  include:
-
-  - r: oldrel
-
-  - r: release
+r:
+  - oldrel
+  - release
     after_success:
     - Rscript -e 'withr::with_envvar(c(NOT_CRAN="true"), covr::codecov())'
-    
-    
-  - r_github_packages: tidyverse/dplyr
-    r: release
-
-  - r: devel
+  - devel
 
