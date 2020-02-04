@@ -1,6 +1,6 @@
 Package: surveydata
-Version: 0.2.3.9000
-Date: 2019-01-31
+Version: 0.2.4
+Date: 2020-02-04
 License: GPL-2|GPL-3
 Title: Tools to Work with Survey Data
 LazyData: true
@@ -16,8 +16,8 @@ Description: Data obtained from surveys contains information not only about the
     questions and the answer options. The 'surveydata' package makes it easy to
     keep track of this metadata, and to easily extract columns with
     specific questions.
-URL: http://andrie.github.io/surveydata/index.html
-BugReports: https://github.com/andrie/surveydata
+URL: https://github.com/andrie/surveydata, https://andrie.github.io/surveydata/index.html
+BugReports: https://github.com/andrie/surveydata/issues
 ByteCompile: yes
 Depends:
     R (>= 3.0.0)
