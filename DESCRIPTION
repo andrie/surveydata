@@ -1,6 +1,6 @@
 Package: surveydata
-Version: 0.2.4
-Date: 2020-02-04
+Version: 0.2.5
+Date: 2020-04-21
 License: GPL-2|GPL-3
 Title: Tools to Work with Survey Data
 LazyData: true
@@ -38,7 +38,7 @@ Suggests:
     withr,
     covr,
     rprojroot
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
 Encoding: UTF-8

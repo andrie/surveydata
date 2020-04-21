@@ -35,7 +35,7 @@
 The \code{surveydata} package exposes functionality to support some of the \code{dplyr} verbs, e.g. \code{\link[dplyr:filter]{dplyr::filter()}}.  The computation is performed by \code{dplyr}, and the resulting object is of class \code{surveydata} (as well as the \code{dplyr} result).
 }
 \examples{
-withr::with_package("dplyr", help = "dplyr", {
+withr::with_package("dplyr", {
   membersurvey \%>\% 
     as.tbl() \%>\% 
     .[c("id", "Q1", "Q2")] \%>\% 

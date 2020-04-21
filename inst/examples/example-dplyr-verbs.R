@@ -1,4 +1,4 @@
-withr::with_package("dplyr", help = "dplyr", {
+withr::with_package("dplyr", {
   membersurvey %>% 
     as.tbl() %>% 
     .[c("id", "Q1", "Q2")] %>% 
