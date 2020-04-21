@@ -1,10 +1,10 @@
 ## New in this package
 
-This release fixes documentation warnings from R-devel
+This release fixes documentation warnings from CRAN builds
 
 ## Test environments
 
-* local Windows install, R-3.6.2
+* local Windows install, R-3.6.3
 * ubuntu (on travis-ci), testing on:
   - R-release
   - R-oldrel

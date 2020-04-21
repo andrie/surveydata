@@ -1,6 +1,13 @@
 surveydata 0.2.4
 -----------------
 
+Changes:
+
+* Minor change in example to pass R CMD check
+
+
+surveydata 0.2.4
+-----------------
 
 Changes:
 

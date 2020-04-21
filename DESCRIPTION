@@ -37,8 +37,10 @@ Suggests:
     rmarkdown,
     withr,
     covr,
-    rprojroot
+    rprojroot,
+    spelling
 RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
 Encoding: UTF-8
+Language: en-GB
