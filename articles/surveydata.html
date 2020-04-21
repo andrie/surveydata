@@ -114,7 +114,7 @@
 ## 10    25    24   8   2006  No    No    No    Yes   Yes   Yes   No    No    Yes  
 ## # … with 205 more rows, and 96 more variables: Q3_10 &lt;fct&gt;, Q3_11 &lt;fct&gt;,
 ...</code></pre>
-<p>Notice from this summary that Question 2 has two columns, i.e. <code>Q2_1</code> and <code>Q2_2</code>. You can extract both these columns by simply referring to <code>Q2</code>:</p>
+<p>Notice from this summary that Question 2 has two columns, i.e. <code>Q2_1</code> and <code>Q2_2</code>. You can extract both these columns by simply referring to <code>Q2</code>:</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">sv</span>[, <span class="st">"Q2"</span>]</pre></body></html></div>
 <pre><code>## # A tibble: 215 x 1
 ##    Q2         
@@ -207,7 +207,7 @@
 <p>It is easy to extract specific questions with the <code><a href="../reference/extract.html">[</a></code> operator. This works very similar to extraction of data frames. However, there are two important differences:</p>
 <ul>
 <li>The extraction operators will always return a <code>surveydata</code> object, even if only a single column is returned. This is different from the behaviour of data frames, where a single column is simplified to a vector.</li>
-<li>Extracting a question with multiple sub-questions, e.g. “Q4” returns multiple columns</li>
+<li>Extracting a question with multiple sub-questions, e.g. “Q4” returns multiple columns</li>
 </ul>
 <div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">sv</span>[, <span class="st">"Q1"</span>]</pre></body></html></div>
 <pre><code>##    Q1
@@ -305,7 +305,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>
