@@ -1,13 +1,28 @@
 ---
-title: "Surveydata: Tools to Work with Survey Data"
 output: github_document
 ---
 
-master: [![master build status](https://travis-ci.org/andrie/surveydata.svg?branch=master)](https://travis-ci.org/andrie/surveydata)
-dev: [![dev build status](https://travis-ci.org/andrie/surveydata.svg?branch=dev)](https://travis-ci.org/andrie/surveydata)
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# surveydata
+
+<!-- badges: start -->
+[![R build status](https://github.com/andrie/surveydata/workflows/R-CMD-check/badge.svg)](https://github.com/andrie/surveydata/actions)
 [![](http://www.r-pkg.org/badges/version/surveydata)](http://www.r-pkg.org/pkg/surveydata)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/surveydata)](http://www.r-pkg.org/pkg/surveydata)
 [![Coverage Status](http://img.shields.io/codecov/c/github/andrie/surveydata/master.svg)](https://codecov.io/github/andrie/surveydata?branch=master)
+<!-- badges: end -->
+
+
 
 ```{r, child = rprojroot::find_package_root_file("inst/vignette_child/child.Rmd")}
 ```

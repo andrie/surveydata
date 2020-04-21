@@ -1,15 +1,18 @@
-Surveydata: Tools to Work with Survey Data
-================
 
-master: [![master build
-status](https://travis-ci.org/andrie/surveydata.svg?branch=master)](https://travis-ci.org/andrie/surveydata)
-dev: [![dev build
-status](https://travis-ci.org/andrie/surveydata.svg?branch=dev)](https://travis-ci.org/andrie/surveydata)
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# surveydata
+
+<!-- badges: start -->
+
+[![R build
+status](https://github.com/andrie/surveydata/workflows/R-CMD-check/badge.svg)](https://github.com/andrie/surveydata/actions)
 [![](http://www.r-pkg.org/badges/version/surveydata)](http://www.r-pkg.org/pkg/surveydata)
 [![CRAN RStudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/surveydata)](http://www.r-pkg.org/pkg/surveydata)
 [![Coverage
 Status](http://img.shields.io/codecov/c/github/andrie/surveydata/master.svg)](https://codecov.io/github/andrie/surveydata?branch=master)
+<!-- badges: end -->
 
 The `surveydata` package makes it easy to work with typical survey data
 that originated in SPSS or other formats.
@@ -39,35 +42,28 @@ columns.
 
 ``` r
 library(surveydata)
-```
-
-    ## Warning in as.POSIXlt.POSIXct(Sys.time()): unable to identify current timezone 'C':
-    ## please set environment variable 'TZ'
-
-``` r
 library(dplyr)
 ```
 
 ``` r
 sv <- membersurvey %>% as.tbl()
 sv
+#> # A tibble: 215 x 109
+#>       id  Q1_1  Q1_2 Q2    Q3_1  Q3_2  Q3_3  Q3_4  Q3_5  Q3_6  Q3_7  Q3_8  Q3_9 
+#>    <dbl> <dbl> <dbl> <ord> <fct> <fct> <fct> <fct> <fct> <fct> <fct> <fct> <fct>
+#>  1     3     8   2   2009  No    No    No    No    No    No    No    No    No   
+#>  2     5    35  12   Befo~ Yes   No    No    No    No    No    No    No    Yes  
+#>  3     6    34  12   Befo~ Yes   Yes   No    No    No    Yes   No    No    No   
+#>  4    11    20   9   2010  No    No    No    No    No    No    No    No    No   
+#>  5    13    20   3   2010  No    No    No    No    No    No    No    No    No   
+#>  6    15    36  20   Befo~ No    Yes   No    No    No    No    No    No    Yes  
+#>  7    21    12   2.5 2009  Yes   No    No    No    No    Yes   Yes   No    No   
+#>  8    22    11   0.5 2011  Yes   Yes   Yes   Yes   Yes   No    No    No    No   
+#>  9    23    18   3   2008  Yes   Yes   Yes   Yes   Yes   Yes   No    No    Yes  
+#> 10    25    24   8   2006  No    No    No    Yes   Yes   Yes   No    No    Yes  
+#> # ... with 205 more rows, and 96 more variables: Q3_10 <fct>, Q3_11 <fct>,
+...
 ```
-
-    ## # A tibble: 215 x 109
-    ##       id  Q1_1  Q1_2 Q2    Q3_1  Q3_2  Q3_3  Q3_4  Q3_5  Q3_6  Q3_7  Q3_8  Q3_9 
-    ##    <dbl> <dbl> <dbl> <ord> <fct> <fct> <fct> <fct> <fct> <fct> <fct> <fct> <fct>
-    ##  1     3     8   2   2009  No    No    No    No    No    No    No    No    No   
-    ##  2     5    35  12   Befo~ Yes   No    No    No    No    No    No    No    Yes  
-    ##  3     6    34  12   Befo~ Yes   Yes   No    No    No    Yes   No    No    No   
-    ##  4    11    20   9   2010  No    No    No    No    No    No    No    No    No   
-    ##  5    13    20   3   2010  No    No    No    No    No    No    No    No    No   
-    ##  6    15    36  20   Befo~ No    Yes   No    No    No    No    No    No    Yes  
-    ##  7    21    12   2.5 2009  Yes   No    No    No    No    Yes   Yes   No    No   
-    ##  8    22    11   0.5 2011  Yes   Yes   Yes   Yes   Yes   No    No    No    No   
-    ##  9    23    18   3   2008  Yes   Yes   Yes   Yes   Yes   Yes   No    No    Yes  
-    ## 10    25    24   8   2006  No    No    No    Yes   Yes   Yes   No    No    Yes  
-    ## # ... with 205 more rows, and 96 more variables: Q3_10 <fct>, Q3_11 <fct>,
-    ...
 
 Notice from this summary that Question 2 has two columns, i.e. `Q2_1`
 and `Q2_2`. You can extract both these columns by simply referring to
@@ -75,43 +71,41 @@ and `Q2_2`. You can extract both these columns by simply referring to
 
 ``` r
 sv[, "Q2"]
+#> # A tibble: 215 x 1
+#>    Q2         
+#>    <ord>      
+#>  1 2009       
+#>  2 Before 2002
+#>  3 Before 2002
+#>  4 2010       
+#>  5 2010       
+#>  6 Before 2002
+#>  7 2009       
+#>  8 2011       
+#>  9 2008       
+#> 10 2006       
+#> # ... with 205 more rows
 ```
-
-    ## # A tibble: 215 x 1
-    ##    Q2         
-    ##    <ord>      
-    ##  1 2009       
-    ##  2 Before 2002
-    ##  3 Before 2002
-    ##  4 2010       
-    ##  5 2010       
-    ##  6 Before 2002
-    ##  7 2009       
-    ##  8 2011       
-    ##  9 2008       
-    ## 10 2006       
-    ## # ... with 205 more rows
 
 However, the subset of `Q1` returns only a single column:
 
 ``` r
 sv[, "Q2"]
+#> # A tibble: 215 x 1
+#>    Q2         
+#>    <ord>      
+#>  1 2009       
+#>  2 Before 2002
+#>  3 Before 2002
+#>  4 2010       
+#>  5 2010       
+#>  6 Before 2002
+#>  7 2009       
+#>  8 2011       
+#>  9 2008       
+#> 10 2006       
+#> # ... with 205 more rows
 ```
-
-    ## # A tibble: 215 x 1
-    ##    Q2         
-    ##    <ord>      
-    ##  1 2009       
-    ##  2 Before 2002
-    ##  3 Before 2002
-    ##  4 2010       
-    ##  5 2010       
-    ##  6 Before 2002
-    ##  7 2009       
-    ##  8 2011       
-    ##  9 2008       
-    ## 10 2006       
-    ## # ... with 205 more rows
 
 Note that in both cases the `surveydata` object doesn’t return a vector
 - subsetting a `surveydata` object always returns a `surveydata` object.
@@ -165,6 +159,7 @@ stored in the rows, while each column represents answers to a specific
 question.
 
 ``` r
+
 sdat <- data.frame(
    id   = 1:4,
    Q1   = c("Yes", "No", "Yes", "Yes"),
@@ -186,6 +181,7 @@ function. This function assigns the questionnaire text to the
 `variable.labels` attribute of the data frame.
 
 ``` r
+
 varlabels(sdat) <- c(
    "RespID",
    "Question 1", 
@@ -223,45 +219,36 @@ important differences:
 
 ``` r
 sv[, "Q1"]
-```
-
-    ##    Q1
-    ## 1 Yes
-    ## 2  No
-    ## 3 Yes
-    ## 4 Yes
-
-``` r
+#>    Q1
+#> 1 Yes
+#> 2  No
+#> 3 Yes
+#> 4 Yes
 sv[, "Q4"]
+#>   Q4_1 Q4_2 Q4_3
+#> 1    1    3    5
+#> 2    2    4    5
+#> 3    1    4    6
+#> 4    2    3    6
 ```
-
-    ##   Q4_1 Q4_2 Q4_3
-    ## 1    1    3    5
-    ## 2    2    4    5
-    ## 3    1    4    6
-    ## 4    2    3    6
 
 The extraction makes use of the underlying metadata, contained in the
 `varlabels` and `pattern` attributes:
 
 ``` r
+
 varlabels(sv)
-```
-
-    ##                  id                  Q1                Q4_1                Q4_2 
-    ##            "RespID"        "Question 1"   "Question 4: red" "Question 4: green" 
-    ##                Q4_3                 Q10          crossbreak              weight 
-    ##  "Question 4: blue"       "Question 10"        "crossbreak"            "weight"
-
-``` r
+#>                  id                  Q1                Q4_1                Q4_2 
+#>            "RespID"        "Question 1"   "Question 4: red" "Question 4: green" 
+#>                Q4_3                 Q10          crossbreak              weight 
+#>  "Question 4: blue"       "Question 10"        "crossbreak"            "weight"
 pattern(sv)
+#> $sep
+#> [1] "_"
+#> 
+#> $exclude
+#> [1] "other"
 ```
-
-    ## $sep
-    ## [1] "_"
-    ## 
-    ## $exclude
-    ## [1] "other"
 
 ## Working with question columns
 
@@ -270,22 +257,13 @@ contains, as well as which columns store the data for those questions.
 
 ``` r
 questions(sv)
-```
-
-    ## [1] "id"         "Q1"         "Q4"         "Q10"        "crossbreak"
-    ## [6] "weight"
-
-``` r
+#> [1] "id"         "Q1"         "Q4"         "Q10"        "crossbreak"
+#> [6] "weight"
 which.q(sv, "Q1")
-```
-
-    ## [1] 2
-
-``` r
+#> [1] 2
 which.q(sv, "Q4")
+#> [1] 3 4 5
 ```
-
-    ## [1] 3 4 5
 
 ## Reading the questionnaire text
 
@@ -293,15 +271,10 @@ The function `question_text()` gives access to the questionnaire text.
 
 ``` r
 question_text(sv, "Q1")
-```
-
-    ## [1] "Question 1"
-
-``` r
+#> [1] "Question 1"
 question_text(sv, "Q4")
+#> [1] "Question 4: red"   "Question 4: green" "Question 4: blue"
 ```
-
-    ## [1] "Question 4: red"   "Question 4: green" "Question 4: blue"
 
 ### Getting the common question text
 
@@ -310,9 +283,8 @@ question itself:
 
 ``` r
 question_text_common(sv, "Q4")
+#> [1] "Question 4"
 ```
-
-    ## [1] "Question 4"
 
 ### Getting the unique question text
 
@@ -321,9 +293,8 @@ question, i.e. the sub-questions:
 
 ``` r
 question_text_unique(sv, "Q4")
+#> [1] "red"   "green" "blue"
 ```
-
-    ## [1] "red"   "green" "blue"
 
 ## Using `surveydata` with `dplyr`
 
