@@ -11,3 +11,4 @@ cran-comments.md
 ^docs$
 _pkgdown.yml
 ^\.travis\.yml$
+^\.github$
