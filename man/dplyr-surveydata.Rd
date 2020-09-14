@@ -3,6 +3,7 @@
 \name{dplyr-surveydata}
 \alias{dplyr-surveydata}
 \alias{mutate.surveydata}
+\alias{as_tibble.surveydata}
 \alias{as.tbl.surveydata}
 \alias{select.surveydata}
 \alias{filter}
@@ -14,7 +15,9 @@
 \usage{
 \method{mutate}{surveydata}(.data, ...)
 
-\method{as.tbl}{surveydata}(.data, ...)
+\method{as_tibble}{surveydata}(.data, ...)
+
+\method{as.tbl}{surveydata}(x)
 
 \method{select}{surveydata}(.data, ...)
 
@@ -37,7 +40,7 @@ The \code{surveydata} package exposes functionality to support some of the \code
 \examples{
 withr::with_package("dplyr", {
   membersurvey \%>\% 
-    as.tbl() \%>\% 
+    as_tibble() \%>\% 
     .[c("id", "Q1", "Q2")] \%>\% 
     filter(Q2 == 2009)
 })

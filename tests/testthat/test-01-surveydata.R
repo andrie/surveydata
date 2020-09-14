@@ -7,14 +7,14 @@ if (interactive()) library(testthat)
 tsv <- make_test_data()
 tsv_labels <- varlabels(tsv)
 
-context("Surveydata")
+
 
 test_that("as.surveydata and is.surveydata works as expected", {
   s <- as.surveydata(tsv)
   # expected_pattern <- c("^", "(_[[:digit:]])*(_.*)?$")
   expected_pattern <- list(sep = "_", exclude = "other")
-  expect_is(s, "surveydata")
-  expect_is(s, "data.frame")
+  expect_s3_class(s, "surveydata")
+  expect_s3_class(s, "data.frame")
   expect_true(is.surveydata(s))
   expect_false(is.surveydata(tsv))
   expect_equal(pattern(s), expected_pattern)
@@ -22,7 +22,7 @@ test_that("as.surveydata and is.surveydata works as expected", {
   # new_pattern <- c("", "new_pattern$")
   new_pattern <- list(sep = ":", exclude = "last")
   s <- as.surveydata(tsv, ptn = new_pattern)
-  expect_is(s, "surveydata")
+  expect_s3_class(s, "surveydata")
   expect_true(is.surveydata(s))
   expect_equal(pattern(s), new_pattern)
 })
@@ -103,5 +103,8 @@ test_that("Name_replace works as expected", {
 test_that("warnings are issued when names and varlabels mismatch", {
   s2 <- as.surveydata(tsv)
   varlabels(s2) <- varlabels(s2)[-1]
-  expect_warning(is.surveydata(s2), "names and varlabel names must match")
+  expect_warning(
+    is.surveydata(s2), 
+    c("varlabels must have same length as object")
+  )
 })

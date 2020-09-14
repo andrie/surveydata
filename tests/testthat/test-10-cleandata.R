@@ -1,5 +1,5 @@
 if (interactive()) library(testthat)
-context("clean data")
+
 
 test_that("cleandata functions work", {
   expect_false(
@@ -20,12 +20,13 @@ test_that("cleandata functions work", {
   expect_false(
     leveltest_r(membersurvey)
   )
-  expect_is(fix_levels_01(membersurvey), "surveydata")
+  expect_s3_class(fix_levels_01(membersurvey), "surveydata")
 })
 
 
 test_that("deprecated functions return warnings", {
-  expect_warning(sapply(membersurvey, hasDK))
+  expect_warning(hasDK(membersurvey["id"]))
+  
   expect_warning(removeAllDK(membersurvey, message = FALSE))
   expect_warning(removeDK(membersurvey$Q2, dk = "Before 2002"))
   expect_warning(leveltestR(membersurvey))

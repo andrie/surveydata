@@ -37,7 +37,7 @@ if (interactive()) library(testthat)
 
 #------------------------------------------------------------------------------
 
-context("Questions")
+
 
 test_that("question_text, qTextCommon and qTextUnique work as expected", {
   s <- as.surveydata(sdat)

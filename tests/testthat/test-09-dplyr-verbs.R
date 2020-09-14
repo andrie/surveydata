@@ -1,16 +1,20 @@
 if (interactive()) library(testthat)
-context("dplyr verbs")
+
 
 test_that("dplyr verbs retain surveydata class", {
   skip_if_not_installed("dplyr")
   require(dplyr)
 
-  expect_is(membersurvey %>% as.tbl(), "surveydata")
-  expect_is(membersurvey %>% as.tbl() %>% mutate(id = 1), "surveydata")
-  expect_is(membersurvey %>% as.tbl() %>% filter(Q2 == 2009), "surveydata")
-  expect_is(membersurvey %>% as.tbl() %>% slice(1), "surveydata")
-  expect_is(membersurvey %>% as.tbl() %>% arrange(Q2), "surveydata")
-  expect_is(membersurvey %>% as.tbl() %>% select(Q2), "surveydata")
-  expect_is(membersurvey %>% as.tbl() %>% summarise(n = n()), "surveydata")
-  expect_is(membersurvey %>% as.tbl() %>% summarize(n = n()), "surveydata")
-})
+  expect_warning(membersurvey %>% as.tbl.surveydata(), "deprecated")
+  
+  expect_s3_class(membersurvey %>% as_tibble(), "surveydata")
+  expect_s3_class(membersurvey %>% as_tibble() %>% mutate(id = 1), "surveydata")
+  expect_s3_class(membersurvey %>% as_tibble() %>% filter(Q2 == 2009), "surveydata")
+  expect_s3_class(membersurvey %>% as_tibble() %>% slice(1), "surveydata")
+  expect_s3_class(membersurvey %>% as_tibble() %>% arrange(Q2), "surveydata")
+  expect_s3_class(membersurvey %>% as_tibble() %>% select(Q2), "surveydata")
+  expect_s3_class(membersurvey %>% as_tibble() %>% summarise(n = n()), "surveydata")
+  expect_s3_class(membersurvey %>% as_tibble() %>% summarize(n = n()), "surveydata")
+  
+  
+  })

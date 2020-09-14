@@ -30,7 +30,7 @@ library(surveydata)
 library(dplyr)
 
 ## ----motivation, output.lines = 14---------------------------------------
-sv <- membersurvey %>% as.tbl()
+sv <- membersurvey %>% as_tbl()
 sv
 
 ## ----motivation-q2-------------------------------------------------------

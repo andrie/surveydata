@@ -26,8 +26,8 @@ To access and modify attributes:
 
 To subset or merge surveydata objects:
 \itemize{
-\item \code{\link[surveydata:merge]{surveydata::merge()}}
-\item \code{\link[surveydata:Extract]{surveydata::Extract()}}
+\item \code{\link[=merge]{merge()}}
+\item \code{\link[=Extract]{Extract()}}
 \item \code{\link[=cbind.surveydata]{cbind.surveydata()}}
 }
 

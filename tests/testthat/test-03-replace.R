@@ -37,7 +37,7 @@ rm.ca <- function(x) {
 
 #------------------------------------------------------------------------------
 
-context("Replace")
+
 
 test_that("`$<-` NULL removes column as well as varlabel", {
   s <- as.surveydata(sdat, renameVarlabels = TRUE)
@@ -46,7 +46,7 @@ test_that("`$<-` NULL removes column as well as varlabel", {
   expect_true(is.na(match("id", names(varlabels(s)))))
   expect_equal(names(s), names(sdat[-1]))
   expect_equal(names(varlabels(s)), names(sdat[-1]))
-  expect_is(s, "surveydata")
+  expect_s3_class(s, "surveydata")
 })
 
 test_that("`$<-` existing_name maintains correct varlabels", {
@@ -62,7 +62,7 @@ test_that("`$<-` newname inserts column and new varlabel", {
   expect_equal(s$newid, 101:104)
   expect_true(all(s$newid == 101:104))
   expect_false(is.na(match("newid", names(varlabels(s)))))
-  expect_is(s, "surveydata")
+  expect_s3_class(s, "surveydata")
 })
 
 #------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ test_that("`[<-` NULL removes column as well as varlabel", {
   expect_true(is.na(match("id", names(varlabels(s)))))
   expect_equal(names(s), names(sdat[-1]))
   expect_equal(names(varlabels(s)), names(sdat[-1]))
-  expect_is(s, "surveydata")
+  expect_s3_class(s, "surveydata")
 })
 
 test_that("`[<-` existing_name maintains correct varlabels", {
@@ -92,5 +92,5 @@ test_that("`[<-` newname inserts column and new varlabel", {
   s["newid"] <- 101:104
   expect_equal(s$newid, 101:104)
   expect_false(is.na(match("newid", names(varlabels(s)))))
-  expect_is(s, "surveydata")
+  expect_s3_class(s, "surveydata")
 })

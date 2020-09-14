@@ -1,11 +1,11 @@
 if (interactive()) library(testthat)
-context("open text")
+
 
 test_that("converts free text to DT object", {
   p <- as_opentext_datatable(membersurvey, "Q33")
-  expect_is(p, "datatables")
-  expect_is(p, "htmlwidget")
+  expect_s3_class(p, "datatables")
+  expect_s3_class(p, "htmlwidget")
 
   p <- print_opentext(membersurvey, "Q33", cat = FALSE)
-  expect_is(p, "character")
+  expect_type(p, "character")
 })

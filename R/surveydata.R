@@ -82,12 +82,16 @@ as.data.frame.surveydata <- function(x, ..., rm.pattern = FALSE) {
 #' @seealso [surveydata-package]
 #' @export
 is.surveydata <- function(x) {
+  msg <- ""
   if (length(x) != length(varlabels(x))) {
-    warning("surveydata: varlabels must have same length as object")
+    new_msg <- "varlabels must have same length as object"
+    msg <- paste(msg, new_msg, sep = "; ")
   }
   if (!isTRUE(all.equal(names(x), names(varlabels(x))))) {
-    warning("surveydata: names and varlabel names must match")
+    new_msg <- "names and varlabel names must match"
+    msg <- paste(msg, new_msg, sep = "; ")
   }
+  if (msg != "") warning(msg)
   inherits(x, "surveydata")
 }
 

@@ -33,7 +33,15 @@ mutate.surveydata <- verb.surveydata
 
 #' @export
 #' @rdname dplyr-surveydata
-as.tbl.surveydata <- verb.surveydata
+as_tibble.surveydata <- verb.surveydata
+
+#' @export
+#' @rdname dplyr-surveydata
+as.tbl.surveydata <- function(x) {
+  .Deprecated("as_tibble")
+  as_tibble(x)
+}
+
 
 #' @export
 #' @rdname dplyr-surveydata

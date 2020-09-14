@@ -3,7 +3,7 @@
 # Author: Andrie
 #------------------------------------------------------------------------------
 
-context("Encoding")
+
 
 test_that("encoding functions work as expected", {
   expect_equal(encToInt("\\xfa"), c(92, 120, 102, 97))

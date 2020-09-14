@@ -1,5 +1,5 @@
 if (interactive()) library(testthat)
-context("Encoding")
+
 
 test_that("encoding functions work", {
   skip_on_os(c("mac", "linux", "solaris"))

@@ -18,7 +18,7 @@ load(file = file.path(path, filename))
 
 gss <- as.surveydata(gss, ptn = c("^", "(.*?)$"))
 
-context("Integrated test of reading and analysing a survey file")
+
 
 test_that("surveydata works with real spss data file", {
   qs <- questions(gss)

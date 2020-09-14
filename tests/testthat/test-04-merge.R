@@ -32,7 +32,7 @@
 
 
 
-context("Merge")
+
 
 test_that("Merge of surveydata objects work as expected", {
   sdat2 <- data.frame(
@@ -49,11 +49,11 @@ test_that("Merge of surveydata objects work as expected", {
 
   s1 <- as.surveydata(sdat, renameVarlabels = TRUE)
   s2 <- as.surveydata(sdat2, ptn = c("_", ""), renameVarlabels = TRUE)
-  expect_that(
+  expect_warning(
     sm <- merge(s1, s2, all = TRUE),
-    gives_warning("In merge of surveydata objects, patterns of objects differ")
+    "In merge of surveydata objects, patterns of objects differ"
   )
-  expect_that(sm, is_a("surveydata"))
+  expect_s3_class(sm, "surveydata")
   expect_equal(nrow(sm), 6)
   expect_equal(pattern(s1), pattern(sm))
 })

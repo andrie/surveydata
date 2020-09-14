@@ -15,7 +15,7 @@ rm.ca <- function(x) {
 
 #------------------------------------------------------------------------------
 
-context("which.q")
+
 
 test_that("which.q returns correct question positions", {
   s <- as.surveydata(tsv, renameVarlabels = TRUE)

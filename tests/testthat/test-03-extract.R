@@ -38,14 +38,14 @@ rm.ca <- function(x) {
 
 #------------------------------------------------------------------------------
 
-context("Extract")
+
 
 test_that("`$` extracts correct columns", {
   s <- as.surveydata(sdat, renameVarlabels = TRUE)
 
   expect_equal(s$id, 1:4)
   expect_equal(s$Q4_1, c(1, 2, 1, 2))
-  expect_is(s, "surveydata")
+  expect_s3_class(s, "surveydata")
 })
 
 
@@ -65,12 +65,12 @@ test_that("`[` simple extract returns surveydata object", {
   #      varlabels(x)
   #      str(x)
 
-  expect_is(s[], "surveydata")
-  expect_is(s[, 2], "surveydata")
-  expect_is(s[1, ], "surveydata")
-  expect_is(s[2, 2], "surveydata")
-  expect_is(s[, "Q1"], "surveydata")
-  expect_is(s[, "Q4"], "surveydata")
+  expect_s3_class(s[], "surveydata")
+  expect_s3_class(s[, 2], "surveydata")
+  expect_s3_class(s[1, ], "surveydata")
+  expect_s3_class(s[2, 2], "surveydata")
+  expect_s3_class(s[, "Q1"], "surveydata")
+  expect_s3_class(s[, "Q4"], "surveydata")
 })
 
 test_that("`[` simple extract returns correct data", {
