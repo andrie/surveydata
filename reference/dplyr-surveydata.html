@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">surveydata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -121,25 +121,28 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for surveydata</span>
-<span class='fu'>mutate</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for surveydata</span>
-<span class='fu'>as.tbl</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for surveydata</span>
-<span class='fu'>select</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://dplyr.tidyverse.org/reference/tbl_df.html'>as.tbl</a></span>(<span class='kw'>x</span>)
 
 <span class='co'># S3 method for surveydata</span>
-<span class='fu'>arrange</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for surveydata</span>
-<span class='fu'>summarise</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for surveydata</span>
-<span class='fu'>summarize</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for surveydata</span>
-<span class='fu'>slice</span>(<span class='no'>.data</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)
+
+<span class='co'># S3 method for surveydata</span>
+<span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice</a></span>(<span class='kw'>.data</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,12 +159,13 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>withr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/withr/man/with_package.html'>with_package</a></span>(<span class='st'>"dplyr"</span>, {
-  <span class='no'>membersurvey</span> <span class='kw'>%&gt;%</span>
-    <span class='fu'>as.tbl</span>() <span class='kw'>%&gt;%</span>
-    <span class='no'>.</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"id"</span>, <span class='st'>"Q1"</span>, <span class='st'>"Q2"</span>)] <span class='kw'>%&gt;%</span>
-    <span class='fu'>filter</span>(<span class='no'>Q2</span> <span class='kw'>==</span> <span class='fl'>2009</span>)
-})</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 20 x 4</span><span>
+    <pre class="examples"><div class='input'><span class='kw'>withr</span>::<span class='fu'><a href='https://withr.r-lib.org/reference/with_package.html'>with_package</a></span>(<span class='st'>"dplyr"</span>, {
+  <span class='kw'>membersurvey</span> <span class='op'>%&gt;%</span> 
+    <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>() <span class='op'>%&gt;%</span> 
+    <span class='kw'>.</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"id"</span>, <span class='st'>"Q1"</span>, <span class='st'>"Q2"</span>)] <span class='op'>%&gt;%</span> 
+    <span class='fu'>filter</span>(<span class='kw'>Q2</span> <span class='op'>==</span> <span class='fl'>2009</span>)
+})
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 20 x 4</span><span>
 #&gt;       id  Q1_1  Q1_2 Q2   
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;ord&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span>     3     8   2   2009 
@@ -201,7 +205,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

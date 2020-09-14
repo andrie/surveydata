@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">surveydata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -120,9 +120,9 @@
     <p>In a surveydata object, the <code>variable.labels</code> attribute store metadata about the original question text (see <code><a href='https://rdrr.io/pkg/foreign/man/read.spss.html'>foreign::read.spss()</a></code> for details).  The function <code>varlabels()</code> returns the <code>variable.labels</code> attribute of data, and <code>varlabels(x) &lt;- value</code> updates this attribute.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>varlabels</span>(<span class='no'>x</span>)
+    <pre class="usage"><span class='fu'>varlabels</span>(<span class='kw'>x</span>)
 
-<span class='fu'>varlabels</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+<span class='fu'>varlabels</span>(<span class='kw'>x</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,37 +151,42 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Extract the variable labels from membersurvey</span>
 
-<span class='no'>ms</span> <span class='kw'>&lt;-</span> <span class='no'>membersurvey</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"id"</span>, <span class='st'>"Q1"</span>, <span class='st'>"Q2"</span>)]
+<span class='kw'>ms</span> <span class='op'>&lt;-</span> <span class='kw'>membersurvey</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"id"</span>, <span class='st'>"Q1"</span>, <span class='st'>"Q2"</span>)]
 
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>ms</span>)</div><div class='output co'>#&gt; Classes ‘surveydata’ and 'data.frame':	215 obs. of  4 variables:
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='kw'>ms</span>)
+</div><div class='output co'>#&gt; Classes ‘surveydata’ and 'data.frame':	215 obs. of  4 variables:
 #&gt;  $ id  : num  3 5 6 11 13 15 21 22 23 25 ...
 #&gt;  $ Q1_1: num  8 35 34 20 20 36 12 11 18 24 ...
 #&gt;  $ Q1_2: num  2 12 12 9 3 20 2.5 0.5 3 8 ...
 #&gt;  $ Q2  : Ord.factor w/ 10 levels "Before 2002"&lt;..: 8 1 1 9 9 1 8 10 7 5 ...
-#&gt;  - attr(*, "variable.labels")= Named chr  "id" "[A market research professional] How many years of experience do you have as ?" "[An independent consultant / small business] How many years of experience do you have as ?" "In what year did you first join the organisation?"
-#&gt;   ..- attr(*, "names")= chr  "id" "Q1_1" "Q1_2" "Q2"
+#&gt;  - attr(*, "variable.labels")= Named chr [1:4] "id" "[A market research professional] How many years of experience do you have as ?" "[An independent consultant / small business] How many years of experience do you have as ?" "In what year did you first join the organisation?"
+#&gt;   ..- attr(*, "names")= chr [1:4] "id" "Q1_1" "Q1_2" "Q2"
 #&gt;  - attr(*, "pattern")=List of 2
 #&gt;   ..$ sep    : chr "_"
-#&gt;   ..$ exclude: chr "other"</div><div class='input'><span class='fu'>varlabels</span>(<span class='no'>ms</span>)</div><div class='output co'>#&gt;                                                                                           id 
+#&gt;   ..$ exclude: chr "other"</div><div class='input'><span class='fu'>varlabels</span>(<span class='kw'>ms</span>)
+</div><div class='output co'>#&gt;                                                                                           id 
 #&gt;                                                                                         "id" 
 #&gt;                                                                                         Q1_1 
 #&gt;             "[A market research professional] How many years of experience do you have as ?" 
 #&gt;                                                                                         Q1_2 
 #&gt; "[An independent consultant / small business] How many years of experience do you have as ?" 
 #&gt;                                                                                           Q2 
-#&gt;                                          "In what year did you first join the organisation?" </div><div class='input'><span class='fu'>varlabels</span>(<span class='no'>ms</span>)[<span class='st'>"Q2"</span>]</div><div class='output co'>#&gt;                                                  Q2 
+#&gt;                                          "In what year did you first join the organisation?" </div><div class='input'><span class='fu'>varlabels</span>(<span class='kw'>ms</span>)[<span class='st'>"Q2"</span>]
+</div><div class='output co'>#&gt;                                                  Q2 
 #&gt; "In what year did you first join the organisation?" </div><div class='input'>
 <span class='co'># Assign a new value to the text of question 2</span>
 
-<span class='fu'>varlabels</span>(<span class='no'>ms</span>)[<span class='st'>"Q2"</span>] <span class='kw'>&lt;-</span> <span class='st'>"When did you join?"</span>
-<span class='fu'>varlabels</span>(<span class='no'>ms</span>)</div><div class='output co'>#&gt;                                                                                           id 
+<span class='fu'>varlabels</span>(<span class='kw'>ms</span>)[<span class='st'>"Q2"</span>] <span class='op'>&lt;-</span> <span class='st'>"When did you join?"</span>
+<span class='fu'>varlabels</span>(<span class='kw'>ms</span>)
+</div><div class='output co'>#&gt;                                                                                           id 
 #&gt;                                                                                         "id" 
 #&gt;                                                                                         Q1_1 
 #&gt;             "[A market research professional] How many years of experience do you have as ?" 
 #&gt;                                                                                         Q1_2 
 #&gt; "[An independent consultant / small business] How many years of experience do you have as ?" 
 #&gt;                                                                                           Q2 
-#&gt;                                                                         "When did you join?" </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>ms</span>[<span class='st'>"Q2"</span>])</div><div class='output co'>#&gt; Classes ‘surveydata’ and 'data.frame':	215 obs. of  1 variable:
+#&gt;                                                                         "When did you join?" </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='kw'>ms</span>[<span class='st'>"Q2"</span>])
+</div><div class='output co'>#&gt; Classes ‘surveydata’ and 'data.frame':	215 obs. of  1 variable:
 #&gt;  $ Q2: Ord.factor w/ 10 levels "Before 2002"&lt;..: 8 1 1 9 9 1 8 10 7 5 ...
 #&gt;  - attr(*, "variable.labels")= Named chr "When did you join?"
 #&gt;   ..- attr(*, "names")= chr "Q2"
@@ -204,7 +209,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

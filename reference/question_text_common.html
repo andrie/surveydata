@@ -73,7 +73,7 @@ and returns the question text that is common to each." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">surveydata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@ and returns the question text that is common to each." />
 and returns the question text that is common to each.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>question_text_common</span>(<span class='no'>x</span>, <span class='no'>Q</span>)</pre>
+    <pre class="usage"><span class='fu'>question_text_common</span>(<span class='kw'>x</span>, <span class='kw'>Q</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,15 +152,21 @@ and returns the question text that is common to each.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Basic operations on a surveydata object, illustrated with the example dataset membersurvey</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>membersurvey</span>)</div><div class='output co'>#&gt; [1] "surveydata" "data.frame"</div><div class='input'>
-<span class='fu'><a href='questions.html'>questions</a></span>(<span class='no'>membersurvey</span>)</div><div class='output co'>#&gt;  [1] "id"        "Q1"        "Q2"        "Q3"        "Q4"        "Q5"       
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='kw'>membersurvey</span>)
+</div><div class='output co'>#&gt; [1] "surveydata" "data.frame"</div><div class='input'>
+<span class='fu'><a href='questions.html'>questions</a></span>(<span class='kw'>membersurvey</span>)
+</div><div class='output co'>#&gt;  [1] "id"        "Q1"        "Q2"        "Q3"        "Q4"        "Q5"       
 #&gt;  [7] "Q6"        "Q7"        "Q8"        "Q9"        "Q10"       "Q11"      
 #&gt; [13] "Q11_other" "Q12"       "Q13"       "Q14"       "Q15"       "Q19"      
 #&gt; [19] "Q20"       "Q20_other" "Q21"       "Q23"       "Q23_other" "Q24"      
 #&gt; [25] "Q25"       "Q26"       "Q27"       "Q30"       "Q30_other" "Q31"      
 #&gt; [31] "Q31_other" "Q32"       "Q33"       "Q35"       "weight"    "size"     </div><div class='input'>
-<span class='fu'><a href='which.q.html'>which.q</a></span>(<span class='no'>membersurvey</span>, <span class='st'>"Q1"</span>)</div><div class='output co'>#&gt; [1] 2 3</div><div class='input'><span class='fu'><a href='which.q.html'>which.q</a></span>(<span class='no'>membersurvey</span>, <span class='st'>"Q3"</span>)</div><div class='output co'>#&gt;  [1]  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19</div><div class='input'><span class='fu'><a href='which.q.html'>which.q</a></span>(<span class='no'>membersurvey</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Q1"</span>, <span class='st'>"Q3"</span>))</div><div class='output co'>#&gt;  [1]  2  3  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19</div><div class='input'>
-<span class='fu'><a href='question_text.html'>question_text</a></span>(<span class='no'>membersurvey</span>, <span class='st'>"Q3"</span>)</div><div class='output co'>#&gt;  [1] "[Carry out ad hoc qualitative projects] With regard to your market research work, which of these do you do at all?"                                         
+<span class='fu'><a href='which.q.html'>which.q</a></span>(<span class='kw'>membersurvey</span>, <span class='st'>"Q1"</span>)
+</div><div class='output co'>#&gt; [1] 2 3</div><div class='input'><span class='fu'><a href='which.q.html'>which.q</a></span>(<span class='kw'>membersurvey</span>, <span class='st'>"Q3"</span>)
+</div><div class='output co'>#&gt;  [1]  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19</div><div class='input'><span class='fu'><a href='which.q.html'>which.q</a></span>(<span class='kw'>membersurvey</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Q1"</span>, <span class='st'>"Q3"</span>))
+</div><div class='output co'>#&gt;  [1]  2  3  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19</div><div class='input'>
+<span class='fu'><a href='question_text.html'>question_text</a></span>(<span class='kw'>membersurvey</span>, <span class='st'>"Q3"</span>)
+</div><div class='output co'>#&gt;  [1] "[Carry out ad hoc qualitative projects] With regard to your market research work, which of these do you do at all?"                                         
 #&gt;  [2] "[Carry out ad hoc quantitative projects] With regard to your market research work, which of these do you do at all?"                                        
 #&gt;  [3] "[Design ad hoc projects but don't personally carry them out] With regard to your market research work, which of these do you do at all?"                    
 #&gt;  [4] "[Design/advise on research programmes as a whole] With regard to your market research work, which of these do you do at all?"                               
@@ -174,7 +180,8 @@ and returns the question text that is common to each.</p>
 #&gt; [12] "[Provide other part project services (interviewing, moderating, report writing)] With regard to your market research work, which of these do you do at all?"
 #&gt; [13] "[Lecture/teach] With regard to your market research work, which of these do you do at all?"                                                                 
 #&gt; [14] "[Provide training services] With regard to your market research work, which of these do you do at all?"                                                     
-#&gt; [15] "[Interim management] With regard to your market research work, which of these do you do at all?"                                                            </div><div class='input'><span class='fu'><a href='question_text_unique.html'>question_text_unique</a></span>(<span class='no'>membersurvey</span>, <span class='st'>"Q3"</span>)</div><div class='output co'>#&gt;  [1] "Carry out ad hoc qualitative projects"                                         
+#&gt; [15] "[Interim management] With regard to your market research work, which of these do you do at all?"                                                            </div><div class='input'><span class='fu'><a href='question_text_unique.html'>question_text_unique</a></span>(<span class='kw'>membersurvey</span>, <span class='st'>"Q3"</span>)
+</div><div class='output co'>#&gt;  [1] "Carry out ad hoc qualitative projects"                                         
 #&gt;  [2] "Carry out ad hoc quantitative projects"                                        
 #&gt;  [3] "Design ad hoc projects but don't personally carry them out"                    
 #&gt;  [4] "Design/advise on research programmes as a whole"                               
@@ -188,22 +195,26 @@ and returns the question text that is common to each.</p>
 #&gt; [12] "Provide other part project services (interviewing, moderating, report writing)"
 #&gt; [13] "Lecture/teach"                                                                 
 #&gt; [14] "Provide training services"                                                     
-#&gt; [15] "Interim management"                                                            </div><div class='input'><span class='fu'>question_text_common</span>(<span class='no'>membersurvey</span>, <span class='st'>"Q3"</span>)</div><div class='output co'>#&gt; [1] "With regard to your market research work, which of these do you do at all?"</div><div class='input'>
+#&gt; [15] "Interim management"                                                            </div><div class='input'><span class='fu'>question_text_common</span>(<span class='kw'>membersurvey</span>, <span class='st'>"Q3"</span>)
+</div><div class='output co'>#&gt; [1] "With regard to your market research work, which of these do you do at all?"</div><div class='input'>
 <span class='co'># Extracting columns from a surveydata object</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>membersurvey</span>[, <span class='st'>"Q1"</span>])</div><div class='output co'>#&gt;   Q1_1 Q1_2
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>membersurvey</span>[, <span class='st'>"Q1"</span>])
+</div><div class='output co'>#&gt;   Q1_1 Q1_2
 #&gt; 1    8    2
 #&gt; 2   35   12
 #&gt; 3   34   12
 #&gt; 4   20    9
 #&gt; 5   20    3
-#&gt; 6   36   20</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>membersurvey</span>[<span class='st'>"Q1"</span>])</div><div class='output co'>#&gt;   Q1_1 Q1_2
+#&gt; 6   36   20</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>membersurvey</span>[<span class='st'>"Q1"</span>])
+</div><div class='output co'>#&gt;   Q1_1 Q1_2
 #&gt; 1    8    2
 #&gt; 2   35   12
 #&gt; 3   34   12
 #&gt; 4   20    9
 #&gt; 5   20    3
-#&gt; 6   36   20</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>membersurvey</span>[, <span class='st'>"Q3"</span>])</div><div class='output co'>#&gt;   Q3_1 Q3_2 Q3_3 Q3_4 Q3_5 Q3_6 Q3_7 Q3_8 Q3_9 Q3_10 Q3_11 Q3_12 Q3_13 Q3_14
+#&gt; 6   36   20</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>membersurvey</span>[, <span class='st'>"Q3"</span>])
+</div><div class='output co'>#&gt;   Q3_1 Q3_2 Q3_3 Q3_4 Q3_5 Q3_6 Q3_7 Q3_8 Q3_9 Q3_10 Q3_11 Q3_12 Q3_13 Q3_14
 #&gt; 1   No   No   No   No   No   No   No   No   No   Yes    No    No    No    No
 #&gt; 2  Yes   No   No   No   No   No   No   No  Yes    No    No   Yes    No    No
 #&gt; 3  Yes  Yes   No   No   No  Yes   No   No   No    No    No    No    No    No
@@ -216,7 +227,8 @@ and returns the question text that is common to each.</p>
 #&gt; 3    No
 #&gt; 4    No
 #&gt; 5    No
-#&gt; 6    No</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>membersurvey</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Q1"</span>, <span class='st'>"Q3"</span>)])</div><div class='output co'>#&gt;   Q1_1 Q1_2 Q3_1 Q3_2 Q3_3 Q3_4 Q3_5 Q3_6 Q3_7 Q3_8 Q3_9 Q3_10 Q3_11 Q3_12
+#&gt; 6    No</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>membersurvey</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Q1"</span>, <span class='st'>"Q3"</span>)])
+</div><div class='output co'>#&gt;   Q1_1 Q1_2 Q3_1 Q3_2 Q3_3 Q3_4 Q3_5 Q3_6 Q3_7 Q3_8 Q3_9 Q3_10 Q3_11 Q3_12
 #&gt; 1    8    2   No   No   No   No   No   No   No   No   No   Yes    No    No
 #&gt; 2   35   12  Yes   No   No   No   No   No   No   No  Yes    No    No   Yes
 #&gt; 3   34   12  Yes  Yes   No   No   No  Yes   No   No   No    No    No    No
@@ -232,13 +244,15 @@ and returns the question text that is common to each.</p>
 #&gt; 6    No    No    No</div><div class='input'>
 <span class='co'># Note that the result is always a surveydata object, even if only one column is extracted</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>membersurvey</span>[, <span class='st'>"id"</span>])</div><div class='output co'>#&gt;   id
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>membersurvey</span>[, <span class='st'>"id"</span>])
+</div><div class='output co'>#&gt;   id
 #&gt; 1  3
 #&gt; 2  5
 #&gt; 3  6
 #&gt; 4 11
 #&gt; 5 13
-#&gt; 6 15</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>membersurvey</span>[, <span class='st'>"id"</span>])</div><div class='output co'>#&gt; Classes ‘surveydata’ and 'data.frame':	215 obs. of  1 variable:
+#&gt; 6 15</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='kw'>membersurvey</span>[, <span class='st'>"id"</span>])
+</div><div class='output co'>#&gt; Classes ‘surveydata’ and 'data.frame':	215 obs. of  1 variable:
 #&gt;  $ id: num  3 5 6 11 13 15 21 22 23 25 ...
 #&gt;  - attr(*, "variable.labels")= Named chr "id"
 #&gt;   ..- attr(*, "names")= chr "id"
@@ -261,7 +275,7 @@ and returns the question text that is common to each.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

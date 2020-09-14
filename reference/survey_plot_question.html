@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">surveydata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -120,7 +120,7 @@
     <p>Plots single and  as multi-response questions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>survey_plot_question</span>(<span class='no'>data</span>, <span class='no'>q</span>)</pre>
+    <pre class="usage"><span class='fu'>survey_plot_question</span>(<span class='kw'>data</span>, <span class='kw'>q</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,7 +142,8 @@
 <code><a href='survey_plot_yes_no.html'>survey_plot_yes_no</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='question_text.html'>question_text</a></span>(<span class='no'>membersurvey</span>)</div><div class='output co'>#&gt; $id
+    <pre class="examples"><div class='input'><span class='fu'><a href='question_text.html'>question_text</a></span>(<span class='kw'>membersurvey</span>)
+</div><div class='output co'>#&gt; $id
 #&gt; [1] "id"
 #&gt; 
 #&gt; $Q1
@@ -323,7 +324,10 @@
 #&gt; $size
 #&gt; [1] "Number of respondents"
 #&gt; </div><div class='input'>
-<span class='fu'>survey_plot_question</span>(<span class='no'>membersurvey</span>, <span class='st'>"Q2"</span>)</div><div class='img'><img src='survey_plot_question-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='survey_plot_yes_no.html'>survey_plot_yes_no</a></span>(<span class='no'>membersurvey</span>, <span class='st'>"Q2"</span>)</div><div class='img'><img src='survey_plot_question-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='survey_plot_satisfaction.html'>survey_plot_satisfaction</a></span>(<span class='no'>membersurvey</span>, <span class='st'>"Q14"</span>)</div><div class='img'><img src='survey_plot_question-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>survey_plot_question</span>(<span class='kw'>membersurvey</span>, <span class='st'>"Q2"</span>)
+</div><div class='img'><img src='survey_plot_question-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='survey_plot_yes_no.html'>survey_plot_yes_no</a></span>(<span class='kw'>membersurvey</span>, <span class='st'>"Q2"</span>)
+</div><div class='img'><img src='survey_plot_question-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='survey_plot_satisfaction.html'>survey_plot_satisfaction</a></span>(<span class='kw'>membersurvey</span>, <span class='st'>"Q14"</span>)
+</div><div class='img'><img src='survey_plot_question-3.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -340,7 +344,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

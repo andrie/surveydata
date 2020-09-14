@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">surveydata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -120,9 +120,9 @@
     <p>The pattern attribute contains information about the separator character used to name sub-questions in the data.  Survey software typically makes use of underscores to distinguish sub-questions in a grid of questions, e.g. "Q4_1", "Q4_2", "Q4_3", "Q4_other". The function <code>pattern()</code> returns the <code>pattern</code> attribute, and pattern&lt;- updates the attribute.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pattern</span>(<span class='no'>x</span>)
+    <pre class="usage"><span class='fu'>pattern</span>(<span class='kw'>x</span>)
 
-<span class='fu'>pattern</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+<span class='fu'>pattern</span>(<span class='kw'>x</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -146,8 +146,9 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Extract the pattern from membersurvey</span>
 
-<span class='no'>oldptn</span> <span class='kw'>&lt;-</span> <span class='fu'>pattern</span>(<span class='no'>membersurvey</span>)
-<span class='no'>oldptn</span></div><div class='output co'>#&gt; $sep
+<span class='kw'>oldptn</span> <span class='op'>&lt;-</span> <span class='fu'>pattern</span>(<span class='kw'>membersurvey</span>)
+<span class='kw'>oldptn</span>
+</div><div class='output co'>#&gt; $sep
 #&gt; [1] "_"
 #&gt; 
 #&gt; $exclude
@@ -155,7 +156,8 @@
 #&gt; </div><div class='input'>
 <span class='co'># The pattern is used to extract columns</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>membersurvey</span>)</div><div class='output co'>#&gt;   [1] "id"        "Q1_1"      "Q1_2"      "Q2"        "Q3_1"      "Q3_2"     
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='kw'>membersurvey</span>)
+</div><div class='output co'>#&gt;   [1] "id"        "Q1_1"      "Q1_2"      "Q2"        "Q3_1"      "Q3_2"     
 #&gt;   [7] "Q3_3"      "Q3_4"      "Q3_5"      "Q3_6"      "Q3_7"      "Q3_8"     
 #&gt;  [13] "Q3_9"      "Q3_10"     "Q3_11"     "Q3_12"     "Q3_13"     "Q3_14"    
 #&gt;  [19] "Q3_15"     "Q4"        "Q5"        "Q6_1"      "Q6_2"      "Q6_3"     
@@ -173,15 +175,18 @@
 #&gt;  [91] "Q23_2"     "Q23_3"     "Q23_4"     "Q23_5"     "Q23_other" "Q24"      
 #&gt;  [97] "Q25"       "Q26_1"     "Q27_1"     "Q27_2"     "Q30"       "Q30_other"
 #&gt; [103] "Q31"       "Q31_other" "Q32"       "Q33"       "Q35"       "weight"   
-#&gt; [109] "size"     </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grep</a></span>(<span class='st'>"Q20"</span>, <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>membersurvey</span>), <span class='kw'>value</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;  [1] "Q20_1"     "Q20_2"     "Q20_3"     "Q20_4"     "Q20_5"     "Q20_6"    
+#&gt; [109] "size"     </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grep</a></span>(<span class='st'>"Q20"</span>, <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='kw'>membersurvey</span>), value=<span class='fl'>TRUE</span>)
+</div><div class='output co'>#&gt;  [1] "Q20_1"     "Q20_2"     "Q20_3"     "Q20_4"     "Q20_5"     "Q20_6"    
 #&gt;  [7] "Q20_7"     "Q20_8"     "Q20_9"     "Q20_10"    "Q20_other"</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>membersurvey</span>[<span class='st'>"Q20"</span>])</div><div class='output co'>#&gt;   Q20_1 Q20_2 Q20_3 Q20_4 Q20_5 Q20_6 Q20_7 Q20_8 Q20_9 Q20_10
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>membersurvey</span>[<span class='st'>"Q20"</span>])
+</div><div class='output co'>#&gt;   Q20_1 Q20_2 Q20_3 Q20_4 Q20_5 Q20_6 Q20_7 Q20_8 Q20_9 Q20_10
 #&gt; 1   Yes    No    No    No    No    No    No    No    No     No
 #&gt; 2    No    No    No    No    No    No    No    No    No     No
 #&gt; 3    No    No    No    No    No    No    No    No    No     No
 #&gt; 4   Yes   Yes    No    No    No    No    No    No    No    Yes
 #&gt; 5    No    No    No    No    No    No    No    No    No     No
-#&gt; 6    No   Yes    No   Yes   Yes    No    No    No    No     No</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>membersurvey</span>[<span class='st'>"Q20_other"</span>])</div><div class='output co'>#&gt;                                        Q20_other
+#&gt; 6    No   Yes    No   Yes   Yes    No    No    No    No     No</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>membersurvey</span>[<span class='st'>"Q20_other"</span>])
+</div><div class='output co'>#&gt;                                        Q20_other
 #&gt; 1                                           &lt;NA&gt;
 #&gt; 2                                           &lt;NA&gt;
 #&gt; 3                                           &lt;NA&gt;
@@ -190,8 +195,9 @@
 #&gt; 6                                           &lt;NA&gt;</div><div class='input'>
 <span class='co'># Define a new pattern</span>
 
-<span class='fu'>pattern</span>(<span class='no'>membersurvey</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sep</span><span class='kw'>=</span><span class='st'>"_"</span>, <span class='kw'>exclude</span><span class='kw'>=</span><span class='st'>""</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>membersurvey</span>[<span class='st'>"Q20"</span>])</div><div class='output co'>#&gt;   Q20_1 Q20_2 Q20_3 Q20_4 Q20_5 Q20_6 Q20_7 Q20_8 Q20_9 Q20_10
+<span class='fu'>pattern</span>(<span class='kw'>membersurvey</span>) <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(sep=<span class='st'>"_"</span>, exclude=<span class='st'>""</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>membersurvey</span>[<span class='st'>"Q20"</span>])
+</div><div class='output co'>#&gt;   Q20_1 Q20_2 Q20_3 Q20_4 Q20_5 Q20_6 Q20_7 Q20_8 Q20_9 Q20_10
 #&gt; 1   Yes    No    No    No    No    No    No    No    No     No
 #&gt; 2    No    No    No    No    No    No    No    No    No     No
 #&gt; 3    No    No    No    No    No    No    No    No    No     No
@@ -207,8 +213,9 @@
 #&gt; 6                                           &lt;NA&gt;</div><div class='input'>
 <span class='co'># Reset original pattern</span>
 
-<span class='fu'>pattern</span>(<span class='no'>membersurvey</span>) <span class='kw'>&lt;-</span> <span class='no'>oldptn</span>
-<span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>oldptn</span>)</div></pre>
+<span class='fu'>pattern</span>(<span class='kw'>membersurvey</span>) <span class='op'>&lt;-</span> <span class='kw'>oldptn</span>
+<span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='kw'>oldptn</span>)
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -224,7 +231,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
