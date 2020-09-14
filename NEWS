@@ -1,4 +1,13 @@
-surveydata 0.2.4
+surveydata 0.2.6
+-----------------
+
+Changes:
+
+* Deprecate `as.tbl()` because `tibble` no longer exports this.  Use `as_tibble()` instead.
+* Changes to test suite to comply with `testthat_3.0.0`
+
+
+surveydata 0.2.5
 -----------------
 
 Changes:
