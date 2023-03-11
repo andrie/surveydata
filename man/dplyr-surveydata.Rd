@@ -15,9 +15,9 @@
 \usage{
 \method{mutate}{surveydata}(.data, ...)
 
-\method{as_tibble}{surveydata}(.data, ...)
+\method{as_tibble}{surveydata}(x, ..., .name_repair, rownames)
 
-\method{as.tbl}{surveydata}(x)
+\method{as.tbl}{surveydata}(x, ...)
 
 \method{select}{surveydata}(.data, ...)
 

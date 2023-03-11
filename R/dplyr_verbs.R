@@ -1,16 +1,24 @@
-verb.surveydata <- function(.data, ...) {
-  var_labels <- varlabels(.data)
-  z <- NextMethod(.data)
+common_verb <- function(z, var_labels) {
   same <- intersect(names(z), names(var_labels))
   new_labels <- var_labels[same]
   diff <- setdiff(names(z), names(var_labels))
   if (length(diff) > 0) {
     new_labels[diff] <- setNames(diff, diff)
   }
-  new_labels <- new_labels[names(z)]
+  nz <- names(z)
+  new_labels <- new_labels[nz]
   varlabels(z) <- new_labels
   as.surveydata(z)
+  
 }
+
+verb.surveydata <- function(.data, ...) {
+  var_labels <- varlabels(.data)
+  z <- NextMethod(.data)
+  common_verb(z, var_labels)
+}
+
+
 
 
 #' Methods to support dplyr verbs.
@@ -33,11 +41,16 @@ mutate.surveydata <- verb.surveydata
 
 #' @export
 #' @rdname dplyr-surveydata
-as_tibble.surveydata <- verb.surveydata
+as_tibble.surveydata <- function(x, ..., .name_repair, rownames) {
+  var_labels <- varlabels(.data)
+  z <- NextMethod(.data)
+  common_verb(z, var_labels)
+}
+# as_tibble.surveydata <- verb.surveydata
 
 #' @export
 #' @rdname dplyr-surveydata
-as.tbl.surveydata <- function(x) {
+as.tbl.surveydata <- function(x, ...) {
   .Deprecated("as_tibble")
   as_tibble(x)
 }

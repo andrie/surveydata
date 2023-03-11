@@ -94,8 +94,9 @@ remove_all_dont_know <- function(x, dk = NULL, message = TRUE) {
   n1 <- sum(as.numeric(lapply(x, has_dont_know, dk)))
   n2 <- sum(as.numeric(lapply(newx, has_dont_know, dk)))
   dk <- paste(dk, collapse = ", ")
-  if (message) {
-    message(paste("Removed", n1 - n2, "instances of levels that equal [", dk, "]"))
+  removed_count <- n1 - n2
+  if (removed_count > 0 && message) {
+    message(paste("Removed", removed_count, "instances of levels that equal [", dk, "]"))
   }
   ret <- quickdf(newx)
   attributes(ret) <- attributes(x)

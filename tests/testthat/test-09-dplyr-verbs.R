@@ -3,7 +3,7 @@ if (interactive()) library(testthat)
 
 test_that("dplyr verbs retain surveydata class", {
   skip_if_not_installed("dplyr")
-  require(dplyr)
+  require(dplyr, quietly = TRUE, warn.conflicts = FALSE)
 
   expect_warning(membersurvey %>% as.tbl.surveydata(), "deprecated")
   

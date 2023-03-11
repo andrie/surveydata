@@ -1,5 +1,5 @@
 Package: surveydata
-Version: 0.2.6
+Version: 0.2.7
 License: GPL-2|GPL-3
 Title: Tools to Work with Survey Data
 LazyData: true
@@ -38,7 +38,7 @@ Suggests:
     covr,
     rprojroot,
     spelling
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
 Encoding: UTF-8

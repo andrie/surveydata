@@ -16,13 +16,12 @@ knitr::opts_chunk$set(
 # surveydata
 
 <!-- badges: start -->
-[![R build status](https://github.com/andrie/surveydata/workflows/R-CMD-check/badge.svg)](https://github.com/andrie/surveydata/actions)
+
+[![R build status](https://github.com/andrie/surveydata/workflows/R-CMD-check/badge.svg)](https://github.com/andrie/surveydata/actions) 
 [![](http://www.r-pkg.org/badges/version/surveydata)](http://www.r-pkg.org/pkg/surveydata)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/surveydata)](http://www.r-pkg.org/pkg/surveydata)
-[![Coverage Status](http://img.shields.io/codecov/c/github/andrie/surveydata/master.svg)](https://codecov.io/github/andrie/surveydata?branch=master)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/surveydata)](http://www.r-pkg.org/pkg/surveydata) [![Coverage Status](http://img.shields.io/codecov/c/github/andrie/surveydata/main.svg)](https://codecov.io/github/andrie/surveydata?branch=main)
+[![CRAN status](https://www.r-pkg.org/badges/version/surveydata)](https://CRAN.R-project.org/package=surveydata)
 <!-- badges: end -->
-
-
 
 ```{r, child = rprojroot::find_package_root_file("inst/vignette_child/child.Rmd")}
 ```

@@ -41,10 +41,16 @@ as.surveydata <- function(x, sep = "_", exclude = "other", ptn = pattern(x),
   if (is.null(ptn)) ptn <- defaultPtn
   if (!inherits(x, "surveydata")) class(x) <- c("surveydata", class(x))
   if (renameVarlabels) names(varlabels(x)) <- names(x)
+  # browser()
   if (length(x) != length(varlabels(x))) {
     warning("surveydata: varlabels must have same length as object")
   }
-  if (!isTRUE(all.equal(names(x), names(varlabels(x))))) {
+  nx <- names(x)
+  nx <- nx[!is.na(nx)]
+  nvx <- names(x)
+  nvx <- nvx[!is.na(nvx)]
+  
+  if (!isTRUE(all.equal(nx, nvx))) {
     warning("surveydata: names and varlabel names must match")
   }
   pattern(x) <- ptn

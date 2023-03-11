@@ -11,7 +11,9 @@ status](https://github.com/andrie/surveydata/workflows/R-CMD-check/badge.svg)](h
 [![CRAN RStudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/surveydata)](http://www.r-pkg.org/pkg/surveydata)
 [![Coverage
-Status](http://img.shields.io/codecov/c/github/andrie/surveydata/master.svg)](https://codecov.io/github/andrie/surveydata?branch=master)
+Status](http://img.shields.io/codecov/c/github/andrie/surveydata/main.svg)](https://codecov.io/github/andrie/surveydata?branch=main)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/surveydata)](https://CRAN.R-project.org/package=surveydata)
 <!-- badges: end -->
 
 The `surveydata` package makes it easy to work with typical survey data
@@ -24,9 +26,9 @@ metadata with the data itself.
 
 To track the questions of a survey, you have two options:
 
-  - Keep the data in a data frame, and keep a separate list of the
-    questions
-  - Keep the questions as an attribute of the data frame
+- Keep the data in a data frame, and keep a separate list of the
+  questions
+- Keep the questions as an attribute of the data frame
 
 Neither of these options are ideal, since any subsetting of the survey
 data means you must keep track of the question metadata separately.
@@ -47,21 +49,26 @@ library(dplyr)
 
 ``` r
 sv <- membersurvey %>% as.tbl()
+#> Warning: `as.tbl()` was deprecated in dplyr 1.0.0.
+#> ℹ Please use `tibble::as_tibble()` instead.
+#> Warning: 'as.tbl.surveydata' is deprecated.
+#> Use 'as_tibble' instead.
+#> See help("Deprecated")
 sv
-#> # A tibble: 215 x 109
+#> # A tibble: 215 × 109
 #>       id  Q1_1  Q1_2 Q2    Q3_1  Q3_2  Q3_3  Q3_4  Q3_5  Q3_6  Q3_7  Q3_8  Q3_9 
 #>    <dbl> <dbl> <dbl> <ord> <fct> <fct> <fct> <fct> <fct> <fct> <fct> <fct> <fct>
 #>  1     3     8   2   2009  No    No    No    No    No    No    No    No    No   
-#>  2     5    35  12   Befo~ Yes   No    No    No    No    No    No    No    Yes  
-#>  3     6    34  12   Befo~ Yes   Yes   No    No    No    Yes   No    No    No   
+#>  2     5    35  12   Befo… Yes   No    No    No    No    No    No    No    Yes  
+#>  3     6    34  12   Befo… Yes   Yes   No    No    No    Yes   No    No    No   
 #>  4    11    20   9   2010  No    No    No    No    No    No    No    No    No   
 #>  5    13    20   3   2010  No    No    No    No    No    No    No    No    No   
-#>  6    15    36  20   Befo~ No    Yes   No    No    No    No    No    No    Yes  
+#>  6    15    36  20   Befo… No    Yes   No    No    No    No    No    No    Yes  
 #>  7    21    12   2.5 2009  Yes   No    No    No    No    Yes   Yes   No    No   
 #>  8    22    11   0.5 2011  Yes   Yes   Yes   Yes   Yes   No    No    No    No   
 #>  9    23    18   3   2008  Yes   Yes   Yes   Yes   Yes   Yes   No    No    Yes  
 #> 10    25    24   8   2006  No    No    No    Yes   Yes   Yes   No    No    Yes  
-#> # ... with 205 more rows, and 96 more variables: Q3_10 <fct>, Q3_11 <fct>,
+#> # … with 205 more rows, and 96 more variables: Q3_10 <fct>, Q3_11 <fct>,
 ...
 ```
 
@@ -71,7 +78,7 @@ and `Q2_2`. You can extract both these columns by simply referring to
 
 ``` r
 sv[, "Q2"]
-#> # A tibble: 215 x 1
+#> # A tibble: 215 × 1
 #>    Q2         
 #>    <ord>      
 #>  1 2009       
@@ -84,14 +91,14 @@ sv[, "Q2"]
 #>  8 2011       
 #>  9 2008       
 #> 10 2006       
-#> # ... with 205 more rows
+#> # … with 205 more rows
 ```
 
 However, the subset of `Q1` returns only a single column:
 
 ``` r
 sv[, "Q2"]
-#> # A tibble: 215 x 1
+#> # A tibble: 215 × 1
 #>    Q2         
 #>    <ord>      
 #>  1 2009       
@@ -104,27 +111,28 @@ sv[, "Q2"]
 #>  8 2011       
 #>  9 2008       
 #> 10 2006       
-#> # ... with 205 more rows
+#> # … with 205 more rows
 ```
 
-Note that in both cases the `surveydata` object doesn’t return a vector
-- subsetting a `surveydata` object always returns a `surveydata` object.
+Note that in both cases the `surveydata` object doesn’t return a
+vector - subsetting a `surveydata` object always returns a `surveydata`
+object.
 
 ## About surveydata objects
 
 A surveydata object consists of:
 
-  - A data frame with a row for each respondent and a column for each
-    question. Column names are typically names in the pattern `Q1`,
-    `Q2_1`, `Q2_2`, `Q3` - where underscores separate the sub-questions
-    when these originated in a grid (array) of questions.
+- A data frame with a row for each respondent and a column for each
+  question. Column names are typically names in the pattern `Q1`,
+  `Q2_1`, `Q2_2`, `Q3` - where underscores separate the sub-questions
+  when these originated in a grid (array) of questions.
 
-  - Question metadata gets stored in the \`{variable.labels} attribute
-    of the data frame. This typically contains the original
-    questionnaire text for each question.
+- Question metadata gets stored in the \`{variable.labels} attribute of
+  the data frame. This typically contains the original questionnaire
+  text for each question.
 
-  - Information about the sub-question separator (typically an
-    underscore) is stored in the `patterns` attribute.
+- Information about the sub-question separator (typically an underscore)
+  is stored in the `patterns` attribute.
 
 Data processing a survey file can be tricky, since the standard methods
 for dealing with data frames does not conserve the `variable.labels`
@@ -132,18 +140,18 @@ attribute. The `surveydata` package defines a `surveydata` class and the
 following methods that knows how to deal with the `variable.labels`
 attribute:
 
-  - `as.surveydata`
-  - `[.surveydata`
-  - `[<-.surveydata`
-  - `$.surveydata`
-  - `$<-.surveydata`
-  - `merge.surveydata`
+- `as.surveydata`
+- `[.surveydata`
+- `[<-.surveydata`
+- `$.surveydata`
+- `$<-.surveydata`
+- `merge.surveydata`
 
 In addition, `surveydata` defines the following convenient methods for
 extracting and working with the variable labels:
 
-  - `varlabels`
-  - `varlabels<-`
+- `varlabels`
+- `varlabels<-`
 
 ## Defining a surveydata object
 
@@ -208,14 +216,12 @@ It is easy to extract specific questions with the `[` operator. This
 works very similar to extraction of data frames. However, there are two
 important differences:
 
-  - The extraction operators will always return a `surveydata` object,
-    even if only a single column is returned. This is different from the
-    behaviour of data frames, where a single column is simplified to a
-    vector.
-  - Extracting a question with multiple sub-questions, e.g. “Q4” returns
-    multiple columns
-
-<!-- end list -->
+- The extraction operators will always return a `surveydata` object,
+  even if only a single column is returned. This is different from the
+  behaviour of data frames, where a single column is simplified to a
+  vector.
+- Extracting a question with multiple sub-questions, e.g. “Q4” returns
+  multiple columns
 
 ``` r
 sv[, "Q1"]
@@ -301,11 +307,11 @@ question_text_unique(sv, "Q4")
 The `surveydata` object knows how to deal with the following `dplyr`
 verbs:
 
-  - `select`
-  - `filter`
-  - `mutate`
-  - `arrange`
-  - `summarize`
+- `select`
+- `filter`
+- `mutate`
+- `arrange`
+- `summarize`
 
 In every case the resulting object will also be of class `surveydata`.
 
