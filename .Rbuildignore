@@ -12,3 +12,5 @@ cran-comments.md
 _pkgdown.yml
 ^\.travis\.yml$
 ^\.github$
+^CRAN-SUBMISSION$
+^revdep$
