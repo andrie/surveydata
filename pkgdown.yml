@@ -1,7 +1,7 @@
-pandoc: 2.7.3
-pkgdown: 1.6.1.9000
-pkgdown_sha: cc9c7b1be8573f8af3453f6e5d0422d86c916701
+pandoc: 2.19.2
+pkgdown: 2.0.7
+pkgdown_sha: ~
 articles:
   surveydata: surveydata.html
-last_built: 2020-09-14T12:00Z
+last_built: 2023-03-12T19:49Z
 

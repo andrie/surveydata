@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">surveydata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.7</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/surveydata.html">Get started</a>
 </li>
@@ -52,8 +48,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/andrie/surveydata/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/andrie/surveydata/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -67,114 +63,136 @@
 
       
 
-      </header><script src="surveydata_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to the surveydata package.</h1>
-                        <h4 class="author">Andrie de Vries</h4>
+                        <h4 data-toc-skip class="author">Andrie de
+Vries</h4>
             
-            <h4 class="date">2020-09-14</h4>
+            <h4 data-toc-skip class="date">2023-03-12</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/andrie/surveydata/blob/master/vignettes/surveydata.Rmd"><code>vignettes/surveydata.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/andrie/surveydata/blob/HEAD/vignettes/surveydata.Rmd" class="external-link"><code>vignettes/surveydata.Rmd</code></a></small>
       <div class="hidden name"><code>surveydata.Rmd</code></div>
 
     </div>
 
     
     
-<p>The <code>surveydata</code> package makes it easy to work with typical survey data that originated in SPSS or other formats.</p>
-<div id="motivation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#motivation" class="anchor"></a>Motivation</h2>
-<p>Specifically, the package makes it easy to include the question text as metadata with the data itself.</p>
+<p>The <code>surveydata</code> package makes it easy to work with
+typical survey data that originated in SPSS or other formats.</p>
+<div class="section level2">
+<h2 id="motivation">Motivation<a class="anchor" aria-label="anchor" href="#motivation"></a>
+</h2>
+<p>Specifically, the package makes it easy to include the question text
+as metadata with the data itself.</p>
 <p>To track the questions of a survey, you have two options:</p>
 <ul>
-<li>Keep the data in a data frame, and keep a separate list of the questions</li>
+<li>Keep the data in a data frame, and keep a separate list of the
+questions</li>
 <li>Keep the questions as an attribute of the data frame</li>
 </ul>
-<p>Neither of these options are ideal, since any subsetting of the survey data means you must keep track of the question metadata separately.</p>
-<p>This package solves the problem by creating a new class, <code>surveydata</code>, and keeping the questions as an attribute of this class. Whenever you do a subset operation, the metadata stays intact.</p>
-<p>In addition, the metadata knows if a question consists of a single column, or multiple columns. When creating a subset on the question name, the resulting object can be either a single column or multiple columns.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/andrie/surveydata">surveydata</a></span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org">dplyr</a></span>)
-</pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">sv</span> <span class="op">&lt;-</span> <span class="kw">membersurvey</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl_df.html">as.tbl</a></span>()
-</pre></div>
-<pre><code>## Warning: `as.tbl()` is deprecated as of dplyr 1.0.0.
-## Please use `tibble::as_tibble()` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
-<pre><code>## Warning: 'as.tbl.surveydata' is deprecated.
-## Use 'as_tibble' instead.
-## See help("Deprecated")</code></pre>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw">sv</span>
-</pre></div>
-<pre><code>## # A tibble: 215 x 109
-##       id  Q1_1  Q1_2 Q2    Q3_1  Q3_2  Q3_3  Q3_4  Q3_5  Q3_6  Q3_7  Q3_8  Q3_9 
-##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;ord&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;
-##  1     3     8   2   2009  No    No    No    No    No    No    No    No    No   
-##  2     5    35  12   Befo… Yes   No    No    No    No    No    No    No    Yes  
-##  3     6    34  12   Befo… Yes   Yes   No    No    No    Yes   No    No    No   
-##  4    11    20   9   2010  No    No    No    No    No    No    No    No    No   
-##  5    13    20   3   2010  No    No    No    No    No    No    No    No    No   
-##  6    15    36  20   Befo… No    Yes   No    No    No    No    No    No    Yes  
-##  7    21    12   2.5 2009  Yes   No    No    No    No    Yes   Yes   No    No   
-##  8    22    11   0.5 2011  Yes   Yes   Yes   Yes   Yes   No    No    No    No   
-##  9    23    18   3   2008  Yes   Yes   Yes   Yes   Yes   Yes   No    No    Yes  
-## 10    25    24   8   2006  No    No    No    Yes   Yes   Yes   No    No    Yes  
-## # … with 205 more rows, and 96 more variables: Q3_10 &lt;fct&gt;, Q3_11 &lt;fct&gt;,
-...</code></pre>
-<p>Notice from this summary that Question 2 has two columns, i.e. <code>Q2_1</code> and <code>Q2_2</code>. You can extract both these columns by simply referring to <code>Q2</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="kw">sv</span>[, <span class="st">"Q2"</span>]
-</pre></div>
-<pre><code>## # A tibble: 215 x 1
-##    Q2         
-##    &lt;ord&gt;      
-##  1 2009       
-##  2 Before 2002
-##  3 Before 2002
-##  4 2010       
-##  5 2010       
-##  6 Before 2002
-##  7 2009       
-##  8 2011       
-##  9 2008       
-## 10 2006       
-## # … with 205 more rows</code></pre>
-<p>However, the subset of <code>Q1</code> returns only a single column:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="kw">sv</span>[, <span class="st">"Q2"</span>]
-</pre></div>
-<pre><code>## # A tibble: 215 x 1
-##    Q2         
-##    &lt;ord&gt;      
-##  1 2009       
-##  2 Before 2002
-##  3 Before 2002
-##  4 2010       
-##  5 2010       
-##  6 Before 2002
-##  7 2009       
-##  8 2011       
-##  9 2008       
-## 10 2006       
-## # … with 205 more rows</code></pre>
-<p>Note that in both cases the <code>surveydata</code> object doesn’t return a vector - subsetting a <code>surveydata</code> object always returns a <code>surveydata</code> object.</p>
+<p>Neither of these options are ideal, since any subsetting of the
+survey data means you must keep track of the question metadata
+separately.</p>
+<p>This package solves the problem by creating a new class,
+<code>surveydata</code>, and keeping the questions as an attribute of
+this class. Whenever you do a subset operation, the metadata stays
+intact.</p>
+<p>In addition, the metadata knows if a question consists of a single
+column, or multiple columns. When creating a subset on the question
+name, the resulting object can be either a single column or multiple
+columns.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/andrie/surveydata" class="external-link">surveydata</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sv</span> <span class="op">&lt;-</span> <span class="va">membersurvey</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl_df.html" class="external-link">as.tbl</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: `as.tbl()` was deprecated in dplyr 1.0.0.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `tibble::as_tibble()` instead.</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: 'as.tbl.surveydata' is deprecated.</span></span>
+<span><span class="co">## Use 'as_tibble' instead.</span></span>
+<span><span class="co">## See help("Deprecated")</span></span></code></pre>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sv</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 215 × 109</span></span></span>
+<span><span class="co">##       id  Q1_1  Q1_2 Q2    Q3_1  Q3_2  Q3_3  Q3_4  Q3_5  Q3_6  Q3_7  Q3_8  Q3_9 </span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span>     3     8   2   2009  No    No    No    No    No    No    No    No    No   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span>     5    35  12   Befo… Yes   No    No    No    No    No    No    No    Yes  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span>     6    34  12   Befo… Yes   Yes   No    No    No    Yes   No    No    No   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span>    11    20   9   2010  No    No    No    No    No    No    No    No    No   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span>    13    20   3   2010  No    No    No    No    No    No    No    No    No   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span>    15    36  20   Befo… No    Yes   No    No    No    No    No    No    Yes  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span>    21    12   2.5 2009  Yes   No    No    No    No    Yes   Yes   No    No   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span>    22    11   0.5 2011  Yes   Yes   Yes   Yes   Yes   No    No    No    No   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span>    23    18   3   2008  Yes   Yes   Yes   Yes   Yes   Yes   No    No    Yes  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span>    25    24   8   2006  No    No    No    Yes   Yes   Yes   No    No    Yes  </span></span>
+<span><span class="co">## <span style="color: #949494;"># … with 205 more rows, and 96 more variables: Q3_10 &lt;fct&gt;, Q3_11 &lt;fct&gt;,</span></span></span>
+<span><span class="va">...</span></span></code></pre>
+<p>Notice from this summary that Question 2 has two columns,
+i.e. <code>Q2_1</code> and <code>Q2_2</code>. You can extract both these
+columns by simply referring to <code>Q2</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sv</span><span class="op">[</span>, <span class="st">"Q2"</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 215 × 1</span></span></span>
+<span><span class="co">##    Q2         </span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>      </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> 2009       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> Before 2002</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> Before 2002</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> 2010       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> 2010       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> Before 2002</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> 2009       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> 2011       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> 2008       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> 2006       </span></span>
+<span><span class="co">## <span style="color: #949494;"># … with 205 more rows</span></span></span></code></pre>
+<p>However, the subset of <code>Q1</code> returns only a single
+column:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sv</span><span class="op">[</span>, <span class="st">"Q2"</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 215 × 1</span></span></span>
+<span><span class="co">##    Q2         </span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>      </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> 2009       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> Before 2002</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> Before 2002</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> 2010       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> 2010       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> Before 2002</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> 2009       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> 2011       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> 2008       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> 2006       </span></span>
+<span><span class="co">## <span style="color: #949494;"># … with 205 more rows</span></span></span></code></pre>
+<p>Note that in both cases the <code>surveydata</code> object doesn’t
+return a vector - subsetting a <code>surveydata</code> object always
+returns a <code>surveydata</code> object.</p>
 </div>
-<div id="about-surveydata-objects" class="section level2">
-<h2 class="hasAnchor">
-<a href="#about-surveydata-objects" class="anchor"></a>About surveydata objects</h2>
+<div class="section level2">
+<h2 id="about-surveydata-objects">About surveydata objects<a class="anchor" aria-label="anchor" href="#about-surveydata-objects"></a>
+</h2>
 <p>A surveydata object consists of:</p>
 <ul>
-<li><p>A data frame with a row for each respondent and a column for each question. Column names are typically names in the pattern <code>Q1</code>, <code>Q2_1</code>, <code>Q2_2</code>, <code>Q3</code> - where underscores separate the sub-questions when these originated in a grid (array) of questions.</p></li>
-<li><p>Question metadata gets stored in the `{variable.labels} attribute of the data frame. This typically contains the original questionnaire text for each question.</p></li>
-<li><p>Information about the sub-question separator (typically an underscore) is stored in the <code>patterns</code> attribute.</p></li>
+<li><p>A data frame with a row for each respondent and a column for each
+question. Column names are typically names in the pattern
+<code>Q1</code>, <code>Q2_1</code>, <code>Q2_2</code>, <code>Q3</code> -
+where underscores separate the sub-questions when these originated in a
+grid (array) of questions.</p></li>
+<li><p>Question metadata gets stored in the `{variable.labels} attribute
+of the data frame. This typically contains the original questionnaire
+text for each question.</p></li>
+<li><p>Information about the sub-question separator (typically an
+underscore) is stored in the <code>patterns</code> attribute.</p></li>
 </ul>
-<p>Data processing a survey file can be tricky, since the standard methods for dealing with data frames does not conserve the <code>variable.labels</code> attribute. The <code>surveydata</code> package defines a <code>surveydata</code> class and the following methods that knows how to deal with the <code>variable.labels</code> attribute:</p>
+<p>Data processing a survey file can be tricky, since the standard
+methods for dealing with data frames does not conserve the
+<code>variable.labels</code> attribute. The <code>surveydata</code>
+package defines a <code>surveydata</code> class and the following
+methods that knows how to deal with the <code>variable.labels</code>
+attribute:</p>
 <ul>
 <li><code>as.surveydata</code></li>
 <li><code>[.surveydata</code></li>
@@ -183,144 +201,155 @@
 <li><code>$&lt;-.surveydata</code></li>
 <li><code>merge.surveydata</code></li>
 </ul>
-<p>In addition, <code>surveydata</code> defines the following convenient methods for extracting and working with the variable labels:</p>
+<p>In addition, <code>surveydata</code> defines the following convenient
+methods for extracting and working with the variable labels:</p>
 <ul>
 <li><code>varlabels</code></li>
 <li><code>varlabels&lt;-</code></li>
 </ul>
 </div>
-<div id="defining-a-surveydata-object" class="section level2">
-<h2 class="hasAnchor">
-<a href="#defining-a-surveydata-object" class="anchor"></a>Defining a surveydata object</h2>
-<p>First load the <code>surveydata</code> package.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/andrie/surveydata">surveydata</a></span>)
-</pre></div>
-<p>Next, create sample data. A data frame is the ideal data structure for survey data, and the convention is that data for each respondent is stored in the rows, while each column represents answers to a specific question.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="kw">sdat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-   id   = <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,
-   Q1   = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Yes"</span>, <span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="st">"Yes"</span>),
-   Q4_1 = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">2</span>), 
-   Q4_2 = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">3</span>), 
-   Q4_3 = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">6</span>), 
-   Q10 = <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Female"</span>, <span class="st">"Male"</span>)),
-   crossbreak  = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>), 
-   weight      = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.9</span>, <span class="fl">1.1</span>, <span class="fl">0.8</span>, <span class="fl">1.2</span>)
-)
-</pre></div>
-<p>The survey metadata consists of the questionnaire text. For example, this can be represented by a character vector, with an element for each question.</p>
-<p>To assign this metadata to the survey data, use the <code><a href="../reference/varlabels.html">varlabels()</a></code> function. This function assigns the questionnaire text to the <code>variable.labels</code> attribute of the data frame.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="../reference/varlabels.html">varlabels</a></span>(<span class="kw">sdat</span>) <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-   <span class="st">"RespID"</span>,
-   <span class="st">"Question 1"</span>, 
-   <span class="st">"Question 4: red"</span>, <span class="st">"Question 4: green"</span>, <span class="st">"Question 4: blue"</span>, 
-   <span class="st">"Question 10"</span>,
-   <span class="st">"crossbreak"</span>,
-   <span class="st">"weight"</span>
-)
-</pre></div>
-<p>Finally, create the surveydata object. To do this, call the <code><a href="../reference/as.surveydata.html">as.surveydata()</a></code> function. The argument <code>renameVarlabels</code> controls whether the <code>varlabels</code> get renamed with the same names as the data. This is an essential step, and ensures that the question text remains in synch with the column names.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="kw">sv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as.surveydata.html">as.surveydata</a></span>(<span class="kw">sdat</span>, renameVarlabels = <span class="fl">TRUE</span>)
-</pre></div>
-</div>
-<div id="extracting-specific-questions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#extracting-specific-questions" class="anchor"></a>Extracting specific questions</h2>
-<p>It is easy to extract specific questions with the <code><a href="../reference/Extract.html">[</a></code> operator. This works very similar to extraction of data frames. However, there are two important differences:</p>
-<ul>
-<li>The extraction operators will always return a <code>surveydata</code> object, even if only a single column is returned. This is different from the behaviour of data frames, where a single column is simplified to a vector.</li>
-<li>Extracting a question with multiple sub-questions, e.g. “Q4” returns multiple columns</li>
-</ul>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="kw">sv</span>[, <span class="st">"Q1"</span>]
-</pre></div>
-<pre><code>##    Q1
-## 1 Yes
-## 2  No
-## 3 Yes
-## 4 Yes</code></pre>
-<div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="kw">sv</span>[, <span class="st">"Q4"</span>]
-</pre></div>
-<pre><code>##   Q4_1 Q4_2 Q4_3
-## 1    1    3    5
-## 2    2    4    5
-## 3    1    4    6
-## 4    2    3    6</code></pre>
-<p>The extraction makes use of the underlying metadata, contained in the <code>varlabels</code> and <code>pattern</code> attributes:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit">
-<span class="fu"><a href="../reference/varlabels.html">varlabels</a></span>(<span class="kw">sv</span>)
-</pre></div>
-<pre><code>##                  id                  Q1                Q4_1                Q4_2 
-##            "RespID"        "Question 1"   "Question 4: red" "Question 4: green" 
-##                Q4_3                 Q10          crossbreak              weight 
-##  "Question 4: blue"       "Question 10"        "crossbreak"            "weight"</code></pre>
-<div class="sourceCode" id="cb21"><pre class="downlit">
-<span class="fu"><a href="../reference/pattern.html">pattern</a></span>(<span class="kw">sv</span>)
-</pre></div>
-<pre><code>## $sep
-## [1] "_"
-## 
-## $exclude
-## [1] "other"</code></pre>
-</div>
-<div id="working-with-question-columns" class="section level2">
-<h2 class="hasAnchor">
-<a href="#working-with-question-columns" class="anchor"></a>Working with question columns</h2>
-<p>It is easy to query the surveydata object to find out which questions it contains, as well as which columns store the data for those questions.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit">
-<span class="fu"><a href="../reference/questions.html">questions</a></span>(<span class="kw">sv</span>)
-</pre></div>
-<pre><code>## [1] "id"         "Q1"         "Q4"         "Q10"        "crossbreak"
-## [6] "weight"</code></pre>
-<div class="sourceCode" id="cb25"><pre class="downlit">
-<span class="fu"><a href="../reference/which.q.html">which.q</a></span>(<span class="kw">sv</span>, <span class="st">"Q1"</span>)
-</pre></div>
-<pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb27"><pre class="downlit">
-<span class="fu"><a href="../reference/which.q.html">which.q</a></span>(<span class="kw">sv</span>, <span class="st">"Q4"</span>)
-</pre></div>
-<pre><code>## [1] 3 4 5</code></pre>
-</div>
-<div id="reading-the-questionnaire-text" class="section level2">
-<h2 class="hasAnchor">
-<a href="#reading-the-questionnaire-text" class="anchor"></a>Reading the questionnaire text</h2>
-<p>The function <code><a href="../reference/question_text.html">question_text()</a></code> gives access to the questionnaire text.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit">
-<span class="fu"><a href="../reference/question_text.html">question_text</a></span>(<span class="kw">sv</span>, <span class="st">"Q1"</span>)
-</pre></div>
-<pre><code>## [1] "Question 1"</code></pre>
-<div class="sourceCode" id="cb31"><pre class="downlit">
-<span class="fu"><a href="../reference/question_text.html">question_text</a></span>(<span class="kw">sv</span>, <span class="st">"Q4"</span>)
-</pre></div>
-<pre><code>## [1] "Question 4: red"   "Question 4: green" "Question 4: blue"</code></pre>
-<div id="getting-the-common-question-text" class="section level3">
-<h3 class="hasAnchor">
-<a href="#getting-the-common-question-text" class="anchor"></a>Getting the common question text</h3>
-<p>Use <code><a href="../reference/question_text_common.html">question_text_common()</a></code> to retrieve the common text, i.e. the question itself:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit">
-<span class="fu"><a href="../reference/question_text_common.html">question_text_common</a></span>(<span class="kw">sv</span>, <span class="st">"Q4"</span>)
-</pre></div>
-<pre><code>## [1] "Question 4"</code></pre>
-</div>
-<div id="getting-the-unique-question-text" class="section level3">
-<h3 class="hasAnchor">
-<a href="#getting-the-unique-question-text" class="anchor"></a>Getting the unique question text</h3>
-<p>And use <code><a href="../reference/question_text_unique.html">question_text_unique()</a></code> to retrieve the unique part of the question, i.e. the sub-questions:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit">
-<span class="fu"><a href="../reference/question_text_unique.html">question_text_unique</a></span>(<span class="kw">sv</span>, <span class="st">"Q4"</span>)
-</pre></div>
-<pre><code>## [1] "red"   "green" "blue"</code></pre>
-</div>
-</div>
-<div id="using-surveydata-with-dplyr" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-surveydata-with-dplyr" class="anchor"></a>Using <code>surveydata</code> with <code>dplyr</code>
+<div class="section level2">
+<h2 id="defining-a-surveydata-object">Defining a surveydata object<a class="anchor" aria-label="anchor" href="#defining-a-surveydata-object"></a>
 </h2>
-<p>The <code>surveydata</code> object knows how to deal with the following <code>dplyr</code> verbs:</p>
+<p>First load the <code>surveydata</code> package.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/andrie/surveydata" class="external-link">surveydata</a></span><span class="op">)</span></span></code></pre></div>
+<p>Next, create sample data. A data frame is the ideal data structure
+for survey data, and the convention is that data for each respondent is
+stored in the rows, while each column represents answers to a specific
+question.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sdat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>   id   <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,</span>
+<span>   Q1   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Yes"</span>, <span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="st">"Yes"</span><span class="op">)</span>,</span>
+<span>   Q4_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, </span>
+<span>   Q4_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">3</span><span class="op">)</span>, </span>
+<span>   Q4_3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">6</span><span class="op">)</span>, </span>
+<span>   Q10 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Female"</span>, <span class="st">"Male"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>   crossbreak  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span><span class="op">)</span>, </span>
+<span>   weight      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="fl">1.1</span>, <span class="fl">0.8</span>, <span class="fl">1.2</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>The survey metadata consists of the questionnaire text. For example,
+this can be represented by a character vector, with an element for each
+question.</p>
+<p>To assign this metadata to the survey data, use the
+<code><a href="../reference/varlabels.html">varlabels()</a></code> function. This function assigns the
+questionnaire text to the <code>variable.labels</code> attribute of the
+data frame.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/varlabels.html">varlabels</a></span><span class="op">(</span><span class="va">sdat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>   <span class="st">"RespID"</span>,</span>
+<span>   <span class="st">"Question 1"</span>, </span>
+<span>   <span class="st">"Question 4: red"</span>, <span class="st">"Question 4: green"</span>, <span class="st">"Question 4: blue"</span>, </span>
+<span>   <span class="st">"Question 10"</span>,</span>
+<span>   <span class="st">"crossbreak"</span>,</span>
+<span>   <span class="st">"weight"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Finally, create the surveydata object. To do this, call the
+<code><a href="../reference/as.surveydata.html">as.surveydata()</a></code> function. The argument
+<code>renameVarlabels</code> controls whether the <code>varlabels</code>
+get renamed with the same names as the data. This is an essential step,
+and ensures that the question text remains in synch with the column
+names.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as.surveydata.html">as.surveydata</a></span><span class="op">(</span><span class="va">sdat</span>, renameVarlabels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="extracting-specific-questions">Extracting specific questions<a class="anchor" aria-label="anchor" href="#extracting-specific-questions"></a>
+</h2>
+<p>It is easy to extract specific questions with the <code>[</code>
+operator. This works very similar to extraction of data frames. However,
+there are two important differences:</p>
+<ul>
+<li>The extraction operators will always return a
+<code>surveydata</code> object, even if only a single column is
+returned. This is different from the behaviour of data frames, where a
+single column is simplified to a vector.</li>
+<li>Extracting a question with multiple sub-questions, e.g. “Q4” returns
+multiple columns</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sv</span><span class="op">[</span>, <span class="st">"Q1"</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##    Q1</span></span>
+<span><span class="co">## 1 Yes</span></span>
+<span><span class="co">## 2  No</span></span>
+<span><span class="co">## 3 Yes</span></span>
+<span><span class="co">## 4 Yes</span></span></code></pre>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sv</span><span class="op">[</span>, <span class="st">"Q4"</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##   Q4_1 Q4_2 Q4_3</span></span>
+<span><span class="co">## 1    1    3    5</span></span>
+<span><span class="co">## 2    2    4    5</span></span>
+<span><span class="co">## 3    1    4    6</span></span>
+<span><span class="co">## 4    2    3    6</span></span></code></pre>
+<p>The extraction makes use of the underlying metadata, contained in the
+<code>varlabels</code> and <code>pattern</code> attributes:</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/varlabels.html">varlabels</a></span><span class="op">(</span><span class="va">sv</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##                  id                  Q1                Q4_1                Q4_2 </span></span>
+<span><span class="co">##            "RespID"        "Question 1"   "Question 4: red" "Question 4: green" </span></span>
+<span><span class="co">##                Q4_3                 Q10          crossbreak              weight </span></span>
+<span><span class="co">##  "Question 4: blue"       "Question 10"        "crossbreak"            "weight"</span></span></code></pre>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pattern.html">pattern</a></span><span class="op">(</span><span class="va">sv</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## $sep</span></span>
+<span><span class="co">## [1] "_"</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $exclude</span></span>
+<span><span class="co">## [1] "other"</span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="working-with-question-columns">Working with question columns<a class="anchor" aria-label="anchor" href="#working-with-question-columns"></a>
+</h2>
+<p>It is easy to query the surveydata object to find out which questions
+it contains, as well as which columns store the data for those
+questions.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/questions.html">questions</a></span><span class="op">(</span><span class="va">sv</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "id"         "Q1"         "Q4"         "Q10"        "crossbreak"</span></span>
+<span><span class="co">## [6] "weight"</span></span></code></pre>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/which.q.html">which.q</a></span><span class="op">(</span><span class="va">sv</span>, <span class="st">"Q1"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 2</span></span></code></pre>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/which.q.html">which.q</a></span><span class="op">(</span><span class="va">sv</span>, <span class="st">"Q4"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 3 4 5</span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="reading-the-questionnaire-text">Reading the questionnaire text<a class="anchor" aria-label="anchor" href="#reading-the-questionnaire-text"></a>
+</h2>
+<p>The function <code><a href="../reference/question_text.html">question_text()</a></code> gives access to the
+questionnaire text.</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/question_text.html">question_text</a></span><span class="op">(</span><span class="va">sv</span>, <span class="st">"Q1"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "Question 1"</span></span></code></pre>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/question_text.html">question_text</a></span><span class="op">(</span><span class="va">sv</span>, <span class="st">"Q4"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "Question 4: red"   "Question 4: green" "Question 4: blue"</span></span></code></pre>
+<div class="section level3">
+<h3 id="getting-the-common-question-text">Getting the common question text<a class="anchor" aria-label="anchor" href="#getting-the-common-question-text"></a>
+</h3>
+<p>Use <code><a href="../reference/question_text_common.html">question_text_common()</a></code> to retrieve the common text,
+i.e. the question itself:</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/question_text_common.html">question_text_common</a></span><span class="op">(</span><span class="va">sv</span>, <span class="st">"Q4"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "Question 4"</span></span></code></pre>
+</div>
+<div class="section level3">
+<h3 id="getting-the-unique-question-text">Getting the unique question text<a class="anchor" aria-label="anchor" href="#getting-the-unique-question-text"></a>
+</h3>
+<p>And use <code><a href="../reference/question_text_unique.html">question_text_unique()</a></code> to retrieve the unique
+part of the question, i.e. the sub-questions:</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/question_text_unique.html">question_text_unique</a></span><span class="op">(</span><span class="va">sv</span>, <span class="st">"Q4"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "red"   "green" "blue"</span></span></code></pre>
+</div>
+</div>
+<div class="section level2">
+<h2 id="using-surveydata-with-dplyr">Using <code>surveydata</code> with <code>dplyr</code><a class="anchor" aria-label="anchor" href="#using-surveydata-with-dplyr"></a>
+</h2>
+<p>The <code>surveydata</code> object knows how to deal with the
+following <code>dplyr</code> verbs:</p>
 <ul>
 <li><code>select</code></li>
 <li><code>filter</code></li>
@@ -328,12 +357,14 @@
 <li><code>arrange</code></li>
 <li><code>summarize</code></li>
 </ul>
-<p>In every case the resulting object will also be of class <code>surveydata</code>.</p>
+<p>In every case the resulting object will also be of class
+<code>surveydata</code>.</p>
 </div>
-<div id="summary" class="section level2">
-<h2 class="hasAnchor">
-<a href="#summary" class="anchor"></a>Summary</h2>
-<p>The <code>surveydata</code> object can make it much easier to work with survey data.</p>
+<div class="section level2">
+<h2 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
+</h2>
+<p>The <code>surveydata</code> object can make it much easier to work
+with survey data.</p>
 </div>
   </div>
 
@@ -348,11 +379,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Andrie de Vries.</p>
+  <p></p>
+<p>Developed by Andrie de Vries.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -360,6 +393,8 @@
 
   
 
+
+  
 
   </body>
 </html>
