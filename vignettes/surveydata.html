@@ -318,7 +318,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>In addition, the metadata knows if a question consists of a single column, or multiple columns. When doing subsetting on the question name, the resulting object can be either a single column or multiple columns.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(surveydata)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(dplyr)</a></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">sv &lt;-<span class="st"> </span>membersurvey <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.tbl</span>()</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">sv &lt;-<span class="st"> </span>membersurvey <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</a>
 <a class="sourceLine" id="cb2-2" title="2">sv</a></code></pre></div>
 <pre><code>## # A tibble: 215 x 109
 ##       id  Q1_1  Q1_2 Q2     Q3_1  Q3_2  Q3_3  Q3_4  Q3_5  Q3_6  Q3_7  Q3_8 

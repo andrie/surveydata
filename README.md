@@ -48,12 +48,7 @@ library(dplyr)
 ```
 
 ``` r
-sv <- membersurvey %>% as.tbl()
-#> Warning: `as.tbl()` was deprecated in dplyr 1.0.0.
-#> ℹ Please use `tibble::as_tibble()` instead.
-#> Warning: 'as.tbl.surveydata' is deprecated.
-#> Use 'as_tibble' instead.
-#> See help("Deprecated")
+sv <- membersurvey %>% as_tibble()
 sv
 #> # A tibble: 215 × 109
 #>       id  Q1_1  Q1_2 Q2    Q3_1  Q3_2  Q3_3  Q3_4  Q3_5  Q3_6  Q3_7  Q3_8  Q3_9 

@@ -48,7 +48,7 @@ library(surveydata)
 library(dplyr)
 ```
 ```{r motivation, output.lines = 14}
-sv <- membersurvey %>% as.tbl()
+sv <- membersurvey %>% as_tibble()
 sv
 ```
 

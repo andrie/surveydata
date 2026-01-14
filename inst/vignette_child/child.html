@@ -377,12 +377,7 @@ name, the resulting object can be either a single column or multiple
 columns.</p>
 <pre class="r"><code>library(surveydata)
 library(dplyr)</code></pre>
-<pre class="r"><code>sv &lt;- membersurvey %&gt;% as.tbl()</code></pre>
-<pre><code>## Warning: `as.tbl()` was deprecated in dplyr 1.0.0.
-## ℹ Please use `tibble::as_tibble()` instead.</code></pre>
-<pre><code>## Warning: &#39;as.tbl.surveydata&#39; is deprecated.
-## Use &#39;as_tibble&#39; instead.
-## See help(&quot;Deprecated&quot;)</code></pre>
+<pre class="r"><code>sv &lt;- membersurvey %&gt;% as_tibble()</code></pre>
 <pre class="r"><code>sv</code></pre>
 <pre><code>## # A tibble: 215 × 109
 ##       id  Q1_1  Q1_2 Q2    Q3_1  Q3_2  Q3_3  Q3_4  Q3_5  Q3_6  Q3_7  Q3_8  Q3_9 
