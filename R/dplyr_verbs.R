@@ -48,13 +48,6 @@ as_tibble.surveydata <- function(x, ..., .name_repair, rownames) {
 }
 # as_tibble.surveydata <- verb.surveydata
 
-#' @export
-#' @rdname dplyr-surveydata
-as.tbl.surveydata <- function(x, ...) {
-  .Deprecated("as_tibble")
-  as_tibble(x)
-}
-
 
 #' @export
 #' @rdname dplyr-surveydata

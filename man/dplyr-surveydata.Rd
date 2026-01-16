@@ -4,7 +4,6 @@
 \alias{dplyr-surveydata}
 \alias{mutate.surveydata}
 \alias{as_tibble.surveydata}
-\alias{as.tbl.surveydata}
 \alias{select.surveydata}
 \alias{filter}
 \alias{arrange.surveydata}
@@ -16,8 +15,6 @@
 \method{mutate}{surveydata}(.data, ...)
 
 \method{as_tibble}{surveydata}(x, ..., .name_repair, rownames)
-
-\method{as.tbl}{surveydata}(x, ...)
 
 \method{select}{surveydata}(.data, ...)
 
