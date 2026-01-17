@@ -1,6 +1,6 @@
 ## New in this package
 
-This release fixes documentation warnings from CRAN builds
+This is a minor release that fixes defunct package imports.
 
 ## R CMD check results
 

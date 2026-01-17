@@ -1,7 +1,16 @@
+surveydata 0.2.8
+-----------------
+
+* No functional changes.
+* Minor update to support `tibble::as_tibble()`, as proposed by @DavisVaughan in #10
+* Update minimum R version required to R-4.1.0, since this is the minimum requirement from `purrr` and other tidyverse packages
+
+
 surveydata 0.2.7
 -----------------
 
 * No functional changes.
+
 
 surveydata 0.2.6
 -----------------
