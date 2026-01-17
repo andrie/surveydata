@@ -35,7 +35,7 @@
 #' @keywords internal
 #' @aliases [ "[.surveydata"
 #' @method [ surveydata
-#' @example /inst/examples/example-extract.R
+#' @example inst/examples/example-extract.R
 `[.surveydata` <- function(x, i, j, drop = FALSE) {
   name <- NULL
   has.drop <- !missing(drop)

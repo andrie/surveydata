@@ -65,9 +65,9 @@
 #' @author Andrie de Vries \email{apdevries@@gmail.com}
 #' @keywords package
 #'
-#' @example /inst/examples/example-asSurveydata.R
-#' @example /inst/examples/example-questions.R
-NULL
+#' @example inst/examples/example-asSurveydata.R
+#' @example inst/examples/example-questions.R
+"_PACKAGE"
 
 
 #' Data frame with survey data of member satisfaction survey.

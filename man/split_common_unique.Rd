@@ -16,9 +16,9 @@ Get common and unique text in question based on regex pattern identification.
 }
 \seealso{
 Other Question functions: 
+\code{\link{question_text}()},
 \code{\link{question_text_common}()},
 \code{\link{question_text_unique}()},
-\code{\link{question_text}()},
 \code{\link{questions}()},
 \code{\link{which.q}()}
 }

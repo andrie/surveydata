@@ -29,7 +29,7 @@
 #' @export
 #' @seealso [surveydata-package]
 #' @family Attribute functions
-#' @example /inst/examples/example-varlabels.R
+#' @example inst/examples/example-varlabels.R
 varlabels <- function(x) {
   attr(x, "variable.labels")
 }

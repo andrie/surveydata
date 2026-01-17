@@ -133,6 +133,15 @@ head(membersurvey[, "id"])
 str(membersurvey[, "id"])
 
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/andrie/surveydata}
+  \item \url{https://andrie.github.io/surveydata/}
+  \item Report bugs at \url{https://github.com/andrie/surveydata/issues}
+}
+
+}
 \author{
 Andrie de Vries \email{apdevries@gmail.com}
 }

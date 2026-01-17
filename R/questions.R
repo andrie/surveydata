@@ -33,7 +33,7 @@ qPattern <- function(Q, ptn) {
 #' @family Question functions
 #' @keywords Questions
 #' @export
-#' @example /inst/examples/example-questions.R
+#' @example inst/examples/example-questions.R
 which.q <- function(x, Q, ptn = pattern(x)) {
   if (!is.list(ptn)) stop("ptn must be a list of two elements")
   num <- !is.na(suppressWarnings(as.numeric(Q)))
@@ -80,7 +80,7 @@ which.q <- function(x, Q, ptn = pattern(x)) {
 #' @keywords Questions
 #' @export
 #' @return numeric vector
-#' @example /inst/examples/example-questions.R
+#' @example inst/examples/example-questions.R
 questions <- function(x, ptn = pattern(x)) {
   n <- names(x)
   ptn1 <- sprintf(".*%s%s$", ptn[1], ptn[2])
@@ -103,7 +103,7 @@ questions <- function(x, ptn = pattern(x)) {
 #' @keywords Questions
 #' @export
 #' @return character vector
-#' @example /inst/examples/example-questions.R
+#' @example inst/examples/example-questions.R
 question_text <- function(x, Q) {
   do_one <- function(q) {
     w <- which.q(x, q)
@@ -127,7 +127,7 @@ question_text <- function(x, Q) {
 #' @keywords Questions
 #' @export
 #' @return character vector
-#' @example /inst/examples/example-questions.R
+#' @example inst/examples/example-questions.R
 question_text_unique <- function(x, Q) {
   text <- question_text(x, Q)
   split_common_unique(text)$unique
@@ -144,7 +144,7 @@ question_text_unique <- function(x, Q) {
 #' @keywords Questions
 #' @export
 #' @return character vector
-#' @example /inst/examples/example-questions.R
+#' @example inst/examples/example-questions.R
 question_text_common <- function(x, Q) {
   text <- question_text(x, Q)
   split_common_unique(text)$common
